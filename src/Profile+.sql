@@ -72,11 +72,6 @@ CREATE TABLE User(
 );
 
 
-
-
-
-
-
 CREATE TABLE GroupPlus(
   GroupID INTEGER,
   GroupName VARCHAR(50),
@@ -85,3 +80,67 @@ CREATE TABLE GroupPlus(
   PRIMARY KEY (GroupID),
   FOREIGN KEY (GroupID) REFERENCES User(UserID)
 );
+
+CREATE TABLE FriendsWith(
+  UserID INTEGER,
+  FriendID INTEGER,
+  PRIMARY KEY (UserID, FriendID),
+  FOREIGN KEY (UserID) REFERENCES User(UserID),
+  FOREIGN KEY (FriendID) REFERENCES User(UserID)
+
+
+);
+
+CREATE ASSERTION NoFriendsWithSelf
+      CHECK NOT EXISTS(
+      Select U.UserID, F.FriendID FROM UserPlus U, FriendsWith F
+      WHERE U.UserID == F.FriendID
+)
+
+
+CREATE TABLE CreatesGroup(
+  UserID INTEGER,
+  GroupID INTEGER,
+  PRIMARY KEY (UserID, GroupID),
+  FOREIGN KEY (UserID) REFERENCES User(UserID),
+  FOREIGN KEY (GroupID) REFERENCES GroupPlus(GroupID)
+
+);
+
+
+CREATE ASSERTION NoFriendsWithSelf
+CHECK NOT EXISTS(
+Select U.UserID, F.FriendID FROM UserPlus U, FriendsWith F
+WHERE U.UserID == F.FriendID
+)
+
+CREATE TABLE HasAccess (
+  UserID INTEGER,
+  PageID INTEGER,
+  GroupID INTEGER,
+  PRIMARY KEY (UserID, PageID, GroupID),
+  FOREIGN KEY (UserID) REFERENCES User(UserID),
+  FOREIGN KEY (PageID) REFERENCES Page(PageID),
+  FOREIGN KEY (GroupID) REFERENCES GroupPlus(GroupID)
+
+
+);
+
+
+
+
+CREATE TABLE HasAPersonal(
+  UserID INTEGER,
+  PersonalPageID INTEGER,
+  PRIMARY KEY (UserID, PersonalPageID),
+  FOREIGN KEY (UserID) REFERENCES User(UserID),
+  FOREIGN KEY (PersonalPageID) REFERENCES PersonalPage(PageID)
+);
+
+CREATE TABLE HasAGroupPage(
+  GroupID INTEGER,
+  GroupPageID INTEGER,
+  PRIMARY KEY (GroupID, GroupPageID),
+  FOREIGN KEY (GroupID) REFERENCES GroupPlus(GroupID),
+  FOREIGN KEY (GroupPageID) REFERENCES GroupPage(PageID)
+)
