@@ -382,43 +382,6 @@ CREATE TABLE Receive(
 # WHERE AC.PageId = MP.PageId and AC.UserId = MP.UserId)
 # );
 
-CREATE TABLE FriendsWith(
-  UserID INTEGER,
-  FriendID INTEGER,
-  PRIMARY KEY (UserID, FriendID),
-  FOREIGN KEY (UserID) REFERENCES UserPlus(UserID),
-  FOREIGN KEY (FriendID) REFERENCES UserPlus(UserID)
-);
-
-#
-# CREATE ASSERTION NoFriendsWithSelf
-# CHECK NOT EXISTS(
-# Select U.UserID, F.FriendID FROM UserPlus U, FriendsWith F
-# WHERE U.UserID == F.FriendID
-# )
-
-
-CREATE TABLE CreatesGroup(
-  UserID INTEGER,
-  GroupID INTEGER,
-  PRIMARY KEY (UserID, GroupID),
-  FOREIGN KEY (UserID) REFERENCES UserPlus(UserID),
-  FOREIGN KEY (GroupID) REFERENCES GroupPlus(GroupID)
-);
-
-
-CREATE TABLE HasAccess (
-  UserID INTEGER,
-  PageID INTEGER,
-  GroupID INTEGER,
-  PRIMARY KEY (UserID, PageID, GroupID),
-  FOREIGN KEY (UserID) REFERENCES UserPlus(UserID),
-  FOREIGN KEY (PageID) REFERENCES PagePlus(PageID),
-  FOREIGN KEY (GroupID) REFERENCES GroupPlus(GroupID)
-);
-
-
-
 
 
 
