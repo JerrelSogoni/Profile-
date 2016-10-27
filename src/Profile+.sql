@@ -418,24 +418,6 @@ CREATE TABLE HasAccess (
 );
 
 
-CREATE TABLE HasAPersonal(
-  UserID INTEGER,
-  PersonalPageID INTEGER,
-  PRIMARY KEY (UserID, PersonalPageID),
-  FOREIGN KEY (UserID) REFERENCES UserPlus(UserID),
-  FOREIGN KEY (PersonalPageID) REFERENCES PersonalPage(PageID)
-);
-
-
-CREATE TABLE HasAGroupPage(
-  GroupID INTEGER,
-  GroupPageID INTEGER,
-  PRIMARY KEY (GroupID, GroupPageID),
-  FOREIGN KEY (GroupID) REFERENCES GroupPlus(GroupID),
-  FOREIGN KEY (GroupPageID) REFERENCES GroupPage(PageID)
-);
-
-
 
 
 
