@@ -1,17 +1,17 @@
 #User database
 CREATE TABLE UserPlus(
   UserID INTEGER,
-  FirstName VARCHAR(20),
-  LastName VARCHAR(20),
-  Address VARCHAR(50),
+  FirstName CHAR(20),
+  LastName CHAR(20),
+  Address CHAR(50),
   City VARCHAR(20),
   State VARCHAR(2),
   ZipCode INTEGER,
-  Phone VARCHAR(10),
-  Email VARCHAR(50),
+  Phone CHAR(10),
+  Email CHAR(50),
   AccountNum INTEGER,
   AccountCreationDate DATETIME,
-  CreditCardNum VARCHAR(16),
+  CreditCardNum CHAR(16),
   Preferences VARCHAR(50),
   PRIMARY KEY (UserID)
 );
