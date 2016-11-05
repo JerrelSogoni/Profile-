@@ -95,9 +95,6 @@ CREATE TABLE FriendsWith(
     ON DELETE NO ACTION
 );
 
-# VIEW to display users without the user themself or friends they already have
-
-
 # Assertions do not wokr try to replace with triggers
 # CREATE ASSERTION NoFriendsWithSelf
 # CHECK NOT EXISTS(
@@ -124,7 +121,7 @@ CREATE TABLE CreatesGroup(
 
 
 #Has access between page and group and user relationship
-CREATE TABLE HasAccess (
+CREATE TABLE HasAccessToGroup (
   UserID INTEGER,
   PageID INTEGER,
   GroupID INTEGER,
