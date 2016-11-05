@@ -1,4 +1,4 @@
-insert into Post (PostID, DateCreated, Content, CommentCount, AuthorID) values (1, NOW(), 'envisioneer frictionless deliverables', 0, 1);
+insert into Post (PostID, DateCreated, Content, CommentCount, AuthorID) values (1, NOW(), 'envisioneer frictionless deliverables', 10, 1);
 insert into Post (PostID, DateCreated, Content, CommentCount, AuthorID) values (2, NOW(), 'engineer back-end paradigms', 0, 2);
 insert into Post (PostID, DateCreated, Content, CommentCount, AuthorID) values (3, NOW(), 'redefine efficient infrastructures', 0, 3);
 insert into Post (PostID, DateCreated, Content, CommentCount, AuthorID) values (4, NOW(), 'embrace sticky experiences', 0, 4);
