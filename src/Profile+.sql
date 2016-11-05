@@ -1,6 +1,6 @@
 #User database
 CREATE TABLE UserPlus(
-  UserID INTEGER,
+  UserID INTEGER AUTO_INCREMENT,
   FirstName CHAR(20),
   LastName CHAR(20),
   Address CHAR(50),
@@ -18,7 +18,7 @@ CREATE TABLE UserPlus(
 
 #Comment Database
 CREATE TABLE Comment(
-  CommentID INTEGER,
+  CommentID INTEGER AUTO_INCREMENT,
   DateCreated DATETIME,
   Content   VARCHAR(100),
   AuthorID  INTEGER,
@@ -28,7 +28,7 @@ CREATE TABLE Comment(
 
 #Post database
 CREATE TABLE Post(
-  PostID INTEGER,
+  PostID INTEGER AUTO_INCREMENT,
   DateCreated DATETIME,
   Content     VARCHAR(100),
   CommentCount INTEGER,
@@ -39,7 +39,7 @@ CREATE TABLE Post(
 
 #Message database
 CREATE TABLE Message(
-  MessageID INTEGER,
+  MessageID INTEGER AUTO_INCREMENT,
   DateSent DATETIME,
   ReceiverID INTEGER,
   SenderID INTEGER,
@@ -59,7 +59,7 @@ CREATE TABLE PagePlus(
 
 #Personal page database
 CREATE TABLE PersonalPage(
-  PageID INTEGER,
+  PageID INTEGER AUTO_INCREMENT,
   OwnerID INTEGER,
   PRIMARY KEY (PageID),
   FOREIGN KEY (OwnerID) REFERENCES UserPlus(UserID)
@@ -67,7 +67,7 @@ CREATE TABLE PersonalPage(
 
 #Group Page Database
 CREATE TABLE GroupPage(
-  PageID INTEGER,
+  PageID INTEGER AUTO_INCREMENT,
   AccociatedID INTEGER,
   PRIMARY KEY (PageID),
   FOREIGN KEY (AccociatedID) REFERENCES UserPlus(UserID)
@@ -75,7 +75,7 @@ CREATE TABLE GroupPage(
 
 #Group database
 CREATE TABLE GroupPlus(
-  GroupID INTEGER,
+  GroupID INTEGER AUTO_INCREMENT,
   GroupName VARCHAR(50),
   Owner INTEGER,
   Type SET('Club', 'Organization', 'Event', 'News'),
@@ -93,11 +93,11 @@ CREATE TABLE FriendsWith(
   FOREIGN KEY (FriendID) REFERENCES UserPlus(UserID)
     ON UPDATE CASCADE
     ON DELETE NO ACTION
-
-
-
-
 );
+
+# VIEW to display users without the user themself or friends they already have
+
+
 # Assertions do not wokr try to replace with triggers
 # CREATE ASSERTION NoFriendsWithSelf
 # CHECK NOT EXISTS(
