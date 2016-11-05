@@ -80,7 +80,7 @@ CREATE TABLE GroupPlus(
   Owner INTEGER,
   Type SET('Club', 'Organization', 'Event', 'News'),
   PRIMARY KEY (GroupID),
-  FOREIGN KEY (GroupID) REFERENCES UserPlus(UserID)
+  FOREIGN KEY (Owner) REFERENCES UserPlus(UserID)
 );
 -- Jerrel Part
 CREATE TABLE FriendsWith(
