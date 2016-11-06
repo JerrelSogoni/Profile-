@@ -206,7 +206,7 @@ CREATE TABLE MakesPost(
   FOREIGN KEY (UserID) REFERENCES UserPlus(UserID)
     ON DELETE NO ACTION ON UPDATE CASCADE
 );
-
+d
 
 CREATE TABLE LikesPost(
   PostID INTEGER,
@@ -226,7 +226,7 @@ CREATE TABLE PostedTo(
   FOREIGN KEY (PageID) REFERENCES PagePlus(PageID)
     ON DELETE NO ACTION ON UPDATE CASCADE,
   FOREIGN KEY (PostID) REFERENCES Post(PostID)
-    ON DELETE NO ACTION ON UPDATE CASCADE
+    ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 
@@ -356,7 +356,7 @@ CREATE TABLE Send(
   foreign key (Sender) references UserPlus(UserId)
     ON DELETE NO ACTION ON UPDATE CASCADE,
   foreign key (MessageId) references Message(MessageId)
-    ON DELETE NO ACTION ON UPDATE CASCADE
+    ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 
@@ -367,7 +367,7 @@ CREATE TABLE Receive(
   foreign key (Receiver) references UserPlus(UserId)
     ON DELETE NO ACTION ON UPDATE CASCADE,
   foreign key (MessageId) references Message(MessageId)
-    ON DELETE NO ACTION ON UPDATE CASCADE
+    ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 #
