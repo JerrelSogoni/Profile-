@@ -1,6 +1,7 @@
 #User database
 CREATE TABLE UserPlus(
   UserID INTEGER AUTO_INCREMENT,
+  Password CHAR(20),
   FirstName CHAR(20),
   LastName CHAR(20),
   Address CHAR(50),
@@ -121,8 +122,11 @@ CREATE TABLE CreatesGroup(
 
 
 #Has access between page and group and user relationship
+
+
 CREATE TABLE HasAccessToGroup (
   UserID INTEGER,
+  AdderID INTEGER,
   PageID INTEGER,
   GroupID INTEGER,
   PRIMARY KEY (UserID, PageID, GroupID),
@@ -134,7 +138,10 @@ CREATE TABLE HasAccessToGroup (
     ON DELETE NO ACTION,
   FOREIGN KEY (GroupID) REFERENCES GroupPlus(GroupID)
     ON UPDATE CASCADE
-    ON DELETE NO ACTION
+    ON DELETE NO ACTION,
+  FOREIGN KEY (AdderID) REFERENCES UserPlus(UserID)
+  ON UPDATE CASCADE
+  ON DELETE NO ACTION
 
 );
 
@@ -175,15 +182,15 @@ CREATE TABLE HasAGroupPage(
 );
 
 -- Jane Part
-CREATE TABLE MakesComment(
-  CommentID INTEGER,
-  UserID INTEGER,
-  PRIMARY KEY (CommentID, UserID),
-  FOREIGN KEY (CommentID) REFERENCES Comment(CommentID)
-    ON DELETE NO ACTION ON UPDATE CASCADE,
-  FOREIGN KEY (UserID) REFERENCES UserPlus(UserID)
-    ON DELETE NO ACTION ON UPDATE CASCADE
-);
+# CREATE TABLE MakesComment(
+#   CommentID INTEGER,
+#   UserID INTEGER,
+#   PRIMARY KEY (CommentID, UserID),
+#   FOREIGN KEY (CommentID) REFERENCES Comment(CommentID)
+#     ON DELETE NO ACTION ON UPDATE CASCADE,
+#   FOREIGN KEY (UserID) REFERENCES UserPlus(UserID)
+#     ON DELETE NO ACTION ON UPDATE CASCADE
+# );
 
 
 CREATE TABLE LikesComment(
@@ -197,16 +204,15 @@ CREATE TABLE LikesComment(
 );
 
 
-CREATE TABLE MakesPost(
-  PostID INTEGER,
-  UserID INTEGER,
-  PRIMARY KEY (PostID, UserID),
-  FOREIGN KEY (PostID) REFERENCES Post(PostID)
-    ON DELETE NO ACTION ON UPDATE CASCADE,
-  FOREIGN KEY (UserID) REFERENCES UserPlus(UserID)
-    ON DELETE NO ACTION ON UPDATE CASCADE
-);
-d
+# CREATE TABLE MakesPost(
+#   PostID INTEGER,
+#   UserID INTEGER,
+#   PRIMARY KEY (PostID, UserID),
+#   FOREIGN KEY (PostID) REFERENCES Post(PostID)
+#     ON DELETE NO ACTION ON UPDATE CASCADE,
+#   FOREIGN KEY (UserID) REFERENCES UserPlus(UserID)
+#     ON DELETE NO ACTION ON UPDATE CASCADE
+# );
 
 CREATE TABLE LikesPost(
   PostID INTEGER,

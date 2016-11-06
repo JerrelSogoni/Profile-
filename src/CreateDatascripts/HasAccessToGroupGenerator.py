@@ -5,7 +5,7 @@ def createInsert():
 		for line in f:
 			spl = line.split(':')
 
-			print 'INSERT INTO HasAccessToGroup VALUES(%s, %s, %s);' % (spl[0], spl[1], spl[2].strip())
+			print 'INSERT INTO HasAccessToGroup VALUES(%s, %s, %s, %s);' % (spl[0], spl[1],spl[2], spl[2].strip())
 
 
 createInsert()

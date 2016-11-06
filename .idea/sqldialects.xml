@@ -22,5 +22,6 @@
     <file url="file://$PROJECT_DIR$/src/MockDataSql/mockUserHasPersonalPage.sql" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/src/MockDataSql/mockUsers.sql" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/src/Profile+.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/transactions.sql" dialect="MySQL" />
   </component>
 </project>

@@ -174,7 +174,7 @@ SELECT * FROM Sales
 
 -- - Determine which customer representative generated most total revenue
 
-
+SELECT EmpId, MAX(SUM(A.UnitPrice * S.NumOfUnits)) AS TotalRevenue FROM AdData A, Sales S;
 
 -- - Determine which customer generated most total revenue
 
