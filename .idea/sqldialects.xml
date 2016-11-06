@@ -1,14 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="SqlDialectMappings">
+    <file url="file://$PROJECT_DIR$/src/MockDataSql/CommentOn.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/src/MockDataSql/CreatesAGroupMock.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/src/MockDataSql/GroupPage.sql" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/src/MockDataSql/GroupPlusMock.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/src/MockDataSql/HasAGroupPage.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/src/MockDataSql/HasAccessToGroupMock.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/src/MockDataSql/LikesComments.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/src/MockDataSql/LikesPost.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/src/MockDataSql/MakesPost.sql" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/src/MockDataSql/PagePlusMock.sql" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/src/MockDataSql/PersonalPageMock.sql" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/src/MockDataSql/PostMock.sql" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/src/MockDataSql/mockComments.sql" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/src/MockDataSql/mockEmployee.sql" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/src/MockDataSql/mockFriendsWith.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/src/MockDataSql/mockMakesComment.sql" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/src/MockDataSql/mockMessages.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/src/MockDataSql/mockPostTo.sql" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/src/MockDataSql/mockUserHasPersonalPage.sql" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/src/MockDataSql/mockUsers.sql" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/src/Profile+.sql" dialect="MySQL" />
