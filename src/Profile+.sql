@@ -68,9 +68,9 @@ CREATE TABLE PersonalPage(
 #Group Page Database
 CREATE TABLE GroupPage(
   PageID INTEGER AUTO_INCREMENT,
-  AccociatedID INTEGER,
+  GroupID INTEGER,
   PRIMARY KEY (PageID),
-  FOREIGN KEY (AccociatedID) REFERENCES UserPlus(UserID)
+  FOREIGN KEY (GroupID) REFERENCES GroupPlus(GroupID)
 );
 
 #Group database
