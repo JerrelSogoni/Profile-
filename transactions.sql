@@ -119,28 +119,62 @@ DELETE FROM LikesPost WHERE PostID = ? AND UserID = ?;
 DELETE FROM LikesComment WHERE CommentID = ? AND UserID = ?;
 
 -- - Modify a post
+UPDATE Post 
+SET DateCreated = ?, Content = ?, CommentCount = ?
+Where PostID = ?;
+
 -- - Modify a comment
+UPDATE Comment
+SET DateCreated = ?, Content = ?
+WHERE AuthorId = ?;
+
 -- - Delete a group
+DELETE FROM GroupPlus WHERE GroupID = ?;
+
 -- - Rename a group
---  
+UPDATE GroupPlus SET GroupName = ? WHERE GroupID = ?;
+
 -- Users should also be able to perform the following transactions with regard to other users' groups:
 -- - Join a group
+INSERT INTO IsIn(UserId, GroupId) VALUES(?, ?);
+
 -- - Unjoin a group
+DELETE FROM IsIn WHERE UserId = ? AND GroupId = ?;
+
 -- - Make a post on a group page
+SELECT * FROM HasAPersonal WHERE UserID = ? AND PersonalPageID = ?; -- check if it is a personal page
+
+SELECT * FROM HasAccessToGroup WHERE Adder_Id = ? AND GroupId = ?; -- check if has access to group
+
+INSERT INTO PostTo(PostID, PageID) values (?, ?); -- insertion
+
 -- - Comment on a post on a group page
+INSERT INTO Comment(CommentID, DateCreated, Content, AuthorID) VALUES (?, ?, ?, ?);
+INSERT INTO CommentOn(CommentID, PostID) VALUES (?, ?);
+
 -- - Like a post on a group page
+INSERT INTO LikesPost(PostID, UserID) VALUES(?, ?);
+
 -- - Like a comment on a group page
+INSERT INTO LikesComment(CommentID, UserID) VALUES(?, ?);
+
 -- - Remove one of their posts on a group page
+DELETE FROM PostedTo WHERE PostID = ? AND PageID = ?;
+
 -- - Remove a comment
+DELETE FROM CommentOn WHERE CommentID = ? AND PostID = ?;
+
 -- - Unlike a post
+DELETE FROM LikesPost WHERE CommentID = ? AND UserID = ?;
+
 -- - Unlike a comment
--- - Modify a post
--- - Modify a comment
+DELETE FROM LikesComment WHERE CommentID = ? AND UserID = ?;
 --  
 -- Manager-Level Transactions
 --  
 -- The manager should be able to:
 -- - Add, Edit and Delete information for an employee
+
 
 -- Add Employee
 INSERT INTO Employee(SSN ,LastName , FirstName, Address, City, State, ZipCode, Telephone, StartDate, HourlyRate) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
@@ -186,15 +220,26 @@ SELECT EmpId, MAX(SUM(A.UnitPrice * S.NumOfUnits)) AS TotalRevenue FROM AdData A
 -- Customer-Representative-Level Transactions
 -- Customer Representatives should be thought of as sales agents and should be able to:
 -- - Create an advertisement
+INSERT INTO AdData(AdId, EmpId, Type, Company, ItemName, Content, UnitPrice, NumOfAvaUnits) values (?, ?, ?, ?, ?, ?, ?, ?);
+
 -- - Delete an advertisement
+DELETE FROM AdDate WHERE AdId = ?;
+
 -- - Record a transaction
+INSERT INTO Sales(TransId, TransDate, TransTime, AdId, NumOfUnits, AccountNum) value (?, ?, ?, ?, ?, ?);
+INSERT INTO Buy(TransId, EmpId, UserId) values (?, ?, ?);
+
 -- - Add, Edit and Delete information for a customer
+
 -- - Produce customer mailing lists
 -- - Produce a list of item suggestions for a given customer (based on that customer's past transactions)
 --  
 -- Customers should also be able to perform the following transactions with regard to advertisements:
 -- - Purchase one or more copies of an advertised item
---  
+INSERT INTO Sales(TransId, TransDate, TransTime, AdId, NumOfUnits, AccountNum) value (?, ?, ?, ?, ?, ?);
+INSERT INTO Buy(TransId, EmpId, UserId) values (?, ?, ?);
+
+
 -- While customers (users) will not be permitted to access the database directly, they should be able to retrieve the following information:
 -- - A customer's current groups
 -- - For each of a customer's accounts, the account history
