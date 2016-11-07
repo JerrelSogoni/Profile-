@@ -1,0 +1,10 @@
+INSERT INTO GroupPlus (GroupId, Owner, GroupName) VALUES (26, 1, 'Automated value-added process improvement');
+INSERT INTO GroupPlus (GroupId, Owner, GroupName) VALUES (27, 2, 'Diverse next generation knowledge base');
+INSERT INTO GroupPlus (GroupId, Owner, GroupName) VALUES (28, 3, 'Inverse contextually-based forecast');
+INSERT INTO GroupPlus (GroupId, Owner, GroupName) VALUES (29, 4, 'Team-oriented contextually-based solution');
+INSERT INTO GroupPlus (GroupId, Owner, GroupName) VALUES (30, 5, 'Enterprise-wide encompassing portal');
+INSERT INTO GroupPlus (GroupId, Owner, GroupName) VALUES (31, 6, 'Event');
+INSERT INTO GroupPlus (GroupId, Owner, GroupName) VALUES (32, 7, 'Event');
+INSERT INTO GroupPlus (GroupId, Owner, GroupName) VALUES (33, 8, 'Event');
+INSERT INTO GroupPlus (GroupId, Owner, GroupName) VALUES (34, 9, 'Event');
+INSERT INTO GroupPlus (GroupId, Owner, GroupName) VALUES (35, 10, 'Event');

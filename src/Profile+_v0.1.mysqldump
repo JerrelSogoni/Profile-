@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 5.7.15, for osx10.11 (x86_64)
+-- MySQL dump 10.13  Distrib 5.7.16, for osx10.11 (x86_64)
 --
--- Host: localhost    Database: ProfilePlus
+-- Host: localhost    Database: new_schema
 -- ------------------------------------------------------
--- Server version	5.7.15
+-- Server version	5.7.16
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -43,6 +43,7 @@ CREATE TABLE `AdData` (
 
 LOCK TABLES `AdData` WRITE;
 /*!40000 ALTER TABLE `AdData` DISABLE KEYS */;
+INSERT INTO `AdData` VALUES (1,'153581835','Cars','Google','Google Car','First flying car',100,100),(2,'168375077','Cars','Apple','Apple Car','Second flying car',100000,200),(3,'239251935','Server','Google','Google Server','First AI security server',10,100),(4,'264939771','Etc','Oracle','Oracle AI','See into the future',100000000,1),(5,'269768789','Book','Amazon','Textbook1','First flying book',1000,20),(6,'269768789','Book','Amazon','Textbook2','First diving book',2000,10),(7,'269768789','TV','Samsung','Samsung TV','First 5D TV',100,2),(8,'273874496','TV','LG','LG Car','First teleport TV',200,999),(9,'285530393','Human','Google','Jerrel','Enjoy',10000,2),(10,'285530393','Human','Apple','Jerrel2','Enjoy2',100,100);
 /*!40000 ALTER TABLE `AdData` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -62,7 +63,7 @@ CREATE TABLE `Buy` (
   KEY `UserId` (`UserId`),
   CONSTRAINT `buy_ibfk_1` FOREIGN KEY (`TransId`) REFERENCES `Sales` (`TransId`) ON DELETE NO ACTION ON UPDATE CASCADE,
   CONSTRAINT `buy_ibfk_2` FOREIGN KEY (`EmpId`) REFERENCES `Employee` (`SSN`) ON DELETE NO ACTION ON UPDATE CASCADE,
-  CONSTRAINT `buy_ibfk_3` FOREIGN KEY (`UserId`) REFERENCES `UserPlus` (`UserID`) ON DELETE NO ACTION ON UPDATE CASCADE
+  CONSTRAINT `buy_ibfk_3` FOREIGN KEY (`UserId`) REFERENCES `UserPlus` (`UserId`) ON DELETE NO ACTION ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -72,6 +73,7 @@ CREATE TABLE `Buy` (
 
 LOCK TABLES `Buy` WRITE;
 /*!40000 ALTER TABLE `Buy` DISABLE KEYS */;
+INSERT INTO `Buy` VALUES (1,'153581835',1),(2,'168375077',2),(3,'168375077',3),(4,'264939771',4),(5,'153581835',5),(6,'264939771',6),(7,'153581835',7),(8,'269768789',8),(9,'269768789',9),(10,'269768789',10);
 /*!40000 ALTER TABLE `Buy` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -83,13 +85,13 @@ DROP TABLE IF EXISTS `Comment`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `Comment` (
-  `CommentID` int(11) NOT NULL AUTO_INCREMENT,
+  `CommentId` int(11) NOT NULL AUTO_INCREMENT,
   `DateCreated` datetime DEFAULT NULL,
   `Content` varchar(100) DEFAULT NULL,
-  `AuthorID` int(11) DEFAULT NULL,
-  PRIMARY KEY (`CommentID`),
-  KEY `AuthorID` (`AuthorID`),
-  CONSTRAINT `comment_ibfk_1` FOREIGN KEY (`AuthorID`) REFERENCES `UserPlus` (`UserID`)
+  `AuthorId` int(11) DEFAULT NULL,
+  PRIMARY KEY (`CommentId`),
+  KEY `AuthorId` (`AuthorId`),
+  CONSTRAINT `comment_ibfk_1` FOREIGN KEY (`AuthorId`) REFERENCES `UserPlus` (`UserId`)
 ) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -99,7 +101,7 @@ CREATE TABLE `Comment` (
 
 LOCK TABLES `Comment` WRITE;
 /*!40000 ALTER TABLE `Comment` DISABLE KEYS */;
-INSERT INTO `Comment` VALUES (1,'2016-11-06 12:31:20','2',1),(2,'2016-11-06 12:31:20','3',2),(3,'2016-11-06 12:31:20','4',3),(4,'2016-11-06 12:31:20','5',4),(5,'2016-11-06 12:31:20','6',5),(6,'2016-11-06 12:31:20','7',6),(7,'2016-11-06 12:31:20','8',7),(8,'2016-11-06 12:31:20','9',8),(9,'2016-11-06 12:31:20','10',9),(10,'2016-11-06 12:31:20','11',10),(11,'2016-11-06 12:31:20','12',11),(12,'2016-11-06 12:31:20','13',12),(13,'2016-11-06 12:31:20','14',13),(14,'2016-11-06 12:31:20','15',14),(15,'2016-11-06 12:31:20','16',15),(16,'2016-11-06 12:31:20','17',16),(17,'2016-11-06 12:31:20','18',17),(18,'2016-11-06 12:31:20','19',18),(19,'2016-11-06 12:31:20','20',19),(20,'2016-11-06 12:31:20','21',20),(21,'2016-11-06 12:31:20','22',21),(22,'2016-11-06 12:31:20','23',22),(23,'2016-11-06 12:31:20','24',23),(24,'2016-11-06 12:31:20','25',24),(25,'2016-11-06 12:31:20','1',25);
+INSERT INTO `Comment` VALUES (1,'2016-11-07 14:14:57','2',1),(2,'2016-11-07 14:14:57','3',2),(3,'2016-11-07 14:14:57','4',3),(4,'2016-11-07 14:14:57','5',4),(5,'2016-11-07 14:14:57','6',5),(6,'2016-11-07 14:14:57','7',6),(7,'2016-11-07 14:14:57','8',7),(8,'2016-11-07 14:14:57','9',8),(9,'2016-11-07 14:14:57','10',9),(10,'2016-11-07 14:14:57','11',10),(11,'2016-11-07 14:14:57','12',11),(12,'2016-11-07 14:14:57','13',12),(13,'2016-11-07 14:14:57','14',13),(14,'2016-11-07 14:14:57','15',14),(15,'2016-11-07 14:14:57','16',15),(16,'2016-11-07 14:14:57','17',16),(17,'2016-11-07 14:14:57','18',17),(18,'2016-11-07 14:14:57','19',18),(19,'2016-11-07 14:14:57','20',19),(20,'2016-11-07 14:14:57','21',20),(21,'2016-11-07 14:14:57','22',21),(22,'2016-11-07 14:14:57','23',22),(23,'2016-11-07 14:14:57','24',23),(24,'2016-11-07 14:14:57','25',24),(25,'2016-11-07 14:14:57','1',25);
 /*!40000 ALTER TABLE `Comment` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -111,12 +113,12 @@ DROP TABLE IF EXISTS `CommentOn`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `CommentOn` (
-  `CommentID` int(11) NOT NULL,
-  `PostID` int(11) NOT NULL,
-  PRIMARY KEY (`CommentID`,`PostID`),
-  KEY `PostID` (`PostID`),
-  CONSTRAINT `commenton_ibfk_1` FOREIGN KEY (`CommentID`) REFERENCES `Comment` (`CommentID`) ON DELETE NO ACTION ON UPDATE CASCADE,
-  CONSTRAINT `commenton_ibfk_2` FOREIGN KEY (`PostID`) REFERENCES `Post` (`PostID`) ON DELETE NO ACTION ON UPDATE CASCADE
+  `CommentId` int(11) NOT NULL,
+  `PostId` int(11) NOT NULL,
+  PRIMARY KEY (`CommentId`,`PostId`),
+  KEY `PostId` (`PostId`),
+  CONSTRAINT `commenton_ibfk_1` FOREIGN KEY (`CommentId`) REFERENCES `Comment` (`CommentId`) ON DELETE NO ACTION ON UPDATE CASCADE,
+  CONSTRAINT `commenton_ibfk_2` FOREIGN KEY (`PostId`) REFERENCES `Post` (`PostId`) ON DELETE NO ACTION ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -138,12 +140,12 @@ DROP TABLE IF EXISTS `CreatesGroup`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `CreatesGroup` (
-  `UserID` int(11) NOT NULL,
-  `GroupID` int(11) NOT NULL,
-  PRIMARY KEY (`UserID`,`GroupID`),
-  KEY `GroupID` (`GroupID`),
-  CONSTRAINT `createsgroup_ibfk_1` FOREIGN KEY (`UserID`) REFERENCES `UserPlus` (`UserID`) ON DELETE NO ACTION ON UPDATE CASCADE,
-  CONSTRAINT `createsgroup_ibfk_2` FOREIGN KEY (`GroupID`) REFERENCES `GroupPlus` (`GroupID`) ON DELETE NO ACTION ON UPDATE CASCADE
+  `UserId` int(11) NOT NULL,
+  `GroupId` int(11) NOT NULL,
+  PRIMARY KEY (`UserId`,`GroupId`),
+  KEY `GroupId` (`GroupId`),
+  CONSTRAINT `createsgroup_ibfk_1` FOREIGN KEY (`UserId`) REFERENCES `UserPlus` (`UserId`) ON DELETE NO ACTION ON UPDATE CASCADE,
+  CONSTRAINT `createsgroup_ibfk_2` FOREIGN KEY (`GroupId`) REFERENCES `GroupPlus` (`GroupId`) ON DELETE NO ACTION ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -197,12 +199,12 @@ DROP TABLE IF EXISTS `FriendsWith`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `FriendsWith` (
-  `UserID` int(11) NOT NULL,
-  `FriendID` int(11) NOT NULL,
-  PRIMARY KEY (`UserID`,`FriendID`),
-  KEY `FriendID` (`FriendID`),
-  CONSTRAINT `friendswith_ibfk_1` FOREIGN KEY (`UserID`) REFERENCES `UserPlus` (`UserID`) ON DELETE NO ACTION ON UPDATE CASCADE,
-  CONSTRAINT `friendswith_ibfk_2` FOREIGN KEY (`FriendID`) REFERENCES `UserPlus` (`UserID`) ON DELETE NO ACTION ON UPDATE CASCADE
+  `UserId` int(11) NOT NULL,
+  `FriendId` int(11) NOT NULL,
+  PRIMARY KEY (`UserId`,`FriendId`),
+  KEY `FriendId` (`FriendId`),
+  CONSTRAINT `friendswith_ibfk_1` FOREIGN KEY (`UserId`) REFERENCES `UserPlus` (`UserId`) ON DELETE NO ACTION ON UPDATE CASCADE,
+  CONSTRAINT `friendswith_ibfk_2` FOREIGN KEY (`FriendId`) REFERENCES `UserPlus` (`UserId`) ON DELETE NO ACTION ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -224,11 +226,11 @@ DROP TABLE IF EXISTS `GroupPage`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `GroupPage` (
-  `PageID` int(11) NOT NULL AUTO_INCREMENT,
-  `GroupID` int(11) DEFAULT NULL,
-  PRIMARY KEY (`PageID`),
-  KEY `GroupID` (`GroupID`),
-  CONSTRAINT `grouppage_ibfk_1` FOREIGN KEY (`GroupID`) REFERENCES `GroupPlus` (`GroupID`)
+  `PageId` int(11) NOT NULL AUTO_INCREMENT,
+  `GroupId` int(11) DEFAULT NULL,
+  PRIMARY KEY (`PageId`),
+  KEY `GroupId` (`GroupId`),
+  CONSTRAINT `grouppage_ibfk_1` FOREIGN KEY (`GroupId`) REFERENCES `GroupPlus` (`GroupId`)
 ) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -250,13 +252,13 @@ DROP TABLE IF EXISTS `GroupPlus`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `GroupPlus` (
-  `GroupID` int(11) NOT NULL AUTO_INCREMENT,
+  `GroupId` int(11) NOT NULL AUTO_INCREMENT,
   `GroupName` varchar(50) DEFAULT NULL,
   `Owner` int(11) DEFAULT NULL,
   `Type` set('Club','Organization','Event','News') DEFAULT NULL,
-  PRIMARY KEY (`GroupID`),
+  PRIMARY KEY (`GroupId`),
   KEY `Owner` (`Owner`),
-  CONSTRAINT `groupplus_ibfk_1` FOREIGN KEY (`Owner`) REFERENCES `UserPlus` (`UserID`)
+  CONSTRAINT `groupplus_ibfk_1` FOREIGN KEY (`Owner`) REFERENCES `UserPlus` (`UserId`)
 ) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -278,12 +280,12 @@ DROP TABLE IF EXISTS `HasAGroupPage`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `HasAGroupPage` (
-  `GroupID` int(11) NOT NULL,
-  `GroupPageID` int(11) NOT NULL,
-  PRIMARY KEY (`GroupID`,`GroupPageID`),
-  KEY `GroupPageID` (`GroupPageID`),
-  CONSTRAINT `hasagrouppage_ibfk_1` FOREIGN KEY (`GroupID`) REFERENCES `GroupPlus` (`GroupID`) ON DELETE NO ACTION ON UPDATE CASCADE,
-  CONSTRAINT `hasagrouppage_ibfk_2` FOREIGN KEY (`GroupPageID`) REFERENCES `GroupPage` (`PageID`) ON DELETE NO ACTION ON UPDATE CASCADE
+  `GroupId` int(11) NOT NULL,
+  `GroupPageId` int(11) NOT NULL,
+  PRIMARY KEY (`GroupId`,`GroupPageId`),
+  KEY `GroupPageId` (`GroupPageId`),
+  CONSTRAINT `hasagrouppage_ibfk_1` FOREIGN KEY (`GroupId`) REFERENCES `GroupPlus` (`GroupId`) ON DELETE NO ACTION ON UPDATE CASCADE,
+  CONSTRAINT `hasagrouppage_ibfk_2` FOREIGN KEY (`GroupPageId`) REFERENCES `GroupPage` (`PageId`) ON DELETE NO ACTION ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -305,12 +307,12 @@ DROP TABLE IF EXISTS `HasAPersonal`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `HasAPersonal` (
-  `UserID` int(11) NOT NULL,
-  `PersonalPageID` int(11) NOT NULL,
-  PRIMARY KEY (`UserID`,`PersonalPageID`),
-  KEY `PersonalPageID` (`PersonalPageID`),
-  CONSTRAINT `hasapersonal_ibfk_1` FOREIGN KEY (`UserID`) REFERENCES `UserPlus` (`UserID`) ON DELETE NO ACTION ON UPDATE CASCADE,
-  CONSTRAINT `hasapersonal_ibfk_2` FOREIGN KEY (`PersonalPageID`) REFERENCES `PersonalPage` (`PageID`) ON DELETE NO ACTION ON UPDATE CASCADE
+  `UserId` int(11) NOT NULL,
+  `PersonalPageId` int(11) NOT NULL,
+  PRIMARY KEY (`UserId`,`PersonalPageId`),
+  KEY `PersonalPageId` (`PersonalPageId`),
+  CONSTRAINT `hasapersonal_ibfk_1` FOREIGN KEY (`UserId`) REFERENCES `UserPlus` (`UserId`) ON DELETE NO ACTION ON UPDATE CASCADE,
+  CONSTRAINT `hasapersonal_ibfk_2` FOREIGN KEY (`PersonalPageId`) REFERENCES `PersonalPage` (`PageId`) ON DELETE NO ACTION ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -332,15 +334,18 @@ DROP TABLE IF EXISTS `HasAccessToGroup`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `HasAccessToGroup` (
-  `UserID` int(11) NOT NULL,
-  `PageID` int(11) NOT NULL,
-  `GroupID` int(11) NOT NULL,
-  PRIMARY KEY (`UserID`,`PageID`,`GroupID`),
-  KEY `PageID` (`PageID`),
-  KEY `GroupID` (`GroupID`),
-  CONSTRAINT `hasaccesstogroup_ibfk_1` FOREIGN KEY (`UserID`) REFERENCES `UserPlus` (`UserID`) ON DELETE NO ACTION ON UPDATE CASCADE,
-  CONSTRAINT `hasaccesstogroup_ibfk_2` FOREIGN KEY (`PageID`) REFERENCES `PagePlus` (`PageID`) ON DELETE NO ACTION ON UPDATE CASCADE,
-  CONSTRAINT `hasaccesstogroup_ibfk_3` FOREIGN KEY (`GroupID`) REFERENCES `GroupPlus` (`GroupID`) ON DELETE NO ACTION ON UPDATE CASCADE
+  `UserId` int(11) NOT NULL,
+  `AdderId` int(11) DEFAULT NULL,
+  `PageId` int(11) NOT NULL,
+  `GroupId` int(11) NOT NULL,
+  PRIMARY KEY (`UserId`,`PageId`,`GroupId`),
+  KEY `PageId` (`PageId`),
+  KEY `GroupId` (`GroupId`),
+  KEY `AdderId` (`AdderId`),
+  CONSTRAINT `hasaccesstogroup_ibfk_1` FOREIGN KEY (`UserId`) REFERENCES `UserPlus` (`UserId`) ON DELETE NO ACTION ON UPDATE CASCADE,
+  CONSTRAINT `hasaccesstogroup_ibfk_2` FOREIGN KEY (`PageId`) REFERENCES `PagePlus` (`PageId`) ON DELETE NO ACTION ON UPDATE CASCADE,
+  CONSTRAINT `hasaccesstogroup_ibfk_3` FOREIGN KEY (`GroupId`) REFERENCES `GroupPlus` (`GroupId`) ON DELETE NO ACTION ON UPDATE CASCADE,
+  CONSTRAINT `hasaccesstogroup_ibfk_4` FOREIGN KEY (`AdderId`) REFERENCES `UserPlus` (`UserId`) ON DELETE NO ACTION ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -350,7 +355,7 @@ CREATE TABLE `HasAccessToGroup` (
 
 LOCK TABLES `HasAccessToGroup` WRITE;
 /*!40000 ALTER TABLE `HasAccessToGroup` DISABLE KEYS */;
-INSERT INTO `HasAccessToGroup` VALUES (1,26,26),(11,26,26),(2,27,27),(12,27,27),(3,28,28),(14,28,28),(4,29,29),(14,29,29),(5,30,30),(15,30,30),(6,31,31),(7,32,32),(8,33,33),(9,34,34),(10,35,35);
+INSERT INTO `HasAccessToGroup` VALUES (1,NULL,26,26),(2,NULL,27,27),(3,NULL,28,28),(4,NULL,29,29),(5,NULL,30,30),(6,NULL,31,31),(7,NULL,32,32),(8,NULL,33,33),(9,NULL,34,34),(10,NULL,35,35),(11,1,26,26),(12,2,27,27),(14,3,28,28),(14,4,29,29),(15,5,30,30);
 /*!40000 ALTER TABLE `HasAccessToGroup` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -366,8 +371,8 @@ CREATE TABLE `IsIn` (
   `GroupId` int(11) NOT NULL,
   PRIMARY KEY (`UserId`,`GroupId`),
   KEY `GroupId` (`GroupId`),
-  CONSTRAINT `isin_ibfk_1` FOREIGN KEY (`UserId`) REFERENCES `UserPlus` (`UserID`) ON DELETE NO ACTION ON UPDATE CASCADE,
-  CONSTRAINT `isin_ibfk_2` FOREIGN KEY (`GroupId`) REFERENCES `GroupPlus` (`GroupID`) ON DELETE NO ACTION ON UPDATE CASCADE
+  CONSTRAINT `isin_ibfk_1` FOREIGN KEY (`UserId`) REFERENCES `UserPlus` (`UserId`) ON DELETE NO ACTION ON UPDATE CASCADE,
+  CONSTRAINT `isin_ibfk_2` FOREIGN KEY (`GroupId`) REFERENCES `GroupPlus` (`GroupId`) ON DELETE NO ACTION ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -377,6 +382,7 @@ CREATE TABLE `IsIn` (
 
 LOCK TABLES `IsIn` WRITE;
 /*!40000 ALTER TABLE `IsIn` DISABLE KEYS */;
+INSERT INTO `IsIn` VALUES (1,26),(2,26),(3,26),(4,26),(5,26),(6,26),(2,27),(3,28),(4,29),(5,30),(6,31),(7,32),(8,33),(9,34),(10,35);
 /*!40000 ALTER TABLE `IsIn` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -388,12 +394,12 @@ DROP TABLE IF EXISTS `LikesComment`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `LikesComment` (
-  `CommentID` int(11) NOT NULL,
-  `UserID` int(11) NOT NULL,
-  PRIMARY KEY (`CommentID`,`UserID`),
-  KEY `UserID` (`UserID`),
-  CONSTRAINT `likescomment_ibfk_1` FOREIGN KEY (`CommentID`) REFERENCES `Comment` (`CommentID`) ON DELETE NO ACTION ON UPDATE CASCADE,
-  CONSTRAINT `likescomment_ibfk_2` FOREIGN KEY (`UserID`) REFERENCES `UserPlus` (`UserID`) ON DELETE NO ACTION ON UPDATE CASCADE
+  `CommentId` int(11) NOT NULL,
+  `UserId` int(11) NOT NULL,
+  PRIMARY KEY (`CommentId`,`UserId`),
+  KEY `UserId` (`UserId`),
+  CONSTRAINT `likescomment_ibfk_1` FOREIGN KEY (`CommentId`) REFERENCES `Comment` (`CommentId`) ON DELETE NO ACTION ON UPDATE CASCADE,
+  CONSTRAINT `likescomment_ibfk_2` FOREIGN KEY (`UserId`) REFERENCES `UserPlus` (`UserId`) ON DELETE NO ACTION ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -415,12 +421,12 @@ DROP TABLE IF EXISTS `LikesPost`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `LikesPost` (
-  `PostID` int(11) NOT NULL,
-  `UserID` int(11) NOT NULL,
-  PRIMARY KEY (`PostID`,`UserID`),
-  KEY `UserID` (`UserID`),
-  CONSTRAINT `likespost_ibfk_1` FOREIGN KEY (`PostID`) REFERENCES `Post` (`PostID`) ON DELETE NO ACTION ON UPDATE CASCADE,
-  CONSTRAINT `likespost_ibfk_2` FOREIGN KEY (`UserID`) REFERENCES `UserPlus` (`UserID`) ON DELETE NO ACTION ON UPDATE CASCADE
+  `PostId` int(11) NOT NULL,
+  `UserId` int(11) NOT NULL,
+  PRIMARY KEY (`PostId`,`UserId`),
+  KEY `UserId` (`UserId`),
+  CONSTRAINT `likespost_ibfk_1` FOREIGN KEY (`PostId`) REFERENCES `Post` (`PostId`) ON DELETE NO ACTION ON UPDATE CASCADE,
+  CONSTRAINT `likespost_ibfk_2` FOREIGN KEY (`UserId`) REFERENCES `UserPlus` (`UserId`) ON DELETE NO ACTION ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -435,59 +441,6 @@ INSERT INTO `LikesPost` VALUES (1,1),(1,2),(1,3),(1,4),(1,5),(1,6),(1,7),(1,8),(
 UNLOCK TABLES;
 
 --
--- Table structure for table `MakesComment`
---
-
-DROP TABLE IF EXISTS `MakesComment`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `MakesComment` (
-  `CommentID` int(11) NOT NULL,
-  `UserID` int(11) NOT NULL,
-  PRIMARY KEY (`CommentID`,`UserID`),
-  KEY `UserID` (`UserID`),
-  CONSTRAINT `makescomment_ibfk_1` FOREIGN KEY (`CommentID`) REFERENCES `Comment` (`CommentID`) ON DELETE NO ACTION ON UPDATE CASCADE,
-  CONSTRAINT `makescomment_ibfk_2` FOREIGN KEY (`UserID`) REFERENCES `UserPlus` (`UserID`) ON DELETE NO ACTION ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `MakesComment`
---
-
-LOCK TABLES `MakesComment` WRITE;
-/*!40000 ALTER TABLE `MakesComment` DISABLE KEYS */;
-/*!40000 ALTER TABLE `MakesComment` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `MakesPost`
---
-
-DROP TABLE IF EXISTS `MakesPost`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `MakesPost` (
-  `PostID` int(11) NOT NULL,
-  `UserID` int(11) NOT NULL,
-  PRIMARY KEY (`PostID`,`UserID`),
-  KEY `UserID` (`UserID`),
-  CONSTRAINT `makespost_ibfk_1` FOREIGN KEY (`PostID`) REFERENCES `Post` (`PostID`) ON DELETE NO ACTION ON UPDATE CASCADE,
-  CONSTRAINT `makespost_ibfk_2` FOREIGN KEY (`UserID`) REFERENCES `UserPlus` (`UserID`) ON DELETE NO ACTION ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `MakesPost`
---
-
-LOCK TABLES `MakesPost` WRITE;
-/*!40000 ALTER TABLE `MakesPost` DISABLE KEYS */;
-INSERT INTO `MakesPost` VALUES (1,1),(2,1),(3,1),(4,1),(5,1),(6,1),(7,1),(8,1),(9,1),(10,1),(11,1),(12,1),(13,1),(14,1),(15,1),(16,1),(17,1),(18,1),(19,1),(20,1);
-/*!40000 ALTER TABLE `MakesPost` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `Message`
 --
 
@@ -495,17 +448,17 @@ DROP TABLE IF EXISTS `Message`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `Message` (
-  `MessageID` int(11) NOT NULL AUTO_INCREMENT,
+  `MessageId` int(11) NOT NULL AUTO_INCREMENT,
   `DateSent` datetime DEFAULT NULL,
-  `ReceiverID` int(11) DEFAULT NULL,
-  `SenderID` int(11) DEFAULT NULL,
+  `ReceiverId` int(11) DEFAULT NULL,
+  `SenderId` int(11) DEFAULT NULL,
   `Subject` varchar(100) DEFAULT NULL,
   `Content` varchar(100) DEFAULT NULL,
-  PRIMARY KEY (`MessageID`),
-  KEY `ReceiverID` (`ReceiverID`),
-  KEY `SenderID` (`SenderID`),
-  CONSTRAINT `message_ibfk_1` FOREIGN KEY (`ReceiverID`) REFERENCES `UserPlus` (`UserID`),
-  CONSTRAINT `message_ibfk_2` FOREIGN KEY (`SenderID`) REFERENCES `UserPlus` (`UserID`)
+  PRIMARY KEY (`MessageId`),
+  KEY `ReceiverId` (`ReceiverId`),
+  KEY `SenderId` (`SenderId`),
+  CONSTRAINT `message_ibfk_1` FOREIGN KEY (`ReceiverId`) REFERENCES `UserPlus` (`UserId`),
+  CONSTRAINT `message_ibfk_2` FOREIGN KEY (`SenderId`) REFERENCES `UserPlus` (`UserId`)
 ) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -515,7 +468,7 @@ CREATE TABLE `Message` (
 
 LOCK TABLES `Message` WRITE;
 /*!40000 ALTER TABLE `Message` DISABLE KEYS */;
-INSERT INTO `Message` VALUES (1,'2016-11-06 12:31:02',2,1,'subject','apples'),(2,'2016-11-06 12:31:02',3,2,'subject','one'),(3,'2016-11-06 12:31:02',4,3,'subject','q'),(4,'2016-11-06 12:31:02',5,4,'subject','e'),(5,'2016-11-06 12:31:02',6,5,'subject','y'),(6,'2016-11-06 12:31:02',7,6,'subject','er'),(7,'2016-11-06 12:31:02',8,7,'subject','dsgdfg'),(8,'2016-11-06 12:31:02',9,8,'subject','yetikty'),(9,'2016-11-06 12:31:02',10,9,'subject','raehuy56h46'),(10,'2016-11-06 12:31:02',11,10,'subject','rstj7e5jurt'),(11,'2016-11-06 12:31:02',12,11,'subject','jrtwjety6j'),(12,'2016-11-06 12:31:02',13,12,'subject','tyjrstyjkrsty'),(13,'2016-11-06 12:31:02',14,13,'subject','jkmrastyjsrthjurt6h'),(14,'2016-11-06 12:31:02',15,14,'subject','rthuertyjrstwjrtyjrtyu'),(15,'2016-11-06 12:31:02',16,15,'subject','rt6h'),(16,'2016-11-06 12:31:02',17,16,'subject','56hurty6u46h'),(17,'2016-11-06 12:31:02',18,17,'subject','56hjnrt'),(18,'2016-11-06 12:31:02',19,18,'subject','jursyhju'),(19,'2016-11-06 12:31:02',20,19,'subject','rs6tjhdty6jrstj'),(20,'2016-11-06 12:31:02',21,20,'subject','srtyjdty'),(21,'2016-11-06 12:31:02',22,21,'subject','jrs6hj'),(22,'2016-11-06 12:31:02',23,22,'subject','rs6thj'),(23,'2016-11-06 12:31:02',24,23,'subject','htyj'),(24,'2016-11-06 12:31:02',25,24,'subject','tyje57tyjtyjty'),(25,'2016-11-06 12:31:02',1,25,'subject','jrj6');
+INSERT INTO `Message` VALUES (1,'2016-11-07 14:14:57',2,1,'subject','apples'),(2,'2016-11-07 14:14:57',3,2,'subject','one'),(3,'2016-11-07 14:14:57',4,3,'subject','q'),(4,'2016-11-07 14:14:57',5,4,'subject','e'),(5,'2016-11-07 14:14:57',6,5,'subject','y'),(6,'2016-11-07 14:14:57',7,6,'subject','er'),(7,'2016-11-07 14:14:57',8,7,'subject','dsgdfg'),(8,'2016-11-07 14:14:57',9,8,'subject','yetikty'),(9,'2016-11-07 14:14:57',10,9,'subject','raehuy56h46'),(10,'2016-11-07 14:14:57',11,10,'subject','rstj7e5jurt'),(11,'2016-11-07 14:14:57',12,11,'subject','jrtwjety6j'),(12,'2016-11-07 14:14:57',13,12,'subject','tyjrstyjkrsty'),(13,'2016-11-07 14:14:57',14,13,'subject','jkmrastyjsrthjurt6h'),(14,'2016-11-07 14:14:57',15,14,'subject','rthuertyjrstwjrtyjrtyu'),(15,'2016-11-07 14:14:57',16,15,'subject','rt6h'),(16,'2016-11-07 14:14:57',17,16,'subject','56hurty6u46h'),(17,'2016-11-07 14:14:57',18,17,'subject','56hjnrt'),(18,'2016-11-07 14:14:57',19,18,'subject','jursyhju'),(19,'2016-11-07 14:14:57',20,19,'subject','rs6tjhdty6jrstj'),(20,'2016-11-07 14:14:57',21,20,'subject','srtyjdty'),(21,'2016-11-07 14:14:57',22,21,'subject','jrs6hj'),(22,'2016-11-07 14:14:57',23,22,'subject','rs6thj'),(23,'2016-11-07 14:14:57',24,23,'subject','htyj'),(24,'2016-11-07 14:14:57',25,24,'subject','tyje57tyjtyjty'),(25,'2016-11-07 14:14:57',1,25,'subject','jrj6');
 /*!40000 ALTER TABLE `Message` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -527,9 +480,9 @@ DROP TABLE IF EXISTS `PagePlus`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `PagePlus` (
-  `PageID` int(11) NOT NULL,
+  `PageId` int(11) NOT NULL,
   `PostCount` int(11) DEFAULT NULL,
-  PRIMARY KEY (`PageID`)
+  PRIMARY KEY (`PageId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -551,11 +504,11 @@ DROP TABLE IF EXISTS `PersonalPage`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `PersonalPage` (
-  `PageID` int(11) NOT NULL AUTO_INCREMENT,
-  `OwnerID` int(11) DEFAULT NULL,
-  PRIMARY KEY (`PageID`),
-  KEY `OwnerID` (`OwnerID`),
-  CONSTRAINT `personalpage_ibfk_1` FOREIGN KEY (`OwnerID`) REFERENCES `UserPlus` (`UserID`)
+  `PageId` int(11) NOT NULL AUTO_INCREMENT,
+  `OwnerId` int(11) DEFAULT NULL,
+  PRIMARY KEY (`PageId`),
+  KEY `OwnerId` (`OwnerId`),
+  CONSTRAINT `personalpage_ibfk_1` FOREIGN KEY (`OwnerId`) REFERENCES `UserPlus` (`UserId`)
 ) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -577,14 +530,14 @@ DROP TABLE IF EXISTS `Post`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `Post` (
-  `PostID` int(11) NOT NULL AUTO_INCREMENT,
+  `PostId` int(11) NOT NULL AUTO_INCREMENT,
   `DateCreated` datetime DEFAULT NULL,
   `Content` varchar(100) DEFAULT NULL,
   `CommentCount` int(11) DEFAULT NULL,
-  `AuthorID` int(11) DEFAULT NULL,
-  PRIMARY KEY (`PostID`),
-  KEY `AuthorID` (`AuthorID`),
-  CONSTRAINT `post_ibfk_1` FOREIGN KEY (`AuthorID`) REFERENCES `UserPlus` (`UserID`)
+  `AuthorId` int(11) DEFAULT NULL,
+  PRIMARY KEY (`PostId`),
+  KEY `AuthorId` (`AuthorId`),
+  CONSTRAINT `post_ibfk_1` FOREIGN KEY (`AuthorId`) REFERENCES `UserPlus` (`UserId`)
 ) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -594,7 +547,7 @@ CREATE TABLE `Post` (
 
 LOCK TABLES `Post` WRITE;
 /*!40000 ALTER TABLE `Post` DISABLE KEYS */;
-INSERT INTO `Post` VALUES (1,'2016-11-06 12:26:01','envisioneer frictionless deliverables',10,1),(2,'2016-11-06 12:26:01','engineer back-end paradigms',0,2),(3,'2016-11-06 12:26:01','redefine efficient infrastructures',0,3),(4,'2016-11-06 12:26:01','embrace sticky experiences',0,4),(5,'2016-11-06 12:26:01','synthesize innovative niches',0,5),(6,'2016-11-06 12:26:01','engage compelling methodologies',0,6),(7,'2016-11-06 12:26:01','exploit dot-com platforms',0,7),(8,'2016-11-06 12:26:01','benchmark seamless portals',0,8),(9,'2016-11-06 12:26:01','utilize leading-edge networks',0,9),(10,'2016-11-06 12:26:01','generate collaborative interfaces',0,10),(11,'2016-11-06 12:26:01','visualize bleeding-edge mindshare',0,11),(12,'2016-11-06 12:26:01','drive virtual initiatives',0,12),(13,'2016-11-06 12:26:01','empower cutting-edge portals',0,13),(14,'2016-11-06 12:26:01','mesh revolutionary networks',0,14),(15,'2016-11-06 12:26:01','mesh granular metrics',0,15),(16,'2016-11-06 12:26:01','incentivize transparent ROI',0,16),(17,'2016-11-06 12:26:01','iterate back-end deliverables',0,17),(18,'2016-11-06 12:26:01','generate dynamic web services',0,18),(19,'2016-11-06 12:26:01','transform visionary eyeballs',0,19),(20,'2016-11-06 12:26:01','architect dot-com e-services',0,20);
+INSERT INTO `Post` VALUES (1,'2016-11-07 14:14:57','envisioneer frictionless deliverables',10,1),(2,'2016-11-07 14:14:57','engineer back-end paradigms',0,2),(3,'2016-11-07 14:14:57','redefine efficient infrastructures',0,3),(4,'2016-11-07 14:14:57','embrace sticky experiences',0,4),(5,'2016-11-07 14:14:57','synthesize innovative niches',0,5),(6,'2016-11-07 14:14:57','engage compelling methodologies',0,6),(7,'2016-11-07 14:14:57','exploit dot-com platforms',0,7),(8,'2016-11-07 14:14:57','benchmark seamless portals',0,8),(9,'2016-11-07 14:14:57','utilize leading-edge networks',0,9),(10,'2016-11-07 14:14:57','generate collaborative interfaces',0,10),(11,'2016-11-07 14:14:57','visualize bleeding-edge mindshare',0,11),(12,'2016-11-07 14:14:57','drive virtual initiatives',0,12),(13,'2016-11-07 14:14:57','empower cutting-edge portals',0,13),(14,'2016-11-07 14:14:57','mesh revolutionary networks',0,14),(15,'2016-11-07 14:14:57','mesh granular metrics',0,15),(16,'2016-11-07 14:14:57','incentivize transparent ROI',0,16),(17,'2016-11-07 14:14:57','iterate back-end deliverables',0,17),(18,'2016-11-07 14:14:57','generate dynamic web services',0,18),(19,'2016-11-07 14:14:57','transform visionary eyeballs',0,19),(20,'2016-11-07 14:14:57','architect dot-com e-services',0,20);
 /*!40000 ALTER TABLE `Post` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -606,12 +559,12 @@ DROP TABLE IF EXISTS `PostedTo`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `PostedTo` (
-  `PostID` int(11) NOT NULL,
-  `PageID` int(11) NOT NULL,
-  PRIMARY KEY (`PageID`,`PostID`),
-  KEY `PostID` (`PostID`),
-  CONSTRAINT `postedto_ibfk_1` FOREIGN KEY (`PageID`) REFERENCES `PagePlus` (`PageID`) ON DELETE NO ACTION ON UPDATE CASCADE,
-  CONSTRAINT `postedto_ibfk_2` FOREIGN KEY (`PostID`) REFERENCES `Post` (`PostID`) ON DELETE NO ACTION ON UPDATE CASCADE
+  `PostId` int(11) NOT NULL,
+  `PageId` int(11) NOT NULL,
+  PRIMARY KEY (`PageId`,`PostId`),
+  KEY `PostId` (`PostId`),
+  CONSTRAINT `postedto_ibfk_1` FOREIGN KEY (`PageId`) REFERENCES `PagePlus` (`PageId`) ON DELETE NO ACTION ON UPDATE CASCADE,
+  CONSTRAINT `postedto_ibfk_2` FOREIGN KEY (`PostId`) REFERENCES `Post` (`PostId`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -637,8 +590,8 @@ CREATE TABLE `Receive` (
   `MessageId` int(11) NOT NULL,
   PRIMARY KEY (`Receiver`,`MessageId`),
   KEY `MessageId` (`MessageId`),
-  CONSTRAINT `receive_ibfk_1` FOREIGN KEY (`Receiver`) REFERENCES `UserPlus` (`UserID`) ON DELETE NO ACTION ON UPDATE CASCADE,
-  CONSTRAINT `receive_ibfk_2` FOREIGN KEY (`MessageId`) REFERENCES `Message` (`MessageID`) ON DELETE NO ACTION ON UPDATE CASCADE
+  CONSTRAINT `receive_ibfk_1` FOREIGN KEY (`Receiver`) REFERENCES `UserPlus` (`UserId`) ON DELETE NO ACTION ON UPDATE CASCADE,
+  CONSTRAINT `receive_ibfk_2` FOREIGN KEY (`MessageId`) REFERENCES `Message` (`MessageId`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -648,6 +601,7 @@ CREATE TABLE `Receive` (
 
 LOCK TABLES `Receive` WRITE;
 /*!40000 ALTER TABLE `Receive` DISABLE KEYS */;
+INSERT INTO `Receive` VALUES (2,1),(3,2),(4,3),(5,4),(6,5),(7,6),(8,7),(9,8),(10,9),(11,10),(12,11),(13,12),(14,13),(15,14),(16,15),(17,16),(18,17),(19,18),(20,19),(21,20),(22,21),(23,22),(24,23),(25,24);
 /*!40000 ALTER TABLE `Receive` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -677,6 +631,7 @@ CREATE TABLE `Sales` (
 
 LOCK TABLES `Sales` WRITE;
 /*!40000 ALTER TABLE `Sales` DISABLE KEYS */;
+INSERT INTO `Sales` VALUES (1,'2016-10-01','11:10:00',1,100,12341234),(2,'2016-10-02','11:10:00',2,10,11111111),(3,'2016-10-03','11:10:00',3,1,22222222),(4,'2016-11-03','11:10:00',3,1,33333333),(5,'2015-09-03','11:10:00',4,1,22222222),(6,'2016-10-03','11:10:00',5,19,222333333),(7,'2012-07-03','11:10:00',9,1,12342222),(8,'2011-10-23','11:10:00',9,1,12341111),(9,'2016-01-13','11:10:00',3,1,4321222),(10,'2012-06-03','11:10:00',3,1,33333333);
 /*!40000 ALTER TABLE `Sales` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -692,8 +647,8 @@ CREATE TABLE `Send` (
   `MessageId` int(11) NOT NULL,
   PRIMARY KEY (`Sender`,`MessageId`),
   KEY `MessageId` (`MessageId`),
-  CONSTRAINT `send_ibfk_1` FOREIGN KEY (`Sender`) REFERENCES `UserPlus` (`UserID`) ON DELETE NO ACTION ON UPDATE CASCADE,
-  CONSTRAINT `send_ibfk_2` FOREIGN KEY (`MessageId`) REFERENCES `Message` (`MessageID`) ON DELETE NO ACTION ON UPDATE CASCADE
+  CONSTRAINT `send_ibfk_1` FOREIGN KEY (`Sender`) REFERENCES `UserPlus` (`UserId`) ON DELETE NO ACTION ON UPDATE CASCADE,
+  CONSTRAINT `send_ibfk_2` FOREIGN KEY (`MessageId`) REFERENCES `Message` (`MessageId`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -703,6 +658,7 @@ CREATE TABLE `Send` (
 
 LOCK TABLES `Send` WRITE;
 /*!40000 ALTER TABLE `Send` DISABLE KEYS */;
+INSERT INTO `Send` VALUES (1,1),(2,2),(3,3),(4,4),(5,5),(6,6),(7,7),(8,8),(9,9),(10,10),(11,11),(12,12),(13,13),(14,14),(15,15),(16,16),(17,17),(18,18),(19,19),(20,20),(21,21),(22,22),(23,23),(24,24);
 /*!40000 ALTER TABLE `Send` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -714,12 +670,13 @@ DROP TABLE IF EXISTS `UserPlus`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `UserPlus` (
-  `UserID` int(11) NOT NULL AUTO_INCREMENT,
+  `UserId` int(11) NOT NULL AUTO_INCREMENT,
+  `Password` char(20) DEFAULT NULL,
   `FirstName` char(20) DEFAULT NULL,
   `LastName` char(20) DEFAULT NULL,
   `Address` char(50) DEFAULT NULL,
-  `City` varchar(20) DEFAULT NULL,
-  `State` varchar(2) DEFAULT NULL,
+  `City` char(60) DEFAULT NULL,
+  `State` char(20) DEFAULT NULL,
   `ZipCode` int(11) DEFAULT NULL,
   `Phone` char(10) DEFAULT NULL,
   `Email` char(50) DEFAULT NULL,
@@ -727,7 +684,7 @@ CREATE TABLE `UserPlus` (
   `AccountCreationDate` datetime DEFAULT NULL,
   `CreditCardNum` char(16) DEFAULT NULL,
   `Preferences` varchar(50) DEFAULT NULL,
-  PRIMARY KEY (`UserID`)
+  PRIMARY KEY (`UserId`)
 ) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -737,7 +694,7 @@ CREATE TABLE `UserPlus` (
 
 LOCK TABLES `UserPlus` WRITE;
 /*!40000 ALTER TABLE `UserPlus` DISABLE KEYS */;
-INSERT INTO `UserPlus` VALUES (1,'Michael','Thorne','4363 Arrowood Drive','Jacksonville','FL',32216,'9044166609','MichaelCThorne@gmail.com',1,'2016-11-06 12:25:17','5443350608517143','applePicking'),(2,'Paul','Fodor','2635 Simons Hollow Road','New York','NY',10001,'5707512415','paulfodor@gmail.com',2,'2016-11-06 12:25:17','4958858084473102','applePicking'),(3,'Michael','Kife','885 Augusta Park','Charleston','WV',25301,'9046366609','MichaelKife@gmail.com',3,'2016-11-06 12:25:17','4370457802840195','applePicking'),(4,'Bob','Marvel','1 Arrowood Drive','Jacksonville','FL',32216,'9044366619','bobmarvel@gmail.com',4,'2016-11-06 12:25:17','4992869275848026','applePicking'),(5,'yay','grovey','342 Arrowood Drive','Jacksonville','FL',32216,'6044366609','yaygrovey@gmail.com',5,'2016-11-06 12:25:17','4489636511827803','applePicking'),(6,'apple','seed','321 Arrowood Drive','Jacksonville','FL',32216,'3044366609','appleseed@gmail.com',6,'2016-11-06 12:25:17','4349162290877844','applePicking'),(7,'new','you','34 Arrowood Drive','Jacksonville','FL',32216,'9244366609','newyou@gmail.com',7,'2016-11-06 12:25:17','4718671748810093','applePicking'),(8,'qqqq','lol','399 Arrowood Drive','Jacksonville','FL',32216,'5044366609','qqqqlol@gmail.com',8,'2016-11-06 12:25:17','4064305551916263','applePicking'),(9,'oop','yo','9 Arrowood Drive','Jacksonville','FL',32216,'9084366609','oopyo@gmail.com',9,'2016-11-06 12:25:17','4556094238457322','applePicking'),(10,'one','two','100 Arrowood Drive','Jacksonville','FL',32216,'9047366609','onetwo@gmail.com',10,'2016-11-06 12:25:17','4606913205667284','applePicking'),(11,'suretrip','forever','4363 Arrowood Drive','Jacksonville','FL',32216,'9044386609','suretripforever@gmail.com',11,'2016-11-06 12:25:17','4444224543026845','applePicking'),(12,'forever','young','10101 Arrowood Drive','Jacksonville','FL',32216,'9244366609','foreveryoung@gmail.com',12,'2016-11-06 12:25:17','4511410796714397','applePicking'),(13,'life','video','3575 Arrowood Drive','Jacksonville','FL',32216,'9044346609','lifevideo@gmail.com',13,'2016-11-06 12:25:17','4347655744177127','applePicking'),(14,'hit','rewind','999 Arrowood Drive','Jacksonville','FL',32216,'9044365609','hitrewind@gmail.com',14,'2016-11-06 12:25:17','4925225424543897','applePicking'),(15,'iwanna','forever','11111 Arrowood Drive','Jacksonville','FL',32216,'9044366611','iwannaforever@gmail.com',15,'2016-11-06 12:25:17','4684613424931728','applePicking'),(16,'ayyy','boy','777 Arrowood Drive','Jacksonville','FL',32216,'9044311609','ayyyboy@gmail.com',16,'2016-11-06 12:25:17','4467280523131221','applePicking'),(17,'kitchen','stove','32232 Arrowood Drive','Jacksonville','FL',32216,'9114366609','kitchenstove@gmail.com',17,'2016-11-06 12:25:17','4398508659825438','applePicking'),(18,'younger','year','8888 Arrowood Drive','Jacksonville','FL',32216,'9022366609','youngeryear@gmail.com',18,'2016-11-06 12:25:17','4256714925322579','applePicking'),(19,'applesseed','seedsofapples','1471 Arrowood Drive','Jacksonville','FL',32216,'9045566609','applesseedseedsofapple@gmail.com',19,'2016-11-06 12:25:17','4028364081915282','applePicking'),(20,'Michael','Bender','4363 Bentley Drive','Jacksonville','FL',32216,'9044666609','MichaelBender@gmail.com',20,'2016-11-06 12:25:17','4665229547305113','applePicking'),(21,'Michael','Tashbook','4363 Book Drive','Jacksonville','FL',32216,'9010366609','MichaelTashbook@gmail.com',21,'2016-11-06 12:25:17','4152320677939159','applePicking'),(22,'Richard','Mckenna','4363 Boxman Drive','Jacksonville','FL',32216,'9049166609','RichardMckenna@gmail.com',22,'2016-11-06 12:25:17','4741260848579989','applePicking'),(23,'Leo','Backmire','4363 Compsci Drive','Jacksonville','FL',32216,'9082366609','LeoBackmire@gmail.com',23,'2016-11-06 12:25:17','4258176354221789','applePicking'),(24,'Moms','Spagetti','4363 loud Drive','Jacksonville','FL',32216,'8844366609','MomsSpagetti@gmail.com',24,'2016-11-06 12:25:17','4295992126620602','applePicking'),(25,'Opps','Gravity','4363 gravity Drive','Jacksonville','FL',32216,'9044106609','oppsGravity@gmail.com',25,'2016-11-06 12:25:17','4765034221596741','applePicking');
+INSERT INTO `UserPlus` VALUES (1,'apples','Michael','Thorne','4363 Arrowood Drive','Jacksonville','FL',32216,'9044166609','MichaelCThorne@gmail.com',1,'2016-11-07 14:14:57','5443350608517143','applePicking'),(2,'apples','Paul','Fodor','2635 Simons Hollow Road','New York','NY',10001,'5707512415','paulfodor@gmail.com',2,'2016-11-07 14:14:57','4958858084473102','applePicking'),(3,'apples','Michael','Kife','885 Augusta Park','Charleston','WV',25301,'9046366609','MichaelKife@gmail.com',3,'2016-11-07 14:14:57','4370457802840195','applePicking'),(4,'apples','Bob','Marvel','1 Arrowood Drive','Jacksonville','FL',32216,'9044366619','bobmarvel@gmail.com',4,'2016-11-07 14:14:57','4992869275848026','applePicking'),(5,'apples','yay','grovey','342 Arrowood Drive','Jacksonville','FL',32216,'6044366609','yaygrovey@gmail.com',5,'2016-11-07 14:14:57','4489636511827803','applePicking'),(6,'apples','apple','seed','321 Arrowood Drive','Jacksonville','FL',32216,'3044366609','appleseed@gmail.com',6,'2016-11-07 14:14:57','4349162290877844','applePicking'),(7,'apples','new','you','34 Arrowood Drive','Jacksonville','FL',32216,'9244366609','newyou@gmail.com',7,'2016-11-07 14:14:57','4718671748810093','applePicking'),(8,'apples','qqqq','lol','399 Arrowood Drive','Jacksonville','FL',32216,'5044366609','qqqqlol@gmail.com',8,'2016-11-07 14:14:57','4064305551916263','applePicking'),(9,'apples','oop','yo','9 Arrowood Drive','Jacksonville','FL',32216,'9084366609','oopyo@gmail.com',9,'2016-11-07 14:14:57','4556094238457322','applePicking'),(10,'apples','one','two','100 Arrowood Drive','Jacksonville','FL',32216,'9047366609','onetwo@gmail.com',10,'2016-11-07 14:14:57','4606913205667284','applePicking'),(11,'apples','suretrip','forever','4363 Arrowood Drive','Jacksonville','FL',32216,'9044386609','suretripforever@gmail.com',11,'2016-11-07 14:14:57','4444224543026845','applePicking'),(12,'apples','forever','young','10101 Arrowood Drive','Jacksonville','FL',32216,'9244366609','foreveryoung@gmail.com',12,'2016-11-07 14:14:57','4511410796714397','applePicking'),(13,'apples','life','video','3575 Arrowood Drive','Jacksonville','FL',32216,'9044346609','lifevideo@gmail.com',13,'2016-11-07 14:14:57','4347655744177127','applePicking'),(14,'apples','hit','rewind','999 Arrowood Drive','Jacksonville','FL',32216,'9044365609','hitrewind@gmail.com',14,'2016-11-07 14:14:57','4925225424543897','applePicking'),(15,'apples','iwanna','forever','11111 Arrowood Drive','Jacksonville','FL',32216,'9044366611','iwannaforever@gmail.com',15,'2016-11-07 14:14:57','4684613424931728','applePicking'),(16,'apples','ayyy','boy','777 Arrowood Drive','Jacksonville','FL',32216,'9044311609','ayyyboy@gmail.com',16,'2016-11-07 14:14:57','4467280523131221','applePicking'),(17,'apples','kitchen','stove','32232 Arrowood Drive','Jacksonville','FL',32216,'9114366609','kitchenstove@gmail.com',17,'2016-11-07 14:14:57','4398508659825438','applePicking'),(18,'apples','younger','year','8888 Arrowood Drive','Jacksonville','FL',32216,'9022366609','youngeryear@gmail.com',18,'2016-11-07 14:14:57','4256714925322579','applePicking'),(19,'apples','applesseed','seedsofapples','1471 Arrowood Drive','Jacksonville','FL',32216,'9045566609','applesseedseedsofapple@gmail.com',19,'2016-11-07 14:14:57','4028364081915282','applePicking'),(20,'apples','Michael','Bender','4363 Bentley Drive','Jacksonville','FL',32216,'9044666609','MichaelBender@gmail.com',20,'2016-11-07 14:14:57','4665229547305113','applePicking'),(21,'apples','Michael','Tashbook','4363 Book Drive','Jacksonville','FL',32216,'9010366609','MichaelTashbook@gmail.com',21,'2016-11-07 14:14:57','4152320677939159','applePicking'),(22,'apples','Richard','Mckenna','4363 Boxman Drive','Jacksonville','FL',32216,'9049166609','RichardMckenna@gmail.com',22,'2016-11-07 14:14:57','4741260848579989','applePicking'),(23,'apples','Leo','Backmire','4363 Compsci Drive','Jacksonville','FL',32216,'9082366609','LeoBackmire@gmail.com',23,'2016-11-07 14:14:57','4258176354221789','applePicking'),(24,'apples','Moms','Spagetti','4363 loud Drive','Jacksonville','FL',32216,'8844366609','MomsSpagetti@gmail.com',24,'2016-11-07 14:14:57','4295992126620602','applePicking'),(25,'apples','Opps','Gravity','4363 gravity Drive','Jacksonville','FL',32216,'9044106609','oppsGravity@gmail.com',25,'2016-11-07 14:14:57','4765034221596741','applePicking');
 /*!40000 ALTER TABLE `UserPlus` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -750,4 +707,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-11-06 12:32:43
+-- Dump completed on 2016-11-07 14:23:32

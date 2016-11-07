@@ -1,11 +1,3 @@
--- INSERT INTO Employee VALUES("11111111111", "One", "Onish", "1 Circle Road", "Stony Brook", "NY", "11111", "6311111111", '2016-10-31', 1.25);
--- 
--- INSERT INTO Employee VALUES("22222222222", "Two", "Twonish", "2 Circle Road", "Stone", "NJ", "22222", "6322222222", '2016-02-02', 2.25);
--- 
--- INSERT INTO Employee VALUES("33333333333", "Tri", "Trinity", "3 Circle Road", "Brook", "CA", "33333", "6333333333", '2016-03-03', 1.25);
--- 
--- INSERT INTO Employee VALUES("11111111111", "One", "Onish", "1 Circle Road", "StonyBrook", "NY", "11111", "6311111111", '2016-10-31', 1.25);
-
 INSERT INTO Employee VALUES("439086475", "Vasquez", "Ignatius", "537-6243 At St.", "Stamford", "Connecticut", "15700", "(317) 724-8680", '2017-07-27', 26.36);
 INSERT INTO Employee VALUES("61029656", "Fernandez", "Athena", "200-8990 Est. Street", "Indianapolis", "Indiana", "89805", "(472) 543-8504", '2016-03-28', 21.61);
 INSERT INTO Employee VALUES("285530393", "Ware", "Karen", "510-8225 Est. Ave", "Missoula", "Montana", "98289", "(299) 138-5280", '2016-11-18', 35.56);

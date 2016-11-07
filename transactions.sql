@@ -118,27 +118,60 @@ DELETE FROM LikesPost WHERE PostID = ? AND UserID = ?;
 -- - Unlike a comment
 DELETE FROM LikesComment WHERE CommentID = ? AND UserID = ?;
 
+-- - Unlike a post
+DELETE FROM LikesPost WHERE PostId = ? AND UserId = ?;
+
+-- - Unlike a comment
+DELETE FROM LikesComment WHERE CommentId = ? AND UserId = ?;
+
 -- - Modify a post
+UPDATE Post 
+SET DateCreated = ?, Content = ?, CommentCount = ?
+Where PostId = ?;
+
 -- - Modify a comment
 -- - Delete a group
+DELETE FROM GroupPlus WHERE GroupId = ?;
+
 -- - Rename a group
---  
+UPDATE GroupPlus SET GroupName = ? WHERE GroupId = ?;
+
 -- Users should also be able to perform the following transactions with regard to other users' groups:
 -- - Join a group
 -- - Unjoin a group
 -- - Make a post on a group page
+SELECT * FROM HasAPersonal WHERE UserId = ? AND PersonalPageId = ?; -- check if it is a personal page
+
+SELECT * FROM HasAccessToGroup WHERE Adder_Id = ? AND GroupId = ?; -- check if has access to group
+
+INSERT INTO PostTo(PostId, PageId) values (?, ?); -- insertion
+
 -- - Comment on a post on a group page
+INSERT INTO Comment(CommentId, DateCreated, Content, AuthorId) VALUES (?, ?, ?, ?);
+INSERT INTO CommentOn(CommentId, PostId) VALUES (?, ?);
+
 -- - Like a post on a group page
+INSERT INTO LikesPost(PostId, UserId) VALUES(?, ?);
+
 -- - Like a comment on a group page
+INSERT INTO LikesComment(CommentId, UserId) VALUES(?, ?);
+
 -- - Remove one of their posts on a group page
+DELETE FROM PostedTo WHERE PostId = ? AND PageId = ?;
+
 -- - Remove a comment
+DELETE FROM CommentOn WHERE CommentId = ? AND PostId = ?;
+
 -- - Unlike a post
+DELETE FROM LikesPost WHERE CommentId = ? AND UserId = ?;
+
 -- - Unlike a comment
--- - Modify a post
--- - Modify a comment
---  
+DELETE FROM LikesComment WHERE CommentId = ? AND UserId = ?;
+
+--- - Modify a post
+--- - Modify a comment
+
 -- Manager-Level Transactions
---  
 -- The manager should be able to:
 -- - Add, Edit and Delete information for an employee
 
@@ -218,5 +251,3 @@ CREATE VIEW UserGroups AS
 -- - For each of a customer's accounts, the account history
 -- - Best-Seller list of items
 -- - Personalized item suggestion list
-
-
