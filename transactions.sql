@@ -130,10 +130,6 @@ SET DateCreated = ?, Content = ?, CommentCount = ?
 Where PostId = ?;
 
 -- - Modify a comment
-UPDATE Comment
-SET DateCreated = ?, Content = ?
-WHERE AuthorId = ?;
-
 -- - Delete a group
 DELETE FROM GroupPlus WHERE GroupId = ?;
 
@@ -142,11 +138,7 @@ UPDATE GroupPlus SET GroupName = ? WHERE GroupId = ?;
 
 -- Users should also be able to perform the following transactions with regard to other users' groups:
 -- - Join a group
-INSERT INTO IsIn(UserId, GroupId) VALUES(?, ?);
-
 -- - Unjoin a group
-DELETE FROM IsIn WHERE UserId = ? AND GroupId = ?;
-
 -- - Make a post on a group page
 SELECT * FROM HasAPersonal WHERE UserId = ? AND PersonalPageId = ?; -- check if it is a personal page
 
@@ -179,11 +171,10 @@ DELETE FROM LikesComment WHERE CommentId = ? AND UserId = ?;
 --- - Modify a post
 --- - Modify a comment
 
---  
 -- Manager-Level Transactions
---  
 -- The manager should be able to:
 -- - Add, Edit and Delete information for an employee
+
 -- Add Employee
 INSERT INTO Employee(SSN ,LastName , FirstName, Address, City, State, ZipCode, Telephone, StartDate, HourlyRate) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
 -- Edit Employ
@@ -241,25 +232,15 @@ CREATE VIEW CompanyItems AS
 -- Customer-Representative-Level Transactions
 -- Customer Representatives should be thought of as sales agents and should be able to:
 -- - Create an advertisement
-INSERT INTO AdData(AdId, EmpId, Type, Company, ItemName, Content, UnitPrice, NumOfAvaUnits) values (?, ?, ?, ?, ?, ?, ?, ?);
-
 -- - Delete an advertisement
-DELETE FROM AdDate WHERE AdId = ?;
-
 -- - Record a transaction
-INSERT INTO Sales(TransId, TransDate, TransTime, AdId, NumOfUnits, AccountNum) value (?, ?, ?, ?, ?, ?);
-INSERT INTO Buy(TransId, EmpId, UserId) values (?, ?, ?);
-
 -- - Add, Edit and Delete information for a customer
 -- - Produce customer mailing lists
 -- - Produce a list of item suggestions for a given customer (based on that customer's past transactions)
 --  
 -- Customers should also be able to perform the following transactions with regard to advertisements:
 -- - Purchase one or more copies of an advertised item
-INSERT INTO Sales(TransId, TransDate, TransTime, AdId, NumOfUnits, AccountNum) value (?, ?, ?, ?, ?, ?);
-INSERT INTO Buy(TransId, EmpId, UserId) values (?, ?, ?);
-
-
+--  
 -- While customers (users) will not be permitted to access the database directly, they should be able to retrieve the following information:
 -- - A customer's current groups
 CREATE VIEW UserGroups AS
@@ -270,4 +251,3 @@ CREATE VIEW UserGroups AS
 -- - For each of a customer's accounts, the account history
 -- - Best-Seller list of items
 -- - Personalized item suggestion list
-
