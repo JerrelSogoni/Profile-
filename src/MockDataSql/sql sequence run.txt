@@ -1,9 +1,0 @@
-#1 run mockUsers.sql populate users first
-#2 run mockPagesPlus populate pages when users created
-#4 run Personal
-#5 run groupPlusMock
-#6 run group relations
-#7 run post first
-#8 run comments
-#9 run likes post
-#10 run likes comment

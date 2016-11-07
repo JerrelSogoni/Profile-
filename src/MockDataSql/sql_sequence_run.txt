@@ -1,0 +1,17 @@
+#1 run mockUsers.sql populate users first
+#2 run mockPagesPlus populate pages when users created
+#4 run Personal
+#5 run groupPlusMock
+#6 run group relations
+#7 run post first
+#8 run comments
+#9 run likes post
+#10 run likes comment
+----------------------------------------------------------------------------------
+Updated
+1. Create Table
+	1-1. Run: Profile-/src/Profile+_Table_Generator.sql
+2. Separated Running Sequence into Two Parts, lv1 then lv2.
+	2-1. All lv1 script is inside one file called, Entity_Mock_Data.sql
+	2-2. All lv2 script is inside one file called, Relation_Mock_Data.sql
+
