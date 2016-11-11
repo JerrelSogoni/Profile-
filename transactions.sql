@@ -3,7 +3,7 @@
 
 -- Users should be able to perform the following general transactions:
 -- - Register
-INSERT into	userplus( UserID, Password, FirstName, LastName, Address, City, State, ZipCode, Phone, Email, AccountNum, AccountCreationDate, CreditCardNum, Preferences) values ( ?, ? ,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
+INSERT INTO	UserPlus( UserID, Password, FirstName, LastName, Address, City, State, ZipCode, Phone, Email, AccountNum, AccountCreationDate, CreditCardNum, Preferences) values ( ?, ? ,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
 
 INSERT INTO PagePlus(PageID, PostCount) values(?, ?);
 INSERT INTO PersonalPage(PageId, OwnerID) values(?, ?);
@@ -127,7 +127,7 @@ DELETE FROM LikesComment WHERE CommentId = ? AND UserId = ?;
 -- - Modify a post
 UPDATE Post 
 SET DateCreated = ?, Content = ?, CommentCount = ?
-Where PostId = ?;
+WHERE PostId = ?;
 
 -- - Modify a comment
 -- - Delete a group
@@ -138,13 +138,17 @@ UPDATE GroupPlus SET GroupName = ? WHERE GroupId = ?;
 
 -- Users should also be able to perform the following transactions with regard to other users' groups:
 -- - Join a group
+INSERT INTO HasAccessToGroup(UserID, AdderID, PageID, GroupID) VALUE (?, ?, ?, ?);
 -- - Unjoin a group
+DELETE FROM HasAccessToGroup
+  WHERE UserID = ? AND PageId = ? AND GroupID = ?;
 -- - Make a post on a group page
 SELECT * FROM HasAPersonal WHERE UserId = ? AND PersonalPageId = ?; -- check if it is a personal page
 
-SELECT * FROM HasAccessToGroup WHERE Adder_Id = ? AND GroupId = ?; -- check if has access to group
+SELECT * FROM HasAccessToGroup WHERE AdderID = ? AND GroupId = ?; -- check if has access to group
 
-INSERT INTO PostTo(PostId, PageId) values (?, ?); -- insertion
+
+INSERT INTO PostedTo(PostId, PageId) values (?, ?); -- insertion
 
 -- - Comment on a post on a group page
 INSERT INTO Comment(CommentId, DateCreated, Content, AuthorId) VALUES (?, ?, ?, ?);
@@ -157,29 +161,44 @@ INSERT INTO LikesPost(PostId, UserId) VALUES(?, ?);
 INSERT INTO LikesComment(CommentId, UserId) VALUES(?, ?);
 
 -- - Remove one of their posts on a group page
-DELETE FROM PostedTo WHERE PostId = ? AND PageId = ?;
+# Make sure user is part of the group and it is he or her post in a group page
+DELETE FROM Post WHERE PostID = ? AND AuthorID = ?;
 
--- - Remove a comment
-DELETE FROM CommentOn WHERE CommentId = ? AND PostId = ?;
 
--- - Unlike a post
-DELETE FROM LikesPost WHERE CommentId = ? AND UserId = ?;
+-- - Remove a comment in a group
+-- JDBC to make sure user , comment belong to group
+DELETE FROM Comment WHERE CommentId = ? AND AuthorId = ? ;
 
--- - Unlike a comment
+-- - Unlike a post in a group
+-- JDBC to make sure user, post are in group
+DELETE FROM LikesPost WHERE PostId = ? AND UserId = ?;
+
+-- - Unlike a comment in a group
+-- JDBC to make sure use, comment in a group
 DELETE FROM LikesComment WHERE CommentId = ? AND UserId = ?;
 
---- - Modify a post
---- - Modify a comment
+-- - Modify a post in a group
+-- JDBC make sure that post is in the group and user are in a group
+UPDATE Post
+SET PostID = ?, DateCreated = ?, Content = ?, CommentCount = ?
+  WHERE PostId = ?;
 
+
+-- - Modify a comment in a group
+-- JDBC make sure that comment and user is in the group
+UPDATE Comment
+SET CommentId = ?, DateCreated = ?, Content = ?
+  WHERE CommentId = ?;
 -- Manager-Level Transactions
 -- The manager should be able to:
 -- - Add, Edit and Delete information for an employee
 
 -- Add Employee
-INSERT INTO Employee(SSN ,LastName , FirstName, Address, City, State, ZipCode, Telephone, StartDate, HourlyRate) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
+INSERT INTO Employee(SSN ,LastName , FirstName, Address, City, State, ZipCode, Telephone, StartDate, HourlyRate) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?,?);
 -- Edit Employ
 UPDATE Employee
-  SET SSN = ? ,LastName = ?, FirstName = ?, Address = ?, City = ?, State = ?, ZipCode = ?, Telephone = ?, StartDate = ?, HourlyRate = ?;
+  SET SSN = ? ,LastName = ?, FirstName = ?, Address = ?, City = ?, State = ?, ZipCode = ?, Telephone = ?, StartDate = ?, HourlyRate = ?
+  WHERE SSN = ?;
 -- Delete Information for an Employee
 
 DELETE FROM Employee
@@ -243,11 +262,11 @@ CREATE VIEW CompanyItems AS
 --  
 -- While customers (users) will not be permitted to access the database directly, they should be able to retrieve the following information:
 -- - A customer's current groups
-CREATE VIEW UserGroups AS
-  SELECT G.GroupName
-    FROM GroupPlus G
-      WHERE (SELECT * FROM HasAccessToGroup H, 
-             WHERE H.UserID = ? AND H.GroupID = G.GroupID);
+# CREATE VIEW UserGroups AS
+#   SELECT G.GroupName
+#     FROM GroupPlus G
+#       WHERE (SELECT * FROM HasAccessToGroup H,
+#              WHERE H.UserID = ? AND H.GroupID = G.GroupID);
 -- - For each of a customer's accounts, the account history
 -- - Best-Seller list of items
 -- - Personalized item suggestion list
