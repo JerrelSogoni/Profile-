@@ -81,6 +81,7 @@ CREATE TABLE GroupPage (
     PRIMARY KEY (PageId),
     FOREIGN KEY (GroupId)
         REFERENCES GroupPlus (GroupId)
+        ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 -- Jerrel Part
@@ -105,12 +106,8 @@ CREATE TABLE CreatesGroup (
         ON UPDATE CASCADE ON DELETE NO ACTION,
     FOREIGN KEY (GroupId)
         REFERENCES GroupPlus (GroupId)
-        ON UPDATE CASCADE ON DELETE NO ACTION
+        ON UPDATE CASCADE ON DELETE CASCADE
 );
-
-
-
-
 
 CREATE TABLE HasAccessToGroup (
     UserId INTEGER,
@@ -120,16 +117,16 @@ CREATE TABLE HasAccessToGroup (
     PRIMARY KEY (UserId , PageId , GroupId),
     FOREIGN KEY (UserId)
         REFERENCES UserPlus (UserId)
-        ON UPDATE CASCADE ON DELETE NO ACTION,
+        ON UPDATE CASCADE ON DELETE CASCADE,
     FOREIGN KEY (PageId)
         REFERENCES PagePlus (PageId)
-        ON UPDATE CASCADE ON DELETE NO ACTION,
+        ON UPDATE CASCADE ON DELETE CASCADE,
     FOREIGN KEY (GroupId)
         REFERENCES GroupPlus (GroupId)
-        ON UPDATE CASCADE ON DELETE NO ACTION,
+        ON UPDATE CASCADE ON DELETE CASCADE,
     FOREIGN KEY (AdderId)
         REFERENCES UserPlus (UserId)
-        ON UPDATE CASCADE ON DELETE NO ACTION
+        ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 CREATE TABLE HasAPersonal (
@@ -150,10 +147,10 @@ CREATE TABLE HasAGroupPage (
     PRIMARY KEY (GroupId , GroupPageId),
     FOREIGN KEY (GroupId)
         REFERENCES GroupPlus (GroupId)
-        ON UPDATE CASCADE ON DELETE NO ACTION,
+        ON UPDATE CASCADE ON DELETE CASCADE,
     FOREIGN KEY (GroupPageId)
         REFERENCES GroupPage (PageId)
-        ON UPDATE CASCADE ON DELETE NO ACTION
+        ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 -- Jane Part
@@ -169,7 +166,6 @@ CREATE TABLE LikesComment (
         ON DELETE NO ACTION ON UPDATE CASCADE
 );
 
-
 CREATE TABLE LikesPost (
     PostId INTEGER,
     UserId INTEGER,
@@ -181,7 +177,6 @@ CREATE TABLE LikesPost (
         REFERENCES UserPlus (UserId)
         ON DELETE NO ACTION ON UPDATE CASCADE
 );
-
 
 CREATE TABLE PostedTo (
     PostId INTEGER,
@@ -195,7 +190,6 @@ CREATE TABLE PostedTo (
         ON DELETE CASCADE ON UPDATE CASCADE
 );
 
-
 CREATE TABLE CommentOn (
     CommentId INTEGER,
     PostId INTEGER,
@@ -207,7 +201,6 @@ CREATE TABLE CommentOn (
         REFERENCES Post (PostId)
         ON DELETE CASCADE ON UPDATE CASCADE
 );
-
 
 CREATE TABLE Employee (
     SSN CHAR(11),
@@ -238,7 +231,6 @@ CREATE TABLE AdData (
         ON DELETE NO ACTION ON UPDATE CASCADE
 );
 
-
 CREATE TABLE Sales (
     TransId INTEGER,
     TransDate DATE,
@@ -252,9 +244,7 @@ CREATE TABLE Sales (
         ON DELETE NO ACTION ON UPDATE CASCADE
 );
 
-
 -- create table Posted not necessary, using foreign key relationship between AdData and Employee will be enough
-
 
 CREATE TABLE Buy (
     TransId INTEGER,
@@ -272,9 +262,6 @@ CREATE TABLE Buy (
         ON DELETE NO ACTION ON UPDATE CASCADE
 );
 
-
-
-
 CREATE TABLE IsIn (
     UserId INTEGER,
     GroupId INTEGER,
@@ -284,9 +271,8 @@ CREATE TABLE IsIn (
         ON DELETE NO ACTION ON UPDATE CASCADE,
     FOREIGN KEY (GroupId)
         REFERENCES GroupPlus (GroupId)
-        ON DELETE NO ACTION ON UPDATE CASCADE
+        ON DELETE CASCADE ON UPDATE NO ACTION
 );
-
 
 CREATE TABLE Send (
     Sender INTEGER,
@@ -300,7 +286,6 @@ CREATE TABLE Send (
         ON DELETE CASCADE ON UPDATE CASCADE
 );
 
-
 CREATE TABLE Receive (
     Receiver INTEGER,
     MessageId INTEGER,
@@ -312,16 +297,3 @@ CREATE TABLE Receive (
         REFERENCES Message (MessageId)
         ON DELETE CASCADE ON UPDATE CASCADE
 );
-
-#
-# CREATE ASSERTION AccessControl
-# CHECK NOT EXISTS(
-# SELECT * FROM MakesPost MP,
-# WHERE NOT EXISTS (
-# SELECT * FROM HasAccess AC,
-# WHERE AC.PageId = MP.PageId and AC.UserId = MP.UserId)
-# );
-
-
-
-

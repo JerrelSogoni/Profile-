@@ -228,7 +228,7 @@ SELECT * FROM Sales
 SELECT EmpId, MAX(SUM(A.UnitPrice * S.NumOfUnits)) AS TotalRevenue FROM AdData A, Sales S;
 
 -- - Determine which customer generated most total revenue
-
+SELECT UserId, MAX(SUM(A.UnitPrice * S.NumOfUnits)) AS TotalRevenue FROM AdData A, Sales S, UserPlus U;
 
 -- - Produce a list of most active items?
 CREATE VIEW ActiveItems AS 
@@ -268,5 +268,20 @@ CREATE VIEW CompanyItems AS
 #       WHERE (SELECT * FROM HasAccessToGroup H,
 #              WHERE H.UserID = ? AND H.GroupID = G.GroupID);
 -- - For each of a customer's accounts, the account history
+CREATE VIEW AcctHistory AS
+	SELECT A.ItemName, S.NumOfUnits
+		FROM AdData A, Sales S
+			WHERE (SELECT * FROM Buy B 
+				WHERE B.UserID = ? AND S.TransId = B.TransId
+				AND S.AdId = A.AdId);
 -- - Best-Seller list of items
+CREATE VIEW BestSellers AS
+	SELECT A.ItemName
+	FROM AdId A
+		WHERE (SELECT COUNT (*) FROM Sales S
+			WHERE S.AdId = A.AdId) > 20;
 -- - Personalized item suggestion list
+
+
+
+
