@@ -6,8 +6,10 @@ body{
     background: url("../img/LoginRegisterBackground.png");
     background-size: cover;
     margin-bottom: 73px;
-
-
+}
+.containerCase{
+    padding-top: 300px;
+    padding-bottom: 300px;
 }
 div.well{
     height: 250px;
@@ -39,10 +41,10 @@ div.well{
     border: none!important;
 }
 .footer {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
     /* Set the fixed height of the footer here */
     height: 73px;
     background: url("../img/HeaderFooterBackgroundNotActive.png") repeat-x;
+}
+.container{
+
 }
