@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewHasAccessToGroupTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewHasAccessToGroupLabel_userPlus}"/>
+                    <h:outputText value="#{hasAccessToGroupController.selected.userPlus}" title="#{bundle.ViewHasAccessToGroupTitle_userPlus}"/>
+                    <h:outputText value="#{bundle.ViewHasAccessToGroupLabel_pagePlus}"/>
+                    <h:outputText value="#{hasAccessToGroupController.selected.pagePlus}" title="#{bundle.ViewHasAccessToGroupTitle_pagePlus}"/>
+                    <h:outputText value="#{bundle.ViewHasAccessToGroupLabel_groupPlus}"/>
+                    <h:outputText value="#{hasAccessToGroupController.selected.groupPlus}" title="#{bundle.ViewHasAccessToGroupTitle_groupPlus}"/>
+                    <h:outputText value="#{bundle.ViewHasAccessToGroupLabel_adderId}"/>
+                    <h:outputText value="#{hasAccessToGroupController.selected.adderId}" title="#{bundle.ViewHasAccessToGroupTitle_adderId}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{hasAccessToGroupController.destroyAndView}" value="#{bundle.ViewHasAccessToGroupDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewHasAccessToGroupEditLink}"/>
+                <br />
+                <h:commandLink action="#{hasAccessToGroupController.prepareCreate}" value="#{bundle.ViewHasAccessToGroupCreateLink}" />
+                <br />
+                <h:commandLink action="#{hasAccessToGroupController.prepareList}" value="#{bundle.ViewHasAccessToGroupShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewHasAccessToGroupIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

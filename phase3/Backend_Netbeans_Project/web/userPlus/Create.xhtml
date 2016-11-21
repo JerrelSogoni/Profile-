@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateUserPlusTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateUserPlusLabel_userId}" for="userId" />
+                    <h:inputText id="userId" value="#{userPlusController.selected.userId}" title="#{bundle.CreateUserPlusTitle_userId}" required="true" requiredMessage="#{bundle.CreateUserPlusRequiredMessage_userId}"/>
+                    <h:outputLabel value="#{bundle.CreateUserPlusLabel_password}" for="password" />
+                    <h:inputText id="password" value="#{userPlusController.selected.password}" title="#{bundle.CreateUserPlusTitle_password}" />
+                    <h:outputLabel value="#{bundle.CreateUserPlusLabel_firstName}" for="firstName" />
+                    <h:inputText id="firstName" value="#{userPlusController.selected.firstName}" title="#{bundle.CreateUserPlusTitle_firstName}" />
+                    <h:outputLabel value="#{bundle.CreateUserPlusLabel_lastName}" for="lastName" />
+                    <h:inputText id="lastName" value="#{userPlusController.selected.lastName}" title="#{bundle.CreateUserPlusTitle_lastName}" />
+                    <h:outputLabel value="#{bundle.CreateUserPlusLabel_address}" for="address" />
+                    <h:inputText id="address" value="#{userPlusController.selected.address}" title="#{bundle.CreateUserPlusTitle_address}" />
+                    <h:outputLabel value="#{bundle.CreateUserPlusLabel_city}" for="city" />
+                    <h:inputText id="city" value="#{userPlusController.selected.city}" title="#{bundle.CreateUserPlusTitle_city}" />
+                    <h:outputLabel value="#{bundle.CreateUserPlusLabel_state}" for="state" />
+                    <h:inputText id="state" value="#{userPlusController.selected.state}" title="#{bundle.CreateUserPlusTitle_state}" />
+                    <h:outputLabel value="#{bundle.CreateUserPlusLabel_zipCode}" for="zipCode" />
+                    <h:inputText id="zipCode" value="#{userPlusController.selected.zipCode}" title="#{bundle.CreateUserPlusTitle_zipCode}" />
+                    <h:outputLabel value="#{bundle.CreateUserPlusLabel_phone}" for="phone" />
+                    <h:inputText id="phone" value="#{userPlusController.selected.phone}" title="#{bundle.CreateUserPlusTitle_phone}" />
+                    <h:outputLabel value="#{bundle.CreateUserPlusLabel_email}" for="email" />
+                    <h:inputText id="email" value="#{userPlusController.selected.email}" title="#{bundle.CreateUserPlusTitle_email}" />
+                    <h:outputLabel value="#{bundle.CreateUserPlusLabel_accountNum}" for="accountNum" />
+                    <h:inputText id="accountNum" value="#{userPlusController.selected.accountNum}" title="#{bundle.CreateUserPlusTitle_accountNum}" />
+                    <h:outputLabel value="#{bundle.CreateUserPlusLabel_accountCreationDate}" for="accountCreationDate" />
+                    <h:inputText id="accountCreationDate" value="#{userPlusController.selected.accountCreationDate}" title="#{bundle.CreateUserPlusTitle_accountCreationDate}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateUserPlusLabel_creditCardNum}" for="creditCardNum" />
+                    <h:inputText id="creditCardNum" value="#{userPlusController.selected.creditCardNum}" title="#{bundle.CreateUserPlusTitle_creditCardNum}" />
+                    <h:outputLabel value="#{bundle.CreateUserPlusLabel_preferences}" for="preferences" />
+                    <h:inputText id="preferences" value="#{userPlusController.selected.preferences}" title="#{bundle.CreateUserPlusTitle_preferences}" />
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{userPlusController.create}" value="#{bundle.CreateUserPlusSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{userPlusController.prepareList}" value="#{bundle.CreateUserPlusShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateUserPlusIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

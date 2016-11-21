@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateAdDataTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateAdDataLabel_adId}" for="adId" />
+                    <h:inputText id="adId" value="#{adDataController.selected.adId}" title="#{bundle.CreateAdDataTitle_adId}" required="true" requiredMessage="#{bundle.CreateAdDataRequiredMessage_adId}"/>
+                    <h:outputLabel value="#{bundle.CreateAdDataLabel_type}" for="type" />
+                    <h:inputText id="type" value="#{adDataController.selected.type}" title="#{bundle.CreateAdDataTitle_type}" />
+                    <h:outputLabel value="#{bundle.CreateAdDataLabel_company}" for="company" />
+                    <h:inputText id="company" value="#{adDataController.selected.company}" title="#{bundle.CreateAdDataTitle_company}" />
+                    <h:outputLabel value="#{bundle.CreateAdDataLabel_itemName}" for="itemName" />
+                    <h:inputText id="itemName" value="#{adDataController.selected.itemName}" title="#{bundle.CreateAdDataTitle_itemName}" />
+                    <h:outputLabel value="#{bundle.CreateAdDataLabel_content}" for="content" />
+                    <h:inputText id="content" value="#{adDataController.selected.content}" title="#{bundle.CreateAdDataTitle_content}" />
+                    <h:outputLabel value="#{bundle.CreateAdDataLabel_unitPrice}" for="unitPrice" />
+                    <h:inputText id="unitPrice" value="#{adDataController.selected.unitPrice}" title="#{bundle.CreateAdDataTitle_unitPrice}" />
+                    <h:outputLabel value="#{bundle.CreateAdDataLabel_numOfAvaUnits}" for="numOfAvaUnits" />
+                    <h:inputText id="numOfAvaUnits" value="#{adDataController.selected.numOfAvaUnits}" title="#{bundle.CreateAdDataTitle_numOfAvaUnits}" />
+                    <h:outputLabel value="#{bundle.CreateAdDataLabel_empId}" for="empId" />
+                    <h:selectOneMenu id="empId" value="#{adDataController.selected.empId}" title="#{bundle.CreateAdDataTitle_empId}" required="true" requiredMessage="#{bundle.CreateAdDataRequiredMessage_empId}">
+                        <f:selectItems value="#{employeeController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{adDataController.create}" value="#{bundle.CreateAdDataSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{adDataController.prepareList}" value="#{bundle.CreateAdDataShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateAdDataIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

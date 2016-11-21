@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditHasAccessToGroupTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditHasAccessToGroupLabel_userPlus}" for="userPlus" />
+                    <h:selectOneMenu id="userPlus" value="#{hasAccessToGroupController.selected.userPlus}" title="#{bundle.EditHasAccessToGroupTitle_userPlus}" required="true" requiredMessage="#{bundle.EditHasAccessToGroupRequiredMessage_userPlus}">
+                        <f:selectItems value="#{userPlusController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditHasAccessToGroupLabel_pagePlus}" for="pagePlus" />
+                    <h:selectOneMenu id="pagePlus" value="#{hasAccessToGroupController.selected.pagePlus}" title="#{bundle.EditHasAccessToGroupTitle_pagePlus}" required="true" requiredMessage="#{bundle.EditHasAccessToGroupRequiredMessage_pagePlus}">
+                        <f:selectItems value="#{pagePlusController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditHasAccessToGroupLabel_groupPlus}" for="groupPlus" />
+                    <h:selectOneMenu id="groupPlus" value="#{hasAccessToGroupController.selected.groupPlus}" title="#{bundle.EditHasAccessToGroupTitle_groupPlus}" required="true" requiredMessage="#{bundle.EditHasAccessToGroupRequiredMessage_groupPlus}">
+                        <f:selectItems value="#{groupPlusController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditHasAccessToGroupLabel_adderId}" for="adderId" />
+                    <h:selectOneMenu id="adderId" value="#{hasAccessToGroupController.selected.adderId}" title="#{bundle.EditHasAccessToGroupTitle_adderId}" >
+                        <f:selectItems value="#{userPlusController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{hasAccessToGroupController.update}" value="#{bundle.EditHasAccessToGroupSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditHasAccessToGroupViewLink}"/>
+                <br />
+                <h:commandLink action="#{hasAccessToGroupController.prepareList}" value="#{bundle.EditHasAccessToGroupShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditHasAccessToGroupIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

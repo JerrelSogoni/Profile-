@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListGroupPlusTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListGroupPlusEmpty}" rendered="#{groupPlusController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{groupPlusController.items.rowCount > 0}">
+                    <h:outputText value="#{groupPlusController.pagination.pageFirstItem + 1}..#{groupPlusController.pagination.pageLastItem + 1}/#{groupPlusController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{groupPlusController.previous}" value="#{bundle.Previous} #{groupPlusController.pagination.pageSize}" rendered="#{groupPlusController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{groupPlusController.next}" value="#{bundle.Next} #{groupPlusController.pagination.pageSize}" rendered="#{groupPlusController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{groupPlusController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListGroupPlusTitle_groupId}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.groupId}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListGroupPlusTitle_groupName}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.groupName}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListGroupPlusTitle_type}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.type}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListGroupPlusTitle_owner}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.owner}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{groupPlusController.prepareView}" value="#{bundle.ListGroupPlusViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{groupPlusController.prepareEdit}" value="#{bundle.ListGroupPlusEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{groupPlusController.destroy}" value="#{bundle.ListGroupPlusDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{groupPlusController.prepareCreate}" value="#{bundle.ListGroupPlusCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListGroupPlusIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

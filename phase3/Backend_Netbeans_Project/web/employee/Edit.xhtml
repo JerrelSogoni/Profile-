@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditEmployeeTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditEmployeeLabel_ssn}" for="ssn" />
+                    <h:inputText id="ssn" value="#{employeeController.selected.ssn}" title="#{bundle.EditEmployeeTitle_ssn}" required="true" requiredMessage="#{bundle.EditEmployeeRequiredMessage_ssn}"/>
+                    <h:outputLabel value="#{bundle.EditEmployeeLabel_lastName}" for="lastName" />
+                    <h:inputText id="lastName" value="#{employeeController.selected.lastName}" title="#{bundle.EditEmployeeTitle_lastName}" />
+                    <h:outputLabel value="#{bundle.EditEmployeeLabel_firstName}" for="firstName" />
+                    <h:inputText id="firstName" value="#{employeeController.selected.firstName}" title="#{bundle.EditEmployeeTitle_firstName}" />
+                    <h:outputLabel value="#{bundle.EditEmployeeLabel_address}" for="address" />
+                    <h:inputText id="address" value="#{employeeController.selected.address}" title="#{bundle.EditEmployeeTitle_address}" />
+                    <h:outputLabel value="#{bundle.EditEmployeeLabel_city}" for="city" />
+                    <h:inputText id="city" value="#{employeeController.selected.city}" title="#{bundle.EditEmployeeTitle_city}" />
+                    <h:outputLabel value="#{bundle.EditEmployeeLabel_state}" for="state" />
+                    <h:inputText id="state" value="#{employeeController.selected.state}" title="#{bundle.EditEmployeeTitle_state}" />
+                    <h:outputLabel value="#{bundle.EditEmployeeLabel_zipCode}" for="zipCode" />
+                    <h:inputText id="zipCode" value="#{employeeController.selected.zipCode}" title="#{bundle.EditEmployeeTitle_zipCode}" />
+                    <h:outputLabel value="#{bundle.EditEmployeeLabel_telephone}" for="telephone" />
+                    <h:inputText id="telephone" value="#{employeeController.selected.telephone}" title="#{bundle.EditEmployeeTitle_telephone}" />
+                    <h:outputLabel value="#{bundle.EditEmployeeLabel_startDate}" for="startDate" />
+                    <h:inputText id="startDate" value="#{employeeController.selected.startDate}" title="#{bundle.EditEmployeeTitle_startDate}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditEmployeeLabel_hourlyRate}" for="hourlyRate" />
+                    <h:inputText id="hourlyRate" value="#{employeeController.selected.hourlyRate}" title="#{bundle.EditEmployeeTitle_hourlyRate}" />
+                </h:panelGrid>
+                <h:commandLink action="#{employeeController.update}" value="#{bundle.EditEmployeeSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditEmployeeViewLink}"/>
+                <br />
+                <h:commandLink action="#{employeeController.prepareList}" value="#{bundle.EditEmployeeShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditEmployeeIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
