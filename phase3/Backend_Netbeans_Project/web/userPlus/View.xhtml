@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewUserPlusTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewUserPlusLabel_userId}"/>
+                    <h:outputText value="#{userPlusController.selected.userId}" title="#{bundle.ViewUserPlusTitle_userId}"/>
+                    <h:outputText value="#{bundle.ViewUserPlusLabel_password}"/>
+                    <h:outputText value="#{userPlusController.selected.password}" title="#{bundle.ViewUserPlusTitle_password}"/>
+                    <h:outputText value="#{bundle.ViewUserPlusLabel_firstName}"/>
+                    <h:outputText value="#{userPlusController.selected.firstName}" title="#{bundle.ViewUserPlusTitle_firstName}"/>
+                    <h:outputText value="#{bundle.ViewUserPlusLabel_lastName}"/>
+                    <h:outputText value="#{userPlusController.selected.lastName}" title="#{bundle.ViewUserPlusTitle_lastName}"/>
+                    <h:outputText value="#{bundle.ViewUserPlusLabel_address}"/>
+                    <h:outputText value="#{userPlusController.selected.address}" title="#{bundle.ViewUserPlusTitle_address}"/>
+                    <h:outputText value="#{bundle.ViewUserPlusLabel_city}"/>
+                    <h:outputText value="#{userPlusController.selected.city}" title="#{bundle.ViewUserPlusTitle_city}"/>
+                    <h:outputText value="#{bundle.ViewUserPlusLabel_state}"/>
+                    <h:outputText value="#{userPlusController.selected.state}" title="#{bundle.ViewUserPlusTitle_state}"/>
+                    <h:outputText value="#{bundle.ViewUserPlusLabel_zipCode}"/>
+                    <h:outputText value="#{userPlusController.selected.zipCode}" title="#{bundle.ViewUserPlusTitle_zipCode}"/>
+                    <h:outputText value="#{bundle.ViewUserPlusLabel_phone}"/>
+                    <h:outputText value="#{userPlusController.selected.phone}" title="#{bundle.ViewUserPlusTitle_phone}"/>
+                    <h:outputText value="#{bundle.ViewUserPlusLabel_email}"/>
+                    <h:outputText value="#{userPlusController.selected.email}" title="#{bundle.ViewUserPlusTitle_email}"/>
+                    <h:outputText value="#{bundle.ViewUserPlusLabel_accountNum}"/>
+                    <h:outputText value="#{userPlusController.selected.accountNum}" title="#{bundle.ViewUserPlusTitle_accountNum}"/>
+                    <h:outputText value="#{bundle.ViewUserPlusLabel_accountCreationDate}"/>
+                    <h:outputText value="#{userPlusController.selected.accountCreationDate}" title="#{bundle.ViewUserPlusTitle_accountCreationDate}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewUserPlusLabel_creditCardNum}"/>
+                    <h:outputText value="#{userPlusController.selected.creditCardNum}" title="#{bundle.ViewUserPlusTitle_creditCardNum}"/>
+                    <h:outputText value="#{bundle.ViewUserPlusLabel_preferences}"/>
+                    <h:outputText value="#{userPlusController.selected.preferences}" title="#{bundle.ViewUserPlusTitle_preferences}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{userPlusController.destroyAndView}" value="#{bundle.ViewUserPlusDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewUserPlusEditLink}"/>
+                <br />
+                <h:commandLink action="#{userPlusController.prepareCreate}" value="#{bundle.ViewUserPlusCreateLink}" />
+                <br />
+                <h:commandLink action="#{userPlusController.prepareList}" value="#{bundle.ViewUserPlusShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewUserPlusIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewAdDataTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewAdDataLabel_adId}"/>
+                    <h:outputText value="#{adDataController.selected.adId}" title="#{bundle.ViewAdDataTitle_adId}"/>
+                    <h:outputText value="#{bundle.ViewAdDataLabel_type}"/>
+                    <h:outputText value="#{adDataController.selected.type}" title="#{bundle.ViewAdDataTitle_type}"/>
+                    <h:outputText value="#{bundle.ViewAdDataLabel_company}"/>
+                    <h:outputText value="#{adDataController.selected.company}" title="#{bundle.ViewAdDataTitle_company}"/>
+                    <h:outputText value="#{bundle.ViewAdDataLabel_itemName}"/>
+                    <h:outputText value="#{adDataController.selected.itemName}" title="#{bundle.ViewAdDataTitle_itemName}"/>
+                    <h:outputText value="#{bundle.ViewAdDataLabel_content}"/>
+                    <h:outputText value="#{adDataController.selected.content}" title="#{bundle.ViewAdDataTitle_content}"/>
+                    <h:outputText value="#{bundle.ViewAdDataLabel_unitPrice}"/>
+                    <h:outputText value="#{adDataController.selected.unitPrice}" title="#{bundle.ViewAdDataTitle_unitPrice}"/>
+                    <h:outputText value="#{bundle.ViewAdDataLabel_numOfAvaUnits}"/>
+                    <h:outputText value="#{adDataController.selected.numOfAvaUnits}" title="#{bundle.ViewAdDataTitle_numOfAvaUnits}"/>
+                    <h:outputText value="#{bundle.ViewAdDataLabel_empId}"/>
+                    <h:outputText value="#{adDataController.selected.empId}" title="#{bundle.ViewAdDataTitle_empId}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{adDataController.destroyAndView}" value="#{bundle.ViewAdDataDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewAdDataEditLink}"/>
+                <br />
+                <h:commandLink action="#{adDataController.prepareCreate}" value="#{bundle.ViewAdDataCreateLink}" />
+                <br />
+                <h:commandLink action="#{adDataController.prepareList}" value="#{bundle.ViewAdDataShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewAdDataIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

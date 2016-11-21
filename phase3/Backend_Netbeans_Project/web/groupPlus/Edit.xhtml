@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditGroupPlusTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditGroupPlusLabel_groupId}" for="groupId" />
+                    <h:inputText id="groupId" value="#{groupPlusController.selected.groupId}" title="#{bundle.EditGroupPlusTitle_groupId}" required="true" requiredMessage="#{bundle.EditGroupPlusRequiredMessage_groupId}"/>
+                    <h:outputLabel value="#{bundle.EditGroupPlusLabel_groupName}" for="groupName" />
+                    <h:inputText id="groupName" value="#{groupPlusController.selected.groupName}" title="#{bundle.EditGroupPlusTitle_groupName}" />
+                    <h:outputLabel value="#{bundle.EditGroupPlusLabel_type}" for="type" />
+                    <h:inputText id="type" value="#{groupPlusController.selected.type}" title="#{bundle.EditGroupPlusTitle_type}" />
+                    <h:outputLabel value="#{bundle.EditGroupPlusLabel_owner}" for="owner" />
+                    <h:selectOneMenu id="owner" value="#{groupPlusController.selected.owner}" title="#{bundle.EditGroupPlusTitle_owner}" >
+                        <f:selectItems value="#{userPlusController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{groupPlusController.update}" value="#{bundle.EditGroupPlusSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditGroupPlusViewLink}"/>
+                <br />
+                <h:commandLink action="#{groupPlusController.prepareList}" value="#{bundle.EditGroupPlusShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditGroupPlusIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

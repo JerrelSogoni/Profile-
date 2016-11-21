@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListPagePlusTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListPagePlusEmpty}" rendered="#{pagePlusController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{pagePlusController.items.rowCount > 0}">
+                    <h:outputText value="#{pagePlusController.pagination.pageFirstItem + 1}..#{pagePlusController.pagination.pageLastItem + 1}/#{pagePlusController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{pagePlusController.previous}" value="#{bundle.Previous} #{pagePlusController.pagination.pageSize}" rendered="#{pagePlusController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{pagePlusController.next}" value="#{bundle.Next} #{pagePlusController.pagination.pageSize}" rendered="#{pagePlusController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{pagePlusController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPagePlusTitle_pageId}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.pageId}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPagePlusTitle_postCount}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.postCount}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{pagePlusController.prepareView}" value="#{bundle.ListPagePlusViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{pagePlusController.prepareEdit}" value="#{bundle.ListPagePlusEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{pagePlusController.destroy}" value="#{bundle.ListPagePlusDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{pagePlusController.prepareCreate}" value="#{bundle.ListPagePlusCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListPagePlusIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
