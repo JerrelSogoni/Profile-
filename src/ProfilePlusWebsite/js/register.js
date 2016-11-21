@@ -11,7 +11,7 @@ $(document).ready(function() {
             first_name: {
                 validators: {
                     stringLength: {
-                        min: 2,
+                        min: 2
                     },
                     notEmpty: {
                         message: 'Please supply your first name'
@@ -21,7 +21,7 @@ $(document).ready(function() {
             last_name: {
                 validators: {
                     stringLength: {
-                        min: 2,
+                        min: 2
                     },
                     notEmpty: {
                         message: 'Please supply your last name'
@@ -50,14 +50,14 @@ $(document).ready(function() {
                     stringLength: {
                         min: 10,
                         max: 10
-                    },
+                    }
 
                 }
             },
             address: {
                 validators: {
                     stringLength: {
-                        min: 3,
+                        min: 3
                     },
                     notEmpty: {
                         message: 'Please supply your street address'
@@ -67,7 +67,7 @@ $(document).ready(function() {
             city: {
                 validators: {
                     stringLength: {
-                        min: 4,
+                        min: 4
                     },
                     notEmpty: {
                         message: 'Please supply your city'
@@ -120,9 +120,9 @@ $(document).ready(function() {
         }
     })
         .on('success.form.bv', function(e) {
-            $('#success_message').slideDown({ opacity: "show" }, "slow") // Do something ...
-            $('#contact_form').data('bootstrapValidator').resetForm();
 
+            $('#success_message').slideDown({ opacity: "show" }, "slow"); // Do something ...
+            $('#contact_form').data('bootstrapValidator').resetForm();
             // Prevent form submission
             e.preventDefault();
 
@@ -136,6 +136,6 @@ $(document).ready(function() {
             $.post($form.attr('action'), $form.serialize(), function(result) {
                 console.log(result);
             }, 'json');
-            window.location.replace("http://stackoverflow.com");
         });
+
 });
