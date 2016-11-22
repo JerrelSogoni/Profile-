@@ -1,0 +1,24 @@
+.my-nav{
+    height: 73px;
+    background: url("../img/HeaderFooterBackgroundActive.png") repeat-x;
+}
+.navbar{
+    border: none!important;
+}
+body{
+    background: #505050 ;
+    margin-bottom: 73px;
+
+}
+
+.footer {
+    height: 73px;
+    background: url("../img/HeaderFooterBackgroundActive.png") repeat-x;
+}
+#nav-bar-functions{
+    padding-top: 10px;
+
+}
+.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
+    background-color: #88D9FF;
+}
