@@ -103,6 +103,15 @@ $(document).ready(function() {
                     }
                 }
             },
+            creditcard: {
+                validators: {
+                    creditCard: {
+                        message: 'The credit card number is not valid'
+                    }
+                    
+                }
+                
+            },
             dob: {
                 validators: {
                     date: {
