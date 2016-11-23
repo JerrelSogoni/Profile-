@@ -58,4 +58,40 @@ html,body,.col-md-12,.row {
     position:relative;
     width: 100%;
 }
+#profilelittleimage{
+    width: 25px;
+    height: 25px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #00AEEF;
+    background: #FFFFFF
+}
+#otheruser{
+    height: 120px;
+}
+#otheruserprofilepic{
+    width: 100px;
+    height: 100px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #00AEEF;
+    background: #FFFFFF
+}
+.otherprofile{
+    height: 30px;
+    width: 120px;
+
+}
+.otherprofileformat{
+    height: 120px;
+
+}
+.otherprofileformatactions{
+    height: 120px;
+    text-align: center;
+    padding-top: 40px;
+}
+.list-inline{
+    text-align: center;
+}
 
