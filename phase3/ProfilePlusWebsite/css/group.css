@@ -1,0 +1,77 @@
+.my-nav{
+    height: 73px;
+    background: url("../img/HeaderFooterBackgroundActive.png") repeat-x;
+}
+.navbar{
+    border: none!important;
+}
+body{
+    background: #505050 ;
+    margin-bottom: 73px;
+
+}
+html,body,.row {
+    height:100%;
+}
+#col1{
+
+    word-wrap: break-word;
+
+
+}
+#col2{
+    background: #FCFCFC;
+    padding-top: 30px;
+    padding-bottom: 73px;
+
+
+}
+#col3{
+    word-wrap: break-word;
+}
+.containerCase{
+    padding-top: 73px;
+    height:auto;
+    padding-bottom: 73px;
+
+}
+
+.footer {
+    height: 73px;
+    background: url("../img/HeaderFooterBackgroundActive.png") repeat-x;
+}
+#nav-bar-functions{
+    padding-top: 10px;
+
+}
+.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
+    background-color: #88D9FF;
+}
+#profilelittleimage{
+    width: 25px;
+    height: 25px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #00AEEF;
+    background: #FFFFFF
+}
+#Picture{
+     background-image: none;
+     background-size:cover;
+     background-position: center;
+     height: 250px; width: 250px;
+     border: 1px solid #bbb;
+
+ }
+.center-block{
+    padding-left: 150px;
+}
+.button{
+    width: 190px;
+}
+.toppad{
+    padding-top: 20px;
+}
+#success_message{
+    display: none;
+}

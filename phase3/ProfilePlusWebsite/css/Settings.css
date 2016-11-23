@@ -67,8 +67,7 @@ body{
 .formstyle{
     font-size: large;
 }
-
-#cancelButton{
+.button{
     width: 190px;
 }
 .toppad{

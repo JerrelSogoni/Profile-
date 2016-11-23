@@ -1,6 +1,6 @@
 $(document).ready(function() {
 
-    $('#settings_form').bootstrapValidator({
+    $('#group_form').bootstrapValidator({
 
         // To use feedback icons, ensure that you use Bootstrap v3.1.0 or later
         feedbackIcons: {
@@ -10,7 +10,7 @@ $(document).ready(function() {
         },
         submitHandler: function (validator, form, submitButton) {
             $('#success_message').slideDown({opacity: "show"}, "slow"); // Do something ...
-            $('#settings_form').data('bootstrapValidator').resetForm();
+            $('#group_form').data('bootstrapValidator').resetForm();
 
             var bv = form.data('bootstrapValidator');
             // Use Ajax to submit form data
@@ -19,17 +19,10 @@ $(document).ready(function() {
             }, 'json');
         },
         fields: {
-            canseeprofile: {
+            groupname: {
                 validators: {
                     notEmpty: {
-                        message: 'Must select a policy'
-                    }
-                }
-            },
-            canpostprofile: {
-                validators: {
-                    notEmpty: {
-                        message: 'Must select a policy'
+                        message: 'Enter a group name'
                     }
                 }
             }
