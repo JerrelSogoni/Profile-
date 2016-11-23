@@ -44,10 +44,7 @@ body{
 .row4{
     padding-left: 60px;
 }
-.registeralign{
-    padding-left: 180px;
 
-}
 #register-container{
     margin: auto;
     margin-bottom: 10px;
@@ -70,11 +67,13 @@ body{
 .formstyle{
     font-size: large;
 }
-.cancelalign{
-    padding-top: 20px;
-    padding-left: 180px
-}
-#cancelButton{
 
-    width: 170px;
+#cancelButton{
+    width: 190px;
+}
+.toppad{
+    padding-top: 20px;
+}
+.center-block{
+    padding-left: 150px;
 }
