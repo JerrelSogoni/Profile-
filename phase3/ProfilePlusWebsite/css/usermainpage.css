@@ -1,0 +1,61 @@
+.my-nav{
+    height: 73px;
+    background: url("../img/HeaderFooterBackgroundActive.png") repeat-x;
+}
+.navbar{
+    border: none!important;
+}
+body{
+    background: #505050 ;
+    margin-bottom: 73px;
+
+}
+html,body,.col-md-12,.row {
+    height:100%;
+}
+
+.footer {
+    height: 73px;
+    background: url("../img/HeaderFooterBackgroundActive.png") repeat-x;
+}
+#nav-bar-functions{
+    padding-top: 10px;
+
+}
+.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
+    background-color: #88D9FF;
+}
+#col1{
+
+    word-wrap: break-word;
+    word-wrap: break-word;
+
+    height: 100%;
+
+}
+#col2{
+    background: #FCFCFC;
+    padding-top: 30px;
+    height: 100%;
+}
+#col3{
+    word-wrap: break-word;
+    height: 100%;
+
+}
+.containerCase{
+    padding-top: 73px;
+    height: 100%;
+
+}
+#fullRow{
+    height: 100%;
+}
+#myrow > div {
+    height:100%;
+}
+.force-to-bottom {
+    position:relative;
+    width: 100%;
+}
+
