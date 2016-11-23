@@ -10,6 +10,31 @@ body{
     margin-bottom: 73px;
 
 }
+html,body,.row {
+    height:100%;
+}
+#col1{
+
+    word-wrap: break-word;
+
+
+}
+#col2{
+    background: #FCFCFC;
+    padding-top: 30px;
+    padding-bottom: 73px;
+
+
+}
+#col3{
+    word-wrap: break-word;
+}
+.containerCase{
+    padding-top: 73px;
+    height:auto;
+    padding-bottom: 73px;
+
+}
 
 .footer {
     height: 73px;

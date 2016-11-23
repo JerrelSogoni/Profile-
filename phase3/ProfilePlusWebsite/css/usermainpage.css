@@ -8,10 +8,8 @@
 body{
     background: #505050 ;
     margin-bottom: 73px;
-
-
 }
-html,body,.col-md-12,.row {
+html,body,.row {
     height:100%;
 }
 
@@ -48,12 +46,6 @@ html,body,.col-md-12,.row {
     height:auto;
     padding-bottom: 73px;
 
-}
-#fullRow{
-    height: 100%;
-}
-#myrow > div {
-    height:100%;
 }
 .force-to-bottom {
     position:relative;
