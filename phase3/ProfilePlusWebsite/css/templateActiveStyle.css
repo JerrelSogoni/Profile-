@@ -22,3 +22,11 @@ body{
 .navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
     background-color: #88D9FF;
 }
+#profilelittleimage{
+    width: 25px;
+    height: 25px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #00AEEF;
+    background: #FFFFFF
+}
