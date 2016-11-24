@@ -1,7 +1,8 @@
-.my-nav{
+.my-nav {
     height: 73px;
-    background: url("../img/HeaderFooterBackgroundNotActive.png") repeat-x;
+    background: url("../img/HeaderFooterBackgroundActive.png") repeat-x;
 }
+
 .navbar{
     border: none!important;
 }
@@ -52,9 +53,10 @@ body{
 
 }
 .footer {
-    height: 73px;
-    background: url("../img/HeaderFooterBackgroundNotActive.png") repeat-x;
-}
+     height: 73px;
+     background: url("../img/HeaderFooterBackgroundActive.png") repeat-x;
+
+ }
 .control-label{
     font-family: 'Delius Unicase', cursive;
     color: white;
@@ -73,4 +75,17 @@ body{
 }
 .center-block{
     padding-left: 150px;
+}
+#profilelittleimage{
+    width: 25px;
+    height: 25px;
+    border: 1px solid #00AEEF;
+    background: #FFFFFF
+}
+#nav-bar-functions{
+    padding-top: 10px;
+
+}
+.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
+    background-color: #88D9FF;
 }

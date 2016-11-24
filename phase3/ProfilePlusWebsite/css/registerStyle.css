@@ -28,8 +28,7 @@ body{
 
 
 #register-container{
-    margin: auto;
-    margin-bottom: 10px;
+    margin: auto auto 10px;
     text-align: center;
     font-family: 'Pacifico', cursive;
     color: white;

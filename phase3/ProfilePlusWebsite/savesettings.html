@@ -10,7 +10,7 @@
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <!-- External CSS -->
-    <link rel="stylesheet" href="css/Settings.css">
+    <link rel="stylesheet" href="css/SettingLogin.css">
 
     <!-- Google API Font -->
     <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet">
@@ -28,13 +28,69 @@
 </head>
 <body>
 <!-- Begin Nav Bar for Header -->
-<nav class="navbar navbar-default navbar-fixed-top my-nav">
+<nav class="navbar navbar-default navbar-fixed-top my-nav ">
     <div class="container">
         <div class="navbar-brand">
+
+            <button class="navbar-toggle" data-toggle="collapse" data-target="#navHeaderCollapse">
+                <span class ="icon-bar"></span>
+                <span class ="icon-bar"></span>
+                <span class ="icon-bar"></span>
+            </button>
             <a href="">
                 <img alt="Profile Plus" src="img/ProfilePlusLogo2.0.png" width="61" height="46">
             </a>
+
         </div>
+        <div class="collapse navbar-collapse" id="navHeaderCollapse">
+            <ul class="nav navbar-nav navbar-right" id="nav-bar-functions" >
+                <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        <div id="profilelittleimage"><span id="userfullname"></span></div>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        <img src="img/friendslistglyph.png">
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        <img src="img/messagesglyph.png">
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        <img src="img/grouppageglyp.png">
+                    </a>
+                </li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        <img src="img/cogwheelglyph.png">
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Modify User Settings</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#">Logout</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a  href="#" data-toggle="dropdown"
+                        class="dropdown-toggle">
+                        <img src="img/showlinesglyph.png">
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Create a Page</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#">Create a Group</a></li>
+                    </ul>
+                </li>
+
+
+            </ul>
+        </div>
+
+
     </div>
 </nav>
 <!-- End Nav Bar Header-->

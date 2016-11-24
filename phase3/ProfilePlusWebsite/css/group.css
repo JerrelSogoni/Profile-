@@ -50,16 +50,13 @@ html,body,.row {
 #profilelittleimage{
     width: 25px;
     height: 25px;
-    border-style: solid;
-    border-width: 1px;
-    border-color: #00AEEF;
+    border: 1px solid #00AEEF;
     background: #FFFFFF
 }
 #Picture{
-     background-image: none;
-     background-size:cover;
-     background-position: center;
-     height: 250px; width: 250px;
+    background-size:cover;
+    background: none center;
+    height: 250px; width: 250px;
      border: 1px solid #bbb;
 
  }

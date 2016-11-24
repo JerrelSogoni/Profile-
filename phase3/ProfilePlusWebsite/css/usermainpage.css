@@ -54,9 +54,7 @@ html,body,.row {
 #profilelittleimage{
     width: 25px;
     height: 25px;
-    border-style: solid;
-    border-width: 1px;
-    border-color: #00AEEF;
+    border: 1px solid #00AEEF;
     background: #FFFFFF
 }
 #otheruser{
@@ -65,9 +63,7 @@ html,body,.row {
 #otheruserprofilepic{
     width: 100px;
     height: 100px;
-    border-style: solid;
-    border-width: 1px;
-    border-color: #00AEEF;
+    border: 1px solid #00AEEF;
     background: #FFFFFF
 }
 .otherprofile{
