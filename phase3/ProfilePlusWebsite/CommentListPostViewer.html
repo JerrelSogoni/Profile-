@@ -106,17 +106,9 @@
     <div class="col-lg-10" id="col2">
         <div id="friendformat" >
             <div class="col-sm-3">
-                <h4>Group Member List:</h4>
+                <h4>Comment List:</h4>
             </div>
-            <div class="col-sm-9">
-                <form class="form-inline pull-right">
-                    <div class="form-group">
-                        <label for="groupmember">Name:</label>
-                        <input type="text" class="form-control" id="groupmember" placeholder="add a member">
-                    </div>
-                    <button type="submit" class="btn btn-primary">Add</button>
-                </form>
-            </div>
+
         </div>
         <hr>
         <table class="table table-hover" id="newsfeedtable">
@@ -124,16 +116,27 @@
                 <tr>
                     <th>Select</th>
                     <th>Profile</th>
+                    <th>Content</th>
                 </tr>
                 </thead>
                 <tbody>
-
                 </tbody>
         </table>
         <hr>
         <!-- bottom on news -->
         <div class="row force-to-bottom text-center">
-            <button type="button" name="removeGroupMember" class="btn btn-danger" id="removeGroupMember" >Remove Group Member<span class="glyphicon glyphicon-remove"></span></button>
+            <ul class="list-inline">
+                <li>
+                    <button type="button" name="back" class="btn btn-default" id="back" >Back</button>
+                </li>
+                <li>
+                    <button type="button" name="likeComment" class="btn btn-default" id="likeComment" >Like Comment</button>
+                </li>
+                <li>
+                    <button type="button" name="addComment" class="btn btn-success" id="addComment" >Add Comment</button>
+                </li>
+            </ul>
+
 
         </div>
         </div>

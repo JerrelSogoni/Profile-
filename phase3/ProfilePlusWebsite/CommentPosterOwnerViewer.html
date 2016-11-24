@@ -106,37 +106,30 @@
     <div class="col-lg-10" id="col2">
         <div id="friendformat" >
             <div class="col-sm-3">
-                <h4>Group Member List:</h4>
+                <h4 id="commenter"></h4> <h4>'s Comment</h4>
             </div>
-            <div class="col-sm-9">
-                <form class="form-inline pull-right">
-                    <div class="form-group">
-                        <label for="groupmember">Name:</label>
-                        <input type="text" class="form-control" id="groupmember" placeholder="add a member">
-                    </div>
-                    <button type="submit" class="btn btn-primary">Add</button>
-                </form>
-            </div>
+
         </div>
         <hr>
-        <table class="table table-hover" id="newsfeedtable">
-                <thead>
-                <tr>
-                    <th>Select</th>
-                    <th>Profile</th>
-                </tr>
-                </thead>
-                <tbody>
-
-                </tbody>
-        </table>
+        <div id="commentContent">
+        </div>
         <hr>
-        <!-- bottom on news -->
         <div class="row force-to-bottom text-center">
-            <button type="button" name="removeGroupMember" class="btn btn-danger" id="removeGroupMember" >Remove Group Member<span class="glyphicon glyphicon-remove"></span></button>
+            <ul class="list-inline">
+                <li>
+                    <button type="button" name="back" class="btn btn-default" id="back" >Back</button>
+                </li>
+                <li>
+                    <button type="button" name="likeComment" class="btn btn-default" id="likeComment" >Like</button>
+                </li>
+                <li>
+                    <button type="button" name="removeComment" class="btn btn-danger" id="removeComment" >Remove</button>
+                </li>
+
+            </ul>
 
         </div>
-        </div>
+    </div>
     <!-- advertisment right -->
     <div class="col-lg-1" id="col3">
         sdfpidsjfpidsj
