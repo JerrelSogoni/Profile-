@@ -90,4 +90,6 @@ html,body,.row {
     height:50px;
 }
 
-
+textarea {
+    resize: vertical;
+}

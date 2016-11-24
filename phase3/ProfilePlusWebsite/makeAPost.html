@@ -106,25 +106,32 @@
     <div class="col-lg-10" id="col2">
         <div id="friendformat" >
             <div class="col-sm-3">
-                <h4>Group List:</h4>
+                <h4>Make a Post on </h4> <h4 id="poster"></h4> <h4>'s Page</h4>
             </div>
+
         </div>
         <hr>
-        <table class="table table-hover" id="newsfeedtable">
-                <thead>
-                <tr>
-                    <th>Select</th>
-                    <th>Group</th>
-                </tr>
-                </thead>
-                <tbody>
-                </tbody>
-        </table>
-        <hr>
-        <!-- bottom on news -->
-             <div class="row force-to-bottom text-center">
-            <button type="button" name="removeGroupButton" class="btn btn-danger" id="removeGroupButton" >Remove Group<span class="glyphicon glyphicon-remove"></span></button>
-            </div>
+        <div >
+            <form class="form-horizontal" role="form" action=" " method="post"  id="contact_form">
+                <div class="form-group" >
+                    <textarea  placeholder="Type your post" class="form-control glyphicon-resize-vertical"  id="postcontent" ></textarea>
+                </div>
+                <div class="row force-to-bottom text-center">
+                    <ul class="list-inline">
+                        <li>
+                            <button type="button" name="back" class="btn btn-default" id="back" >Cancel</button>
+                        </li>
+                        <li>
+                            <button type="submit" name="makePost" class="btn btn-success" id="makePost" >Submit</button>
+                        </li>
+
+                    </ul>
+                </div>
+
+            </form>
+
+        </div>
+
     </div>
     <!-- advertisment right -->
     <div class="col-lg-1" id="col3">
