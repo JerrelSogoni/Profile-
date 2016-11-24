@@ -93,3 +93,9 @@ html,body,.row {
 textarea {
     resize: vertical;
 }
+td{
+    word-wrap:break-word
+}
+table{
+    table-layout: fixed;
+}

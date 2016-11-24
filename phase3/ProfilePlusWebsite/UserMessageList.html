@@ -95,62 +95,53 @@
 </nav>
 <!-- End Nav Bar Header-->
 <!--begin divide into 3 columns -->
+
 <div class="container containerCase">
 
-            <!-- advertisement left-->
-            <div class="col-lg-1" id="col1">
-                dsfiojsdfoisdjfsdijfp
+    <!-- advertisement left-->
+    <div class="col-lg-1" id="col1">
+        dsipfjsdpfjs
+    </div>
+    <!-- news feed -->
+    <div class="col-lg-10" id="col2">
+        <div id="friendformat" >
+            <div class="col-sm-3">
+                <h4>Message List:</h4>
             </div>
-
-            <!-- news feed -->
-            <div class="col-lg-10" id="col2">
-                    <div class="pagetitle">
-                        Group Name: <h4 id="groupname"></h4>
+            <div class="col-sm-9">
+                <form class="form-inline pull-right">
+                    <div class="form-group">
+                        <label for="messagewho">Name:</label>
+                        <input type="text" class="form-control" id="messagewho" placeholder="messsage who?">
                     </div>
-                    <hr>
-                    <div class="otherprofileformat">
-                        <div class="col-lg-4" id="otheruserprofilepic"></div>
-                        <div class="col-lg-8 otherprofileformatactions">
-                            <ul class="list-inline">
-                                <li>
-                                    <input type="button" name="GroupMember" class="btn btn-default otherprofile" id="groupMemberButton" value="Group Members" >
-                                </li>
-                                <li>
-                                    <input type="button" name="AddPost" class="btn btn-default otherprofile" id="AddPostButton" value="Add a Post">
-                                </li>
-                                <li>
-                                    <input type="button" name="leaveGroupButton" class="btn btn-danger otherprofile" id="leaveGroupButton" value="Leave Group" >
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div>
-                        <hr>
-                        News Feed
-                        <hr>
-
-                    </div>
-
-                    <div>
-                        <table class="table table-hover">
-                            <thead>
-                                <tr>
-                                    <th>Profile</th>
-                                    <th >Content</th>
-                                </tr>
-                            </thead>
-                            <tbody  id="newsfeedtable">
-
-                            </tbody>
-                        </table>
-                    </div>
+                    <button type="submit" class="btn btn-primary">Add</button>
+                </form>
             </div>
-            <!-- advertisment right -->
-            <div class="col-lg-1" id="col3">
-asifjsdpifjsf;j
-            </div>
+        </div>
+        <hr>
+        <table class="table table-hover" >
+                <thead>
+                <tr>
+                    <th>Select</th>
+                    <th>Profile</th>
+                    <th>Message Content</th>
+                </tr>
+                </thead>
+                <tbody id="messageList">
 
+                </tbody>
+        </table>
+        <hr>
+        <!-- bottom on news -->
+        <div class="row force-to-bottom text-center">
+            <button type="button" name="removeFriendButton" class="btn btn-danger" id="removeFriendButton" >Remove Message<span class="glyphicon glyphicon-remove"></span></button>
+
+        </div>
+        </div>
+    <!-- advertisment right -->
+    <div class="col-lg-1" id="col3">
+        sdfpidsjfpidsj
+    </div>
 </div>
 <!--end divide into 3 columns -->
 <!-- begin footer content -->
