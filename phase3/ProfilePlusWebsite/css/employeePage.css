@@ -97,3 +97,6 @@ td{
 table{
     table-layout: fixed;
 }
+.list-unstyled li{
+    padding-top: 10px;
+}
