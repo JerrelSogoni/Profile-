@@ -100,3 +100,6 @@ table{
 .list-unstyled li{
     padding-top: 10px;
 }
+.controlads{
+    word-wrap: break-word;
+}

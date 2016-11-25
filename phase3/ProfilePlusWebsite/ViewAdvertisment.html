@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Profile Plus</title>
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!-- External CSS -->
+    <link rel="stylesheet" href="css/employeePage.css">
+
+    <!-- Google API Font -->
+    <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet">
+
+
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+
+</head>
+<body>
+<!-- Begin Nav Bar for Header -->
+<nav class="navbar navbar-default navbar-fixed-top my-nav ">
+    <div class="container">
+        <div class="navbar-brand">
+
+            <button class="navbar-toggle" data-toggle="collapse" data-target="#navHeaderCollapse">
+                <span class ="icon-bar"></span>
+                <span class ="icon-bar"></span>
+                <span class ="icon-bar"></span>
+            </button>
+            <a href="">
+                <img alt="Profile Plus" src="img/ProfilePlusLogo2.0.png" width="61" height="46">
+            </a>
+
+            </div>
+        <div class="collapse navbar-collapse" id="navHeaderCollapse">
+                <ul class="nav navbar-nav navbar-right" id="nav-bar-functions" >
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            <img src="img/cogwheelglyph.png">
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Logout</a></li>
+                        </ul>
+                    </li>
+
+                </ul>
+        </div>
+
+
+    </div>
+</nav>
+<!-- End Nav Bar Header-->
+<!--begin divide into 3 columns -->
+
+<div class="container containerCase">
+
+    <!-- advertisement left-->
+    <div class="col-lg-1" id="col1">
+        dsipfjsdpfjs
+    </div>
+    <!-- news feed -->
+    <div class="col-lg-10" id="col2">
+        <div id="friendformat" >
+            <div class="col-sm-3">
+                <h4>Create Advertisement:</h4>
+            </div>
+        </div>
+        <hr>
+        <div>
+                <div>
+                    <h4>Type: </h4>
+                    <br>
+                    <div class="inputGroupContainer">
+                        <div class="controlads" id="type">
+
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <div >
+                    <h4>Company: </h4>
+                    <br>
+                    <div class="inputGroupContainer">
+                        <div class="controlads" id="company">
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <div>
+                    <h4>Item Name: </h4>
+                    <br>
+                    <div class="inputGroupContainer">
+                        <div class="controlads" id="itemName">
+
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <div >
+                    <h4>Content: </h4>
+                    <br>
+                    <div class="inputGroupContainer">
+                        <div class="controlads" id="content">
+
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <div >
+                    <h4>Price: $ </h4>
+                    <br>
+                    <div class="inputGroupContainer">
+                        <div class="controlads" id="price">
+
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <div>
+                    <h4>Available Units Left: </h4>
+                    <br>
+                    <div class="inputGroupContainer">
+                        <div class="controlads" id="unitsleft">
+
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <div class="row force-to-bottom text-center">
+                    <ul class="list-inline">
+                        <li>
+                            <button type="button" name="back" class="btn btn-default" id="back" >Back</button>
+                        </li>
+                        <li>
+                            <button type="submit" name="modifyAd" class="btn btn-success" id="modifyAd" >Modify</button>
+                        </li>
+                        <li>
+                            <button type="submit" name="deleteAd" class="btn btn-danger" id="deleteAd" >Delete</button>
+                        </li>
+                    </ul>
+                </div>
+
+        </div>
+
+    </div>
+    <!-- advertisment right -->
+    <div class="col-lg-1" id="col3">
+        sdfpidsjfpidsj
+    </div>
+</div>
+<!--end divide into 3 columns -->
+<!-- begin footer content -->
+<nav class="navbar navbar-fixed-bottom footer">
+
+</nav>
+<!-- end footer content -->
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src='http://cdnjs.cloudflare.com/ajax/libs/bootstrap-validator/0.4.5/js/bootstrapvalidator.min.js'></script>
+<script src="js/bootstrap.min.js"></script>
+</body>
+</html>
+
+<!--
+CREATE TABLE AdData (
+    AdId INTEGER,
+    EmpId CHAR(11) NOT NULL,
+    Type CHAR(20),
+    Company CHAR(50),
+    ItemName CHAR(50),
+    Content VARCHAR(200),
+    UnitPrice FLOAT,
+    NumOfAvaUnits INTEGER,
+    PRIMARY KEY (AdId),
+    FOREIGN KEY (EmpId)
+        REFERENCES Employee (SSN)
+        ON DELETE NO ACTION ON UPDATE CASCADE
+);
+-->
