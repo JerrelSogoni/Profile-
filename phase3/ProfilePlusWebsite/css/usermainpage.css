@@ -25,9 +25,13 @@ html,body,.row {
 .navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
     background-color: #88D9FF;
 }
-#col1{
 
-    word-wrap: break-word;
+
+#col1{
+    background:  url("../img/adPage.png") repeat-y;
+    height: 100vh;
+
+
 
 
 }
@@ -37,14 +41,17 @@ html,body,.row {
     padding-bottom: 73px;
 
 
+
 }
 #col3{
-    word-wrap: break-word;
+    background:  url("../img/adPage.png") repeat-y;
+    height: 100vh;
 }
 .containerCase{
     padding-top: 73px;
     height:auto;
     padding-bottom: 73px;
+
 
 }
 .force-to-bottom {
