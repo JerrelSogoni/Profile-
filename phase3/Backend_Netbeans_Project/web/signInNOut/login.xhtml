@@ -5,94 +5,66 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html">
 
     <h:head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <title><ui:insert name="title">Default Title</ui:insert></title>
-        <h:outputStylesheet library="css" name="jsfcrud.css"/>
         <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <meta http-equiv="X-UA-Conpatible" content="IE=edge" />
-        <h:outputStylesheet library="css" name="bootstrap.min.css"/>
-        <h:outputStylesheet library="css" name="templateActiveStyle.css"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        
+        <title><ui:insert name="title">Default Title</ui:insert></title>
+        
+        <h:outputStylesheet library="css" name="bootstrap.css"/>
+        <h:outputStylesheet library="css" name="style.css"/>
+        <script src="https://fonts.googleapis.com/css?family=Pacifico"/>
     </h:head>
 
     <h:body>
         <!-- Begin Nav Bar for Header -->
-        <nav class="navbar navbar-default navbar-fixed-top my-nav ">
+        <nav class="navbar navbar-default navbar-fixed-top my-nav">
             <div class="container">
                 <div class="navbar-brand">
-                    <button class="navbar-toggle" data-toggle="collapse" data-target="#navHeaderCollapse">
-                        <span class ="icon-bar"></span>
-                        <span class ="icon-bar"></span>
-                        <span class ="icon-bar"></span>
-                    </button>
-                    <h:graphicImage alt="Profile Plus" value="/resources/img/ProfilePlusLogo2.0.png" width="61" height="46"></h:graphicImage>                    
+                    <a href="">
+                        <h:graphicImage alt="Profile Plus" value="/resources/img/ProfilePlusLogo2.0.png" width="61" height="46"></h:graphicImage>
+                    </a>
                 </div>
-                <div class="collapse navbar-collapse"
-                     id="navHeaderCollapse">
-                    <ul class="nav navbar-nav navbar-right" id="nav-bar-functions" >
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                <h:graphicImage class="nav-link" value="/resources/img/littleprofPic.png"/>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                <h:graphicImage class="nav-link" value="/resources/img/friendslistglyph.png"/>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                <h:graphicImage class="nav-link" value="/resources/img/messagesglyph.png"/>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                <h:graphicImage class="nav-link" value="/resources/img/grouppageglyp.png"/>
-                            </a>
-                        </li>
-                        <li class="dropdown">
-                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                                <h:graphicImage value="/resources/img/cogwheelglyph.png"/>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">Modify User Settings</a></li>
-                                <li class="divider"></li>
-                                <li><a href="#">Logout</a></li>
-                            </ul>
-                        </li>
-                        <li class="dropdown">
-                            <a  href="#" data-toggle="dropdown" class="dropdown-toggle">
-                                <h:graphicImage value="/resources/img/showlinesglyph.png"/>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">Create a Page</a></li>
-                                <li class="divider"></li>
-                                <li><a href="#">Create a Group</a></li>
-                            </ul>
-                        </li>
-
-
-                    </ul>
-                </div>
-
-
             </div>
         </nav>
         <!-- End Nav Bar Header-->
 
-        Login Page
+        <div class="container containerCase">
+            <div class="row">
+                <div class="Absolute-Center is-Responsive">
+                    <div id="logo-container">
+                        <h2>Welcome to Profile Plus</h2>
+                    </div>
+                    <div class="col-sm-12 col-md-10 col-md-offset-1">
+                        <!--<form action="" id="loginForm">-->
+                        <h:form>
+                            <div class="form-group input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-user"/></span>
+                                <!--<input class="form-control" type="text" name='username' placeholder="username" required autofocus/>-->
+                                <h:inputText class="form-control" value="#{userPlusController.user}" />
+                            </div>
+                            <div class="form-group input-group">
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
+                                <!--<input class="form-control" type="password" name='password' placeholder="password" required/>-->
+                                <h:inputSecret class="form-control" value="#{userPlusController.pwd}"/>
+                            </div>
+
+                            <div class="form-group">
+                                <h:commandButton value="Login" action="#{userPlusController.login()}" class="btn btn-def btn-block" />
+                            </div>
+                            <div class="form-group">
+                                <h:commandButton value="Register" action="#{userPlusController.login()}" class="btn btn-def btn-block" />
+                                <!--                                <a href="register.html">
+                                                                    <button type="button" class="btn btn-def btn-block">Register</button>
+                                                                </a>-->
+                            </div>
+                        </h:form>
+                    </div>
+                </div>
+            </div>
+        </div>
         <br />
-        <span class="glyphicon glyphicon-heart"></span>
-        <h:form>
-            <h:outputLabel value="Username: " style="font-weight:bold" />
-            <h:inputText value="#{userPlusController.user}" />
-            <br />
-            <h:outputLabel value="Password: " style="font-weight:bold" />
-            <h:inputSecret value="#{userPlusController.pwd}" />
-            <br />
-            <h:commandButton value="Login" action="#{userPlusController.login()}" />
-            <br />
-        </h:form>
 
         <!-- begin footer content -->
         <nav class="navbar navbar-fixed-bottom footer">
@@ -102,10 +74,7 @@
         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"/>
         <!-- Include all compiled plugins (below), or include individual files as needed -->
-        <script src='http://cdnjs.cloudflare.com/ajax/libs/bootstrap-validator/0.4.5/js/bootstrapvalidator.min.js'/>
         <h:outputScript library="js" name="bootstrap.min.js" />
-        <h:outputScript library="js" name="settings.js" />
-        <h:outputScript library="js" name="uploadpicture.js" />
     </h:body>
 
 </html>

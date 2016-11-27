@@ -1,0 +1,91 @@
+.my-nav {
+    height: 73px;
+    background: url("#{resource['img/HeaderFooterBackgroundActive.png']}") repeat-x;
+}
+
+.navbar{
+    border: none!important;
+}
+body{
+    background: #505050 ;
+    margin-bottom: 73px;
+
+}
+.containerCase{
+    padding-top: 73px;
+    padding-bottom: 73px;
+}
+.containerForm{
+    padding-top: 100px;
+    padding-bottom: 73px;
+
+}
+#row1{
+    height: 173px;
+    padding-top: 45px;
+    padding-left: 60px;
+}
+.textstyle {
+
+    font-family: 'Delius Unicase', cursive;
+    color: white;
+
+}
+#profilePicture{
+    background-size:cover;
+    background: none center;
+    height: 250px; width: 250px;
+    border: 1px solid #bbb;
+
+}
+#row3{
+    padding-left: 80px;
+}
+.row4{
+    padding-left: 60px;
+}
+
+#register-container{
+    margin: auto auto 10px;
+    text-align: center;
+    font-family: 'Pacifico', cursive;
+    color: white;
+
+}
+.footer {
+     height: 73px;
+     background: url("#{resource['img/HeaderFooterBackgroundActive.png']}") repeat-x;
+
+ }
+.control-label{
+    font-family: 'Delius Unicase', cursive;
+    color: white;
+}
+#success_message{
+    display: none;
+}
+.formstyle{
+    font-size: large;
+}
+.button{
+    width: 190px;
+}
+.toppad{
+    padding-top: 20px;
+}
+.center-block{
+    padding-left: 150px;
+}
+#profilelittleimage{
+    width: 25px;
+    height: 25px;
+    border: 1px solid #00AEEF;
+    background: #FFFFFF
+}
+#nav-bar-functions{
+    padding-top: 10px;
+
+}
+.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
+    background-color: #88D9FF;
+}

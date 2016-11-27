@@ -4,6 +4,12 @@ import profile.util.JsfUtil;
 import profile.util.PaginationHelper;
 
 import java.io.Serializable;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 import javax.ejb.EJB;
 import javax.inject.Named;
@@ -15,6 +21,9 @@ import javax.faces.convert.FacesConverter;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
+import javax.servlet.http.HttpSession;
+import profile.util.DataConnect;
+import profile.util.SessionUtils;
 
 @Named("postController")
 @SessionScoped
@@ -151,12 +160,12 @@ public class PostController implements Serializable {
         }
     }
 
-    public DataModel getItems() {
-        if (items == null) {
-            items = getPagination().createPageDataModel();
-        }
-        return items;
-    }
+//    public DataModel getItems() {
+//        if (items == null) {
+//            items = getPagination().createPageDataModel();
+//        }
+//        return items;
+//    }
 
     private void recreateModel() {
         items = null;
@@ -230,4 +239,76 @@ public class PostController implements Serializable {
 
     }
 
+    /*Daniel Added*/
+    private DataModel myItems;
+
+    public void setMyItems(DataModel myItems) {
+        this.myItems = myItems;
+    }
+
+    public DataModel getItems() {
+        if (myItems == null) {
+            HttpSession session = SessionUtils.getSession();
+            String username = (String) session.getAttribute("username");
+            myItems = new ListDataModel(getPostsBy(username));
+            JsfUtil.addErrorMessage("Logged in as " + username);
+        }
+        return myItems;
+    }
+
+    public List<Post> getPostsBy(String user) {
+        ArrayList<Post> toRet = new ArrayList<>();
+        Connection con = null;
+        PreparedStatement ps = null;
+
+        try {
+            con = DataConnect.getConnection();
+            ps = con.prepareStatement("SELECT \n"
+                    + "    *\n"
+                    + "FROM\n"
+                    + "    Post\n"
+                    + "WHERE\n"
+                    + "    Post.PostId IN (SELECT \n"
+                    + "            PostId\n"
+                    + "        FROM\n"
+                    + "            PostedTo\n"
+                    + "        WHERE\n"
+                    + "            PostedTo.PageId = (SELECT \n"
+                    + "                    PersonalPage.PageId\n"
+                    + "                FROM\n"
+                    + "                    PersonalPage\n"
+                    + "                WHERE\n"
+                    + "                    PersonalPage.ownerid = (SELECT \n"
+                    + "                            UserId\n"
+                    + "                        FROM\n"
+                    + "                            UserPlus\n"
+                    + "                        WHERE\n"
+                    + "                            UserId = ?)));");
+            ps.setString(1, user);
+
+            // print out the query statement
+            JsfUtil.addErrorMessage(ps.toString());
+
+            ResultSet rs = ps.executeQuery();
+
+            int i = 0;
+            while (rs.next()) {
+                //result found, means valid inputs
+                Post added = new Post();
+                added.setContent(rs.getString("Content"));
+                toRet.add(added);
+                JsfUtil.addErrorMessage("Added to return list " + rs.getString("Content"));
+            }
+        } catch (SQLException ex) {
+
+            // print out error message
+            JsfUtil.addErrorMessage("Connection to database failed:" + ex.getMessage());
+            System.out.println("Login error -->" + ex.getMessage());
+            return null;
+            
+        } finally {
+            DataConnect.close(con);
+        }
+        return toRet;
+    }
 }

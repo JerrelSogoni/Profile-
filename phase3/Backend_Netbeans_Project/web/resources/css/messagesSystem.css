@@ -53,3 +53,13 @@ html,body,.row {
     border: 1px solid #00AEEF;
     background: #FFFFFF
 }
+.borderless {
+    border: none;
+}
+
+td{
+    word-wrap:break-word
+}
+table{
+    table-layout: fixed;
+}

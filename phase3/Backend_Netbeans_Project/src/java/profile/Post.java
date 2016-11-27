@@ -166,6 +166,5 @@ public class Post implements Serializable {
     @Override
     public String toString() {
         return "profile.Post[ postId=" + postId + " ]";
-    }
-    
+    }   
 }
