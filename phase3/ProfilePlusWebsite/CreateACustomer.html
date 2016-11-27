@@ -69,21 +69,12 @@
     <div class="col-lg-12" id="col2">
         <div id="friendformat" >
             <div class="col-sm-3">
-                <h4>Create An Employee:</h4>
+                <h4>Create A Customer:</h4>
             </div>
         </div>
         <hr>
         <div>
             <form class="form-horizontal" role="form" action=" " method="post"  id="advertisement_form">
-                <div class="form-group">
-                    <label class="col-md-2 control-label pull-left">SSN: </label>
-                    <div class="col-md-10 inputGroupContainer">
-                        <div class="input-group">
-                            <input  name="ssn" placeholder="type SSN" class="form-control"  type="text">
-                        </div>
-                    </div>
-                </div>
-                <hr>
                 <div class="form-group">
                     <label class="col-md-2 control-label pull-left">First Name: </label>
                     <div class="col-md-10 inputGroupContainer">
@@ -97,7 +88,25 @@
                     <label class="col-md-2 control-label pull-left">Last Name: </label>
                     <div class="col-md-10 inputGroupContainer">
                         <div class="input-group">
-                            <input  name="lastname" placeholder="Type last name" class="form-control"  type="text">
+                            <input  name="lastname" placeholder="type last Name" class="form-control"  type="text">
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <div class="form-group">
+                    <label class="col-md-2 control-label pull-left">email: </label>
+                    <div class="col-md-10 inputGroupContainer">
+                        <div class="input-group">
+                            <input  name="email" placeholder="Type email" class="form-control"  type="text">
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <div class="form-group">
+                    <label class="col-md-2 control-label pull-left">Phone Number: </label>
+                    <div class="col-md-10 inputGroupContainer">
+                        <div class="input-group">
+                            <input  name="phonenumber" placeholder="Type phone number" class="form-control"  type="text">
                         </div>
                     </div>
                 </div>
@@ -139,29 +148,36 @@
                 </div>
                 <hr>
                 <div class="form-group">
-                    <label class="col-md-2 control-label pull-left">Telephone: </label>
+                    <label class="col-md-2 control-label pull-left">Date of Birth: </label>
                     <div class="col-md-10 inputGroupContainer">
                         <div class="input-group">
-                            <input  name="telephone" placeholder="telephone" class="form-control"  type="text">
+                            <input  name="birthday" placeholder="birthdate" class="form-control"  type="date">
                         </div>
                     </div>
                 </div>
                 <hr>
                 <div class="form-group">
-                    <label class="col-md-2 control-label pull-left">Start Date: </label>
+                    <label class="col-md-2 control-label pull-left">Preferences: </label>
                     <div class="col-md-10 inputGroupContainer">
                         <div class="input-group">
-                            <input  name="startdate" placeholder="start date" class="form-control"  type="date">
+                            <textarea  name="preferences" placeholder="preferences seperated by ','" class="form-control" ></textarea>
                         </div>
                     </div>
                 </div>
                 <hr>
                 <div class="form-group">
-                    <label class="col-md-2 control-label pull-left">Hourly Rate: $</label>
+                    <label class="col-md-2 control-label pull-left">Sex:</label>
                     <div class="col-md-10 inputGroupContainer">
-                        <div class="input-group">
-                            <input  name="hourlyrate" placeholder="hourlyRate" class="form-control"  type="text">
-                        </div>
+                            <div class="radio">
+                                <label>
+                                    <input type="radio" name="sex" value="M"   /> M
+                                </label>
+                            </div>
+                            <div class="radio">
+                                <label>
+                                    <input type="radio" name="sex" value="F" /> F
+                                </label>
+                            </div>
                     </div>
                 </div>
                 <hr>
@@ -171,7 +187,7 @@
                             <button type="button" name="cancel" class="btn btn-default" id="cancel" >Cancel</button>
                         </li>
                         <li>
-                            <button type="submit" name="makeemployee" class="btn btn-success" id="makeemployee" >Submit</button>
+                            <button type="submit" name="makeCustomer" class="btn btn-success" id="makeCustomer" >Submit</button>
                         </li>
                     </ul>
                 </div>
