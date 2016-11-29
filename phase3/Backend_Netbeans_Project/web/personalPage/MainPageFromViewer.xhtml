@@ -81,9 +81,11 @@
 <div class="container containerCase">
 
             <!-- advertisement left-->
+            <a href="#">
             <div class="col-lg-1" id="col1">
                 
             </div>
+            </a>
 
             <!-- news feed -->
             <div class="col-lg-10" id="col2">
@@ -116,7 +118,7 @@
                     <hr />
 
 
-                    <h:dataTable class="table table-hover" value="#{postController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                    <h:dataTable class="table table-hover" value="#{connm.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
                         <h:column>
                             <f:facet name="header">
                                 <h:outputText value="Select"/>
@@ -141,8 +143,10 @@
 
             </div>
             <!-- advertisment right -->
+            <a  href="#">
             <div class="col-lg-1" id="col3">
             </div>
+            </a>
 
 </div>
 <!--end divide into 3 columns -->

@@ -29,7 +29,8 @@ html,body,.row {
 
 #col1{
     background:  url("../img/adPage.png") repeat-y;
-    height: 100vh;
+    height: 300px;
+    width: 95px;
 
 
 
@@ -45,7 +46,8 @@ html,body,.row {
 }
 #col3{
     background:  url("../img/adPage.png") repeat-y;
-    height: 100vh;
+    height: 300px;
+    width: 95px;
 }
 .containerCase{
     padding-top: 73px;

@@ -8,9 +8,9 @@
     <title>Profile Plus</title>
 
     <!-- Bootstrap -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
     <!-- External CSS -->
-    <link rel="stylesheet" href="css/usermainpage.css">
+    <link rel="stylesheet" href="../css/usermainpage.css">
 
     <!-- Google API Font -->
     <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet">
@@ -38,7 +38,7 @@
                 <span class ="icon-bar"></span>
             </button>
             <a href="">
-                <img alt="Profile Plus" src="img/ProfilePlusLogo2.0.png" width="61" height="46">
+                <img alt="Profile Plus" src="../img/ProfilePlusLogo2.0.png" width="61" height="46">
             </a>
 
             </div>
@@ -51,22 +51,22 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">
-                            <img src="img/friendslistglyph.png">
+                            <img src="../img/friendslistglyph.png">
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">
-                            <img src="img/messagesglyph.png">
+                            <img src="../img/messagesglyph.png">
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">
-                            <img src="img/grouppageglyp.png">
+                            <img src="../img/grouppageglyp.png">
                         </a>
                     </li>
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                            <img src="img/cogwheelglyph.png">
+                            <img src="../img/cogwheelglyph.png">
                         </a>
                         <ul class="dropdown-menu">
                             <li><a href="#">Modify User Settings</a></li>
@@ -77,7 +77,7 @@
                     <li class="dropdown">
                         <a  href="#" data-toggle="dropdown"
                             class="dropdown-toggle">
-                            <img src="img/showlinesglyph.png">
+                            <img src="../img/showlinesglyph.png">
                         </a>
                         <ul class="dropdown-menu">
                             <li><a href="#">Create a Page</a></li>
@@ -95,49 +95,62 @@
 </nav>
 <!-- End Nav Bar Header-->
 <!--begin divide into 3 columns -->
-
 <div class="container containerCase">
 
-    <!-- advertisement left-->
-    <div class="col-lg-1" id="col1">
-        dsipfjsdpfjs
-    </div>
-    <!-- news feed -->
-    <div class="col-lg-10" id="col2">
-        <div id="friendformat" >
-            <div class="col-sm-3">
-                <h4 id="poster"></h4> <h4>'s Post</h4>
+            <!-- advertisement left-->
+            <div class="col-lg-1" id="col1">
+                dsfiojsdfoisdjfsdijfp
             </div>
 
-        </div>
-        <hr>
-        <div id="postContent">
+            <!-- news feed -->
+            <div class="col-lg-10" id="col2">
+                    <div class="pagetitle">
+                        Group Name: <h4 id="groupname"></h4>
+                    </div>
+                    <hr>
+                    <div class="otherprofileformat">
+                        <div class="col-lg-4" id="otheruserprofilepic"></div>
+                        <div class="col-lg-8 otherprofileformatactions">
+                            <ul class="list-inline">
+                                <li>
+                                    <input type="button" name="GroupMember" class="btn btn-default otherprofile" id="groupMemberButton" value="Group Members" >
+                                </li>
+                                <li>
+                                    <input type="button" name="AddPost" class="btn btn-default otherprofile" id="AddPostButton" value="Add a Post">
+                                </li>
+                                <li>
+                                    <input type="button" name="leaveGroupButton" class="btn btn-danger otherprofile" id="leaveGroupButton" value="Leave Group" >
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
 
-        </div>
-        <hr>
-        <div class="row force-to-bottom text-center">
-            <ul class="list-inline">
-                <li>
-                    <button type="button" name="back" class="btn btn-default" id="back" >Back</button>
-                </li>
-                <li>
-                    <button type="button" name="likePost" class="btn btn-success" id="likePost" >Like</button>
-                </li>
-                <li>
-                    <button type="button" name="modifyPost" class="btn btn-block" id="modifyPost" >Modify</button>
-                </li>
-                <li>
-                    <button type="button" name="removePost" class="btn btn-danger" id="removePost" >Remove</button>
-                </li>
+                    <div>
+                        <hr>
+                        News Feed
+                        <hr>
 
-            </ul>
+                    </div>
 
-        </div>
-    </div>
-    <!-- advertisment right -->
-    <div class="col-lg-1" id="col3">
-        sdfpidsjfpidsj
-    </div>
+                    <div>
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Profile</th>
+                                    <th >Content</th>
+                                </tr>
+                            </thead>
+                            <tbody  id="newsfeedtable">
+
+                            </tbody>
+                        </table>
+                    </div>
+            </div>
+            <!-- advertisment right -->
+            <div class="col-lg-1" id="col3">
+asifjsdpifjsf;j
+            </div>
+
 </div>
 <!--end divide into 3 columns -->
 <!-- begin footer content -->
@@ -150,6 +163,6 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src='http://cdnjs.cloudflare.com/ajax/libs/bootstrap-validator/0.4.5/js/bootstrapvalidator.min.js'></script>
-<script src="js/bootstrap.min.js"></script>
+<script src="../js/bootstrap.min.js"></script>
 </body>
 </html>

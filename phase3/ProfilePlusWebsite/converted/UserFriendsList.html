@@ -8,9 +8,9 @@
     <title>Profile Plus</title>
 
     <!-- Bootstrap -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
     <!-- External CSS -->
-    <link rel="stylesheet" href="css/usermainpage.css">
+    <link rel="stylesheet" href="../css/usermainpage.css">
 
     <!-- Google API Font -->
     <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet">
@@ -38,7 +38,7 @@
                 <span class ="icon-bar"></span>
             </button>
             <a href="">
-                <img alt="Profile Plus" src="img/ProfilePlusLogo2.0.png" width="61" height="46">
+                <img alt="Profile Plus" src="../img/ProfilePlusLogo2.0.png" width="61" height="46">
             </a>
 
             </div>
@@ -51,22 +51,22 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">
-                            <img src="img/friendslistglyph.png">
+                            <img src="../img/friendslistglyph.png">
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">
-                            <img src="img/messagesglyph.png">
+                            <img src="../img/messagesglyph.png">
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">
-                            <img src="img/grouppageglyp.png">
+                            <img src="../img/grouppageglyp.png">
                         </a>
                     </li>
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                            <img src="img/cogwheelglyph.png">
+                            <img src="../img/cogwheelglyph.png">
                         </a>
                         <ul class="dropdown-menu">
                             <li><a href="#">Modify User Settings</a></li>
@@ -77,7 +77,7 @@
                     <li class="dropdown">
                         <a  href="#" data-toggle="dropdown"
                             class="dropdown-toggle">
-                            <img src="img/showlinesglyph.png">
+                            <img src="../img/showlinesglyph.png">
                         </a>
                         <ul class="dropdown-menu">
                             <li><a href="#">Create a Page</a></li>
@@ -106,31 +106,37 @@
     <div class="col-lg-10" id="col2">
         <div id="friendformat" >
             <div class="col-sm-3">
-                <h4 id="poster"></h4> <h4>'s Post</h4>
+                <h4>Friends List:</h4>
             </div>
-
+            <div class="col-sm-9">
+                <form class="form-inline pull-right">
+                    <div class="form-group">
+                        <label for="friendlist">Name:</label>
+                        <input type="text" class="form-control" id="friendlist" placeholder="friend name">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Add</button>
+                </form>
+            </div>
         </div>
         <hr>
-        <div id="postContent">
+        <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th>Select</th>
+                    <th>Profile</th>
+                </tr>
+                </thead>
+                <tbody  id="friendslist">
 
-        </div>
+                </tbody>
+        </table>
         <hr>
+        <!-- bottom on news -->
         <div class="row force-to-bottom text-center">
-            <ul class="list-inline">
-                <li>
-                    <button type="button" name="back" class="btn btn-default" id="back" >Back</button>
-                </li>
-                <li>
-                    <button type="button" name="likePost" class="btn btn-success" id="likePost" >Like</button>
-                </li>
-                <li>
-                    <button type="button" name="removePost" class="btn btn-danger" id="removePost" >Remove</button>
-                </li>
-
-            </ul>
+            <button type="button" name="removeFriendButton" class="btn btn-danger" id="removeFriendButton" >Remove Friend<span class="glyphicon glyphicon-remove"></span></button>
 
         </div>
-    </div>
+        </div>
     <!-- advertisment right -->
     <div class="col-lg-1" id="col3">
         sdfpidsjfpidsj
@@ -147,6 +153,6 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src='http://cdnjs.cloudflare.com/ajax/libs/bootstrap-validator/0.4.5/js/bootstrapvalidator.min.js'></script>
-<script src="js/bootstrap.min.js"></script>
+<script src="../js/bootstrap.min.js"></script>
 </body>
 </html>
