@@ -22,9 +22,9 @@
         <nav class="navbar navbar-default navbar-fixed-top my-nav">
             <div class="container">
                 <div class="navbar-brand">
-                    <a href="">
+                    <h:link outcome="/signInNOut/login">
                         <h:graphicImage alt="Profile Plus" value="/resources/img/ProfilePlusLogo2.0.png" width="61" height="46"></h:graphicImage>
-                    </a>
+                    </h:link>
                 </div>
             </div>
         </nav>
@@ -54,7 +54,7 @@
                                 <h:commandButton value="Login" action="#{userPlusController.login()}" class="btn btn-def btn-block" />
                             </div>
                             <div class="form-group">
-                                <h:commandButton value="Register" action="#{userPlusController.login()}" class="btn btn-def btn-block" />
+                                <h:link value="Register" outcome="/userPlus/Register" class="btn btn-def btn-block" />
                                 <!--                                <a href="register.html">
                                                                     <button type="button" class="btn btn-def btn-block">Register</button>
                                                                 </a>-->

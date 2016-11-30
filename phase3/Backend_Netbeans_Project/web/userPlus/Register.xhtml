@@ -1,0 +1,273 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title><ui:insert name="title">Default Title</ui:insert></title>
+        <meta charset="utf-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+        <title>Profile Plus</title>
+
+        <!-- Bootstrap -->
+        <h:outputStylesheet library="css" name="bootstrap.css"/>
+        <h:outputStylesheet library="css" name="registerStyle.css"/>
+        <!-- External CSS -->
+        <link href="//cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.0/css/bootstrapValidator.min.css" rel="stylesheet" />
+
+        <!-- Google API Font -->
+        <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet"></link>
+        <link href="https://fonts.googleapis.com/css?family=Delius+Unicase" rel="stylesheet"></link>
+    </h:head>
+
+    <h:body>
+        <!-- Begin Nav Bar for Header -->
+        <nav class="navbar navbar-default navbar-fixed-top my-nav">
+            <div class="container">
+                <div class="navbar-brand">
+                    <h:link outcome="/signInNOut/login">
+                        <h:graphicImage alt="Profile Plus" value="/resources/img/ProfilePlusLogo2.0.png" width="61" height="46"></h:graphicImage>
+                    </h:link>
+                </div>
+            </div>
+        </nav>
+        <!-- End Nav Bar Header-->
+        <!-- Begin register content-->
+        <div class="container">
+
+            <h:form class="form-horizontal containerForm Absolute-Center" role="form" id="contact_form">
+                <fieldset>
+
+                    <!-- Form Name -->
+                    <div id="register-container">
+                        <h2>Join Profile Plus Today!</h2>
+                    </div>
+
+
+                    <!-- Text input-->
+
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">First Name</label>
+                        <div class="col-md-4 inputGroupContainer">
+                            <div class="input-group">
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
+                                
+                                <h:inputText a:placeholder="First Name" class="form-control" value="#{register.firstname}"/>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Text input-->
+
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" >Last Name</label>
+                        <div class="col-md-4 inputGroupContainer">
+                            <div class="input-group">
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
+                                <!--<h:inputText a:placeholder="Last Name" class="form-control" value="#{register.lastname}"/>-->
+                                <!--<input name="last_name" class="form-control" value="#{register.firstname}"/>-->
+                                <input name="last_name" placeholder="Last Name" class="form-control"  type="text" value="#{register.firstname}"/>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Text input-->
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">E-Mail</label>
+                        <div class="col-md-4 inputGroupContainer">
+                            <div class="input-group">
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></span>
+                                <h:inputText a:placeholder="E-Mail Address" class="form-control" value="#{register.email}"/>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!-- Text input-->
+
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Phone #</label>
+                        <div class="col-md-4 inputGroupContainer">
+                            <div class="input-group">
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-earphone"></span></span>
+                                <h:inputText a:placeholder="Enter 10 digits" class="form-control" value="#{register.phone}"/>
+<!--                                <input name="phone" placeholder="Enter 10 digits" class="form-control" type="text" value="{register.phone}"/>-->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Text input-->
+
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Address</label>
+                        <div class="col-md-4 inputGroupContainer">
+                            <div class="input-group">
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-home"></span></span>
+                                <h:inputText a:placeholder="Address" class="form-control" value="#{register.address}"/>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Text input-->
+
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">City</label>
+                        <div class="col-md-4 inputGroupContainer">
+                            <div class="input-group">
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-home"></span></span>
+                                <h:inputText a:placeholder="city" class="form-control" value="#{register.city}"/>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Select Basic -->
+
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">State</label>
+                        <div class="col-md-4 selectContainer">
+                            <div class="input-group">
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-list"></span></span>
+                                <h:selectOneMenu value="#{register.state}">
+                                    <f:selectItem itemValue="Alabama" itemLabel="Alabama" />
+                                    <f:selectItem itemValue="Alaska" itemLabel="Alaska" />
+                                    <f:selectItem itemValue="Arizona" itemLabel="Arizona" />
+                                    <f:selectItem itemValue="Arkansas" itemLabel="Arkansas" />
+                                    <f:selectItem itemValue="California" itemLabel="California" />
+                                    <f:selectItem itemValue="Colorado" itemLabel="Colorado" />
+                                    <f:selectItem itemValue="Connecticut" itemLabel="Connecticut" />
+                                    <f:selectItem itemValue="Delaware" itemLabel="Delaware" />
+                                    <f:selectItem itemValue="DistrictofColumbia" itemLabel="DistrictofColumbia" />
+                                    <f:selectItem itemValue="Florida" itemLabel="Florida" />
+                                    <f:selectItem itemValue="Georgia" itemLabel="Georgia" />
+                                    <f:selectItem itemValue="Hawaii" itemLabel="Hawaii" />
+                                    <f:selectItem itemValue="daho" itemLabel="daho" />
+                                    <f:selectItem itemValue="Illinois" itemLabel="Illinois" />
+                                    <f:selectItem itemValue="Indiana" itemLabel="Indiana" />
+                                    <f:selectItem itemValue="Iowa" itemLabel="Iowa" />
+                                    <f:selectItem itemValue="Kansas" itemLabel="Kansas" />
+                                    <f:selectItem itemValue="Kentucky" itemLabel="Kentucky" />
+                                    <f:selectItem itemValue="Louisiana" itemLabel="Louisiana" />
+                                    <f:selectItem itemValue="Maine" itemLabel="Maine" />
+                                    <f:selectItem itemValue="Maryland" itemLabel="Maryland" />
+                                    <f:selectItem itemValue="Mass" itemLabel="Mass" />
+                                    <f:selectItem itemValue="Michigan" itemLabel="Michigan" />
+                                    <f:selectItem itemValue="Minnesota" itemLabel="Minnesota" />
+                                    <f:selectItem itemValue="Mississippi" itemLabel="Mississippi" />
+                                    <f:selectItem itemValue="Missouri" itemLabel="Missouri" />
+                                    <f:selectItem itemValue="Montana" itemLabel="Montana" />
+                                    <f:selectItem itemValue="Nebraska" itemLabel="Nebraska" />
+                                    <f:selectItem itemValue="Nevada" itemLabel="Nevada" />
+                                    <f:selectItem itemValue="NewHampshire" itemLabel="NewHampshire" />
+                                    <f:selectItem itemValue="NewJersey" itemLabel="NewJersey" />
+                                    <f:selectItem itemValue="NewMexico" itemLabel="NewMexico" />
+                                    <f:selectItem itemValue="NewYork" itemLabel="NewYork" />
+                                    <f:selectItem itemValue="NorthCarolina" itemLabel="NorthCarolina" />
+                                    <f:selectItem itemValue="NorthDakota" itemLabel="NorthDakota" />
+                                    <f:selectItem itemValue="Ohio" itemLabel="Ohio" />
+                                    <f:selectItem itemValue="Oklahoma" itemLabel="Oklahoma" />
+                                    <f:selectItem itemValue="Oregon" itemLabel="Oregon" />
+                                    <f:selectItem itemValue="Pennsylvania" itemLabel="Pennsylvania" />
+                                    <f:selectItem itemValue="RhodeIsland" itemLabel="RhodeIsland" />
+                                    <f:selectItem itemValue="SouthCarolina" itemLabel="SouthCarolina" />
+                                    <f:selectItem itemValue="SouthDakota" itemLabel="SouthDakota" />
+                                    <f:selectItem itemValue="Tennessee" itemLabel="Tennessee" />
+                                    <f:selectItem itemValue="Texas" itemLabel="Texas" />
+                                    <f:selectItem itemValue="Uttah" itemLabel="Uttah" />
+                                    <f:selectItem itemValue="Vermont" itemLabel="Vermont" />
+                                    <f:selectItem itemValue="Virginia" itemLabel="Virginia" />
+                                    <f:selectItem itemValue="Washington" itemLabel="Washington" />
+                                    <f:selectItem itemValue="WestVirginia" itemLabel="WestVirginia" />
+                                    <f:selectItem itemValue="Wisconsin" itemLabel="Wisconsin" />
+                                    <f:selectItem itemValue="Wyoming" itemLabel="Wyoming" />
+                                </h:selectOneMenu>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Text input-->
+
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Zip Code</label>
+                        <div class="col-md-4 inputGroupContainer">
+                            <div class="input-group">
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-home"></span></span>
+                                <h:inputText a:placeholder="Zip Code" class="form-control" value="#{register.zip}"/>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!-- Text input-->
+
+
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Date of Birth</label>
+                        <div class="col-md-4 inputGroupContainer">
+                            <div class="input-group">
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
+                                <h:inputText a:placeholder="MM/DD/YYYY" class="form-control" value="#{register.dob}"/>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Text input-->
+
+
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Preferences</label>
+                        <div class="col-md-4 inputGroupContainer">
+                            <div class="input-group">
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-star"></span></span>
+                                <h:inputText a:placeholder="type preferences separated by commas" class="form-control" value="#{register.pref}"/>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!-- radio checks -->
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Sex</label>
+                        <div class="col-md-4">
+                            <h:selectOneRadio value="#{register.sex}">
+                                <f:selectItem itemValue="M" itemLabel="Male"/>
+                                <f:selectItem itemValue="F" itemLabel="Female"/>
+                            </h:selectOneRadio>
+                        </div>
+                    </div>
+
+
+                    <!-- Success message -->
+                    <div class="alert alert-success" role="alert" id="success_message">Success <span class="glyphicon glyphicon-thumbs-up"></span> One Last Step before completing registration !!!</div>
+
+                    <!-- Button -->
+                    <div class="form-group text-center">
+                        <label class="col-md-4 control-label"></label>
+                        <div class="col-md-4">
+                            <h:commandLink class="btn btn-success" value="Submit" action="#{register.submit()}" ><i class="glyphicon glyphicon-send"/></h:commandLink>
+                        </div>
+                    </div>
+
+                </fieldset>
+            </h:form>
+        </div>
+        <!-- /.container -->
+        <!-- end of register content -->
+        <!-- begin footer content -->
+        <nav class="navbar navbar-fixed-bottom footer">
+        </nav>
+        <!-- end footer content -->
+
+        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <!-- Include all compiled plugins (below), or include individual files as needed -->
+        <script src='http://cdnjs.cloudflare.com/ajax/libs/bootstrap-validator/0.4.5/js/bootstrapvalidator.min.js'></script>
+
+        <h:outputScript library="js" name="bootstrap.min.js" />
+        <h:outputScript library="js" name="register.js" />
+    </h:body>
+</html>
