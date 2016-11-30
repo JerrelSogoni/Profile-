@@ -15,8 +15,10 @@ html,body,.row {
 }
 #col1{
 
-    word-wrap: break-word;
-
+    background:  url("#{resource['/img/adPage.png']}") repeat-y;
+    width: 95px;
+    height: 300px
+    
 
 }
 #col2{
@@ -27,7 +29,9 @@ html,body,.row {
 
 }
 #col3{
-    word-wrap: break-word;
+    background:  url("#{resource['/img/adPage.png']}") repeat-y;
+    width: 95px;
+    height: 300px
 }
 .containerCase{
     padding-top: 73px;

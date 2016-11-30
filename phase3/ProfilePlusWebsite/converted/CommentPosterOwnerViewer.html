@@ -10,7 +10,7 @@
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <!-- External CSS -->
-    <link rel="stylesheet" href="css/employeePage.css">
+    <link rel="stylesheet" href="css/usermainpage.css">
 
     <!-- Google API Font -->
     <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet">
@@ -46,7 +46,22 @@
                 <ul class="nav navbar-nav navbar-right" id="nav-bar-functions" >
                     <li class="nav-item">
                         <a class="nav-link" href="#">
-                            <div class="profilelittleimage" id="employeefullname"></div>
+                            <div id="profilelittleimage"><span id="userfullname"></span></div>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            <img src="img/friendslistglyph.png">
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            <img src="img/messagesglyph.png">
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            <img src="img/grouppageglyp.png">
                         </a>
                     </li>
                     <li class="dropdown">
@@ -54,9 +69,24 @@
                             <img src="img/cogwheelglyph.png">
                         </a>
                         <ul class="dropdown-menu">
+                            <li><a href="#">Modify User Settings</a></li>
+                            <li class="divider"></li>
                             <li><a href="#">Logout</a></li>
                         </ul>
                     </li>
+                    <li class="dropdown">
+                        <a  href="#" data-toggle="dropdown"
+                            class="dropdown-toggle">
+                            <img src="img/showlinesglyph.png">
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Create a Page</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#">Create a Group</a></li>
+                        </ul>
+                    </li>
+
+
                 </ul>
         </div>
 
@@ -68,48 +98,42 @@
 
 <div class="container containerCase">
 
+    <!-- advertisement left-->
+    <div class="col-lg-1" id="col1">
+        dsipfjsdpfjs
+    </div>
     <!-- news feed -->
-    <div class="col-lg-12" id="col2">
+    <div class="col-lg-10" id="col2">
         <div id="friendformat" >
             <div class="col-sm-3">
-                <h4>Summary Listing of Revenue Generated:</h4>
+                <h4 id="commenter"></h4> <h4>'s Comment</h4>
             </div>
 
         </div>
         <hr>
-        <div class="text-center">
-            <h4>Total Generated Revenue: $</h4> <h4 id="totalgeneratedRevenu"></h4>
+        <div id="commentContent">
         </div>
-        <!-- bottom on news -->
-        <div class="row force-to-bottom ">
-            <div class="col-lg-12">
-                    <div class="dropdown">
-                        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                            <span id="selected">Pick a User Name or Item Name</span><span class="caret"></span>
-                        </button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenu1" id="itemnameusernamelist">
+        <hr>
+        <div class="row force-to-bottom text-center">
+            <ul class="list-inline">
+                <li>
+                    <button type="button" name="back" class="btn btn-default" id="back" >Back</button>
+                </li>
+                <li>
+                    <button type="button" name="likeComment" class="btn btn-success" id="likeComment" >Like</button>
+                </li>
+                <li>
+                    <button type="button" name="removeComment" class="btn btn-danger" id="removeComment" >Remove</button>
+                </li>
 
-                            <div class="dropdown-divider">Item Names</div>
-                            <div id="itemnamelist">
-                            </div>
-                            <div class="dropdown-divider">Item Types</div>
-                            <div id="itemtype">
-                            </div>
-                            <div class="dropdown-divider">Customers</div>
-                            <div id="customerlist">
+            </ul>
 
-                            </div>
-
-                            <div>
-
-                            </div>
-                        </div>
-                    </div>
-
-            </div>
         </div>
     </div>
-
+    <!-- advertisment right -->
+    <div class="col-lg-1" id="col3">
+        sdfpidsjfpidsj
+    </div>
 </div>
 <!--end divide into 3 columns -->
 <!-- begin footer content -->
@@ -123,6 +147,5 @@
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src='http://cdnjs.cloudflare.com/ajax/libs/bootstrap-validator/0.4.5/js/bootstrapvalidator.min.js'></script>
 <script src="js/bootstrap.min.js"></script>
-<script src="js/customerDropDown.js"></script>
 </body>
 </html>

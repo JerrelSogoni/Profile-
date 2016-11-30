@@ -26,6 +26,7 @@ public class MessageController implements Serializable {
     private profile.MessageFacade ejbFacade;
     private PaginationHelper pagination;
     private int selectedItemIndex;
+    
 
     public MessageController() {
     }

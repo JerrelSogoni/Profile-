@@ -1,9 +1,9 @@
 .my-nav{
     height: 73px;
-    background: url("#{resource['img/HeaderFooterBackgroundNotActive.png']}") repeat-x;
+    background: url("../img/HeaderFooterBackgroundNotActive.png") repeat-x;
 }
 body{
-    background: url("#{resource['img/LoginRegisterBackground.png']}");
+    background: url("../img/LoginRegisterBackground.png");
     background-size: cover;
     margin-bottom: 73px;
 }
@@ -26,7 +26,7 @@ div.well{
     min-width: 170px;
     max-width: 600px;
     padding-top: 50px;
-    background: url("#{resource['img/LoginBackgroundColor.png']}");
+    background: url("../img/LoginBackgroundColor.png");
 }
 
 #logo-container{
@@ -42,5 +42,5 @@ div.well{
 .footer {
     /* Set the fixed height of the footer here */
     height: 73px;
-    background: url("#{resource['img/HeaderFooterBackgroundNotActive.png']}") repeat-x;
+    background: url("../img/HeaderFooterBackgroundNotActive.png") repeat-x;
 }

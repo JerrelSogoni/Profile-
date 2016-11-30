@@ -10,7 +10,7 @@
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <!-- External CSS -->
-    <link rel="stylesheet" href="css/employeePage.css">
+    <link rel="stylesheet" href="css/usermainpage.css">
 
     <!-- Google API Font -->
     <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet">
@@ -43,32 +43,51 @@
 
             </div>
         <div class="collapse navbar-collapse" id="navHeaderCollapse">
-            <ul class="nav navbar-nav navbar-right" id="nav-bar-functions" >
-                <li class="nav-item">
-                    <a class="nav-link" href="#">
-                        <div class="profilelittleimage" id="employeefullname"></div>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">
-                        Advertisements
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">
-                        Transactions
-                    </a>
-                </li>
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        <img src="img/cogwheelglyph.png">
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#">Logout</a></li>
-                    </ul>
-                </li>
+                <ul class="nav navbar-nav navbar-right" id="nav-bar-functions" >
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            <div id="profilelittleimage"><span id="userfullname"></span></div>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            <img src="img/friendslistglyph.png">
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            <img src="img/messagesglyph.png">
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            <img src="img/grouppageglyp.png">
+                        </a>
+                    </li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            <img src="img/cogwheelglyph.png">
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Modify User Settings</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#">Logout</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a  href="#" data-toggle="dropdown"
+                            class="dropdown-toggle">
+                            <img src="img/showlinesglyph.png">
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Create a Page</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#">Create a Group</a></li>
+                        </ul>
+                    </li>
 
-            </ul>
+
+                </ul>
         </div>
 
 
@@ -79,49 +98,49 @@
 
 <div class="container containerCase">
 
-
+    <!-- advertisement left-->
+    <div class="col-lg-1" id="col1">
+        dsipfjsdpfjs
+    </div>
     <!-- news feed -->
-    <div class="col-lg-12" id="col2">
+    <div class="col-lg-10" id="col2">
         <div id="friendformat" >
             <div class="col-sm-3">
-                <h4>Customer List:</h4>
+                <h4>Comment List:</h4>
             </div>
-            <div class="col-sm-9">
-                <form class="form-inline pull-right">
-                    <div class="form-group">
-                        <label for="customerName">Name:</label>
-                        <input type="text" class="form-control" id="customerName" placeholder="customer name">
-                    </div>
-                    <button type="submit" class="btn btn-primary">Add</button>
-                </form>
-            </div>
+
         </div>
         <hr>
         <table class="table table-hover">
                 <thead>
                 <tr>
                     <th>Select</th>
-                    <th>Customer ID</th>
-                    <th>Name</th>
+                    <th>Profile</th>
+                    <th>Content</th>
                 </tr>
                 </thead>
-                <tbody  id="customerList">
-
+                <tbody  id="commentlist">
                 </tbody>
         </table>
         <hr>
+        <!-- bottom on news -->
         <div class="row force-to-bottom text-center">
             <ul class="list-inline">
                 <li>
                     <button type="button" name="back" class="btn btn-default" id="back" >Back</button>
                 </li>
                 <li>
-                    <button type="submit" name="removeCustomer" class="btn btn-danger" id="removeCustomer" >Remove Customer</button>
+                    <button type="button" name="likeComment" class="btn btn-success" id="likeComment" >Like Comment</button>
+                </li>
+                <li>
+                    <button type="button" name="addComment" class="btn btn-default" id="addComment" >Add Comment</button>
                 </li>
             </ul>
         </div>
-
-
+        </div>
+    <!-- advertisment right -->
+    <div class="col-lg-1" id="col3">
+        sdfpidsjfpidsj
     </div>
 </div>
 <!--end divide into 3 columns -->
