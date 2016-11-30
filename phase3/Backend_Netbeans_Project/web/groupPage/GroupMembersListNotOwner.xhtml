@@ -83,47 +83,41 @@
 
     <!-- advertisement left-->
     <a href="#">
-    <div class="col-lg-1" id="col1">
-  
-    </div>
-     </a>
+        <div class="col-lg-1" id="col1">
+            
+        </div>
+    </a>    
+    
     <!-- news feed -->
     <div class="col-lg-10" id="col2">
         <div id="friendformat" >
             <div class="col-sm-3">
-                <h4>Make a Post on #{User.firstname} #{User.lastname}'s Page</h4>
+                <h4>Group Member List:</h4>
             </div>
 
         </div>
-        <hr/>
-        <div >
-            <h:form class="form-horizontal" role="form"  id="contact_form">
-                <div class="form-group" >
-                    <h:inputTextarea  a:placeholder="Type your post" class="form-control glyphicon-resize-vertical"  id="postcontent" />
-                </div>
-                <div class="row force-to-bottom text-center">
-                    <ul class="list-inline">
-                        <li>
-                            <h:link type="button"  class="btn btn-default" id="back" >Cancel</h:link>
-                        </li>
-                        <li>
-                            <h:commandButton type="submit"  class="btn btn-success" id="submit" value='Submit' />
-                        </li>
-
-                    </ul>
-                </div>
-
-            </h:form>
+        <hr />
+          <h:dataTable class="table table-hover" value="#{GroupMember.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                       
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Profile"/>
+                            </f:facet>
+                            <h:outputText value="#{item.friendProfile}"/>
+                        </h:column>
+               
+                    </h:dataTable>
+         <div class="row force-to-bottom text-center">
+            <h:link type="button" class="btn btn-default" id="back" >Back</h:link>
 
         </div>
-
-    </div>
+        </div>
+           
     <!-- advertisment right -->
-    <a>
-    <div class="col-lg-1" id="col3">
-    
-    </div>
+    <a href="#">
+    <div class="col-lg-1" id="col3"></div>
     </a>
+    
 </div>
 <!--end divide into 3 columns -->
 <!-- begin footer content -->
