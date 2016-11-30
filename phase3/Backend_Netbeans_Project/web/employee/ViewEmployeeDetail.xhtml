@@ -1,0 +1,195 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title><ui:insert name="title">Default Title</ui:insert></title>
+        <h:outputStylesheet library="css" name="jsfcrud.css"/>
+        <h:outputStylesheet library="css" name="bootstrap.css"/>
+        <h:outputStylesheet library="css" name="employeePage.css"/>
+    </h:head>
+<h:body>
+<!-- Begin Nav Bar for Header -->
+<nav class="navbar navbar-default navbar-fixed-top my-nav ">
+    <div class="container">
+        <div class="navbar-brand">
+
+            <button class="navbar-toggle" data-toggle="collapse" data-target="#navHeaderCollapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="">
+                <h:graphicImage alt="Profile Plus" value="/resources/img/ProfilePlusLogo2.0.png" width="61" height="46"></h:graphicImage> 
+            </a>
+
+        </div>
+        <div class="collapse navbar-collapse" id="navHeaderCollapse">
+            <ul class="nav navbar-nav navbar-right" id="nav-bar-functions">
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                       <h:graphicImage value="/resources/img/cogwheelglyph.png"/>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Logout</a></li>
+                    </ul>
+                </li>
+
+            </ul>
+        </div>
+
+
+    </div>
+</nav>
+<!-- End Nav Bar Header-->
+<!--begin divide into 3 columns -->
+
+<div class="container containerCase">
+
+
+    <!-- news feed -->
+    <div class="col-lg-12" id="col2">
+        <div id="friendformat">
+            <div class="col-sm-3">
+                <h4>View An Employee:</h4>
+            </div>
+        </div>
+        <hr />
+        <div>
+            <div>
+                <h4>SSN: </h4>
+                <br />
+                <div class="inputGroupContainer">
+                    <div class="controlads" id="ssn">
+                         <h:outputText value="SSN" />
+                    </div>
+                </div>
+            </div>
+            <hr />
+            <div>
+                <h4>First Name: </h4>
+                <br />
+                <div class="inputGroupContainer">
+                    <div class="controlads" id="firstname">
+                          <h:outputText value="firstname" />
+                    </div>
+                </div>
+            </div>
+            <hr />
+            <div>
+                <h4>Last Name: </h4>
+                <br />
+                <div class="inputGroupContainer">
+                    <div class="controlads" id="lastname">
+                        <h:outputText value="lastname" />
+                    </div>
+                </div>
+            </div>
+            <hr />
+            <div>
+                <h4>Address: </h4>
+                <br />
+                <div class="inputGroupContainer">
+                    <div class="controlads" id="address">
+                        <h:outputText value="address" />
+                    </div>
+                </div>
+            </div>
+            <hr />
+            <div>
+                <h4>City: </h4>
+                <br />
+                <div class="inputGroupContainer">
+                    <div class="controlads" id="city">
+
+                    </div>
+                </div>
+            </div>
+            <hr />
+            <div>
+                <h4>State: </h4>
+                <br />
+                <div class="inputGroupContainer">
+                    <div class="controlads" id="state">
+                        <h:outputText value="state" />
+                    </div>
+                </div>
+            </div>
+            <hr />
+            <div>
+                <h4>Zipcode: </h4>
+                <br />
+                <div class="inputGroupContainer">
+                    <div class="controlads" id="zipcode">
+                        <h:outputText value="zipcode" />
+                    </div>
+                </div>
+            </div>
+            <hr />
+            <div>
+                <h4>Telephone: </h4>
+                <br />
+                <div class="inputGroupContainer">
+                    <div class="controlads" id="telephone">
+                        <h:outputText value="telephone" />
+                    </div>
+                </div>
+            </div>
+            <hr />
+            <div>
+                <h4>Start Date: </h4>
+                <br />
+                <div class="inputGroupContainer">
+                    <div class="controlads" id="startdate">
+                        <h:outputText value="start date" />
+                    </div>
+                </div>
+            </div>
+            <hr />
+            <div>
+                <h4>Hourly Rate: </h4>
+                <br />
+                <div class="inputGroupContainer">
+                    <div class="controlads" id="hourlyrate">
+                        <h:outputText value="hourlyrate" />
+                    </div>
+                </div>
+            </div>
+            <hr />
+            <div class="row force-to-bottom text-center">
+                <ul class="list-inline">
+                    <li>
+                        <h:link type="button"  class="btn btn-default" id="back">Back</h:link>
+                    </li>
+                    <li>
+                        <h:link type="submit"  class="btn btn-success" id="makeemployee">Modify
+                        </h:link>
+                    </li>
+                    <li>
+                        <h:link type="submit" class="btn btn-danger" id="removeEmployee">Remove Employee
+                        </h:link>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<!--end divide into 3 columns -->
+<!-- begin footer content -->
+<nav class="navbar navbar-fixed-bottom footer">
+
+</nav>
+<!-- end footer content -->
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src='http://cdnjs.cloudflare.com/ajax/libs/bootstrap-validator/0.4.5/js/bootstrapvalidator.min.js'></script>
+<h:outputScript library="js" name="bootstrap.min.js"/>
+</h:body>
+</html>
