@@ -68,10 +68,16 @@ public class Post implements Serializable {
     @JoinColumn(name = "AuthorId", referencedColumnName = "UserId")
     @ManyToOne
     private UserPlus authorId;
+    private String authorName;
 
     public Post() {
     }
-
+    public void setAuthorName(String authorName){
+        this.authorName = authorName;
+    }
+    public String getAuthorName(){
+        return authorName;
+    }
     public Post(Integer postId) {
         this.postId = postId;
     }

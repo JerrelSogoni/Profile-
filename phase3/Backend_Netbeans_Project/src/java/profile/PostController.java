@@ -9,6 +9,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
 import java.util.ResourceBundle;
 import javax.ejb.EJB;
@@ -267,6 +269,7 @@ public class PostController implements Serializable {
         ArrayList<Post> toRet = new ArrayList<>();
         Connection con = null;
         PreparedStatement ps = null;
+        PreparedStatement ps2 = null;
 
         try {
             con = DataConnect.getConnection();
@@ -291,17 +294,42 @@ public class PostController implements Serializable {
                     + "                            UserPlus\n"
                     + "                        WHERE\n"
                     + "                            UserId = ?)));");
-            ps.setString(1, user);
-
+            
+           
             // print out the query statement
             JsfUtil.addErrorMessage(ps.toString());
-
+            ps.setString(1, user);
             ResultSet rs = ps.executeQuery();
+            
+            
 
             while (rs.next()) {
                 //result found, means valid inputs
                 Post added = new Post();
                 added.setContent(rs.getString("Content"));
+                
+                ps2 = con.prepareStatement("SELECT \n"
+                    + "    *\n"
+                    + "FROM\n"
+                    + "    UserPlus\n");
+                
+                           // print out the query statement
+                JsfUtil.addErrorMessage(ps2.toString());
+                ResultSet rs2 = ps2.executeQuery();
+        
+                while(rs2.next()){
+                    if(rs.getString("authorId").equals(rs2.getString("userId"))){
+                        added.setAuthorName(rs2.getString("firstName") + " " + rs2.getString("lastName"));
+                        break;
+                    }
+                    
+                    
+        
+                    
+          
+                    
+                }
+                
                 toRet.add(added);
                 JsfUtil.addErrorMessage("Added to return list " + rs.getString("Content"));
             }
