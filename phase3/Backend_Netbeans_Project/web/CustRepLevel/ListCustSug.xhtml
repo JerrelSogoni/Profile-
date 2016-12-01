@@ -87,7 +87,7 @@
 
             <div class="col-lg-10" id="col2">
                 <div><h4>Welcome! #{userPlusController.user}</h4></div>
-                <div><h3>Customer Suggestion List for #{custrepLevel.queryCompany} (based on previous sales)</h3></div>
+                <div><h3>Customer Suggestion List for #{custrepLevel.queryCustomer} (based on previous sales)</h3></div>
                 <h:form>
                     <h:inputText value="#{custrepLevel.queryCustomer}" />
                     <h:commandLink value="Filter" action="#{custrepLevel.listCustSug()}"/>
@@ -95,11 +95,7 @@
                 <hr />
                 <div>
                     <h:form styleClass="jsfcrud_list_form">
-                        <h:panelGroup id="messagePanel" layout="block">
-                            <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
-                        </h:panelGroup>
-                        <h:outputText escape="false" value="#{bundle.ListAdDataEmpty}" rendered="#{adDataController.items.rowCount == 0}"/>
-                        <h:dataTable value="#{custrepLevel.suggestionList}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                       <h:dataTable class="table table-hover" value="#{custrepLevel.suggestionList}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
                             <h:column>
                                 <f:facet name="header">
                                     <h:outputText value="#{bundle.ListAdDataTitle_adId}"/>

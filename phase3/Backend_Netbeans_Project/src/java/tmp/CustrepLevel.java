@@ -11,6 +11,7 @@ import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 import profile.AdData;
 import profile.Employee;
+import profile.GroupPlus;
 import profile.UserPlus;
 import profile.util.DataConnect;
 import profile.util.JsfUtil;
@@ -29,11 +30,12 @@ import profile.util.JsfUtil;
 public class CustrepLevel implements Serializable {
 
     private String queryCompany = "";
-
     private List<UserPlus> mailingList;
     
     private String queryCustomer = "";
     private List<AdData> suggestionList;
+    
+    private List<GroupPlus> groupList;
 
     public String addAd() {
         return "/adData/List";
@@ -52,7 +54,6 @@ public class CustrepLevel implements Serializable {
     }
 
     public String listCust() {
-
         return "/CustRepLevel/ListCust";
     }
 
@@ -61,7 +62,7 @@ public class CustrepLevel implements Serializable {
     }
 
     public String listCustGrp() {
-        return null;
+        return "/CustRepLevel/ListCustGrp";
     }
 
     public String custHistory() {
@@ -91,7 +92,7 @@ public class CustrepLevel implements Serializable {
     }
 
     public List<UserPlus> getMailingList() {
-        ArrayList<UserPlus> toRet = new ArrayList<>();
+        mailingList = new ArrayList<>();
         Connection con = null;
         PreparedStatement ps = null;
 
@@ -110,7 +111,7 @@ public class CustrepLevel implements Serializable {
                 //result found, means valid inputs
                 UserPlus added = new UserPlus();
                 added.setEmail(rs.getString("Email"));
-                toRet.add(added);
+                mailingList.add(added);
                 JsfUtil.addErrorMessage("Added to return list " + rs.getString("Email"));
             }
         } catch (SQLException ex) {
@@ -123,7 +124,7 @@ public class CustrepLevel implements Serializable {
         } finally {
             DataConnect.close(con);
         }
-        return toRet;
+        return mailingList;
     }
 
     /**
@@ -201,5 +202,53 @@ public class CustrepLevel implements Serializable {
      */
     public void setSuggestionList(List<AdData> suggestionList) {
         this.suggestionList = suggestionList;
+    }
+
+    /**
+     * @return the groupList
+     */
+    public List<GroupPlus> getGroupList() {
+        groupList = new ArrayList<>();
+        Connection con = null;
+        PreparedStatement ps = null;
+
+        try {
+            con = DataConnect.getConnection();
+            ps = con.prepareStatement("SELECT G.GroupName FROM GroupPlus G WHERE EXISTS ("
+                    + " SELECT * FROM HasAccessToGroup H WHERE H.UserId = ? AND H.GroupID = G.GroupID);");
+            if(!queryCustomer.equals(""))
+                ps.setInt(1, Integer.parseInt(queryCustomer));
+
+            // print out the query statement
+            JsfUtil.addErrorMessage(ps.toString());
+
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                //result found, means valid inputs
+                GroupPlus added = new GroupPlus();
+
+                added.setGroupName(rs.getString("GroupName"));
+                
+                groupList.add(added);
+            }
+        } catch (SQLException ex) {
+
+            // print out error message
+            JsfUtil.addErrorMessage("Connection to database failed:" + ex.getMessage());
+            System.out.println("Login error -->" + ex.getMessage());
+            return null;
+
+        } finally {
+            DataConnect.close(con);
+        }
+        return groupList;
+    }
+
+    /**
+     * @param groupList the groupList to set
+     */
+    public void setGroupList(List<GroupPlus> groupList) {
+        this.groupList = groupList;
     }
 }
