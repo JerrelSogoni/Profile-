@@ -76,8 +76,16 @@ public class PostController implements Serializable {
 
     public String prepareView() {
         current = (Post) getItems().getRowData();
-        selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
-        return "View";
+        PaginationHelper ph = getPagination();
+        selectedItemIndex = ph.getPageFirstItem() + getItems().getRowIndex();
+        return "/post/PostOwner";
+    }
+    
+    public String prepareViewFromNewfeed() {
+        current = (Post) getItems().getRowData();
+        PaginationHelper ph = getPagination();
+        selectedItemIndex = ph.getPageFirstItem() + getItems().getRowIndex();
+        return "/post/PostOwner";
     }
 
     public String prepareCreate() {
@@ -166,7 +174,6 @@ public class PostController implements Serializable {
 //        }
 //        return items;
 //    }
-
     private void recreateModel() {
         items = null;
     }
@@ -291,7 +298,6 @@ public class PostController implements Serializable {
 
             ResultSet rs = ps.executeQuery();
 
-            int i = 0;
             while (rs.next()) {
                 //result found, means valid inputs
                 Post added = new Post();
@@ -305,7 +311,7 @@ public class PostController implements Serializable {
             JsfUtil.addErrorMessage("Connection to database failed:" + ex.getMessage());
             System.out.println("Login error -->" + ex.getMessage());
             return null;
-            
+
         } finally {
             DataConnect.close(con);
         }

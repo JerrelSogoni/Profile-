@@ -80,9 +80,9 @@
         <div class="container containerCase">
             <!-- advertisement left-->
             <a href="#">
-            <div class="col-lg-1" id="col1">
+                <div class="col-lg-1" id="col1">
 
-            </div>
+                </div>
             </a>
             <!-- news feed -->
             <div class="col-lg-10" id="col2">
@@ -90,13 +90,7 @@
                 <div><h3>News Feed</h3></div>
                 <hr />
                 <div>
-                        <h:dataTable class="table table-hover" value="#{postController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="Select"/>
-                            </f:facet>
-                            <h:outputText value="#{item.content}"/>
-                        </h:column>
+                    <h:dataTable class="table table-hover" value="#{postController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
                         <h:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListPostTitle_content}"/>
@@ -108,6 +102,15 @@
                                 <h:outputText value="Author"/>
                             </f:facet>
                             <h:outputText value="#{item.authorId}"/>
+                        </h:column>
+                        <h:column>
+                            <h:form>
+                                <h:commandLink action="#{postController.prepareViewFromNewfeed()}" value="#{bundle.ListPostViewLink}"/>
+                                <h:outputText value=" "/>
+                                <h:commandLink action="#{postController.prepareEdit}" value="#{bundle.ListPostEditLink}"/>
+                                <h:outputText value=" "/>
+                                <h:commandLink action="#{postController.destroy}" value="#{bundle.ListPostDestroyLink}"/>
+                            </h:form>
                         </h:column>
                     </h:dataTable>
 
@@ -124,8 +127,8 @@
             </div>
             <!-- advertisment right -->
             <a href="#">
-            <div class="col-lg-1" id="col3">
-            </div>
+                <div class="col-lg-1" id="col3">
+                </div>
             </a>
         </div>
 

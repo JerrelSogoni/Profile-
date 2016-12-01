@@ -4,6 +4,12 @@ import profile.util.JsfUtil;
 import profile.util.PaginationHelper;
 
 import java.io.Serializable;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 import javax.ejb.EJB;
 import javax.inject.Named;
@@ -15,6 +21,7 @@ import javax.faces.convert.FacesConverter;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
+import profile.util.DataConnect;
 
 @Named("messageController")
 @SessionScoped
@@ -152,11 +159,56 @@ public class MessageController implements Serializable {
         }
     }
 
+//    public DataModel getItems() {
+//        if (items == null) {
+//            items = getPagination().createPageDataModel();
+//        }
+//        return items;
+//    }
+    
     public DataModel getItems() {
         if (items == null) {
-            items = getPagination().createPageDataModel();
+//            HttpSession session = SessionUtils.getSession();
+//            String username = (String) session.getAttribute("username");
+            items = new ListDataModel(getMessages());
+//            JsfUtil.addErrorMessage("Logged in as " + username);
         }
         return items;
+    }
+
+    public List<Message> getMessages() {
+        ArrayList<Message> toRet = new ArrayList<>();
+        Connection con = null;
+        PreparedStatement ps = null;
+
+        try {
+            con = DataConnect.getConnection();
+            ps = con.prepareStatement("SELECT * FROM Message;");
+//            ps.setString(1, user);
+
+            // print out the query statement
+            JsfUtil.addErrorMessage(ps.toString());
+
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                //result found, means valid inputs
+                Message added = new Message();
+                added.setContent(rs.getString("Content"));
+                toRet.add(added);
+                JsfUtil.addErrorMessage("Added to return list " + rs.getString("Content"));
+            }
+        } catch (SQLException ex) {
+
+            // print out error message
+            JsfUtil.addErrorMessage("Connection to database failed:" + ex.getMessage());
+            System.out.println("Login error -->" + ex.getMessage());
+            return null;
+
+        } finally {
+            DataConnect.close(con);
+        }
+        return toRet;
     }
 
     private void recreateModel() {
@@ -170,13 +222,14 @@ public class MessageController implements Serializable {
     public String next() {
         getPagination().nextPage();
         recreateModel();
+//        return "/message/MessageList";
         return "List";
     }
 
     public String previous() {
         getPagination().previousPage();
         recreateModel();
-        return "List";
+        return "/message/MessageList";
     }
 
     public SelectItem[] getItemsAvailableSelectMany() {
