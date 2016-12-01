@@ -5,6 +5,7 @@ import profile.util.PaginationHelper;
 
 import java.io.Serializable;
 import java.sql.Connection;
+import static java.sql.JDBCType.NULL;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -25,6 +26,7 @@ import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
 import javax.servlet.http.HttpSession;
 import profile.util.DataConnect;
+import profile.util.PostValidator;
 import profile.util.SessionUtils;
 
 @Named("postController")
@@ -37,6 +39,8 @@ public class PostController implements Serializable {
     private profile.PostFacade ejbFacade;
     private PaginationHelper pagination;
     private int selectedItemIndex;
+    private String postContent;
+    private String postTo;
 
     public PostController() {
     }
@@ -208,6 +212,34 @@ public class PostController implements Serializable {
         return ejbFacade.find(id);
     }
 
+    /**
+     * @return the postContent
+     */
+    public String getPostContent() {
+        return postContent;
+    }
+
+    /**
+     * @param postContent the postContent to set
+     */
+    public void setPostContent(String postContent) {
+        this.postContent = postContent;
+    }
+
+    /**
+     * @return the postTo
+     */
+    public String getPostTo() {
+        return postTo;
+    }
+
+    /**
+     * @param postTo the postTo to set
+     */
+    public void setPostTo(String postTo) {
+        this.postTo = postTo;
+    }
+
     @FacesConverter(forClass = Post.class)
     public static class PostControllerConverter implements Converter {
 
@@ -298,7 +330,7 @@ public class PostController implements Serializable {
            
             // print out the query statement
             ps.setString(1, user);
-            JsfUtil.addErrorMessage(ps.toString());
+         //   JsfUtil.addErrorMessage(ps.toString());
             ResultSet rs = ps.executeQuery();
             
             
@@ -314,7 +346,7 @@ public class PostController implements Serializable {
                     + "    UserPlus;\n");
                 
                            // print out the query statement
-                JsfUtil.addErrorMessage(ps2.toString());
+             //   JsfUtil.addErrorMessage(ps2.toString());
                 ResultSet rs2 = ps2.executeQuery();
         
                 while(rs2.next()){
@@ -322,11 +354,11 @@ public class PostController implements Serializable {
                         added.setAuthorName(rs2.getString("firstName") + " " + rs2.getString("lastName"));
                         break;
                     }
-                    JsfUtil.addErrorMessage(ps2.toString());
+                  //  JsfUtil.addErrorMessage(ps2.toString());
                 }
                 
                 toRet.add(added);
-                JsfUtil.addErrorMessage("Added to return list " + rs.getString("Content") + "authorName: " + added.getAuthorName());
+               // JsfUtil.addErrorMessage("Added to return list " + rs.getString("Content") + "authorName: " + added.getAuthorName());
             }
         } catch (SQLException ex) {
 
@@ -340,4 +372,91 @@ public class PostController implements Serializable {
         }
         return toRet;
     }
+    
+    public String createPost(){
+        boolean valid = PostValidator.validate(postTo);
+        if(valid){
+            createPostToServer(postTo, postContent);
+            return "/UserLevel/Post";
+        }
+        else{
+            JsfUtil.addErrorMessage("Not a valid Email");
+            return "/UserLevel/Post";
+        }
+    }
+    public void createPostToServer(String email, String content){
+        //Connect to server
+        Connection con = null;
+        // insert post
+        PreparedStatement ps = null;
+        //find page id where it is posted
+         PreparedStatement ps2 = null;
+         // insert to posted To
+          PreparedStatement ps3 = null;
+
+        try {
+            con = DataConnect.getConnection();
+            // give proper variables and propert format
+            ps = con.prepareStatement("INSERT INTO POST(PostID, DateCreated, Content, CommentCount, AuthorID) values (?, ?, ?, ?, ?);", PreparedStatement.RETURN_GENERATED_KEYS);
+            ps.setNull(1, java.sql.Types.INTEGER);
+            ps.setTimestamp(2, java.sql.Timestamp.from(java.time.Instant.now()));
+            ps.setString(3, content);
+            ps.setInt(4, 0);
+            ps.setInt(5, Integer.valueOf(SessionUtils.getUserName()));
+            
+            // print out the query statement
+            JsfUtil.addErrorMessage(ps.toString());
+            // Execute the Insert Query
+            ps.executeUpdate();
+           // Find the most recent postID due to autoincrement
+               ResultSet keyResultSet = ps.getGeneratedKeys();
+            // initalized newestpost 
+            int newestpostID = -1;
+            while(keyResultSet.next()){
+                // get newest post
+                newestpostID = keyResultSet.getInt(1);
+            }
+            //close connection to save on resources
+            ps.close();
+            // prepare for getting page id 
+            ps3 = con.prepareStatement("SELECT * FROM PersonalPage WHERE OwnerId = ?");
+            // invoke method to find postID
+            int ownerId = PostValidator.getPostToID(email);
+      
+            ps3.setInt(1, ownerId);
+            ResultSet ownerID = ps3.executeQuery();
+            int owner = -1;
+            while(ownerID.next()){
+                owner = ownerID.getInt("PageId");
+            }
+         
+          
+            ps2 = con.prepareStatement("INSERT INTO PostedTo(PostID, PageID) values (?, ?);" );
+            ps2.setInt(1, newestpostID);
+            ps2.setInt(2, owner);
+            
+            ps2.executeUpdate();
+           
+
+            ps3.close();
+            ps2.close();
+            resetInputBoxes();
+            
+        } catch (SQLException ex) {
+            
+            // print out error message
+            JsfUtil.addErrorMessage("Error occured while posting" + ex.getMessage());
+         
+        } finally {
+            DataConnect.close(con);
+        }
+      
+    }
+    public void resetInputBoxes(){
+             postContent = "";
+            postTo = "";
+        
+    }
+    
+
 }
