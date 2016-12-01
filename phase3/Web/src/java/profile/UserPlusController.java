@@ -2,6 +2,12 @@ package profile;
 
 
 import java.io.Serializable;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 import javax.ejb.EJB;
 import javax.inject.Named;
@@ -15,6 +21,7 @@ import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
 
 import javax.servlet.http.HttpSession;
+import tmp.util.DataConnect;
 
 import tmp.util.JsfUtil;
 import tmp.util.LoginDAO;
@@ -274,4 +281,6 @@ public class UserPlusController implements Serializable {
         session.invalidate();
         return "/signInNOut/login";
     }
+    
+    
 }
