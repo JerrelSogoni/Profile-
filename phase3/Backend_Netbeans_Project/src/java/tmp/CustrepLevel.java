@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
+import profile.AdData;
+import profile.Employee;
 import profile.UserPlus;
 import profile.util.DataConnect;
 import profile.util.JsfUtil;
@@ -26,9 +28,12 @@ import profile.util.JsfUtil;
 @SessionScoped
 public class CustrepLevel implements Serializable {
 
-    private String queryCompany;
+    private String queryCompany = "";
 
     private List<UserPlus> mailingList;
+    
+    private String queryCustomer = "";
+    private List<AdData> suggestionList;
 
     public String addAd() {
         return "/adData/List";
@@ -52,7 +57,7 @@ public class CustrepLevel implements Serializable {
     }
 
     public String listCustSug() {
-        return null;
+        return "/CustRepLevel/ListCustSug";
     }
 
     public String listCustGrp() {
@@ -126,5 +131,75 @@ public class CustrepLevel implements Serializable {
      */
     public void setMailingList(List<UserPlus> mailingList) {
         this.mailingList = mailingList;
+    }
+
+    /**
+     * @return the queryCustomer
+     */
+    public String getQueryCustomer() {
+        return queryCustomer;
+    }
+
+    /**
+     * @param queryCustomer the queryCustomer to set
+     */
+    public void setQueryCustomer(String queryCustomer) {
+        this.queryCustomer = queryCustomer;
+    }
+
+    /**
+     * @return the suggestionList
+     */
+    public List<AdData> getSuggestionList() {
+        suggestionList = new ArrayList<>();
+        Connection con = null;
+        PreparedStatement ps = null;
+
+        try {
+            con = DataConnect.getConnection();
+            ps = con.prepareStatement("SELECT * FROM AdData A1 WHERE A1.Type IN ("
+                    + " SELECT Type FROM AdData A2, Buy B, Sales S WHERE"
+                    + " B.TransId = S.TransId AND S.AdId = A2.AdId AND B.UserId = ?);");
+            if(!queryCustomer.equals(""))
+                ps.setInt(1, Integer.parseInt(queryCustomer));
+
+            // print out the query statement
+            JsfUtil.addErrorMessage(ps.toString());
+
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                //result found, means valid inputs
+                AdData added = new AdData();
+
+                added.setAdId(rs.getInt("adId"));
+                added.setType(rs.getString("Type"));
+                added.setCompany(rs.getString("Company"));
+                added.setEmpId(new Employee(rs.getString("EmpId")));
+                added.setItemName(rs.getString("ItemName"));
+                added.setContent(rs.getString("Content"));
+                added.setUnitPrice(rs.getFloat("UnitPrice"));
+                added.setNumOfAvaUnits(rs.getInt("NumOfAvaUnits"));
+                
+                suggestionList.add(added);
+            }
+        } catch (SQLException ex) {
+
+            // print out error message
+            JsfUtil.addErrorMessage("Connection to database failed:" + ex.getMessage());
+            System.out.println("Login error -->" + ex.getMessage());
+            return null;
+
+        } finally {
+            DataConnect.close(con);
+        }
+        return suggestionList;
+    }
+
+    /**
+     * @param suggestionList the suggestionList to set
+     */
+    public void setSuggestionList(List<AdData> suggestionList) {
+        this.suggestionList = suggestionList;
     }
 }

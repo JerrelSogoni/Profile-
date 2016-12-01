@@ -1,0 +1,195 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title><ui:insert name="title">Default Title</ui:insert></title>
+        <h:outputStylesheet library="css" name="jsfcrud.css"/>
+        <h:outputStylesheet library="css" name="bootstrap.css"/>
+        <h:outputStylesheet library="css" name="usermainpage.css"/>
+    </h:head>
+
+    <h:body>
+        <!-- Begin Nav Bar for Header -->
+        <nav class="navbar navbar-default navbar-fixed-top my-nav ">
+            <div class="container">
+                <div class="navbar-brand">
+                    <button class="navbar-toggle" data-toggle="collapse" data-target="#navHeaderCollapse">
+                        <span class ="icon-bar"></span>
+                        <span class ="icon-bar"></span>
+                        <span class ="icon-bar"></span>
+                    </button>
+                    <h:graphicImage alt="Profile Plus" value="/resources/img/ProfilePlusLogo2.0.png" width="61" height="46"></h:graphicImage>                    
+                </div>
+                <div class="collapse navbar-collapse"
+                     id="navHeaderCollapse">
+                    <ul class="nav navbar-nav navbar-right" id="nav-bar-functions" >
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <h:graphicImage class="nav-link" value="/resources/img/littleprofPic.png"/>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <h:graphicImage class="nav-link" value="/resources/img/friendslistglyph.png"/>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <h:graphicImage class="nav-link" value="/resources/img/messagesglyph.png"/>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <h:graphicImage class="nav-link" value="/resources/img/grouppageglyp.png"/>
+                            </a>
+                        </li>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                <h:graphicImage value="/resources/img/cogwheelglyph.png"/>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Modify User Settings</a></li>
+                                <li class="divider"></li>
+                                <li>
+                                    <h:form>
+                                        <h:commandLink value="Logout" action="#{userPlusController.logout()}"/>
+                                    </h:form>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a  href="#" data-toggle="dropdown" class="dropdown-toggle">
+                                <h:graphicImage value="/resources/img/showlinesglyph.png"/>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Create a Page</a></li>
+                                <li class="divider"></li>
+                                <li><a href="#">Create a Group</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <div class="container containerCase">
+            <!-- advertisement left-->
+            <a href="#">
+                <div class="col-lg-1" id="col1">
+
+                </div>
+            </a>
+
+            <div class="col-lg-10" id="col2">
+                <div><h4>Welcome! #{userPlusController.user}</h4></div>
+                <div><h3>Customer Suggestion List for #{custrepLevel.queryCompany} (based on previous sales)</h3></div>
+                <h:form>
+                    <h:inputText value="#{custrepLevel.queryCustomer}" />
+                    <h:commandLink value="Filter" action="#{custrepLevel.listCustSug()}"/>
+                </h:form>
+                <hr />
+                <div>
+                    <h:form styleClass="jsfcrud_list_form">
+                        <h:panelGroup id="messagePanel" layout="block">
+                            <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                        </h:panelGroup>
+                        <h:outputText escape="false" value="#{bundle.ListAdDataEmpty}" rendered="#{adDataController.items.rowCount == 0}"/>
+                        <h:dataTable value="#{custrepLevel.suggestionList}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{bundle.ListAdDataTitle_adId}"/>
+                                </f:facet>
+                                <h:outputText value="#{item.adId}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{bundle.ListAdDataTitle_type}"/>
+                                </f:facet>
+                                <h:outputText value="#{item.type}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{bundle.ListAdDataTitle_company}"/>
+                                </f:facet>
+                                <h:outputText value="#{item.company}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{bundle.ListAdDataTitle_itemName}"/>
+                                </f:facet>
+                                <h:outputText value="#{item.itemName}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{bundle.ListAdDataTitle_content}"/>
+                                </f:facet>
+                                <h:outputText value="#{item.content}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{bundle.ListAdDataTitle_unitPrice}"/>
+                                </f:facet>
+                                <h:outputText value="#{item.unitPrice}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{bundle.ListAdDataTitle_numOfAvaUnits}"/>
+                                </f:facet>
+                                <h:outputText value="#{item.numOfAvaUnits}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{bundle.ListAdDataTitle_empId}"/>
+                                </f:facet>
+                                <h:outputText value="#{item.empId}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="&nbsp;"/>
+                                </f:facet>
+                                <h:commandLink action="#{adDataController.prepareView}" value="#{bundle.ListAdDataViewLink}"/>
+                                <h:outputText value=" "/>
+                                <h:commandLink action="#{adDataController.prepareEdit}" value="#{bundle.ListAdDataEditLink}"/>
+                                <h:outputText value=" "/>
+                                <h:commandLink action="#{adDataController.destroy}" value="#{bundle.ListAdDataDestroyLink}"/>
+                            </h:column>
+                        </h:dataTable>
+                    </h:form>
+
+                    <!-- bottom on news -->
+                    <div class="row force-to-bottom text-center">
+                        <div class="col-lg-12">
+                            <h:link class="btn btn-danger" id="cancelButton" value="Remove">
+                                <span class="glyphicon glyphicon-remove"/>
+                            </h:link>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- advertisment right -->
+            <a href="#">
+                <div class="col-lg-1" id="col3">
+                </div>
+            </a>
+        </div>
+
+        <nav class="navbar navbar-fixed-bottom footer">
+
+        </nav>
+        <!-- end footer content -->
+
+        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+        <!-- Include all compiled plugins (below), or include individual files as needed -->
+        <script src='http://cdnjs.cloudflare.com/ajax/libs/bootstrap-validator/0.4.5/js/bootstrapvalidator.min.js'></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"/>
+        <!-- Include all compiled plugins (below), or include individual files as needed -->
+        <h:outputScript library="js" name="bootstrap.min.js" />
+    </h:body>
+</html>
