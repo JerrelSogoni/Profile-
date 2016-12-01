@@ -1,0 +1,69 @@
+.my-nav{
+    height: 73px;
+    background: url("#{resource['img/HeaderFooterBackgroundActive.png']}") repeat-x;
+}
+.navbar{
+    border: none!important;
+}
+body{
+    background: #505050 ;
+    margin-bottom: 73px;
+
+}
+html,body,.row {
+    height:100%;
+}
+#col1{
+
+    background:  url("#{resource['/img/adPage.png']}") repeat-y;
+    width: 95px;
+    height: 300px
+    
+
+}
+#col2{
+    background: #FCFCFC;
+    padding-top: 30px;
+    padding-bottom: 73px;
+
+
+}
+#col3{
+    background:  url("#{resource['/img/adPage.png']}") repeat-y;
+    width: 95px;
+    height: 300px
+}
+.containerCase{
+    padding-top: 73px;
+    height:auto;
+    padding-bottom: 73px;
+
+}
+
+.footer {
+    height: 73px;
+    background: url("#{resource['img/HeaderFooterBackgroundActive.png']}") repeat-x;
+}
+#nav-bar-functions{
+    padding-top: 10px;
+
+}
+.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
+    background-color: #88D9FF;
+}
+#profilelittleimage{
+    width: 25px;
+    height: 25px;
+    border: 1px solid #00AEEF;
+    background: #FFFFFF
+}
+.borderless {
+    border: none;
+}
+
+td{
+    word-wrap:break-word
+}
+table{
+    table-layout: fixed;
+}

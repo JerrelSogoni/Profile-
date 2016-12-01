@@ -1,0 +1,46 @@
+.my-nav{
+    height: 73px;
+    background: url("#{resource['img/HeaderFooterBackgroundNotActive.png']}") repeat-x;
+}
+body{
+    background: url("#{resource['img/LoginRegisterBackground.png']}");
+    background-size: cover;
+    margin-bottom: 73px;
+}
+.containerCase{
+    padding-top: 300px;
+    padding-bottom: 300px;
+}
+div.well{
+    height: 250px;
+}
+.Absolute-Center {
+    margin: auto;
+    position: absolute;
+    top: 0; left: 0; bottom: 0; right: 0;
+}
+
+.Absolute-Center.is-Responsive {
+    width: 50%;
+    height: 50%;
+    min-width: 170px;
+    max-width: 600px;
+    padding-top: 50px;
+    background: url("#{resource['img/LoginBackgroundColor.png']}");
+}
+
+#logo-container{
+    margin: auto auto 10px;
+    text-align: center;
+    font-family: 'Pacifico', cursive;
+    color: white;
+
+}
+.navbar{
+    border: none!important;
+}
+.footer {
+    /* Set the fixed height of the footer here */
+    height: 73px;
+    background: url("#{resource['img/HeaderFooterBackgroundNotActive.png']}") repeat-x;
+}
