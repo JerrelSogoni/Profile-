@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:form styleClass="jsfcrud_list_form">
+        <h:panelGroup id="messagePanel" layout="block">
+            <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+        </h:panelGroup>
+        <h:outputText escape="false" value="#{bundle.ListAdDataEmpty}" rendered="#{adDataController.items.rowCount == 0}"/>
+        <h:panelGroup rendered="#{adDataController.items.rowCount > 0}">
+            <h:outputText value="#{adDataController.pagination.pageFirstItem + 1}..#{adDataController.pagination.pageLastItem + 1}/#{adDataController.pagination.itemsCount}"/>&nbsp;
+            <h:commandLink action="#{adDataController.previous}" value="#{bundle.Previous} #{adDataController.pagination.pageSize}" rendered="#{adDataController.pagination.hasPreviousPage}"/>&nbsp;
+            <h:commandLink action="#{adDataController.next}" value="#{bundle.Next} #{adDataController.pagination.pageSize}" rendered="#{adDataController.pagination.hasNextPage}"/>&nbsp;
+            <h:dataTable value="#{adDataController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListAdDataTitle_adId}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.adId}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListAdDataTitle_type}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.type}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListAdDataTitle_company}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.company}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListAdDataTitle_itemName}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.itemName}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListAdDataTitle_content}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.content}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListAdDataTitle_unitPrice}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.unitPrice}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListAdDataTitle_numOfAvaUnits}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.numOfAvaUnits}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListAdDataTitle_empId}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.empId}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="&nbsp;"/>
+                    </f:facet>
+                    <h:commandLink action="#{adDataController.prepareView}" value="#{bundle.ListAdDataViewLink}"/>
+                    <h:outputText value=" "/>
+                    <h:commandLink action="#{adDataController.prepareEdit}" value="#{bundle.ListAdDataEditLink}"/>
+                    <h:outputText value=" "/>
+                    <h:commandLink action="#{adDataController.destroy}" value="#{bundle.ListAdDataDestroyLink}"/>
+                </h:column>
+            </h:dataTable>
+        </h:panelGroup>
+        <br />
+        <h:commandLink action="#{adDataController.prepareCreate}" value="#{bundle.ListAdDataCreateLink}"/>
+        <br />
+        <br />
+        <h:link outcome="/index" value="#{bundle.ListAdDataIndexLink}"/>
+    </h:form>
+
+</html>

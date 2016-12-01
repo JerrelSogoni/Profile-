@@ -297,8 +297,8 @@ public class PostController implements Serializable {
             
            
             // print out the query statement
-            JsfUtil.addErrorMessage(ps.toString());
             ps.setString(1, user);
+            JsfUtil.addErrorMessage(ps.toString());
             ResultSet rs = ps.executeQuery();
             
             
@@ -311,27 +311,22 @@ public class PostController implements Serializable {
                 ps2 = con.prepareStatement("SELECT \n"
                     + "    *\n"
                     + "FROM\n"
-                    + "    UserPlus\n");
+                    + "    UserPlus;\n");
                 
                            // print out the query statement
                 JsfUtil.addErrorMessage(ps2.toString());
                 ResultSet rs2 = ps2.executeQuery();
         
                 while(rs2.next()){
-                    if(rs.getString("authorId").equals(rs2.getString("userId"))){
+                    if(rs.getString("AuthorId").equals(rs2.getString("UserId"))){
                         added.setAuthorName(rs2.getString("firstName") + " " + rs2.getString("lastName"));
                         break;
                     }
-                    
-                    
-        
-                    
-          
-                    
+                    JsfUtil.addErrorMessage(ps2.toString());
                 }
                 
                 toRet.add(added);
-                JsfUtil.addErrorMessage("Added to return list " + rs.getString("Content"));
+                JsfUtil.addErrorMessage("Added to return list " + rs.getString("Content") + "authorName: " + added.getAuthorName());
             }
         } catch (SQLException ex) {
 

@@ -2,8 +2,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
 
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -57,7 +56,7 @@
                                 <li class="divider"></li>
                                 <li>
                                     <h:form>
-                                        <h:commandLink value="Logout" action="#{userPlusController.logout()}"/>
+                                        <h:commandLink value="Logout" action="#{userController.logout()}"/>
                                     </h:form>
                                 </li>
                             </ul>
@@ -86,44 +85,87 @@
             </a>
             <!-- news feed -->
             <div class="col-lg-10" id="col2">
-                <div><h4>Welcome! #{userPlusController.user}</h4></div>
-                <div><h3>News Feed</h3></div>
-                <hr />
+                <div><h4>Welcome! #{userController.user}</h4></div>
+
                 <div>
-                    <h:dataTable class="table table-hover" value="#{postController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListPostTitle_content}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.content}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="Author"/>
-                            </f:facet>
-                            <h:outputText value="#{item.authorId}"/>
-                        </h:column>
-                        <h:column>
-                            <h:form>
-                                <h:commandLink action="#{postController.prepareViewFromNewfeed()}" value="#{bundle.ListPostViewLink}"/>
-                                <h:outputText value=" "/>
-                                <h:commandLink action="#{postController.prepareEdit}" value="#{bundle.ListPostEditLink}"/>
-                                <h:outputText value=" "/>
-                                <h:commandLink action="#{postController.destroy}" value="#{bundle.ListPostDestroyLink}"/>
-                            </h:form>
-                        </h:column>
-                    </h:dataTable>
+                    <h:form>
+                        <h3>User Level Operations </h3>
+                        <h:commandLink action="#{userLevel.Post()}">- Post messages on personal pages</h:commandLink><br/>
+                        <h:commandLink action="#{userLevel.sendMessage()}">- Send a message</h:commandLink><br/>
+                        <h:commandLink action="#{userLevel.receiveMessage()}">- Receive a message</h:commandLink><br/>
+                        <h:commandLink action="#{userLevel.deleteMessage()}">- Delete a message</h:commandLink><br/>
 
-                    <!-- bottom on news -->
-                    <div class="row force-to-bottom text-center">
-                        <div class="col-lg-12">
-                            <h:link class="btn btn-danger" id="cancelButton" value="Remove">
-                                <span class="glyphicon glyphicon-remove"/>
-                            </h:link>
-                        </div>
-                    </div>
+                        <!-- Add/Delete Post/Comment -->
+                        <h:commandLink action="#{userLevel.makePost()}">- Make a post</h:commandLink><br/>
+                        <h:commandLink action="#{userLevel.commentPost()}">- Comment on a post</h:commandLink><br/>
+                        <h:commandLink action="#{userLevel.removePost()}">- Remove a post</h:commandLink><br/>
+                        <h:commandLink action="#{userLevel.removeComment()}">- Remove a comment</h:commandLink><br/>
+
+                        <!--Like/Unlike Post/Comment--> 
+                        <h:commandLink action="#{userLevel.likePost()}">- Like a post</h:commandLink><br/>
+                        <h:commandLink action="#{userLevel.likeComment()}">- Like a comment</h:commandLink><br/>
+                        <h:commandLink action="#{userLevel.unlikePost()}">- Unlike a post</h:commandLink><br/>
+                        <h:commandLink action="#{userLevel.unlikeComment()}">- Unlike a comment</h:commandLink><br/>
+
+                        <!--Edit Post/Comment-->
+                        <h:commandLink action="#{userLevel.editPost()}">- Modify a post</h:commandLink><br/>
+                        <h:commandLink action="#{userLevel.editComment()}">- Modify a comment</h:commandLink><br/>
+
+                        <h3>Group Operations </h3>
+
+                        <!--Group itself modification-->
+                        <h:commandLink action="#{group.createGrp()}">- Create a group</h:commandLink><br/>
+                        <h:commandLink action="#{group.deleteGrp()}">- Delete a group</h:commandLink><br/>
+                        <h:commandLink action="#{group.renameGrp()}">- Rename a group</h:commandLink><br/>
+
+                        <!--Group join/unjoin add/remove memeber-->
+                        <h:commandLink action="#{group.addToGrp()}">- Search for a user and add him to a group</h:commandLink><br/>
+                        <h:commandLink action="#{group.rmFromGroup()}">- Remove a user from a group</h:commandLink><br/>
+                        <h:commandLink action="#{group.join()}">- Join a group</h:commandLink><br/>
+                        <h:commandLink action="#{group.unjoin()}">- Unjoin a group</h:commandLink><br/>
+
+                        <!--Post/Comment on group related funcs-->
+                        <h:commandLink action="#{group.makePostGrp()}">- Make a post on a group page</h:commandLink><br/>
+                        <h:commandLink action="#{group.commentPostGrp()}">- Comment on a post on a group page</h:commandLink><br/>
+                        <h:commandLink action="#{group.removePostGrp()}">- Remove one of their posts on a group page</h:commandLink><br/>
+                        <h:commandLink action="#{group.removeCommentGrp()}">- Remove a comment</h:commandLink><br/>
+
+                        <h:commandLink action="#{group.likePostGrp()}">- Like a post on a group page</h:commandLink><br/>
+                        <h:commandLink action="#{group.likeCommentGrp()}">- Like a comment on a group page</h:commandLink><br/>
+                        <h:commandLink action="#{group.unlikePostGrp()}">- Unlike a post</h:commandLink><br/>
+                        <h:commandLink action="#{group.unlikeCommentGrp()}">- Unlike a comment</h:commandLink><br/>
+
+                        <h:commandLink action="#{group.editPostGrp()}">- Modify a post</h:commandLink><br/>
+                        <h:commandLink action="#{group.editCommentGrp()}">- Modify a comment</h:commandLink><br/>
+
+                        <h3>Manager Level Operations </h3>
+                        <h:commandLink action="#{managerLevel.manage()}">- Add, Edit and Delete information for an employee</h:commandLink><br/>
+
+                        <h:commandLink action="#{managerLevel.salesReport()}">- Obtain a sales report for a particular month</h:commandLink><br/>
+                        <h:commandLink action="#{managerLevel.listAds()}">- Produce a comprehensive listing of all items being advertised on the site</h:commandLink><br/>
+                        <h:commandLink action="#{managerLevel.listTrans()}">- Produce a list of transactions by item name or by user name</h:commandLink><br/>
+                        <h:commandLink action="#{managerLevel.listRev()}">- Produce a summary listing of revenue generated by a particular item, item type, or customer</h:commandLink><br/>
+                        <h:commandLink action="#{managerLevel.vipCusRep()}">- Determine which customer representative generated most total revenue</h:commandLink><br/>
+                        <h:commandLink action="#{managerLevel.vipCus()}">- Determine which customer generated most total revenue</h:commandLink><br/>
+                        <h:commandLink action="#{managerLevel.vipItem()}">- Produce a list of most active items</h:commandLink><br/>
+                        <h:commandLink action="#{managerLevel.listBuyer()}">- Produce a list of all customers who have purchased a particular item</h:commandLink><br/>
+                        <h:commandLink action="#{managerLevel.listItemByComp()}">- Produce a list of all items for a given company</h:commandLink><br/>
+
+                        <h3>Customer Representative Level Operations </h3>
+                        <h:commandLink action="#{custrepLevel.addAd()}">- Create an advertisement</h:commandLink><br/>
+                        <h:commandLink action="#{custrepLevel.rmAd()}">- Delete an advertisement</h:commandLink><br/>
+                        <h:commandLink action="#{custrepLevel.addTrans()}">- Record a transaction</h:commandLink><br/>
+                        <h:commandLink action="#{custrepLevel.editCustomerInfo()}">- Add, Edit and Delete information for a customer</h:commandLink><br/>
+                        <h:commandLink action="#{custrepLevel.listCust()}">- Produce customer mailing lists</h:commandLink><br/>
+                        <h:commandLink action="#{custrepLevel.listCustSug()}">- Produce a list of item suggestions for a given customer (based on that customer's past transactions)</h:commandLink><br/>
+                        <h:commandLink action="#{custrepLevel.listCustGrp()}">- Retrieve a customer's current groups</h:commandLink><br/>
+                        <h:commandLink action="#{custrepLevel.custHistory()}">- For each of a customer's accounts, the account history</h:commandLink><br/>
+                        <h:commandLink action="#{custrepLevel.bestSeller()}">- Best-Seller list of items</h:commandLink><br/>
+                        <h:commandLink action="#{custrepLevel.itemSuggestion()}">- Personalized item suggestion list</h:commandLink><br/>
+
+
+                    </h:form>
                 </div>
-
             </div>
             <!-- advertisment right -->
             <a href="#">
