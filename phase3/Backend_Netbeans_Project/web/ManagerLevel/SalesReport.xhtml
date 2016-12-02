@@ -36,13 +36,13 @@
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListSalesTitle_transId}"/>
                             </f:facet>
-                            <h:outputText value="#{item.transId}"/>
+                            <h:outputText value="#{item.sales.transId}"/>
                         </h:column>
                         <h:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListSalesTitle_transDate}"/>
                             </f:facet>
-                            <h:outputText value="#{item.transDate}">
+                            <h:outputText value="#{item.sales.transDate}">
                                 <f:convertDateTime pattern="MM/dd/yyyy" />
                             </h:outputText>
                         </h:column>
@@ -50,7 +50,7 @@
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListSalesTitle_transTime}"/>
                             </f:facet>
-                            <h:outputText value="#{item.transTime}">
+                            <h:outputText value="#{item.sales.transTime}">
                                 <f:convertDateTime pattern="HH:mm:ss" />
                             </h:outputText>
                         </h:column>
@@ -58,13 +58,13 @@
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListSalesTitle_numOfUnits}"/>
                             </f:facet>
-                            <h:outputText value="#{item.numOfUnits}"/>
+                            <h:outputText value="#{item.sales.numOfUnits}"/>
                         </h:column>
                         <h:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListSalesTitle_accountNum}"/>
                             </f:facet>
-                            <h:outputText value="#{item.accountNum}"/>
+                            <h:outputText value="#{item.sales.accountNum}"/>
                         </h:column>
                         <h:column>
                             <f:facet name="header">

@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListSalesTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="content">
+            <h:form>
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:panelGrid columns="2" class="table table-hover">
+                    <h:outputLabel value="FirstName" for="firstName"/>
+                    <h:inputText id="firstName" value="#{managerLevel.queryFirstName}" title="Query FirstName" />
+                    <h:outputLabel value="LastName" for="lastName"/>
+                    <h:inputText id="lastName" value="#{managerLevel.queryLastName}" title="Query LastName" />
+                </h:panelGrid>
+                <div class="row force-to-bottom text-center">
+                    <div class="col-lg-12">
+                        <h:commandLink action="#{managerLevel.listTrans()}" class="btn btn-success" id="submit" value="Filter" >
+                            <f:param name="target" value="name" />
+                            <i class="glyphicon glyphicon-send" />
+                        </h:commandLink>
+                    </div>
+                </div>
+            </h:form>
+            <br/>
+            <h:form>
+                <h:panelGrid columns="2" class="table table-hover">
+                    <h:outputLabel value="ItemName" for="itemName"/>
+                    <h:inputText id="itemName" value="#{managerLevel.queryItemName}" title="Query ItemName" />
+                </h:panelGrid>
+                <div class="row force-to-bottom text-center">
+                    <div class="col-lg-12">
+                        <h:commandLink action="#{managerLevel.listTrans()}" class="btn btn-success" id="submit2" value="Filter" >
+                            <f:param name="target" value="item" />
+                            <i class="glyphicon glyphicon-send" />
+                        </h:commandLink>
+                    </div>
+                </div>
+            </h:form>
+            <br/>
+            <h:form>
+                <h:dataTable class="table table-hover" value="#{managerLevel.transList}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListSalesTitle_transId}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.sales.transId}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListSalesTitle_transDate}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.sales.transDate}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListSalesTitle_transTime}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.sales.transTime}">
+                            <f:convertDateTime pattern="HH:mm:ss" />
+                        </h:outputText>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListSalesTitle_numOfUnits}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.sales.numOfUnits}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListSalesTitle_accountNum}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.sales.accountNum}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListSalesTitle_adId}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.adData.adId}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListAdDataTitle_type}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.adData.type}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListAdDataTitle_company}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.adData.company}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListAdDataTitle_itemName}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.adData.itemName}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListAdDataTitle_content}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.adData.content}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListAdDataTitle_unitPrice}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.adData.unitPrice}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListAdDataTitle_numOfAvaUnits}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.adData.numOfAvaUnits}"/>
+                    </h:column>                        
+                </h:dataTable>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

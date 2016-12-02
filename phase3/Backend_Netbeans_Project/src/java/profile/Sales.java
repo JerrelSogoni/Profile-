@@ -62,7 +62,6 @@ public class Sales implements Serializable {
     @JoinColumn(name = "AdId", referencedColumnName = "AdId")
     @ManyToOne
     private AdData adId;
-    private String s_adId;
 
     public Sales() {
     }
@@ -152,19 +151,4 @@ public class Sales implements Serializable {
     public String toString() {
         return "profile.Sales[ transId=" + transId + " ]";
     }
-
-    /**
-     * @return the s_adId
-     */
-    public String getS_adId() {
-        return s_adId;
-    }
-
-    /**
-     * @param s_adId the s_adId to set
-     */
-    public void setS_adId(String s_adId) {
-        this.s_adId = s_adId;
-    }
-    
 }
