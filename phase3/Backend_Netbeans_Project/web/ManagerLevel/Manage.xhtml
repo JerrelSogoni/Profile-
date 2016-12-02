@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
@@ -7,19 +7,51 @@
 
     <ui:composition template="/template.xhtml">
         <ui:define name="title">
-            <h:outputText value="#{bundle.ListEmployeeTitle}"></h:outputText>
+            Manage
         </ui:define>
         <ui:define name="content">
-            <h:form styleClass="jsfcrud_list_form">
-                <h:panelGroup id="messagePanel" layout="block">
-                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
-                </h:panelGroup>
-                <h:outputText escape="false" value="#{bundle.ListEmployeeEmpty}" rendered="#{employeeController.items.rowCount == 0}"/>
-                <h:panelGroup rendered="#{employeeController.items.rowCount > 0}">
-                    <h:outputText value="#{employeeController.pagination.pageFirstItem + 1}..#{employeeController.pagination.pageLastItem + 1}/#{employeeController.pagination.itemsCount}"/>&nbsp;
-                    <h:commandLink action="#{employeeController.previous}" value="#{bundle.Previous} #{employeeController.pagination.pageSize}" rendered="#{employeeController.pagination.hasPreviousPage}"/>&nbsp;
-                    <h:commandLink action="#{employeeController.next}" value="#{bundle.Next} #{employeeController.pagination.pageSize}" rendered="#{employeeController.pagination.hasNextPage}"/>&nbsp;
-                    <h:dataTable value="#{employeeController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px" class="table table-hover">
+            <div><h4>Welcome! User:#{userPlusController.user}</h4></div>
+            <div><h3>Manage employees</h3></div>
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2" class="table table-hover">
+                    <h:outputLabel value="#{bundle.CreateEmployeeLabel_ssn}" for="ssn" />
+                    <h:inputText id="ssn" value="#{employeeController.selected.ssn}" title="#{bundle.CreateEmployeeTitle_ssn}" required="true" requiredMessage="#{bundle.CreateEmployeeRequiredMessage_ssn}"/>
+                    <h:outputLabel value="#{bundle.CreateEmployeeLabel_lastName}" for="lastName" />
+                    <h:inputText id="lastName" value="#{employeeController.selected.lastName}" title="#{bundle.CreateEmployeeTitle_lastName}" />
+                    <h:outputLabel value="#{bundle.CreateEmployeeLabel_firstName}" for="firstName" />
+                    <h:inputText id="firstName" value="#{employeeController.selected.firstName}" title="#{bundle.CreateEmployeeTitle_firstName}" />
+                    <h:outputLabel value="#{bundle.CreateEmployeeLabel_address}" for="address" />
+                    <h:inputText id="address" value="#{employeeController.selected.address}" title="#{bundle.CreateEmployeeTitle_address}" />
+                    <h:outputLabel value="#{bundle.CreateEmployeeLabel_city}" for="city" />
+                    <h:inputText id="city" value="#{employeeController.selected.city}" title="#{bundle.CreateEmployeeTitle_city}" />
+                    <h:outputLabel value="#{bundle.CreateEmployeeLabel_state}" for="state" />
+                    <h:inputText id="state" value="#{employeeController.selected.state}" title="#{bundle.CreateEmployeeTitle_state}" />
+                    <h:outputLabel value="#{bundle.CreateEmployeeLabel_zipCode}" for="zipCode" />
+                    <h:inputText id="zipCode" value="#{employeeController.selected.zipCode}" title="#{bundle.CreateEmployeeTitle_zipCode}" />
+                    <h:outputLabel value="#{bundle.CreateEmployeeLabel_telephone}" for="telephone" />
+                    <h:inputText id="telephone" value="#{employeeController.selected.telephone}" title="#{bundle.CreateEmployeeTitle_telephone}" />
+                    <h:outputLabel value="#{bundle.CreateEmployeeLabel_startDate}" for="startDate" />
+                    <h:inputText id="startDate" value="#{employeeController.selected.startDate}" title="#{bundle.CreateEmployeeTitle_startDate}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateEmployeeLabel_hourlyRate}" for="hourlyRate" />
+                    <h:inputText id="hourlyRate" value="#{employeeController.selected.hourlyRate}" title="#{bundle.CreateEmployeeTitle_hourlyRate}" />
+                </h:panelGrid>
+                <div class="row force-to-bottom text-center">
+                    <div class="col-lg-12">
+                        <h:commandLink action="#{employeeController.create}" class="btn btn-success" id="submit" value="#{bundle.CreateEmployeeSaveLink}" >
+                            <i class="glyphicon glyphicon-send" />
+                        </h:commandLink>
+                    </div>
+                </div>
+            </h:form>
+            <hr />
+            <div>
+                <h:form>
+                    <h:dataTable class="table table-hover" value="#{employeeController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
                         <h:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListEmployeeTitle_ssn}"/>
@@ -93,14 +125,8 @@
                             <h:commandLink action="#{employeeController.destroy}" value="#{bundle.ListEmployeeDestroyLink}"/>
                         </h:column>
                     </h:dataTable>
-                </h:panelGroup>
-                <br />
-                <h:commandLink action="#{employeeController.prepareCreate}" value="#{bundle.ListEmployeeCreateLink}"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.ListEmployeeIndexLink}"/>
-            </h:form>
+                </h:form>
+            </div>
         </ui:define>
     </ui:composition>
-
 </html>

@@ -9,12 +9,12 @@
         <ui:define name="title">
             <h:outputText value="#{bundle.EditEmployeeTitle}"></h:outputText>
         </ui:define>
-        <ui:define name="body">
+        <ui:define name="content">
             <h:panelGroup id="messagePanel" layout="block">
                 <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
             </h:panelGroup>
             <h:form>
-                <h:panelGrid columns="2">
+                <h:panelGrid columns="2" class="table table-hover">
                     <h:outputLabel value="#{bundle.EditEmployeeLabel_ssn}" for="ssn" />
                     <h:inputText id="ssn" value="#{employeeController.selected.ssn}" title="#{bundle.EditEmployeeTitle_ssn}" required="true" requiredMessage="#{bundle.EditEmployeeRequiredMessage_ssn}"/>
                     <h:outputLabel value="#{bundle.EditEmployeeLabel_lastName}" for="lastName" />

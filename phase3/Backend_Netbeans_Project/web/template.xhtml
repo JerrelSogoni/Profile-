@@ -7,16 +7,104 @@
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <title><ui:insert name="title">Default Title</ui:insert></title>
-        <h:outputStylesheet library="css" name="jsfcrud.css"/>
+        <meta charset="utf-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+        <title>Profile Plus</title>
+
+        <!-- External CSS -->
+        <link href="//cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.0/css/bootstrapValidator.min.css" rel="stylesheet" />
+
+        <!-- Google API Font -->
+        <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet"></link>
+        <link href="https://fonts.googleapis.com/css?family=Delius+Unicase" rel="stylesheet"></link>
+
+        <script src='http://cdnjs.cloudflare.com/ajax/libs/bootstrap-validator/0.4.5/js/bootstrapvalidator.min.js'></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"/>
+
+        <!-- Include all compiled plugins (below), or include individual files as needed -->
+        <h:outputScript library="js" name="bootstrap.min.js" />
+        <h:outputStylesheet library="css" name="bootstrap.css"/>
+        <h:outputStylesheet library="css" name="usermainpage.css"/>
     </h:head>
 
     <h:body>
-        <h1>
-            <ui:insert name="title">Default Title</ui:insert>
-        </h1>
-        <p>
-            <ui:insert name="body">Default Body</ui:insert>
-        </p>
+        <nav class="navbar navbar-default navbar-fixed-top my-nav ">
+            <div class="container">
+                <div class="navbar-brand">
+                    <button class="navbar-toggle" data-toggle="collapse" data-target="#navHeaderCollapse">
+                        <span class ="icon-bar"></span>
+                        <span class ="icon-bar"></span>
+                        <span class ="icon-bar"></span>
+                    </button>
+                    <h:graphicImage alt="Profile Plus" value="/resources/img/ProfilePlusLogo2.0.png" width="61" height="46"></h:graphicImage>                    
+                </div>
+                <div class="collapse navbar-collapse"
+                     id="navHeaderCollapse">
+                    <ul class="nav navbar-nav navbar-right" id="nav-bar-functions" >
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <h:graphicImage class="nav-link" value="/resources/img/littleprofPic.png"/>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <h:graphicImage class="nav-link" value="/resources/img/friendslistglyph.png"/>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <h:graphicImage class="nav-link" value="/resources/img/messagesglyph.png"/>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <h:graphicImage class="nav-link" value="/resources/img/grouppageglyp.png"/>
+                            </a>
+                        </li>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                <h:graphicImage value="/resources/img/cogwheelglyph.png"/>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Modify User Settings</a></li>
+                                <li class="divider"></li>
+                                <li>
+                                    <h:form>
+                                        <h:commandLink value="Logout" action="#{userPlusController.logout()}"/>
+                                    </h:form>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a  href="#" data-toggle="dropdown" class="dropdown-toggle">
+                                <h:graphicImage value="/resources/img/showlinesglyph.png"/>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Create a Page</a></li>
+                                <li class="divider"></li>
+                                <li><a href="#">Create a Group</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <div class="container containerCase">
+<!--            <div class="col-lg-1" id="col1">
+                <ui:insert name="left">Left Section</ui:insert>
+            </div>-->
+            <div class="col-lg-12" id="col2">
+                <ui:insert name="content">Main Content</ui:insert>
+            </div>
+<!--            <div class="col-lg-1" id="col3">
+                <ui:insert name="right">Right Section</ui:insert>
+            </div>-->
+        </div>
+        <nav class="navbar navbar-fixed-bottom footer">
+
+        </nav>
     </h:body>
 
 </html>

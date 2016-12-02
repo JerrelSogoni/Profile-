@@ -1,0 +1,80 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            Manage
+        </ui:define>
+        <ui:define name="content">
+            <div><h4>Welcome! User:#{userPlusController.user}</h4></div>
+            <div><h3>Manage employees</h3></div>
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2" class="table table-hover">
+                    <h:outputLabel value="Filter month" for="month"/>
+                    <h:inputText id="month" value="#{managerLevel.queryMonth}" title="Query Month" />
+                </h:panelGrid>
+                <div class="row force-to-bottom text-center">
+                    <div class="col-lg-12">
+                        <h:commandLink action="#{managerLevel.salesReport()}" class="btn btn-success" id="submit" value="#{bundle.CreateEmployeeSaveLink}" >
+                            <i class="glyphicon glyphicon-send" />
+                        </h:commandLink>
+                    </div>
+                </div>
+            </h:form>
+            <hr />
+            <div>
+                <h:form>
+                    <h:dataTable class="table table-hover" value="#{managerLevel.salesMonth}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListSalesTitle_transId}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.transId}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListSalesTitle_transDate}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.transDate}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListSalesTitle_transTime}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.transTime}">
+                                <f:convertDateTime pattern="HH:mm:ss" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListSalesTitle_numOfUnits}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.numOfUnits}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListSalesTitle_accountNum}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.accountNum}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListSalesTitle_adId}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.s_adId}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:form>
+            </div>
+        </ui:define>
+    </ui:composition>
+</html>
