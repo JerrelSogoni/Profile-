@@ -6,7 +6,7 @@
 
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <title><ui:insert name="title">Default Title</ui:insert></title>
+        <title><ui:insert name="title">Main Page</ui:insert></title>
         <h:outputStylesheet library="css" name="jsfcrud.css"/>
         <h:outputStylesheet library="css" name="bootstrap.css"/>
         <h:outputStylesheet library="css" name="usermainpage.css"/>
@@ -140,7 +140,6 @@
 
                         <h3>Manager Level Operations </h3>
                         <h:commandLink action="#{managerLevel.manage()}">- Add, Edit and Delete information for an employee</h:commandLink><br/>
-
                         <h:commandLink action="#{managerLevel.salesReport()}">- Obtain a sales report for a particular month</h:commandLink><br/>
                         <h:commandLink action="#{managerLevel.listAds()}">- Produce a comprehensive listing of all items being advertised on the site</h:commandLink><br/>
                         <h:commandLink action="#{managerLevel.listTrans()}">- Produce a list of transactions by item name or by user name</h:commandLink><br/>

@@ -39,7 +39,7 @@ public class ManagerLevel implements Serializable {
     }
 
     public String listAds() {
-        return null;
+        return "/ManagerLevel/AdsList";
     }
 
     public String listTrans() {
