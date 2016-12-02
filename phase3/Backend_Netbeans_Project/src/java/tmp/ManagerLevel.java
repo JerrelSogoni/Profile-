@@ -50,7 +50,7 @@ public class ManagerLevel implements Serializable {
     }
 
     public String listRev() {
-        return null;
+        return "/ManagerLevel/RevList";
     }
 
     public String vipCusRep() {
@@ -353,5 +353,143 @@ public class ManagerLevel implements Serializable {
      */
     public void setTransList(List<Trans> transList) {
         this.transList = transList;
+    }
+
+    private String queryItemType;
+
+    /**
+     * @return the queryItemType
+     */
+    public String getQueryItemType() {
+        return queryItemType;
+    }
+
+    /**
+     * @param queryItemType the queryItemType to set
+     */
+    public void setQueryItemType(String queryItemType) {
+        this.queryItemType = queryItemType;
+    }
+
+    private List<Rev> revList;
+
+    public class Rev {
+
+        private String identifier;
+        private Long rev;
+
+        /**
+         * @return the identifier
+         */
+        public String getIdentifier() {
+            return identifier;
+        }
+
+        /**
+         * @param identifier the identifier to set
+         */
+        public void setIdentifier(String identifier) {
+            this.identifier = identifier;
+        }
+
+        /**
+         * @return the rev
+         */
+        public Long getRev() {
+            return rev;
+        }
+
+        /**
+         * @param rev the rev to set
+         */
+        public void setRev(Long rev) {
+            this.rev = rev;
+        }
+
+    }
+
+    public List<Rev> getRevList() {
+        FacesContext fc = FacesContext.getCurrentInstance();
+        Map<String, String> params
+                = fc.getExternalContext().getRequestParameterMap();
+        String action = params.get("target");
+
+        JsfUtil.addErrorMessage("Action is " + action);
+
+        revList = new ArrayList<>();
+        Connection con = null;
+        PreparedStatement ps = null;
+
+        if (action == null) {
+            return revList;
+        } else {
+            try {
+                con = DataConnect.getConnection();
+                if (action.equals("itemname")) {
+                    ps = con.prepareStatement("SELECT\n"
+                            + "    A.Itemname AS identifier, SUM(S.NumOfUnits * A.UnitPrice) AS total\n"
+                            + "FROM\n"
+                            + "    AdData A, Buy B, Sales S\n"
+                            + "WHERE \n"
+                            + "	S.TransId = B.TransId AND\n"
+                            + "    S.AdId = A.AdId AND\n"
+                            + "    A.AdId = ( SELECT AdId FROM AdData A2 WHERE A2.ItemName = ?)\n"
+                            + "GROUP BY\n"
+                            + "	A.Itemname; ");
+                    ps.setString(1, queryItemName);
+                } else if (action.equals("itemtype")) {
+                    ps = con.prepareStatement("SELECT\n"
+                            + "    A.Type AS identifier, SUM(S.NumOfUnits * A.UnitPrice) AS total\n"
+                            + "FROM\n"
+                            + "    AdData A, Buy B, Sales S\n"
+                            + "WHERE \n"
+                            + "	S.TransId = B.TransId AND\n"
+                            + "    S.AdId = A.AdId AND\n"
+                            + "    A.AdId in ( SELECT AdId FROM AdData A2 WHERE A2.Type = ?)\n"
+                            + "GROUP BY\n"
+                            + "	A.Type;");
+                    ps.setString(1, queryItemType);
+                } else if (action.equals("name")) {
+                    ps = con.prepareStatement("SELECT\n"
+                            + "    CONCAT(U.LastName, ' ', U.FirstName) AS identifier, SUM(S.NumOfUnits * A.UnitPrice) AS total\n"
+                            + "FROM\n"
+                            + "    AdData A, Buy B, Sales S, UserPlus U\n"
+                            + "WHERE \n"
+                            + "	S.TransId = B.TransId AND\n"
+                            + "    S.AdId = A.AdId AND\n"
+                            + "    B.UserId in (SELECT UserId FROM UserPlus U WHERE U.LastName = ? AND U.FirstName = ?) AND\n"
+                            + "    B.UserId = U.UserId\n"
+                            + "GROUP BY\n"
+                            + "	B.UserId;");
+                    ps.setString(1, queryLastName);
+                    ps.setString(2, queryFirstName);
+                }
+
+                // print out the query statement
+                JsfUtil.addErrorMessage(ps.toString());
+
+                ResultSet rs = ps.executeQuery();
+
+                while (rs.next()) {
+                    //result found, means valid inputs
+                    Rev added = new Rev();
+
+                    added.setIdentifier(rs.getString("identifier"));
+                    added.setRev(rs.getLong("total"));
+
+                    revList.add(added);
+                }
+            } catch (SQLException ex) {
+
+                // print out error message
+                JsfUtil.addErrorMessage("Connection to database failed:" + ex.getMessage());
+                System.out.println("Login error -->" + ex.getMessage());
+                return null;
+
+            } finally {
+                DataConnect.close(con);
+            }
+        }
+        return revList;
     }
 }

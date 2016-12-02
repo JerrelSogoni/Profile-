@@ -1,0 +1,88 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            Manage
+        </ui:define>
+        <ui:define name="content">
+            <div><h4>Welcome! User:#{userPlusController.user}</h4></div>
+            <div><h3>Revenue List</h3></div>
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2" class="table table-hover">
+                    <h:outputLabel value="Filter ItemName" for="month"/>
+                    <h:inputText id="month" value="#{managerLevel.queryItemName}" title="Query Month" />
+                </h:panelGrid>
+                <div class="row force-to-bottom text-center">
+                    <div class="col-lg-12">
+                        <h:commandLink action="#{managerLevel.listRev()}" class="btn btn-success" id="submit" value="#{bundle.CreateEmployeeSaveLink}" >
+                            <f:param name="target" value="itemname" />
+                            <i class="glyphicon glyphicon-send" />
+                        </h:commandLink>
+                    </div>
+                </div>
+            </h:form>
+            <hr />
+            <h:form>
+                <h:panelGrid columns="2" class="table table-hover">
+                    <h:outputLabel value="Filter ItemType" for="month"/>
+                    <h:inputText id="month" value="#{managerLevel.queryItemType}" title="Query Month" />
+                </h:panelGrid>
+                <div class="row force-to-bottom text-center">
+                    <div class="col-lg-12">
+                        <h:commandLink action="#{managerLevel.listRev()}" class="btn btn-success" id="submit" value="#{bundle.CreateEmployeeSaveLink}" >
+                            <f:param name="target" value="itemtype" />
+                            <i class="glyphicon glyphicon-send" />
+                        </h:commandLink>
+                    </div>
+                </div>
+            </h:form>
+            <hr />
+            <h:form>
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:panelGrid columns="2" class="table table-hover">
+                    <h:outputLabel value="FirstName" for="firstName"/>
+                    <h:inputText id="firstName" value="#{managerLevel.queryFirstName}" title="Query FirstName" />
+                    <h:outputLabel value="LastName" for="lastName"/>
+                    <h:inputText id="lastName" value="#{managerLevel.queryLastName}" title="Query LastName" />
+                </h:panelGrid>
+                <div class="row force-to-bottom text-center">
+                    <div class="col-lg-12">
+                        <h:commandLink action="#{managerLevel.listRev()}" class="btn btn-success" id="submit" value="Filter" >
+                            <f:param name="target" value="name" />
+                            <i class="glyphicon glyphicon-send" />
+                        </h:commandLink>
+                    </div>
+                </div>
+            </h:form>
+            <br/>
+            <div>
+                <h:form>
+                    <h:dataTable class="table table-hover" value="#{managerLevel.revList}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListSalesTitle_transId}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.identifier}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListSalesTitle_transId}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.rev}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:form>
+            </div>
+        </ui:define>
+    </ui:composition>
+</html>
