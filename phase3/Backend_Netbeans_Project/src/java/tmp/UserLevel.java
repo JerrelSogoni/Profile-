@@ -18,6 +18,9 @@ public class UserLevel implements Serializable{
     public String Post() {
         return "/UserLevel/Post";
     }
+    public String Comment(){
+         return "/comment/CommentListPostViewer";
+    }
 
     public String SendMessage() {
         return "/UserLevel/SendMessage";

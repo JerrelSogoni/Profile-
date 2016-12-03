@@ -103,12 +103,13 @@ public class CommentController implements Serializable {
     }
 
     public String prepareEdit() {
+        editing = true;
         current = (Comment)getItems().getRowData();
         System.out.println(current.getTheAuthorName());
         if(!(current.getTheAuthorId() == SessionUtils.getUserId())){
             current = null;
         }
-        editing = true;
+        
         PaginationHelper ph = getPagination();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         return "";
@@ -213,13 +214,14 @@ public class CommentController implements Serializable {
     }
 
     public DataModel getItems() {
-        if(!editing || items == null){
+        if(items == null || !editing){
             HttpSession session = SessionUtils.getSession();
             Post postId = (Post) session.getAttribute("post");
             items = new ListDataModel(getCommentsFromPost(postId));
             JsfUtil.addErrorMessage("Logged in as " + postId);
             return items;
         }
+        
         else{
             return items;
         }
@@ -381,7 +383,8 @@ public class CommentController implements Serializable {
     }
 
     public void processModifyComment() {
-        if ( current != null ) {
+        editing = true;
+        if ( current != null && !current.getContent().isEmpty()  && editing ) {
             //Connect to server
             Connection con = null;
             // modify comment
@@ -424,7 +427,7 @@ public class CommentController implements Serializable {
     }
 
     public void processNewComment() {
-        if (!inputContent.isEmpty()) {
+        if (items != null && !inputContent.isEmpty()) {
             //Connect to server
             Connection con = null;
             // insert post
@@ -498,6 +501,8 @@ public class CommentController implements Serializable {
     }
 
     public String back() {
+        items = null;
+        current = null;
         return "/UserLevel/Post";
     }
 

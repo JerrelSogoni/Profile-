@@ -22,7 +22,7 @@ public class LoginDAO {
 
             if (rs.next()) {
                 HttpSession session = SessionUtils.getSession();
-                session.setAttribute("userId", rs.getInt("userId"));
+                session.setAttribute("userid", rs.getInt("userId"));
                 session.setAttribute("email", rs.getString("email"));
                 //result found, means valid inputs
                 return true;

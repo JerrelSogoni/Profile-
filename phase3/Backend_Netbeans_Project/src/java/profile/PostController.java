@@ -42,6 +42,8 @@ public class PostController implements Serializable {
     private int selectedItemIndex;
     private String postContent = "";
     private String postTo;
+    private boolean editing = false;
+    private boolean loading = false;
 
     public PostController() {
     }
@@ -113,6 +115,7 @@ public class PostController implements Serializable {
     }
 
     public String prepareEdit() {
+        editing = true;
         current = (Post) getItems().getRowData();
         if(!current.getAuthorEmail().equals(SessionUtils.getUserEmail())){
             current = null;
@@ -134,6 +137,7 @@ public class PostController implements Serializable {
     }
 
     public String destroy() {
+        editing = true;
         current = (Post) getItems().getRowData();
         PaginationHelper ph = getPagination();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
@@ -292,13 +296,17 @@ public class PostController implements Serializable {
     }
 
     public DataModel getItems() {
-        if (myItems == null) {
+         
+        if (myItems == null || (!editing && !loading)) {
             HttpSession session = SessionUtils.getSession();
             String username = (String) session.getAttribute("username");
             myItems = new ListDataModel(getPostsBy(username));
             JsfUtil.addErrorMessage("Logged in as " + username);
+            return myItems;
         }
-        return myItems;
+        else{
+            return myItems;
+        }
     }
 
     public List<Post> getPostsBy(String user) {
@@ -472,8 +480,8 @@ public class PostController implements Serializable {
 
     }
     public String modifyPost(){
-        
-        if(getSelected().getAuthorEmail().equals(SessionUtils.getUserEmail()) && current != null){
+        editing = true;
+        if(current != null && !current.getContent().isEmpty() && getSelected().getAuthorEmail().equals(SessionUtils.getUserEmail()) && editing){
 
             
             //Connect to server
@@ -503,6 +511,7 @@ public class PostController implements Serializable {
 
             } finally {
                 DataConnect.close(con);
+                editing = false;
             }
             
             
@@ -536,6 +545,7 @@ public class PostController implements Serializable {
 
             } finally {
                 DataConnect.close(con);
+                editing = false;
             }
             
         updateList();
@@ -550,9 +560,11 @@ public class PostController implements Serializable {
         
     }
     public String goToComment(){
+        loading = true;
         current = (Post) getItems().getRowData();
         HttpSession session = SessionUtils.getSession();
         session.setAttribute("post", current);
+        loading = false;
         return "/comment/CommentListPostViewer";
     }
         
