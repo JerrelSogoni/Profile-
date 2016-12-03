@@ -20,6 +20,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -66,6 +67,10 @@ public class Comment implements Serializable {
     @JoinColumn(name = "AuthorId", referencedColumnName = "UserId")
     @ManyToOne
     private UserPlus authorId;
+    private UserPlus authorName;
+    private Integer theAuthorId;
+    private String theAuthorName;
+    
 
     public Comment() {
     }
@@ -147,6 +152,48 @@ public class Comment implements Serializable {
     @Override
     public String toString() {
         return "profile.Comment[ commentId=" + commentId + " ]";
+    }
+
+    /**
+     * @return the authorName
+     */
+    public UserPlus getAuthorName() {
+        return authorName;
+    }
+
+    /**
+     * @param authorName the authorName to set
+     */
+    public void setAuthorName(UserPlus authorName) {
+        this.authorName = authorName;
+    }
+
+    /**
+     * @return the theAuthorId
+     */
+    public Integer getTheAuthorId() {
+        return theAuthorId;
+    }
+
+    /**
+     * @param theAuthorId the theAuthorId to set
+     */
+    public void setTheAuthorId(Integer theAuthorId) {
+        this.theAuthorId = theAuthorId;
+    }
+
+    /**
+     * @return the theAuthorName
+     */
+    public String getTheAuthorName() {
+        return theAuthorName;
+    }
+
+    /**
+     * @param theAuthorName the theAuthorName to set
+     */
+    public void setTheAuthorName(String theAuthorName) {
+        this.theAuthorName = theAuthorName;
     }
     
 }

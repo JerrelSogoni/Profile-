@@ -40,7 +40,7 @@ public class PostController implements Serializable {
     private profile.PostFacade ejbFacade;
     private PaginationHelper pagination;
     private int selectedItemIndex;
-    private String postContent;
+    private String postContent = "";
     private String postTo;
 
     public PostController() {
@@ -341,6 +341,8 @@ public class PostController implements Serializable {
                 Post added = new Post();
                 added.setContent(rs.getString("Content"));
                 added.setPostId(rs.getInt("postId"));
+                added.setTheauthorId(rs.getInt("AuthorId"));
+                added.setDateCreated(rs.getDate("DateCreated"));
 
                 ps2 = con.prepareStatement("SELECT \n"
                         + "    *\n"
@@ -413,7 +415,7 @@ public class PostController implements Serializable {
             ps.setTimestamp(2, java.sql.Timestamp.from(java.time.Instant.now()));
             ps.setString(3, content);
             ps.setInt(4, 0);
-            ps.setInt(5, Integer.valueOf(SessionUtils.getUserName()));
+            ps.setInt(5, SessionUtils.getUserId());
 
             // print out the query statement
             JsfUtil.addErrorMessage(ps.toString());
@@ -471,7 +473,7 @@ public class PostController implements Serializable {
     }
     public String modifyPost(){
         
-        if(getSelected().getAuthorEmail().equals(SessionUtils.getUserEmail())){
+        if(getSelected().getAuthorEmail().equals(SessionUtils.getUserEmail()) && current != null){
 
             
             //Connect to server
@@ -546,6 +548,12 @@ public class PostController implements Serializable {
         current = null;
         
         
+    }
+    public String goToComment(){
+        current = (Post) getItems().getRowData();
+        HttpSession session = SessionUtils.getSession();
+        session.setAttribute("post", current);
+        return "/comment/CommentListPostViewer";
     }
         
 

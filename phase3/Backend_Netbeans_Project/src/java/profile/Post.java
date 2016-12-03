@@ -70,6 +70,7 @@ public class Post implements Serializable {
     private UserPlus authorId;
     private String authorName;
     private String authorEmail;
+    private Integer theauthorId;
     
 
     public Post() {
@@ -188,5 +189,19 @@ public class Post implements Serializable {
      */
     public void setAuthorEmail(String authorEmail) {
         this.authorEmail = authorEmail;
+    }
+
+    /**
+     * @return the theauthorId
+     */
+    public Integer getTheauthorId() {
+        return theauthorId;
+    }
+
+    /**
+     * @param theauthorId the theauthorId to set
+     */
+    public void setTheauthorId(Integer theauthorId) {
+        this.theauthorId = theauthorId;
     }
 }
