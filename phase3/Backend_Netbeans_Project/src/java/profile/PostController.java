@@ -135,11 +135,11 @@ public class PostController implements Serializable {
 
     public String destroy() {
         current = (Post) getItems().getRowData();
+        PaginationHelper ph = getPagination();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
-        performDestroy();
-        recreatePagination();
-        recreateModel();
-        return "List";
+
+        return deletePost();
+ 
     }
 
     public String destroyAndView() {
@@ -157,8 +157,7 @@ public class PostController implements Serializable {
 
     private void performDestroy() {
         try {
-            getFacade().remove(current);
-            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("PostDeleted"));
+            
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
         }
@@ -386,6 +385,7 @@ public class PostController implements Serializable {
             
             createPostToServer(postTo, postContent);
             JsfUtil.addSuccessMessage("Post successful to email: " + postTo);
+            updateList();
             return "/UserLevel/Post";
         } else {
              postTo = "";
@@ -472,8 +472,7 @@ public class PostController implements Serializable {
     public String modifyPost(){
         
         if(getSelected().getAuthorEmail().equals(SessionUtils.getUserEmail())){
-            System.out.println(getSelected().getAuthorEmail());
-            System.out.println(SessionUtils.getUserEmail());
+
             
             //Connect to server
             Connection con = null;
@@ -506,8 +505,48 @@ public class PostController implements Serializable {
             
             
         }
+        updateList();
         return "/UserLevel/Post";
         
     }
+    public String deletePost(){
+           Connection con = null;
+            // modify post
+            PreparedStatement ps = null;
+
+
+            try {
+                con = DataConnect.getConnection();
+                // give proper variables and propert format
+                ps = con.prepareStatement("DELETE FROM Post WHERE PostId = ?");
+                ps.setInt(1, getSelected().getPostId());
+                ps.execute();
+                // print out the query statement
+                JsfUtil.addErrorMessage(ps.toString());
+                // Execute the Insert Query
+
+                ps.close();
+
+            } catch (SQLException ex) {
+
+                // print out error message
+                JsfUtil.addErrorMessage("Error occured while deleting" + ex.getMessage());
+
+            } finally {
+                DataConnect.close(con);
+            }
+            
+        updateList();
+        return "/UserLevel/Post";
+        
+        }
+    public void updateList(){
+        myItems = null;
+        setMyItems(getItems());
+        current = null;
+        
+        
+    }
+        
 
 }
