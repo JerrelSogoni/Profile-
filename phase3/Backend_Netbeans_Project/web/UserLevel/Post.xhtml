@@ -106,11 +106,12 @@
                         </h:column>
                         <h:column>
                             <h:form>
-                                <h:commandLink action="#{postController.prepareViewFromNewfeed()}" value="#{bundle.ListPostViewLink}"/>
+                                <h:commandLink class="btn btn-default" action="#{postController.prepareViewFromNewfeed()}" value="#{bundle.ListPostViewLink}"/>
                                 <h:outputText value=" "/>
-                                <h:commandLink action="#{postController.prepareEdit}" value="#{bundle.ListPostEditLink}"/>
+                                <h:commandLink class="btn btn-default" action="#{postController.prepareEdit}" value="#{bundle.ListPostEditLink}"/>
                                 <h:outputText value=" "/>
-                                <h:commandLink action="#{postController.destroy}"  value="#{bundle.ListPostDestroyLink}"/>
+                                <h:commandLink class="btn btn-default" action="#{postController.destroy}"  value="#{bundle.ListPostDestroyLink}"/>                  
+                                <h:commandLink class="btn btn-default" action="#{postController.goToComment()}"  value="#{bundle.Comment}"/>
                             </h:form>
                         </h:column>
                     </h:dataTable>
