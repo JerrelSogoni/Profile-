@@ -4,6 +4,10 @@ import profile.util.JsfUtil;
 import profile.util.PaginationHelper;
 
 import java.io.Serializable;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 import javax.ejb.EJB;
 import javax.inject.Named;
@@ -15,6 +19,8 @@ import javax.faces.convert.FacesConverter;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
+import profile.util.DataConnect;
+import profile.util.SessionUtils;
 
 @Named("groupPageController")
 @SessionScoped
@@ -26,6 +32,7 @@ public class GroupPageController implements Serializable {
     private profile.GroupPageFacade ejbFacade;
     private PaginationHelper pagination;
     private int selectedItemIndex;
+    private static String groupInputContent = "";
 
     public GroupPageController() {
     }
@@ -190,6 +197,20 @@ public class GroupPageController implements Serializable {
         return ejbFacade.find(id);
     }
 
+    /**
+     * @return the inputContent
+     */
+    public String getGroupInputContent() {
+        return groupInputContent;
+    }
+
+    /**
+     * @param inputContent the inputContent to set
+     */
+    public void setGroupInputContent(String groupInputContent) {
+        this.groupInputContent = groupInputContent;
+    }
+
     @FacesConverter(forClass = GroupPage.class)
     public static class GroupPageControllerConverter implements Converter {
 
@@ -228,6 +249,63 @@ public class GroupPageController implements Serializable {
             }
         }
 
+        public String createGroup() {
+            if (!groupInputContent.isEmpty()) {
+                Connection con = null;
+                // insert post
+                PreparedStatement ps = null;
+                //find page id where it is posted
+                PreparedStatement ps2 = null;
+                // insert to posted To
+                PreparedStatement ps3 = null;
+
+                try {
+                    con = DataConnect.getConnection();
+                    // give proper variables and propert format
+                    ps = con.prepareStatement("INSERT INTO Comment(CommentID, DateCreated, Content, AuthorID) VALUES (?, ?, ?, ?);", PreparedStatement.RETURN_GENERATED_KEYS);
+                    ps.setNull(1, java.sql.Types.INTEGER);
+                    ps.setTimestamp(2, java.sql.Timestamp.from(java.time.Instant.now()));
+                    ps.setInt(4, SessionUtils.getUserId());
+
+                    // print out the query statement
+                    JsfUtil.addErrorMessage(ps.toString());
+                    // Execute the Insert Query
+                    ps.executeUpdate();
+                    // Find the most recent postID due to autoincrement
+                    ResultSet keyResultSet = ps.getGeneratedKeys();
+                    // initalized newestpost 
+                    int newestpostID = -1;
+                    while (keyResultSet.next()) {
+                        // get newest post
+                        newestpostID = keyResultSet.getInt(1);
+                    }
+                    //close connection to save on resources
+                    ps.close();
+                    // prepare for getting page id 
+
+                    ps2 = con.prepareStatement("INSERT INTO CommentOn(CommentID, PostID) VALUES (?, ?);");
+                    ps2.setInt(1, newestpostID);
+                    ps2.setInt(2, SessionUtils.getPost().getPostId());
+
+                    ps2.executeUpdate();
+
+                    ps2.close();
+
+
+                } catch (SQLException ex) {
+
+                    // print out error message
+                    JsfUtil.addErrorMessage("Error occured while commenting" + ex.getMessage());
+
+                } finally {
+                    DataConnect.close(con);
+                }
+
+            }
+            return "/groupPage/CreateAGroup";
+
+        }
     }
+    
 
 }

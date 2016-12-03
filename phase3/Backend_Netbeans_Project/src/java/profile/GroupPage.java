@@ -45,6 +45,7 @@ public class GroupPage implements Serializable {
     @JoinColumn(name = "GroupId", referencedColumnName = "GroupId")
     @ManyToOne
     private GroupPlus groupId;
+    private Integer theGroupId;
 
     public GroupPage() {
     }
@@ -101,6 +102,20 @@ public class GroupPage implements Serializable {
     @Override
     public String toString() {
         return "profile.GroupPage[ pageId=" + pageId + " ]";
+    }
+
+    /**
+     * @return the theGroupId
+     */
+    public Integer getTheGroupId() {
+        return theGroupId;
+    }
+
+    /**
+     * @param theGroupId the theGroupId to set
+     */
+    public void setTheGroupId(Integer theGroupId) {
+        this.theGroupId = theGroupId;
     }
     
 }

@@ -299,7 +299,7 @@ public class PostController implements Serializable {
          
         if (myItems == null || (!editing && !loading)) {
             HttpSession session = SessionUtils.getSession();
-            String username = (String) session.getAttribute("username");
+            String username = String.valueOf(session.getAttribute("userid"));
             myItems = new ListDataModel(getPostsBy(username));
             JsfUtil.addErrorMessage("Logged in as " + username);
             return myItems;
