@@ -1,0 +1,147 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title><ui:insert name="title">Default Title</ui:insert></title>
+        <h:outputStylesheet library="css" name="jsfcrud.css"/>
+        <h:outputStylesheet library="css" name="bootstrap.css"/>
+        <h:outputStylesheet library="css" name="usermainpage.css"/>
+    </h:head>
+<h:body>
+<!-- Begin Nav Bar for Header -->
+<nav class="navbar navbar-default navbar-fixed-top my-nav ">
+            <div class="container">
+                <div class="navbar-brand">
+                    <button class="navbar-toggle" data-toggle="collapse" data-target="#navHeaderCollapse">
+                        <span class ="icon-bar"></span>
+                        <span class ="icon-bar"></span>
+                        <span class ="icon-bar"></span>
+                    </button>
+                    <h:graphicImage alt="Profile Plus" value="/resources/img/ProfilePlusLogo2.0.png" width="61" height="46"></h:graphicImage>                    
+                </div>
+                <div class="collapse navbar-collapse"
+                     id="navHeaderCollapse">
+                    <ul class="nav navbar-nav navbar-right" id="nav-bar-functions" >
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <h:graphicImage class="nav-link" value="/resources/img/littleprofPic.png"/>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <h:graphicImage class="nav-link" value="/resources/img/friendslistglyph.png"/>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <h:graphicImage class="nav-link" value="/resources/img/messagesglyph.png"/>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <h:graphicImage class="nav-link" value="/resources/img/grouppageglyp.png"/>
+                            </a>
+                        </li>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                <h:graphicImage value="/resources/img/cogwheelglyph.png"/>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Modify User Settings</a></li>
+                                <li class="divider"></li>
+                                <li>
+                                    <h:form>
+                                        <h:commandLink value="Logout" action="#{userPlusController.logout()}"/>
+                                    </h:form>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a  href="#" data-toggle="dropdown" class="dropdown-toggle">
+                                <h:graphicImage value="/resources/img/showlinesglyph.png"/>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Create a Page</a></li>
+                                <li class="divider"></li>
+                                <li><a href="#">Create a Group</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+<!-- End Nav Bar Header-->
+<!--begin divide into 3 columns -->
+
+<div class="container containerCase">
+
+    <!-- advertisement left-->
+    <a  href="#">
+    <div class="col-lg-1" id="col1">
+       
+    </div>
+    </a>   
+ 
+    <!-- news feed -->
+    <div class="col-lg-10" id="col2">
+        <div id="friendformat" >
+            <div class="col-sm-3">
+                <h4>Friends List:</h4>
+            </div>
+            <div class="col-sm-9">
+                <form class="form-inline pull-right">
+                    <div class="form-group">
+                        <label for="friendlist">Name:</label>
+                        <input type="text" class="form-control" id="friendlist" placeholder="friend name"/>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Add</button>
+                </form>
+            </div>
+        </div>
+        <hr/>
+            <h:dataTable class="table table-hover" value="#{UserPlus.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Select"/>
+                            </f:facet>
+                            <h:outputText value="#{item.content}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Profile"/>
+                            </f:facet>
+                            <h:outputText value="#{item.friendProfile}"/>
+                        </h:column>
+                    </h:dataTable>
+        <hr/>
+        <!-- bottom on news -->
+        <div class="row force-to-bottom text-center">
+            <h:link type="button" class="btn btn-danger" id="removeFriendButton" >Remove Friend<span class="glyphicon glyphicon-remove"></span></h:link>
+
+        </div>
+        </div>
+    <!-- advertisment right -->
+    <a  href="#">
+    <div class="col-lg-1" id="col3">
+    </div>
+    </a>
+</div>
+<!--end divide into 3 columns -->
+<!-- begin footer content -->
+<nav class="navbar navbar-fixed-bottom footer">
+
+</nav>
+<!-- end footer content -->
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src='http://cdnjs.cloudflare.com/ajax/libs/bootstrap-validator/0.4.5/js/bootstrapvalidator.min.js'></script>
+<h:outputScript library="js" name="bootstrap.min.js"/>
+</h:body>
+</html>

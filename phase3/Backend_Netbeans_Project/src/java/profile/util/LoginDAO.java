@@ -1,6 +1,7 @@
 package profile.util;
 
 import java.sql.*;
+import javax.servlet.http.HttpSession;
 
 public class LoginDAO {
 
@@ -20,6 +21,9 @@ public class LoginDAO {
             ResultSet rs = ps.executeQuery();
 
             if (rs.next()) {
+                HttpSession session = SessionUtils.getSession();
+                session.setAttribute("userId", rs.getInt("userId"));
+                session.setAttribute("email", rs.getString("email"));
                 //result found, means valid inputs
                 return true;
             }

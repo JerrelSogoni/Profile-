@@ -35,4 +35,13 @@ public class SessionUtils {
             return null;
         }
     }
+    public static String getUserEmail(){
+        HttpSession session = getSession();
+        if (session != null) {
+            return (String) session.getAttribute("email");
+        } else {
+            return null;
+        }
+        
+    }
 }

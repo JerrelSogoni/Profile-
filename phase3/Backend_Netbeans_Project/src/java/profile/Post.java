@@ -69,6 +69,8 @@ public class Post implements Serializable {
     @ManyToOne
     private UserPlus authorId;
     private String authorName;
+    private String authorEmail;
+    
 
     public Post() {
     }
@@ -173,4 +175,18 @@ public class Post implements Serializable {
     public String toString() {
         return "profile.Post[ postId=" + postId + " ]";
     }   
+
+    /**
+     * @return the authorEmail
+     */
+    public String getAuthorEmail() {
+        return authorEmail;
+    }
+
+    /**
+     * @param authorEmail the authorEmail to set
+     */
+    public void setAuthorEmail(String authorEmail) {
+        this.authorEmail = authorEmail;
+    }
 }
