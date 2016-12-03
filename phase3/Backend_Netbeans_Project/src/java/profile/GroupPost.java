@@ -5,16 +5,6 @@
  */
 package profile;
 
-/**
- *
- * @author Jerrel
- */
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
@@ -42,7 +32,7 @@ import javax.xml.bind.annotation.XmlTransient;
  * @author yunjoon_soh
  */
 @Entity
-@Table(name = "groupPost")
+@Table(name = "Post")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Post.findAll", query = "SELECT p FROM Post p")
@@ -172,11 +162,11 @@ public class GroupPost implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Post)) {
+        if (!(object instanceof GroupPost)) {
             return false;
         }
-        Post other = (Post) object;
-        if ((this.postId == null && other.getPostId() != null) || (this.postId != null && !this.postId.equals(other.getPostId()))) {
+        GroupPost other = (GroupPost) object;
+        if ((this.postId == null && other.postId != null) || (this.postId != null && !this.postId.equals(other.postId))) {
             return false;
         }
         return true;
