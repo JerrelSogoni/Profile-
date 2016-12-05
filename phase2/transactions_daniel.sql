@@ -248,13 +248,14 @@ GROUP BY
 	A.Type;
     
 SELECT
-    SUM(S.NumOfUnits * A.UnitPrice) AS total
+    CONCAT(U.LastName, ' ', U.FirstName) AS identifier, SUM(S.NumOfUnits * A.UnitPrice) AS total
 FROM
-    AdData A, Buy B, Sales S
+    AdData A, Buy B, Sales S, UserPlus U
 WHERE 
 	S.TransId = B.TransId AND
     S.AdId = A.AdId AND
-    B.UserId in (SELECT UserId FROM UserPlus U WHERE U.LastName = 'Fodor' AND U.FirstName = 'Paul')
+    B.UserId in (SELECT UserId FROM UserPlus U WHERE U.LastName = 'Fodor' AND U.FirstName = 'Paul') AND
+    B.UserId = U.UserId
 GROUP BY
 	B.UserId;
 
