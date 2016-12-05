@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            Manage
+        </ui:define>
+        <ui:define name="content">
+            <div><h4>Welcome! User:#{userPlusController.user}</h4></div>
+            <div><h3>Item List for company: #{managerLevel.queryCompany}</h3></div>
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2" class="table table-hover">
+                    <h:outputLabel value="Filter ItemName" for="month"/>
+                    <h:inputText id="month" value="#{managerLevel.queryCompany}" title="Query Month" />
+                </h:panelGrid>
+                <div class="row force-to-bottom text-center">
+                    <div class="col-lg-12">
+                        <h:commandLink action="#{managerLevel.listItemByComp()}" class="btn btn-success" id="submit" value="#{bundle.CreateEmployeeSaveLink}" >
+                            <f:param name="target" value="itemname" />
+                            <i class="glyphicon glyphicon-send" />
+                        </h:commandLink>
+                    </div>
+                </div>
+            </h:form>
+            <hr />
+            <div>
+                <h:form>
+                    <h:dataTable class="table table-hover" value="#{managerLevel.itemByCompList}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Company"/>
+                            </f:facet>
+                            <h:outputText value="#{item.company}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Item Name"/>
+                            </f:facet>
+                            <h:outputText value="#{item.itemName}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:form>
+            </div>
+        </ui:define>
+    </ui:composition>
+</html>

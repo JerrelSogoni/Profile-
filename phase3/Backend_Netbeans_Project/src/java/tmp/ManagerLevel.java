@@ -70,7 +70,7 @@ public class ManagerLevel implements Serializable {
     }
 
     public String listItemByComp() {
-        return null;
+        return "/ManagerLevel/ListItemByCompany";
     }
 
     /**
@@ -777,7 +777,7 @@ public class ManagerLevel implements Serializable {
                 + "            AND U.UserId = B.UserId\n"
                 + "            AND A.ItemName = ?) T\n"
                 + "GROUP BY T.who;";
-        
+
         try {
             con = DataConnect.getConnection();
             PreparedStatement ps = con.prepareStatement(s);
@@ -809,4 +809,76 @@ public class ManagerLevel implements Serializable {
         this.buyerList = buyerList;
     }
 
+    private String queryCompany;
+    private List<ItemByComp> itemByCompList;
+
+    public class ItemByComp {
+
+        private String company, itemName;
+
+        public String getCompany() {
+            return company;
+        }
+
+        public void setCompany(String company) {
+            this.company = company;
+        }
+
+        public String getItemName() {
+            return itemName;
+        }
+
+        public void setItemName(String itemName) {
+            this.itemName = itemName;
+        }
+    }
+
+    public String getQueryCompany() {
+        return queryCompany;
+    }
+
+    public void setQueryCompany(String queryCompany) {
+        this.queryCompany = queryCompany;
+    }
+
+    public List<ItemByComp> getItemByCompList() {
+        itemByCompList = new ArrayList<>();
+        Connection con = null;
+        ResultSet rs;
+
+        String s = "SELECT A.ItemName AS itemName, A.Company AS company\n"
+                + "FROM AdData A\n"
+                + "WHERE A.Company = ?;";
+
+        try {
+            con = DataConnect.getConnection();
+            PreparedStatement ps = con.prepareStatement(s);
+            ps.setString(1, queryCompany);
+
+            // print out the query statement
+            JsfUtil.addErrorMessage(ps.toString());
+
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                ItemByComp obj = new ItemByComp();
+
+                obj.company = rs.getString("company");
+                obj.itemName = rs.getString("itemName");
+
+                itemByCompList.add(obj);
+            }
+        } catch (SQLException ex) {
+            JsfUtil.addErrorMessage("Connection to database failed:" + ex.getMessage());
+            System.out.println("Login error -->" + ex.getMessage());
+            return null;
+        } finally {
+            DataConnect.close(con);
+        }
+
+        return itemByCompList;
+    }
+
+    public void setItemByCompList(List<ItemByComp> itemByCompList) {
+        this.itemByCompList = itemByCompList;
+    }
 }
