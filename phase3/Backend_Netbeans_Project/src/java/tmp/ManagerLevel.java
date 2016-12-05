@@ -54,15 +54,15 @@ public class ManagerLevel implements Serializable {
     }
 
     public String vipCustRep() {
-        return "/ManagerLevel/VipCustRep";
+        return "/CustRepLevel/VipCustRep";
     }
 
-    public String vipCus() {
-        return null;
+    public String vipCust() {
+        return "/CustRepLevel/VipCust";
     }
 
     public String vipItem() {
-        return null;
+        return "/ManagerLevel/VipItem";
     }
 
     public String listBuyer() {
@@ -589,4 +589,77 @@ public class ManagerLevel implements Serializable {
     public void setVipCustRepList(List<VipCustRep> vipCustRepList) {
         this.vipCustRepList = vipCustRepList;
     }
+
+    private List<VipCust> vipCustList;
+
+    public class VipCust {
+
+        private String custName, total;
+
+        public String getCustName() {
+            return custName;
+        }
+
+        public void setCustName(String custName) {
+            this.custName = custName;
+        }
+
+        public String getTotal() {
+            return total;
+        }
+
+        public void setTotal(String total) {
+            this.total = total;
+        }
+    }
+
+    public List<VipCust> getVipCustList() {
+        vipCustList = new ArrayList<>();
+        Connection con = null;
+        ResultSet rs;
+
+        String s = "SELECT \n"
+                + "    T.who AS custName, SUM(bought) AS total\n"
+                + "FROM\n"
+                + "    (SELECT \n"
+                + "        B.UserId AS who, (A.UnitPrice * S.NumOfUnits) AS bought\n"
+                + "    FROM\n"
+                + "        AdData A, Sales S, Buy B\n"
+                + "    WHERE\n"
+                + "        A.AdId = S.AdId\n"
+                + "            AND B.TransId = S.TransId) T\n"
+                + "GROUP BY T.who\n"
+                + "ORDER BY total DESC;";
+
+        try {
+            con = DataConnect.getConnection();
+            PreparedStatement ps = con.prepareStatement(s);
+
+            // print out the query statement
+            JsfUtil.addErrorMessage(s);
+
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                VipCust vcr = new VipCust();
+
+                vcr.custName = rs.getString("custName");
+                vcr.total = rs.getString("total");
+
+                vipCustList.add(vcr);
+            }
+        } catch (SQLException ex) {
+            JsfUtil.addErrorMessage("Connection to database failed:" + ex.getMessage());
+            System.out.println("Login error -->" + ex.getMessage());
+            return null;
+        } finally {
+            DataConnect.close(con);
+        }
+
+        return vipCustList;
+    }
+
+    public void setVipCustList(List<VipCust> vipCustList) {
+        this.vipCustList = vipCustList;
+    }
+
 }
