@@ -53,8 +53,8 @@ public class ManagerLevel implements Serializable {
         return "/ManagerLevel/RevList";
     }
 
-    public String vipCusRep() {
-        return null;
+    public String vipCustRep() {
+        return "/ManagerLevel/VipCustRep";
     }
 
     public String vipCus() {
@@ -416,7 +416,7 @@ public class ManagerLevel implements Serializable {
 
         JsfUtil.addErrorMessage("Action is " + action);
 
-        revList = new ArrayList<>();
+        setRevList(new ArrayList<>());
         Connection con = null;
         PreparedStatement ps = null;
 
@@ -491,5 +491,102 @@ public class ManagerLevel implements Serializable {
             }
         }
         return revList;
+    }
+
+    private List<VipCustRep> vipCustRepList;
+
+    public class VipCustRep {
+
+        private String total, empName;
+
+        /**
+         * @return the total
+         */
+        public String getTotal() {
+            return total;
+        }
+
+        /**
+         * @param total the total to set
+         */
+        public void setTotal(String total) {
+            this.total = total;
+        }
+
+        /**
+         * @return the empName
+         */
+        public String getEmpName() {
+            return empName;
+        }
+
+        /**
+         * @param empName the empName to set
+         */
+        public void setEmpName(String empName) {
+            this.empName = empName;
+        }
+    }
+
+    /**
+     * @param revList the revList to set
+     */
+    public void setRevList(List<Rev> revList) {
+        this.revList = revList;
+    }
+
+    /**
+     * @return the vipCustRepList
+     */
+    public List<VipCustRep> getVipCustRepList() {
+        vipCustRepList = new ArrayList<>();
+        Connection con = null;
+        ResultSet rs = null;
+
+        String s = "SELECT \n"
+                + "    T.who AS empName, SUM(sales) AS total\n"
+                + "FROM\n"
+                + "    (SELECT \n"
+                + "        B.EmpId AS who, (A.UnitPrice * S.NumOfUnits) AS sales\n"
+                + "    FROM\n"
+                + "        AdData A, Sales S, Buy B\n"
+                + "    WHERE\n"
+                + "        A.AdId = S.AdId\n"
+                + "            AND B.TransId = S.TransId) T\n"
+                + "GROUP BY T.who\n"
+                + "ORDER BY total DESC;";
+
+        try {
+            con = DataConnect.getConnection();
+            PreparedStatement ps = con.prepareStatement(s);
+
+            // print out the query statement
+            JsfUtil.addErrorMessage(s);
+
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                VipCustRep vcr = new VipCustRep();
+
+                vcr.empName = rs.getString("empName");
+                vcr.total = rs.getString("total");
+
+                vipCustRepList.add(vcr);
+            }
+        } catch (SQLException ex) {
+            JsfUtil.addErrorMessage("Connection to database failed:" + ex.getMessage());
+            System.out.println("Login error -->" + ex.getMessage());
+            return null;
+        } finally {
+            DataConnect.close(con);
+        }
+
+        return vipCustRepList;
+    }
+
+    /**
+     * @param vipCustRepList the vipCustRepList to set
+     */
+    public void setVipCustRepList(List<VipCustRep> vipCustRepList) {
+        this.vipCustRepList = vipCustRepList;
     }
 }
