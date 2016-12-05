@@ -106,21 +106,22 @@
                         </h:column>
                         <h:column>
                             <h:form>
-                                <h:commandLink action="#{postController.prepareViewFromNewfeed()}" value="#{bundle.ListPostViewLink}"/>
+                                <h:commandLink class="btn btn-default" action="#{postController.prepareViewFromNewfeed()}" value="#{bundle.ListPostViewLink}"/>
                                 <h:outputText value=" "/>
-                                <h:commandLink action="#{postController.prepareEdit}" value="#{bundle.ListPostEditLink}"/>
+                                <h:commandLink class="btn btn-default" action="#{postController.prepareEdit}" value="#{bundle.ListPostEditLink}"/>
                                 <h:outputText value=" "/>
-                                <h:commandLink action="#{postController.destroy}" value="#{bundle.ListPostDestroyLink}"/>
+                                <h:commandLink class="btn btn-default" action="#{postController.destroy}"  value="#{bundle.ListPostDestroyLink}"/>                  
+                                <h:commandLink class="btn btn-default" action="#{postController.goToComment()}"  value="#{bundle.Comment}"/>
                             </h:form>
                         </h:column>
                     </h:dataTable>
                     <br />
                     <div class="col-sm-3">
-                <h4>Make a Post on #{User.firstname} #{User.lastname}'s Page</h4>
+                <h4>Make a Post Page</h4>
             </div>
         <hr/>
         <div >
-            <h:form class="form-horizontal" role="form"  id="contact_form">
+            <h:form class="form-horizontal" >
                 <div class="form-group" >
                     <h:inputTextarea  a:placeholder="Type your post" class="form-control glyphicon-resize-vertical"  value="#{postController.postContent}" />
                 </div>
@@ -136,10 +137,10 @@
                 <div class="row force-to-bottom text-center">
                     <ul class="list-inline">
                         <li>
-                            <h:link type="button"  class="btn btn-default" id="back" >Cancel</h:link>
+                            <h:commandButton class="btn btn-default" id="back" value="Cancel" action="#{postController.resetInputBoxes()}" />
                         </li>
                         <li>
-                            <h:commandButton type="submit"  class="btn btn-success" id="submit" value='Submit' action="#{postController.createPost()}"  />
+                            <h:commandButton class="btn btn-success" id="submit" value='Submit' action="#{postController.createPost()}"  />
                         </li>
 
                     </ul>
@@ -147,6 +148,30 @@
             </h:form>
 
             </div>
+        <hr />
+        <div><h4>Modify a Post</h4></div>
+        <div >
+            
+            <h:form class="form-horizontal" >
+                <div class="form-group" >
+                    <h:inputTextarea  a:placeholder="Type your post" class="form-control glyphicon-resize-vertical"  value="#{postController.selected.content}" />
+                </div>
+               
+                <div class="row force-to-bottom text-center">
+                    <ul class="list-inline">
+                        <li>
+                            <h:link type="button"  class="btn btn-default" id="back" >Cancel</h:link>
+                        </li>
+                        <li>
+                            <h:commandButton class="btn btn-success" id="submit" value='Submit' action="#{postController.modifyPost()}"  />
+                        </li>
+
+                    </ul>
+                </div>
+            </h:form>
+
+            </div>
+        
                 </div>
 
                     <!-- bottom on news -->

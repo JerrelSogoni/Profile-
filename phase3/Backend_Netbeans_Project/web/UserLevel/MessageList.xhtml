@@ -105,6 +105,7 @@
 
                 </div>
                 <hr/>
+                <div>
                 <h:form>
                     <h:panelGroup id="messagePanel" layout="block">
                         <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
@@ -115,12 +116,6 @@
                         <h:commandLink action="#{messageController.previous}" value="#{bundle.Previous} #{messageController.pagination.pageSize}" rendered="#{messageController.pagination.hasPreviousPage}"/>&nbsp;
                         <h:commandLink action="#{messageController.next}" value="#{bundle.Next} #{messageController.pagination.pageSize}" rendered="#{messageController.pagination.hasNextPage}"/>&nbsp;
                         <h:dataTable value="#{messageController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
-                            <h:column>
-                                <f:facet name="header">
-                                    <h:outputText value="#{bundle.ListMessageTitle_messageId}"/>
-                                </f:facet>
-                                <h:outputText value="#{item.messageId}"/>
-                            </h:column>
                             <h:column>
                                 <f:facet name="header">
                                     <h:outputText value="#{bundle.ListMessageTitle_dateSent}"/>
@@ -145,7 +140,7 @@
                                 <f:facet name="header">
                                     <h:outputText value="#{bundle.ListMessageTitle_receiverId}"/>
                                 </f:facet>
-                                <h:outputText value="#{item.receiverId}"/>
+                                <h:outputText value="#{item.receiverName}"/>
                             </h:column>
                             <h:column>
                                 <f:facet name="header">
@@ -171,10 +166,45 @@
                     <br />
                     <h:link outcome="/index" value="#{bundle.ListMessageIndexLink}"/>
                 </h:form>
+                </div>
                 <hr/>
                 <!-- bottom on news -->
+                <div class="text-center">
+                     <h:form class="form-horizontal" role="form" id="contact_form">
+                                         <div class="form-group">
+                    <label class="col-md-2 control-label pull-left">Message To:  </label>
+                    <div class="col-md-10 inputGroupContainer">
+                        <div class="input-group">
+                            <h:inputText class="form-control" a:placeholder="Enter Subject" value="#{Message.email}" />
+                        </div>
+                    </div>
+                    <hr />
+                <div class="form-group">
+                    <label class="col-md-2 control-label pull-left">Subject: </label>
+                    <div class="col-md-10 inputGroupContainer">
+                        <div class="input-group">
+                            <h:inputText class="form-control" a:placeholder="Enter Subject" value="#{Message.subject}" />
+                        </div>
+                    </div>
+                </div>
+                <hr />
+                <div class="form-group" >
+                    <h:inputTextarea  a:placeholder="Type your message" class="form-control glyphicon-resize-vertical"  id="messagecontent" value="#{Message.content}" />
+                    
+                </div>
                 <div class="row force-to-bottom text-center">
-                    <h:link type="button" class="btn btn-danger" id="removeFriendButton" >Remove Friend<span class="glyphicon glyphicon-remove"></span></h:link>
+                    <ul class="list-inline">
+                        <li>
+                            <h:link type="button"  class="btn btn-default" id="back" >Cancel</h:link>
+                        </li>
+                        <li>
+                            <!-- add method to parse information-->
+                              <h:commandButton value="submit" class="btn btn-def btn-block" />
+                        </li>
+                    </ul>
+                </div>
+
+            </h:form>
 
                 </div>
             </div>
@@ -183,6 +213,7 @@
                 <div class="col-lg-1" id="col3">
                 </div>
             </a>
+            
         </div>
         <!--end divide into 3 columns -->
         <!-- begin footer content -->

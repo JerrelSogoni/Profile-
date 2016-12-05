@@ -9,9 +9,17 @@ import javax.inject.Named;
 public class UserLevel implements Serializable{
 
     private String content;
-    
+    public String mainPage(){
+        return "/personalPage/MainPage";
+    }
+    public String makeAPost(){
+        return "/UserLevel/makeAPost";
+    }
     public String Post() {
         return "/UserLevel/Post";
+    }
+    public String Comment(){
+         return "/comment/CommentListPostViewer";
     }
 
     public String SendMessage() {

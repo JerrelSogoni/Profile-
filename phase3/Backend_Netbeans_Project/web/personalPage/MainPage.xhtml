@@ -66,9 +66,11 @@
                                 <h:graphicImage value="/resources/img/showlinesglyph.png"/>
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a href="#">Create a Page</a></li>
+                                <h:form>
+                                <li><h:commandLink action="#{userLevel.makeAPost()}">Create a Post</h:commandLink></li>
                                 <li class="divider"></li>
                                 <li><a href="#">Create a Group</a></li>
+                                </h:form>
                             </ul>
                         </li>
                     </ul>

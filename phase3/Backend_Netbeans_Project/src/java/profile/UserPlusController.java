@@ -260,7 +260,6 @@ public class UserPlusController implements Serializable {
         if (valid) {
             HttpSession session = SessionUtils.getSession();
             session.setAttribute("username", user);
-            session.setAttribute("userId", valid);
             JsfUtil.addSuccessMessage("User login successful: " + user);
             return "/personalPage/MainPage";
         } else {

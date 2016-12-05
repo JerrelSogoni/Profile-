@@ -17,6 +17,7 @@ import java.util.ResourceBundle;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
@@ -39,8 +40,10 @@ public class PostController implements Serializable {
     private profile.PostFacade ejbFacade;
     private PaginationHelper pagination;
     private int selectedItemIndex;
-    private String postContent;
+    private String postContent = "";
     private String postTo;
+    private boolean editing = false;
+    private boolean loading = false;
 
     public PostController() {
     }
@@ -86,7 +89,7 @@ public class PostController implements Serializable {
         selectedItemIndex = ph.getPageFirstItem() + getItems().getRowIndex();
         return "/post/PostOwner";
     }
-    
+
     public String prepareViewFromNewfeed() {
         current = (Post) getItems().getRowData();
         PaginationHelper ph = getPagination();
@@ -112,7 +115,12 @@ public class PostController implements Serializable {
     }
 
     public String prepareEdit() {
+        editing = true;
         current = (Post) getItems().getRowData();
+        if(!current.getAuthorEmail().equals(SessionUtils.getUserEmail())){
+            current = null;
+        }
+        PaginationHelper ph = getPagination();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         return "Edit";
     }
@@ -129,12 +137,13 @@ public class PostController implements Serializable {
     }
 
     public String destroy() {
+        editing = true;
         current = (Post) getItems().getRowData();
+        PaginationHelper ph = getPagination();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
-        performDestroy();
-        recreatePagination();
-        recreateModel();
-        return "List";
+
+        return deletePost();
+ 
     }
 
     public String destroyAndView() {
@@ -152,8 +161,7 @@ public class PostController implements Serializable {
 
     private void performDestroy() {
         try {
-            getFacade().remove(current);
-            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("PostDeleted"));
+            
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
         }
@@ -288,13 +296,17 @@ public class PostController implements Serializable {
     }
 
     public DataModel getItems() {
-        if (myItems == null) {
+         
+        if (myItems == null || (!editing && !loading)) {
             HttpSession session = SessionUtils.getSession();
-            String username = (String) session.getAttribute("username");
+            String username = String.valueOf(session.getAttribute("userid"));
             myItems = new ListDataModel(getPostsBy(username));
             JsfUtil.addErrorMessage("Logged in as " + username);
+            return myItems;
         }
-        return myItems;
+        else{
+            return myItems;
+        }
     }
 
     public List<Post> getPostsBy(String user) {
@@ -325,46 +337,50 @@ public class PostController implements Serializable {
                     + "                        FROM\n"
                     + "                            UserPlus\n"
                     + "                        WHERE\n"
-                    + "                            UserId = ?)));");
-            
-           
+                    + "                            UserId = ?))) ;");
+
             // print out the query statement
             ps.setString(1, user);
-         //   JsfUtil.addErrorMessage(ps.toString());
+            //   JsfUtil.addErrorMessage(ps.toString());
             ResultSet rs = ps.executeQuery();
-            
-            
 
             while (rs.next()) {
                 //result found, means valid inputs
                 Post added = new Post();
                 added.setContent(rs.getString("Content"));
-                
+                added.setPostId(rs.getInt("postId"));
+                added.setTheauthorId(rs.getInt("AuthorId"));
+                added.setDateCreated(rs.getDate("DateCreated"));
+
                 ps2 = con.prepareStatement("SELECT \n"
-                    + "    *\n"
-                    + "FROM\n"
-                    + "    UserPlus;\n");
-                
-                           // print out the query statement
-             //   JsfUtil.addErrorMessage(ps2.toString());
+                        + "    *\n"
+                        + "FROM\n"
+                        + "    UserPlus;\n");
+
+                // print out the query statement
+                //   JsfUtil.addErrorMessage(ps2.toString());
                 ResultSet rs2 = ps2.executeQuery();
-        
-                while(rs2.next()){
-                    if(rs.getString("AuthorId").equals(rs2.getString("UserId"))){
+
+                while (rs2.next()) {
+                    if (rs.getString("AuthorId").equals(rs2.getString("UserId"))) {
                         added.setAuthorName(rs2.getString("firstName") + " " + rs2.getString("lastName"));
+                        added.setAuthorEmail(rs2.getString("email"));
                         break;
                     }
-                  //  JsfUtil.addErrorMessage(ps2.toString());
+                    //  JsfUtil.addErrorMessage(ps2.toString());
                 }
                 
+
                 toRet.add(added);
-               // JsfUtil.addErrorMessage("Added to return list " + rs.getString("Content") + "authorName: " + added.getAuthorName());
+ 
+               
+                // JsfUtil.addErrorMessage("Added to return list " + rs.getString("Content") + "authorName: " + added.getAuthorName());
             }
         } catch (SQLException ex) {
 
             // print out error message
             JsfUtil.addErrorMessage("Connection to database failed:" + ex.getMessage());
-            System.out.println("Login error -->" + ex.getMessage());
+           
             return null;
 
         } finally {
@@ -372,27 +388,32 @@ public class PostController implements Serializable {
         }
         return toRet;
     }
-    
-    public String createPost(){
+
+    public String createPost() {
         boolean valid = PostValidator.validate(postTo);
-        if(valid){
+        if (valid && !postContent.isEmpty()) {
+            
             createPostToServer(postTo, postContent);
+            JsfUtil.addSuccessMessage("Post successful to email: " + postTo);
+            updateList();
             return "/UserLevel/Post";
-        }
-        else{
-            JsfUtil.addErrorMessage("Not a valid Email");
+        } else {
+             postTo = "";
+             JsfUtil.addErrorMessage("Invalid Email Address OR No input");
             return "/UserLevel/Post";
+            
         }
     }
-    public void createPostToServer(String email, String content){
+    
+    public void createPostToServer(String email, String content) {
         //Connect to server
         Connection con = null;
         // insert post
         PreparedStatement ps = null;
         //find page id where it is posted
-         PreparedStatement ps2 = null;
-         // insert to posted To
-          PreparedStatement ps3 = null;
+        PreparedStatement ps2 = null;
+        // insert to posted To
+        PreparedStatement ps3 = null;
 
         try {
             con = DataConnect.getConnection();
@@ -402,17 +423,17 @@ public class PostController implements Serializable {
             ps.setTimestamp(2, java.sql.Timestamp.from(java.time.Instant.now()));
             ps.setString(3, content);
             ps.setInt(4, 0);
-            ps.setInt(5, Integer.valueOf(SessionUtils.getUserName()));
-            
+            ps.setInt(5, SessionUtils.getUserId());
+
             // print out the query statement
             JsfUtil.addErrorMessage(ps.toString());
             // Execute the Insert Query
             ps.executeUpdate();
-           // Find the most recent postID due to autoincrement
-               ResultSet keyResultSet = ps.getGeneratedKeys();
+            // Find the most recent postID due to autoincrement
+            ResultSet keyResultSet = ps.getGeneratedKeys();
             // initalized newestpost 
             int newestpostID = -1;
-            while(keyResultSet.next()){
+            while (keyResultSet.next()) {
                 // get newest post
                 newestpostID = keyResultSet.getInt(1);
             }
@@ -422,41 +443,130 @@ public class PostController implements Serializable {
             ps3 = con.prepareStatement("SELECT * FROM PersonalPage WHERE OwnerId = ?");
             // invoke method to find postID
             int ownerId = PostValidator.getPostToID(email);
-      
+
             ps3.setInt(1, ownerId);
             ResultSet ownerID = ps3.executeQuery();
             int owner = -1;
-            while(ownerID.next()){
+            while (ownerID.next()) {
                 owner = ownerID.getInt("PageId");
             }
-         
-          
-            ps2 = con.prepareStatement("INSERT INTO PostedTo(PostID, PageID) values (?, ?);" );
+
+            ps2 = con.prepareStatement("INSERT INTO PostedTo(PostID, PageID) values (?, ?);");
             ps2.setInt(1, newestpostID);
             ps2.setInt(2, owner);
-            
+
             ps2.executeUpdate();
-           
+   
 
             ps3.close();
             ps2.close();
             resetInputBoxes();
-            
+            JsfUtil.addSuccessMessage("Post successful to email: " + email);
+
         } catch (SQLException ex) {
-            
+
             // print out error message
             JsfUtil.addErrorMessage("Error occured while posting" + ex.getMessage());
-         
+
         } finally {
             DataConnect.close(con);
         }
-      
+
     }
-    public void resetInputBoxes(){
-             postContent = "";
-            postTo = "";
+
+    public void resetInputBoxes() {
+        postContent = "";
+        postTo = "";
+
+    }
+    public String modifyPost(){
+        editing = true;
+        if(current != null && !current.getContent().isEmpty() && getSelected().getAuthorEmail().equals(SessionUtils.getUserEmail()) && editing){
+
+            
+            //Connect to server
+            Connection con = null;
+            // modify post
+            PreparedStatement ps = null;
+
+
+            try {
+                con = DataConnect.getConnection();
+                // give proper variables and propert format
+                ps = con.prepareStatement("UPDATE Post SET DateCreated = ?, Content = ? WHERE PostId = ?;");
+                ps.setTimestamp(1, java.sql.Timestamp.from(java.time.Instant.now()));
+                ps.setString(2, getSelected().getContent());
+                ps.setInt(3, getSelected().getPostId());
+
+                // print out the query statement
+                JsfUtil.addErrorMessage(ps.toString());
+                // Execute the Insert Query
+                ps.executeUpdate();
+                ps.close();
+
+            } catch (SQLException ex) {
+
+                // print out error message
+                JsfUtil.addErrorMessage("Error occured while posting" + ex.getMessage());
+
+            } finally {
+                DataConnect.close(con);
+                editing = false;
+            }
+            
+            
+        }
+        updateList();
+        return "/UserLevel/Post";
         
     }
-    
+    public String deletePost(){
+           Connection con = null;
+            // modify post
+            PreparedStatement ps = null;
+
+
+            try {
+                con = DataConnect.getConnection();
+                // give proper variables and propert format
+                ps = con.prepareStatement("DELETE FROM Post WHERE PostId = ?");
+                ps.setInt(1, getSelected().getPostId());
+                ps.execute();
+                // print out the query statement
+                JsfUtil.addErrorMessage(ps.toString());
+                // Execute the Insert Query
+
+                ps.close();
+
+            } catch (SQLException ex) {
+
+                // print out error message
+                JsfUtil.addErrorMessage("Error occured while deleting" + ex.getMessage());
+
+            } finally {
+                DataConnect.close(con);
+                editing = false;
+            }
+            
+        updateList();
+        return "/UserLevel/Post";
+        
+        }
+    public void updateList(){
+        myItems = null;
+        setMyItems(getItems());
+        current = null;
+        
+        
+    }
+    public String goToComment(){
+        loading = true;
+        current = (Post) getItems().getRowData();
+        HttpSession session = SessionUtils.getSession();
+        session.setAttribute("post", current);
+        loading = false;
+        return "/comment/CommentListPostViewer";
+    }
+        
 
 }

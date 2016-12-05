@@ -40,7 +40,7 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Post.findByDateCreated", query = "SELECT p FROM Post p WHERE p.dateCreated = :dateCreated")
     , @NamedQuery(name = "Post.findByContent", query = "SELECT p FROM Post p WHERE p.content = :content")
     , @NamedQuery(name = "Post.findByCommentCount", query = "SELECT p FROM Post p WHERE p.commentCount = :commentCount")})
-public class Post implements Serializable {
+public class GroupPost implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -73,7 +73,7 @@ public class Post implements Serializable {
     private Integer theauthorId;
     
 
-    public Post() {
+    public GroupPost() {
     }
     public void setAuthorName(String authorName){
         this.authorName = authorName;
@@ -81,7 +81,7 @@ public class Post implements Serializable {
     public String getAuthorName(){
         return authorName;
     }
-    public Post(Integer postId) {
+    public GroupPost(Integer postId) {
         this.postId = postId;
     }
 
@@ -162,10 +162,10 @@ public class Post implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Post)) {
+        if (!(object instanceof GroupPost)) {
             return false;
         }
-        Post other = (Post) object;
+        GroupPost other = (GroupPost) object;
         if ((this.postId == null && other.postId != null) || (this.postId != null && !this.postId.equals(other.postId))) {
             return false;
         }

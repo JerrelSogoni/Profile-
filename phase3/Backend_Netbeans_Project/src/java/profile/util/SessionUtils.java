@@ -8,6 +8,7 @@ package profile.util;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import profile.Post;
 
 public class SessionUtils {
 
@@ -27,10 +28,34 @@ public class SessionUtils {
         return session.getAttribute("username").toString();
     }
 
-    public static String getUserId() {
+    public static int getUserId() {
         HttpSession session = getSession();
         if (session != null) {
-            return (String) session.getAttribute("userid");
+            return (int) session.getAttribute("userid");
+        } else {
+            return -1;
+        }
+    }
+    public static String getUserEmail(){
+        HttpSession session = getSession();
+        if (session != null) {
+            return (String) session.getAttribute("email");
+        } else {
+            return null;
+        }
+    }
+    public static String getPostId(){
+        HttpSession session = getSession();
+        if (session != null) {
+            return (String) session.getAttribute("postId");
+        } else {
+            return null;
+        }
+    }
+    public static Post getPost(){
+          HttpSession session = getSession();
+        if (session != null) {
+            return (Post) session.getAttribute("post");
         } else {
             return null;
         }
