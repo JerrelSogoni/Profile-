@@ -66,7 +66,7 @@ public class ManagerLevel implements Serializable {
     }
 
     public String listBuyer() {
-        return null;
+        return "/ManagerLevel/ListBuyer";
     }
 
     public String listItemByComp() {
@@ -731,6 +731,82 @@ public class ManagerLevel implements Serializable {
 
     public void setVipItemList(List<VipItem> vipItemList) {
         this.vipItemList = vipItemList;
+    }
+
+    private List<ItemBuyer> buyerList;
+
+    public class ItemBuyer {
+
+        private String buyer, quantity;
+
+        public String getBuyer() {
+            return buyer;
+        }
+
+        public void setBuyer(String buyer) {
+            this.buyer = buyer;
+        }
+
+        public String getQuantity() {
+            return quantity;
+        }
+
+        public void setQuantity(String quantity) {
+            this.quantity = quantity;
+        }
+    }
+
+    public List<ItemBuyer> getBuyerList() {
+        buyerList = new ArrayList<>();
+        Connection con = null;
+        ResultSet rs;
+
+        String s = "SELECT \n"
+                + "    T.who AS buyer, SUM(T.num) AS quantity\n"
+                + "FROM\n"
+                + "    (SELECT \n"
+                + "        U.UserId AS who, S.NumOfUnits AS num\n"
+                + "    FROM\n"
+                + "        AdData A,\n"
+                + "        Buy B,\n"
+                + "        Sales S,\n"
+                + "        UserPlus U\n"
+                + "    WHERE\n"
+                + "        A.AdId = S.AdId\n"
+                + "            AND S.TransId = B.TransId\n"
+                + "            AND U.UserId = B.UserId\n"
+                + "            AND A.ItemName = ?) T\n"
+                + "GROUP BY T.who;";
+        
+        try {
+            con = DataConnect.getConnection();
+            PreparedStatement ps = con.prepareStatement(s);
+            ps.setString(1, queryItemName);
+
+            // print out the query statement
+            JsfUtil.addErrorMessage(s);
+
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                ItemBuyer obj = new ItemBuyer();
+
+                obj.buyer = rs.getString("buyer");
+                obj.quantity = rs.getString("quantity");
+
+                buyerList.add(obj);
+            }
+        } catch (SQLException ex) {
+            JsfUtil.addErrorMessage("Connection to database failed:" + ex.getMessage());
+            System.out.println("Login error -->" + ex.getMessage());
+            return null;
+        } finally {
+            DataConnect.close(con);
+        }
+        return buyerList;
+    }
+
+    public void setBuyerList(List<ItemBuyer> buyerList) {
+        this.buyerList = buyerList;
     }
 
 }

@@ -319,6 +319,23 @@ CREATE VIEW ItemPurchasers AS
                 A.AdId = 1 AND A.AdId = S.AdId
                     AND S.TransId = B.TransId
                     AND U.UserId = B.UserId);
+-- upgrade version   
+SELECT 
+    T.who AS buyer, SUM(T.num) AS quantity
+FROM
+    (SELECT 
+        U.UserId AS who, S.NumOfUnits AS num
+    FROM
+        AdData A,
+        Buy B,
+        Sales S,
+        UserPlus U
+    WHERE
+        A.AdId = S.AdId
+            AND S.TransId = B.TransId
+            AND U.UserId = B.UserId
+            AND A.ItemName = 'Google Car') T
+GROUP BY T.who;
 
 -- - Produce a list of all items for a given company
 CREATE VIEW CompanyItems AS 
