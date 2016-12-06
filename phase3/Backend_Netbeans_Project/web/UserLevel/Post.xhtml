@@ -112,6 +112,7 @@
                                 <h:outputText value=" "/>
                                 <h:commandLink class="btn btn-default" action="#{postController.destroy}"  value="#{bundle.ListPostDestroyLink}"/>                  
                                 <h:commandLink class="btn btn-default" action="#{postController.goToComment()}"  value="#{bundle.Comment}"/>
+                                <h:commandLink class="btn btn-default" action="#{postController.goLikeorUnlikePost()}"  value="#{item.likeView}"/>
                             </h:form>
                         </h:column>
                     </h:dataTable>
@@ -160,7 +161,7 @@
                 <div class="row force-to-bottom text-center">
                     <ul class="list-inline">
                         <li>
-                            <h:link type="button"  class="btn btn-default" id="back" >Cancel</h:link>
+                            <h:commandButton type="button"  class="btn btn-default" id="back" action="#{postController.clearSelectedInput}" value="Cancel"/>
                         </li>
                         <li>
                             <h:commandButton class="btn btn-success" id="submit" value='Submit' action="#{postController.modifyPost()}"  />

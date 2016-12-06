@@ -103,13 +103,7 @@ public class CommentController implements Serializable {
     }
 
     public String prepareEdit() {
-        editing = true;
         current = (Comment)getItems().getRowData();
-        System.out.println(current.getTheAuthorName());
-        if(!(current.getTheAuthorId() == SessionUtils.getUserId())){
-            current = null;
-        }
-        
         PaginationHelper ph = getPagination();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         return "";
@@ -132,12 +126,8 @@ public class CommentController implements Serializable {
         
         PaginationHelper ph = getPagination();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
-        if(current.getTheAuthorId().intValue() == SessionUtils.getUserId() || SessionUtils.getPost().getPostId().intValue() == SessionUtils.getUserId()){
-            deleteComment();
-            
-            
-        }
-        editing = false;
+        deleteComment();
+           
         return "/comment/CommentListPostViewer";
     }
     public void deleteComment(){
@@ -214,19 +204,15 @@ public class CommentController implements Serializable {
     }
 
     public DataModel getItems() {
-        if(items == null || !editing){
+        if(items == null){
             HttpSession session = SessionUtils.getSession();
             Post postId = (Post) session.getAttribute("post");
             items = new ListDataModel(getCommentsFromPost(postId));
             JsfUtil.addErrorMessage("Logged in as " + postId);
             return items;
         }
-        
-        else{
-            return items;
-        }
-       
-     
+        return items;
+
     }
 
     public List<Comment> getCommentsFromPost(Post postId) {
@@ -383,8 +369,8 @@ public class CommentController implements Serializable {
     }
 
     public void processModifyComment() {
-        editing = true;
-        if ( current != null && !current.getContent().isEmpty()  && editing ) {
+  
+        if ( current != null && !current.getContent().isEmpty()) {
             //Connect to server
             Connection con = null;
             // modify comment
@@ -417,7 +403,7 @@ public class CommentController implements Serializable {
 
             } finally {
                 DataConnect.close(con);
-                editing = false;
+       
             }
         } else {
             inputContent = "";
@@ -548,6 +534,62 @@ public class CommentController implements Serializable {
         } finally {
             DataConnect.close(con);
         }
+    }
+     public void goLikeorUnlikeComment(){
+        if(current != null){
+           //Connect to server
+            Connection con = null;
+            // modify post
+            PreparedStatement ps = null;
+            PreparedStatement ps2 = null;
+            PreparedStatement ps3 = null;
+     
+
+            try {
+                con = DataConnect.getConnection();
+                // give proper variables and propert format
+                // check if user liked this specific post
+                ps = con.prepareStatement("SELECT * FROM LikesComment WHERE CommentId = ? AND UserId = ?");
+                ps.setInt(1, current.getCommentId());
+                ps.setInt(2, SessionUtils.getUserId());
+                
+                ResultSet set = ps.executeQuery();
+                if(set.wasNull()){
+                    //if passed then User did not like this post
+                    //ACTION: like
+                    ps2 = con.prepareStatement("INSERT INTO LikesComment(CommentId,UserId) VALUES(?,?)");
+                    ps2.setInt(1, current.getCommentId());
+                    ps2.setInt(2, SessionUtils.getUserId());
+                    //User will like the Post
+                    JsfUtil.addErrorMessage("You have liked the Comment");
+                // Execute the Insert Query
+                    ps2.execute();
+                    ps2.close();
+                    
+                }
+                else{
+                   ps3 = con.prepareStatement("DELETE FROM LikesComment WHERE CommentId = ? AND UserId = ?");
+                   ps3.setInt(1, current.getCommentId());
+                   ps3.setInt(2, SessionUtils.getUserId());
+                   JsfUtil.addErrorMessage("You unliked the Comment");
+                   ps3.execute(); 
+                   ps3.close();
+                }
+
+
+                ps.close();
+
+            } catch (SQLException ex) {
+
+                // print out error message
+                JsfUtil.addErrorMessage("Error occured while liking posting" + ex.getMessage());
+
+            } finally {
+                DataConnect.close(con);
+       
+            }
+        }
+        
     }
 
 }
