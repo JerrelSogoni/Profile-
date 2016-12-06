@@ -112,11 +112,11 @@
                     </h:column>
                     <h:column>
                         <h:form>
-                            <h:commandLink class="btn btn-default" value="Like Comment"/>
                             <h:outputText value=" "/>
                             <h:commandLink class="btn btn-default" action="#{commentController.prepareEdit}" value="#{bundle.ListPostEditLink}"/>
                             <h:outputText value=" "/>
-                            <h:commandLink class="btn btn-default" action="#{commentController.destroy}"  value="#{bundle.ListPostDestroyLink}"/>                  
+                            <h:commandLink class="btn btn-default" action="#{commentController.destroy}"  value="#{bundle.ListPostDestroyLink}"/>  
+                            <h:commandLink class="btn btn-default" action="#{commentController.goLikeorUnlikeComment()}" value="#{item.likeView}"/>
                         </h:form>
                     </h:column>
                 </h:dataTable>
