@@ -48,7 +48,9 @@ public class UserLevel implements Serializable{
     public String removePost() {
         return "/UserLevel/Post";
     }
-
+    public String messageList(){
+        return "/UserLevel/MessageList";
+    }
     public String removeComment() {
         return null;
     }

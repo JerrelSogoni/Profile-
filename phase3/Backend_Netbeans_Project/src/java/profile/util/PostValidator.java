@@ -101,6 +101,35 @@ public class PostValidator {
         }
         return -1;
     }
+    public static String getNamesFromID(int id){
+         Connection con = null;
+        PreparedStatement ps = null;
+
+        try {
+            con = DataConnect.getConnection();
+            ps = con.prepareStatement("Select * from UserPlus where UserId = ?");
+            ps.setInt(1, id);
+            
+            // print out the query statement
+            JsfUtil.addErrorMessage(ps.toString());
+
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+               
+                return rs.getString("FirstName") + " " + rs.getString("LastName");
+            }
+        } catch (SQLException ex) {
+            
+            // print out error message
+            JsfUtil.addErrorMessage("Invalid: email Address" + ex.getMessage());
+            return "";
+        } finally {
+            DataConnect.close(con);
+        }
+        return "";
+        
+    }
      
     
     

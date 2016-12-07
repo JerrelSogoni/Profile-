@@ -2,6 +2,7 @@ package profile.util;
 
 import java.sql.*;
 import javax.servlet.http.HttpSession;
+import profile.UserPlus;
 
 public class LoginDAO {
 
@@ -21,9 +22,26 @@ public class LoginDAO {
             ResultSet rs = ps.executeQuery();
 
             if (rs.next()) {
+                UserPlus userPlus = new UserPlus();
                 HttpSession session = SessionUtils.getSession();
                 session.setAttribute("userid", rs.getInt("userId"));
                 session.setAttribute("email", rs.getString("email"));
+
+                
+                userPlus.setAccountCreationDate(rs.getDate("AccountCreationDate"));
+                userPlus.setPassword(rs.getString("Password"));
+                userPlus.setFirstName(rs.getString("FirstName"));
+                userPlus.setLastName(rs.getString("LastName"));
+                userPlus.setAddress(rs.getString("Address"));
+                userPlus.setCity(rs.getString("City"));
+                userPlus.setZipCode(rs.getInt("ZipCode"));
+                userPlus.setPhone(rs.getString("Phone"));
+                userPlus.setEmail(rs.getString("Email"));
+                userPlus.setAccountNum(rs.getInt("AccountNum"));
+                userPlus.setCreditCardNum(rs.getString("CreditCardNum"));
+                userPlus.setPreferences(rs.getString("Preferences"));
+                session.setAttribute("currentUser", userPlus);
+                
                 //result found, means valid inputs
                 return true;
             }
