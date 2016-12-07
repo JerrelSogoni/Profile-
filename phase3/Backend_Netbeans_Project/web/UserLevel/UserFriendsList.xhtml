@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
 
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -26,6 +27,7 @@
                 </div>
                 <div class="collapse navbar-collapse"
                      id="navHeaderCollapse">
+                    <h:form>
                     <ul class="nav navbar-nav navbar-right" id="nav-bar-functions" >
                         <li class="nav-item">
                             <a class="nav-link" href="#">
@@ -33,17 +35,17 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">
+                            <h:commandLink class="nav-link" action="userLevel.friendsList()">
                                 <h:graphicImage class="nav-link" value="/resources/img/friendslistglyph.png"/>
-                            </a>
+                            </h:commandLink>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">
+                            <a>
                                 <h:graphicImage class="nav-link" value="/resources/img/messagesglyph.png"/>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">
+                            <a>
                                 <h:graphicImage class="nav-link" value="/resources/img/grouppageglyp.png"/>
                             </a>
                         </li>
@@ -55,9 +57,9 @@
                                 <li><a href="#">Modify User Settings</a></li>
                                 <li class="divider"></li>
                                 <li>
-                                    <h:form>
+                             
                                         <h:commandLink value="Logout" action="#{userPlusController.logout()}"/>
-                                    </h:form>
+                               
                                 </li>
                             </ul>
                         </li>
@@ -72,6 +74,7 @@
                             </ul>
                         </li>
                     </ul>
+                    </h:form>
                 </div>
             </div>
         </nav>
@@ -94,40 +97,55 @@
                 <h4>Friends List:</h4>
             </div>
             <div class="col-sm-9">
-                <form class="form-inline pull-right">
+                <h:form class="form-inline pull-right">
                     <div class="form-group">
                         <label for="friendlist">Name:</label>
-                        <input type="text" class="form-control" id="friendlist" placeholder="friend name"/>
+                        <h:inputText class="form-control" id="friendlist" a:placeholder="friend name" value="#{TheUserPlusFriendController.friendInput}"/>
+                        
                     </div>
-                    <button type="submit" class="btn btn-primary">Add</button>
-                </form>
+                    <h:commandButton type="submit" class="btn btn-primary" value="Add" action="#{TheUserPlusFriendController.addFriend()}"/>
+                </h:form>
             </div>
         </div>
         <hr/>
-            <h:dataTable class="table table-hover" value="#{UserPlus.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="Select"/>
-                            </f:facet>
-                            <h:outputText value="#{item.content}"/>
-                        </h:column>
+            <h:dataTable class="table table-hover" value="#{TheUserPlusFriendController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
                         <h:column>
                             <f:facet name="header">
                                 <h:outputText value="Profile"/>
                             </f:facet>
-                            <h:outputText value="#{item.friendProfile}"/>
+                            <h:outputText value="#{item.friendName}"/>
                         </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Email"/>
+                            </f:facet>
+                            <h:outputText value="#{item.friendEmail}"/>
+                        </h:column>
+                        <h:column>
+                        <h:form>
+                            <h:commandLink class="btn btn-default" action="#{TheUserPlusFriendController.removeFriend()}" value="Remove"/>  
+                        </h:form>
+                    </h:column>
                     </h:dataTable>
+                
         <hr/>
-        <!-- bottom on news -->
         <div class="row force-to-bottom text-center">
-            <h:link type="button" class="btn btn-danger" id="removeFriendButton" >Remove Friend<span class="glyphicon glyphicon-remove"></span></h:link>
+            <h:form>
+                    <ul class="list-inline">
+                        <li>
+                            
+                            <h:commandButton  class="btn btn-default" id="back" value="Back" action="#{TheUserPlusFriendController.back()}" />
+                        </li>
+                        
+                    </ul>
+                </h:form>
 
         </div>
-        </div>
+    </div>
     <!-- advertisment right -->
     <a  href="#">
     <div class="col-lg-1" id="col3">
+        
     </div>
     </a>
 </div>

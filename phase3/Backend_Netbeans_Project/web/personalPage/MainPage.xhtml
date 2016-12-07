@@ -26,6 +26,7 @@
                 </div>
                 <div class="collapse navbar-collapse"
                      id="navHeaderCollapse">
+                    <h:form>
                     <ul class="nav navbar-nav navbar-right" id="nav-bar-functions" >
                         <li class="nav-item">
                             <a class="nav-link" href="#">
@@ -33,9 +34,10 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">
+                           
+                           <h:commandLink class="nav-link" action="#{userLevel.friendsList()}">
                                 <h:graphicImage class="nav-link" value="/resources/img/friendslistglyph.png"/>
-                            </a>
+                            </h:commandLink>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">
@@ -74,6 +76,7 @@
                             </ul>
                         </li>
                     </ul>
+                    </h:form>
                 </div>
             </div>
         </nav>
