@@ -16,10 +16,12 @@ import javax.persistence.Table;
  *
  * @author yunjoon_soh
  */
-@Entity
-@Named("TheUserPlusFriend")
+@Named("TheGroupUserPlus")
 @SessionScoped
-public class TheUserPlusFriend implements Serializable {
+public class TheGroupUserPlus implements Serializable {
+    public TheGroupUserPlus(){
+        
+    }
 
     private static final long serialVersionUID = 1L;
     @Id

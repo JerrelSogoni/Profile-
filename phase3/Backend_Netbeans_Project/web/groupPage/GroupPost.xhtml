@@ -77,10 +77,8 @@
                 </div>
             </div>
         </nav>
-        <!-- End Nav Bar Header-->
-        <!--begin divide into 3 columns -->
-        <div class="container containerCase">
 
+        <div class="container containerCase">
             <!-- advertisement left-->
             <a href="#">
                 <div class="col-lg-1" id="col1">
@@ -89,132 +87,121 @@
             </a>
             <!-- news feed -->
             <div class="col-lg-10" id="col2">
-                <div class="pagetitle">
-
-                    <h4>Group Name: #{TheGroupPlus.name}</h4>
-                </div>
-                <hr/>
-                <div class="otherprofileformat">
-                    <div class="col-lg-8 otherprofileformatactions">
-                        <ul class="list-inline">
-                            <li>
-                                <h:link type="button" class="btn btn-default otherprofile" id="groupMemberButton" value="Group Members" ></h:link>
-                            </li>
-                            <li>
-                                <h:link type="button"  class="btn btn-default otherprofile" id="leaveGroupButton" value="Back"></h:link>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
+                <div><h4>Welcome! #{userPlusController.user}</h4></div>
+                <div><h3>News Feed</h3></div>
+                <hr />
                 <div>
-                    <hr/>
-                    News Feed
-                    <hr/>
-                </div>
-                <div>
-                    <h:dataTable class="table table-hover" value="#{TheGroupPost.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                    <h:dataTable class="table table-hover" value="#{postController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
                         <h:column>
                             <f:facet name="header">
-                                <h:outputText value="Profile"/>
-                            </f:facet>
-                            <h:outputText value="#{items.name}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="Content"/>
+                                <h:outputText value="#{bundle.ListPostTitle_content}"/>
                             </f:facet>
                             <h:outputText value="#{item.content}"/>
                         </h:column>
                         <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Author"/>
+                            </f:facet>
+                            <h:outputText value="#{item.authorName}"/>
+                        </h:column>
+                        <h:column>
                             <h:form>
-                                <h:commandLink class="btn btn-default" action="#{TheGroupPostController.destroy}"  value="#{bundle.ListPostDestroyLink}"/>                  
-                                <h:commandLink class="btn btn-default" action="#{TheGroupPostController.goToComment()}"  value="#{bundle.Comment}"/>
-                                <h:commandLink class="btn btn-default" action="#{TheGroupPostController.goLikeorUnlikePost()}"  value="#{item.likeView}"/>
+                                <h:commandLink class="btn btn-default" action="#{postController.prepareViewFromNewfeed()}" value="#{bundle.ListPostViewLink}"/>
+                                <h:outputText value=" "/>
+                                <h:commandLink class="btn btn-default" action="#{postController.prepareEdit}" value="#{bundle.ListPostEditLink}"/>
+                                <h:outputText value=" "/>
+                                <h:commandLink class="btn btn-default" action="#{postController.destroy}"  value="#{bundle.ListPostDestroyLink}"/>                  
+                                <h:commandLink class="btn btn-default" action="#{postController.goToComment()}"  value="#{bundle.Comment}"/>
+                                <h:commandLink class="btn btn-default" action="#{postController.goLikeorUnlikePost()}"  value="#{item.likeView}"/>
                             </h:form>
                         </h:column>
-
                     </h:dataTable>
-                    <hr/>
+                    <br />
                     <div class="col-sm-3">
-                        <h4>Make a Post Page</h4>
-                    </div>
-                    <hr/>
-                    <div >
-                        <h:form class="form-horizontal" >
-                            <div class="form-group" >
-                                <h:inputTextarea  a:placeholder="Type your post" class="form-control glyphicon-resize-vertical"  value="#{postController.postContent}" />
-                            </div>
-                            <div class="form-group">
-                                <div class="col-md-4 inputGroupContainer">
-                                </div>
-                            </div>
-
-                            <div class="row force-to-bottom text-center">
-                                <ul class="list-inline">
-                                    <li>
-                                        <h:commandButton class="btn btn-default" id="back" value="Cancel" action="#{postController.resetInputBoxes()}" />
-                                    </li>
-                                    <li>
-                                        <h:commandButton class="btn btn-success" id="submit" value='Submit' action="#{postController.createPost()}"  />
-                                    </li>
-
-                                </ul>
-                            </div>
-                        </h:form>
-
-                    </div>
-                    <hr />
-                    <div><h4>Modify a Post</h4></div>
-                    <div >
-
-                        <h:form class="form-horizontal" >
-                            <div class="form-group" >
-                                <h:inputTextarea  a:placeholder="Type your post" class="form-control glyphicon-resize-vertical"  value="#{postController.selected.content}" />
-                            </div>
-
-                            <div class="row force-to-bottom text-center">
-                                <ul class="list-inline">
-                                    <li>
-                                        <h:commandButton type="button"  class="btn btn-default" id="back" action="#{postController.clearSelectedInput}" value="Cancel"/>
-                                    </li>
-                                    <li>
-                                        <h:commandButton class="btn btn-success" id="submit" value='Submit' action="#{postController.modifyPost()}"  />
-                                    </li>
-
-                                </ul>
-                            </div>
-                        </h:form>
-
-                    </div>
-
+                <h4>Make a Post Page</h4>
+            </div>
+        <hr/>
+        <div >
+            <h:form class="form-horizontal" >
+                <div class="form-group" >
+                    <h:inputTextarea  a:placeholder="Type your post" class="form-control glyphicon-resize-vertical"  value="#{postController.postContent}" />
                 </div>
-            </div>
-            <!-- bottom on news -->
-            <div class="row force-to-bottom text-center">
+                <div class="form-group">
+                        <label class="col-md-4 control-label">Post To What User:</label>
+                        <div class="col-md-4 inputGroupContainer">
+                            <div class="input-group">
+                                <h:inputText  a:placeholder="give email address" class="form-control" value="#{postController.postTo}" />
+                            </div>
+                        </div>
+                </div>
+                
+                <div class="row force-to-bottom text-center">
+                    <ul class="list-inline">
+                        <li>
+                            <h:commandButton class="btn btn-default" id="back" value="Cancel" action="#{postController.resetInputBoxes()}" />
+                        </li>
+                        <li>
+                            <h:commandButton class="btn btn-success" id="submit" value='Submit' action="#{postController.createPost()}"  />
+                        </li>
+
+                    </ul>
+                </div>
+            </h:form>
 
             </div>
-          
-        <!-- advertisment right -->
-        <div>
-        <a href="#">
-            <div class="col-lg-1" id="col3">
+        <hr />
+        <div><h4>Modify a Post</h4></div>
+        <div >
+            
+            <h:form class="form-horizontal" >
+                <div class="form-group" >
+                    <h:inputTextarea  a:placeholder="Type your post" class="form-control glyphicon-resize-vertical"  value="#{postController.selected.content}" />
+                </div>
+               
+                <div class="row force-to-bottom text-center">
+                    <ul class="list-inline">
+                        <li>
+                            <h:commandButton type="button"  class="btn btn-default" id="back" action="#{postController.clearSelectedInput}" value="Cancel"/>
+                        </li>
+                        <li>
+                            <h:commandButton class="btn btn-success" id="submit" value='Submit' action="#{postController.modifyPost()}"  />
+                        </li>
+
+                    </ul>
+                </div>
+            </h:form>
+
             </div>
-        </a>
+        
+                </div>
+
+                    <!-- bottom on news -->
+                    <div class="row force-to-bottom text-center">
+                        <div class="col-lg-12">
+                            <h:link class="btn btn-danger" id="cancelButton" value="Remove">
+                                <span class="glyphicon glyphicon-remove"/>
+                            </h:link>
+                        </div>
+                    </div>
+                </div>
+
+            <!-- advertisment right -->
+            <a href="#">
+                <div class="col-lg-1" id="col3">
+                </div>
+            </a>
         </div>
 
-        </div>
-
-        <!--end divide into 3 columns -->
-        <!-- begin footer content -->
         <nav class="navbar navbar-fixed-bottom footer">
 
         </nav>
         <!-- end footer content -->
 
         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
         <!-- Include all compiled plugins (below), or include individual files as needed -->
         <script src='http://cdnjs.cloudflare.com/ajax/libs/bootstrap-validator/0.4.5/js/bootstrapvalidator.min.js'></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"/>
+        <!-- Include all compiled plugins (below), or include individual files as needed -->
         <h:outputScript library="js" name="bootstrap.min.js" />
     </h:body>
 </html>
