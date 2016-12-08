@@ -74,7 +74,7 @@ public class CustrepLevel implements Serializable {
     }
 
     public String itemSuggestion() {
-        return null;
+        return "CustRepLevel/ItemSuggestion";
     }
 
     /**
