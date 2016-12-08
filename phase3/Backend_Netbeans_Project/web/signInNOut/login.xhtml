@@ -9,9 +9,9 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <meta http-equiv="X-UA-Conpatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        
+
         <title><ui:insert name="title">Default Title</ui:insert></title>
-        
+
         <h:outputStylesheet library="css" name="bootstrap.css"/>
         <h:outputStylesheet library="css" name="style.css"/>
         <script src="https://fonts.googleapis.com/css?family=Pacifico"/>
@@ -52,12 +52,7 @@
 
                             <div class="form-group">
                                 <h:commandButton value="Login" action="#{userPlusController.login()}" class="btn btn-def btn-block" />
-                            </div>
-                            <div class="form-group">
-                                <h:link value="Register" outcome="/userPlus/Register" class="btn btn-def btn-block" />
-                                <!--                                <a href="register.html">
-                                                                    <button type="button" class="btn btn-def btn-block">Register</button>
-                                                                </a>-->
+                                <h:commandButton value="Register" action="/userPlus/Register" class="btn btn-def btn-block"/>
                             </div>
                         </h:form>
                     </div>
