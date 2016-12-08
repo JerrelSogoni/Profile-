@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import javax.enterprise.context.SessionScoped;
@@ -46,7 +47,7 @@ public class CustrepLevel implements Serializable {
     }
 
     public String addTrans() {
-        return null;
+        return "/CustRepLevel/AddTransaction";
     }
 
     public String editCustomerInfo() {
@@ -318,5 +319,215 @@ public class CustrepLevel implements Serializable {
 
     public void setSuggestedItemList(List<ItemSuggestion> suggestedItemList) {
         this.suggestedItemList = suggestedItemList;
-    }    
+    }
+    
+    private AdData queryAdId;
+    private Employee queryEmpId;
+    private int queryNumOfUnits;
+    private String queryAccountNum;
+    private UserPlus queryUser;
+
+    public AdData getQueryAdId() {
+        return queryAdId;
+    }
+
+    public void setQueryAdId(AdData queryAdId) {
+        this.queryAdId = queryAdId;
+    }
+
+    public Employee getQueryEmpId() {
+        return queryEmpId;
+    }
+
+    public void setQueryEmpId(Employee queryEmpId) {
+        this.queryEmpId = queryEmpId;
+    }
+
+    public int getQueryNumOfUnits() {
+        return queryNumOfUnits;
+    }
+
+    public void setQueryNumOfUnits(int queryNumOfUnits) {
+        this.queryNumOfUnits = queryNumOfUnits;
+    }
+
+    public String getQueryAccountNum() {
+        return queryAccountNum;
+    }
+
+    public void setQueryAccountNum(String queryAccountNum) {
+        this.queryAccountNum = queryAccountNum;
+    }
+    
+    private List<Transaction> transList;
+    public class Transaction{
+        private String TransDate, TransTime, ItemName, Type, NumOfUnits, AccountNum, EmpId, UserId;
+
+        public String getTransDate() {
+            return TransDate;
+        }
+
+        public void setTransDate(String TransDate) {
+            this.TransDate = TransDate;
+        }
+
+        public String getTransTime() {
+            return TransTime;
+        }
+
+        public void setTransTime(String TransTime) {
+            this.TransTime = TransTime;
+        }
+
+        public String getItemName() {
+            return ItemName;
+        }
+
+        public void setItemName(String ItemName) {
+            this.ItemName = ItemName;
+        }
+
+        public String getType() {
+            return Type;
+        }
+
+        public void setType(String ItemType) {
+            this.Type = ItemType;
+        }
+
+        public String getNumOfUnits() {
+            return NumOfUnits;
+        }
+
+        public void setNumOfUnits(String NumOfUnits) {
+            this.NumOfUnits = NumOfUnits;
+        }
+
+        public String getAccountNum() {
+            return AccountNum;
+        }
+
+        public void setAccountNum(String AccountNum) {
+            this.AccountNum = AccountNum;
+        }
+
+        public String getEmpId() {
+            return EmpId;
+        }
+
+        public void setEmpId(String EmpId) {
+            this.EmpId = EmpId;
+        }
+
+        public String getUserId() {
+            return UserId;
+        }
+
+        public void setUserId(String UserId) {
+            this.UserId = UserId;
+        }
+    }
+
+    public List<Transaction> getTransList() {
+        transList = new ArrayList<>();
+        
+        Connection con = null;
+        PreparedStatement ps = null;
+
+        try {
+            con = DataConnect.getConnection();
+            ps = con.prepareStatement("SELECT S.TransDate, S.TransTime, A.ItemName, A.Type, S.numOfUnits, S.accountNum, U.UserId, E.SSN  FROM Buy B, AdData A, UserPlus U, Employee E, Sales S WHERE B.EmpId = E.SSN and B.TransId = S.TransId and S.AdId = A.AdId and B.UserId = U.UserId ORDER BY S.TransDate, S.TransTime DESC;");
+
+            // print out the query statement
+            JsfUtil.addErrorMessage(ps.toString());
+
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                //result found, means valid inputs
+                Transaction added = new Transaction();
+
+                added.setTransDate(rs.getString("TransDate"));
+                added.setTransTime(rs.getString("TransTime"));
+                added.setItemName(rs.getString("ItemName"));
+                added.setType(rs.getString("Type"));
+                added.setNumOfUnits(rs.getString("NumOfUnits"));
+                added.setAccountNum(rs.getString("AccountNum"));
+                added.setUserId(rs.getString("UserId"));
+                added.setEmpId(rs.getString("SSN"));
+                
+                transList.add(added);
+            }
+        } catch (SQLException ex) {
+
+            // print out error message
+            JsfUtil.addErrorMessage("Connection to database failed:" + ex.getMessage());
+            System.out.println("Login error -->" + ex.getMessage());
+            return null;
+
+        } finally {
+            DataConnect.close(con);
+        }
+        
+        return transList;
+    }
+
+    public void setTransList(List<Transaction> transList) {
+        this.transList = transList;
+    }
+    
+    public String addTransaction(){
+        Connection con = null;
+        PreparedStatement ps = null;
+
+        try {
+            con = DataConnect.getConnection();
+            ps = con.prepareStatement("INSERT INTO sales(TransDate, TransTime, AdId, NumOfUnits, AccountNum) values (NOW(), NOW(), ?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
+            if(queryAdId != null)
+                ps.setInt(1, queryAdId.getAdId());
+            if(queryNumOfUnits != 0)
+                ps.setInt(2, queryNumOfUnits);
+            if(queryAccountNum != null)
+                ps.setString(3, queryAccountNum);
+
+            // print out the query statement
+            JsfUtil.addErrorMessage(ps.toString());
+            
+            ps.executeUpdate();
+            
+            ResultSet rs = ps.getGeneratedKeys();
+            rs.next();
+            int TransId = rs.getInt(1);
+            
+            ps = con.prepareStatement("INSERT INTO Buy VALUES(?, ?, ?);");
+            ps.setInt(1, TransId);
+            ps.setString(2, queryEmpId.getSsn());
+            ps.setInt(3, Integer.parseInt(queryCustomer));
+            
+            JsfUtil.addErrorMessage(ps.toString());
+            
+            ps.executeUpdate();
+            
+            
+
+        } catch (SQLException ex) {
+
+            // print out error message
+            JsfUtil.addErrorMessage("Connection to database failed:" + ex.getMessage());
+            System.out.println("Login error -->" + ex.getMessage());
+
+        } finally {
+            DataConnect.close(con);
+        }
+        
+        return "/CustRepLevel/AddTransaction";
+    }
+
+    public UserPlus getQueryUser() {
+        return queryUser;
+    }
+
+    public void setQueryUser(UserPlus queryUser) {
+        this.queryUser = queryUser;
+    }
 }

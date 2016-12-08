@@ -53,6 +53,18 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "UserPlus.findByPreferences", query = "SELECT u FROM UserPlus u WHERE u.preferences = :preferences")})
 public class UserPlus implements Serializable {
 
+    @ManyToMany(mappedBy = "userPlusCollection")
+    private Collection<GroupPost> groupPostCollection;
+    @OneToMany(mappedBy = "authorId")
+    private Collection<GroupPost> groupPostCollection1;
+
+    @Size(max = 2)
+    @Column(name = "Sex")
+    private String sex;
+    @Column(name = "DOB")
+    @Temporal(TemporalType.DATE)
+    private Date dob;
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -457,6 +469,40 @@ public class UserPlus implements Serializable {
     @Override
     public String toString() {
         return "profile.UserPlus[ userId=" + userId + " ]";
+    }
+
+    public String getSex() {
+        return sex;
+    }
+
+    public void setSex(String sex) {
+        this.sex = sex;
+    }
+
+    public Date getDob() {
+        return dob;
+    }
+
+    public void setDob(Date dob) {
+        this.dob = dob;
+    }
+
+    @XmlTransient
+    public Collection<GroupPost> getGroupPostCollection() {
+        return groupPostCollection;
+    }
+
+    public void setGroupPostCollection(Collection<GroupPost> groupPostCollection) {
+        this.groupPostCollection = groupPostCollection;
+    }
+
+    @XmlTransient
+    public Collection<GroupPost> getGroupPostCollection1() {
+        return groupPostCollection1;
+    }
+
+    public void setGroupPostCollection1(Collection<GroupPost> groupPostCollection1) {
+        this.groupPostCollection1 = groupPostCollection1;
     }
     
 }
