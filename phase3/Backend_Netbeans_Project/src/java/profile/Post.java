@@ -71,8 +71,8 @@ public class Post implements Serializable {
     private String authorName;
     private String authorEmail;
     private Integer theauthorId;
-    
-
+    // default value, Like = neutral , Liked == Liked, Unliked = Like
+    private String likeView;
     public Post() {
     }
     public void setAuthorName(String authorName){
@@ -203,5 +203,19 @@ public class Post implements Serializable {
      */
     public void setTheauthorId(Integer theauthorId) {
         this.theauthorId = theauthorId;
+    }
+
+    /**
+     * @return the likeView
+     */
+    public String getLikeView() {
+        return likeView;
+    }
+
+    /**
+     * @param likeView the likeView to set
+     */
+    public void setLikeView(String likeView) {
+        this.likeView = likeView;
     }
 }

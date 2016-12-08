@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
 
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -13,9 +14,9 @@
         <h:outputStylesheet library="css" name="usermainpage.css"/>
     </h:head>
 
-<h:body>
-<!-- Begin Nav Bar for Header -->
-<nav class="navbar navbar-default navbar-fixed-top my-nav ">
+    <h:body>
+        <!-- Begin Nav Bar for Header -->
+        <nav class="navbar navbar-default navbar-fixed-top my-nav ">
             <div class="container">
                 <div class="navbar-brand">
                     <button class="navbar-toggle" data-toggle="collapse" data-target="#navHeaderCollapse">
@@ -76,90 +77,144 @@
                 </div>
             </div>
         </nav>
-<!-- End Nav Bar Header-->
-<!--begin divide into 3 columns -->
-<div class="container containerCase">
+        <!-- End Nav Bar Header-->
+        <!--begin divide into 3 columns -->
+        <div class="container containerCase">
 
             <!-- advertisement left-->
             <a href="#">
-            <div class="col-lg-1" id="col1">
-         
-            </div>
+                <div class="col-lg-1" id="col1">
+
+                </div>
             </a>
             <!-- news feed -->
             <div class="col-lg-10" id="col2">
-                    <div class="pagetitle">
-                        <h4>Group Name: #{GroupPlus.name}</h4>
+                <div class="pagetitle">
+
+                    <h4>Group Name: #{TheGroupPlus.name}</h4>
+                </div>
+                <hr/>
+                <div class="otherprofileformat">
+                    <div class="col-lg-8 otherprofileformatactions">
+                        <ul class="list-inline">
+                            <li>
+                                <h:link type="button" class="btn btn-default otherprofile" id="groupMemberButton" value="Group Members" ></h:link>
+                            </li>
+                            <li>
+                                <h:link type="button"  class="btn btn-default otherprofile" id="leaveGroupButton" value="Back"></h:link>
+                            </li>
+                        </ul>
                     </div>
+                </div>
+                <div>
                     <hr/>
-                    <div class="otherprofileformat">
-                        <div class="col-lg-4" id="otheruserprofilepic"></div>
-                        <div class="col-lg-8 otherprofileformatactions">
-                            <ul class="list-inline">
-                                <li>
-                                    <h:link type="button" class="btn btn-default otherprofile" id="groupMemberButton" value="Group Members" ></h:link>
-                                </li>
-                                <li>
-                                    <h:link type="button"  class="btn btn-default otherprofile" id="AddPostButton" value="Add a Post"></h:link>
-                                </li>
-                                <li>
-                                    <h:link type="button"  class="btn btn-danger otherprofile" id="leaveGroupButton" value="Leave Group"></h:link>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div>
-                        <hr/>
-                        News Feed
-                        <hr/>
-
-                    </div>
-
-                    <div>
-                           <h:dataTable class="table table-hover" value="#{groupController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                    News Feed
+                    <hr/>
+                </div>
+                <div>
+                    <h:dataTable class="table table-hover" value="#{TheGroupPost.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
                         <h:column>
                             <f:facet name="header">
                                 <h:outputText value="Profile"/>
                             </f:facet>
-                            <h:outputText value="#{item.profile}"/>
+                            <h:outputText value="#{items.name}"/>
                         </h:column>
                         <h:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListPostTitle_content}"/>
+                                <h:outputText value="Content"/>
                             </f:facet>
                             <h:outputText value="#{item.content}"/>
                         </h:column>
-             
+                        <h:column>
+                            <h:form>
+                                <h:commandLink class="btn btn-default" action="#{TheGroupPostController.destroy}"  value="#{bundle.ListPostDestroyLink}"/>                  
+                                <h:commandLink class="btn btn-default" action="#{TheGroupPostController.goToComment()}"  value="#{bundle.Comment}"/>
+                                <h:commandLink class="btn btn-default" action="#{TheGroupPostController.goLikeorUnlikePost()}"  value="#{item.likeView}"/>
+                            </h:form>
+                        </h:column>
+
                     </h:dataTable>
+                    <hr/>
+                    <div class="col-sm-3">
+                        <h4>Make a Post Page</h4>
+                    </div>
+                    <hr/>
+                    <div >
+                        <h:form class="form-horizontal" >
+                            <div class="form-group" >
+                                <h:inputTextarea  a:placeholder="Type your post" class="form-control glyphicon-resize-vertical"  value="#{postController.postContent}" />
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-4 inputGroupContainer">
+                                </div>
+                            </div>
+
+                            <div class="row force-to-bottom text-center">
+                                <ul class="list-inline">
+                                    <li>
+                                        <h:commandButton class="btn btn-default" id="back" value="Cancel" action="#{postController.resetInputBoxes()}" />
+                                    </li>
+                                    <li>
+                                        <h:commandButton class="btn btn-success" id="submit" value='Submit' action="#{postController.createPost()}"  />
+                                    </li>
+
+                                </ul>
+                            </div>
+                        </h:form>
 
                     </div>
-                <hr/>
-                <!-- bottom on news -->
-                <div class="row force-to-bottom text-center">
-                    <div class="col-lg-12">
-                        <h:link type="button"  class="btn btn-danger" id="removeGroupPostButton" >Remove Post<span class="glyphicon glyphicon-remove"></span></h:link>
+                    <hr />
+                    <div><h4>Modify a Post</h4></div>
+                    <div >
+
+                        <h:form class="form-horizontal" >
+                            <div class="form-group" >
+                                <h:inputTextarea  a:placeholder="Type your post" class="form-control glyphicon-resize-vertical"  value="#{postController.selected.content}" />
+                            </div>
+
+                            <div class="row force-to-bottom text-center">
+                                <ul class="list-inline">
+                                    <li>
+                                        <h:commandButton type="button"  class="btn btn-default" id="back" action="#{postController.clearSelectedInput}" value="Cancel"/>
+                                    </li>
+                                    <li>
+                                        <h:commandButton class="btn btn-success" id="submit" value='Submit' action="#{postController.modifyPost()}"  />
+                                    </li>
+
+                                </ul>
+                            </div>
+                        </h:form>
+
                     </div>
+
                 </div>
             </div>
-            <!-- advertisment right -->
-            <a href="#">
+            <!-- bottom on news -->
+            <div class="row force-to-bottom text-center">
+
+            </div>
+          
+        <!-- advertisment right -->
+        <div>
+        <a href="#">
             <div class="col-lg-1" id="col3">
             </div>
-            </a>
+        </a>
+        </div>
 
-</div>
-<!--end divide into 3 columns -->
-<!-- begin footer content -->
-<nav class="navbar navbar-fixed-bottom footer">
+        </div>
 
-</nav>
-<!-- end footer content -->
+        <!--end divide into 3 columns -->
+        <!-- begin footer content -->
+        <nav class="navbar navbar-fixed-bottom footer">
 
-<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<!-- Include all compiled plugins (below), or include individual files as needed -->
-<script src='http://cdnjs.cloudflare.com/ajax/libs/bootstrap-validator/0.4.5/js/bootstrapvalidator.min.js'></script>
-<h:outputScript library="js" name="bootstrap.min.js" />
-</h:body>
+        </nav>
+        <!-- end footer content -->
+
+        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <!-- Include all compiled plugins (below), or include individual files as needed -->
+        <script src='http://cdnjs.cloudflare.com/ajax/libs/bootstrap-validator/0.4.5/js/bootstrapvalidator.min.js'></script>
+        <h:outputScript library="js" name="bootstrap.min.js" />
+    </h:body>
 </html>

@@ -9,6 +9,7 @@
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <title><ui:insert name="title">Default Title</ui:insert></title>
+        <h:outputStylesheet library="css" name="jsfcrud.css"/>
         <h:outputStylesheet library="css" name="bootstrap.css"/>
         <h:outputStylesheet library="css" name="usermainpage.css"/>
     </h:head>
@@ -91,86 +92,67 @@
             <div class="col-lg-10" id="col2">
                 <div id="friendformat" >
                     <div class="col-sm-3">
-                        <h4>Message List:</h4>
+                        <h4>Comment List:</h4>
                     </div>
-                    <div class="col-sm-9">
-
-                    </div>
-
-
                 </div>
                 <hr/>
-                <div>
-                    <h:dataTable class="table table-hover" value="#{TheMessageController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="Sender"/>
-                            </f:facet>
-                            <h:outputText value="#{item.senderName}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="Subject"/>
-                            </f:facet>
-                            <h:outputText value="#{item.subject}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="Content"/>
-                            </f:facet>
-                            <h:outputText value="#{item.content}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="Receiver"/>
-                            </f:facet>
-                            <h:outputText value="#{item.receiverName}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="Date"/>
-                            </f:facet>
-                            <h:outputText value="#{item.dateSent}"/>
-                        </h:column>
-                        <h:column>
-                            <h:form>
-                                <h:commandLink class="btn btn-default" action="#{TheMessageController.deleteMessage}"  value="Remove"/>
-                            </h:form>
-                        </h:column>
-                    </h:dataTable>
-                </div>
+                <h:dataTable class="table table-hover"  var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                  
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Profile"/>
+                        </f:facet>
+                        <h:outputText />
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Content"/>
+                        </f:facet>
+                        <h:outputText />
+                    </h:column>
+                    <h:column>
+                        <h:form>
+                            <h:outputText value=" "/>
+                            <h:commandLink class="btn btn-default"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink class="btn btn-default" />  
+                            <h:commandLink class="btn btn-default" />
+                        </h:form>
+                    </h:column>
+                </h:dataTable>
                 <hr/>
                 <!-- bottom on news -->
-                <div class="text-center">
-                    <h:form class="form-horizontal" role="form" id="contact_form">
 
-                        <label class="col-md-2 control-label pull-left">Message To:  </label>
-                        <div class="col-md-10 inputGroupContainer">
-                            <div class="input-group">
-                                <h:inputText class="form-control" a:placeholder="Enter Email" value="#{TheMessageController.emailInput}" />
-                            </div>
-                        </div>
-                        <hr />
-                        <div class="form-group">
-                            <label class="col-md-2 control-label pull-left">Subject: </label>
-                            <div class="col-md-10 inputGroupContainer">
-                                <div class="input-group">
-                                    <h:inputText class="form-control" a:placeholder="Enter Subject" value="#{TheMessageController.subjectInput}" />
-                                </div>
-                            </div>
-                        </div>
-                        <hr />
+                <div class="row force-to-bottom text-center">
+                    <ul class="list-inline">
+                        <h:form>
+                            <li>
+                                <h:commandLink type="button"  class="btn btn-default" id="back"  value="Back"/>
+                            </li>
+
+                        </h:form>
+                    </ul>
+                </div>
+                <hr />
+                <div id="friendformat" >
+                    <div class="col-sm-3">
+                        <h4>Make your Comment</h4>
+                    </div>
+
+                </div>
+                <hr/>
+                <div >
+                    <h:form class="form-horizontal" role="form" >
                         <div class="form-group" >
-                            <h:inputTextarea  a:placeholder="Type your message" class="form-control glyphicon-resize-vertical"  id="messagecontent" value="#{TheMessageController.contentInput}" />
-
+                            <h:inputTextarea  a:placeholder="Type your comment"  class="form-control glyphicon-resize-vertical" />
                         </div>
                         <div class="row force-to-bottom text-center">
                             <ul class="list-inline">
                                 <li>
-                                    <h:commandButton class="btn btn-default" id="back" value="Cancel" action="#{TheMessageController.resetInputBoxes()}" />
+                                    <h:commandLink type="button"  class="btn btn-default"    value="Cancel" />
                                 </li>
                                 <li>
-                                    <h:commandButton class="btn btn-success" id="submit" value='Submit' action="#{TheMessageController.insertMessage()}"  />
+                                    <h:commandButton   class="btn btn-success"  value='Submit' />
                                 </li>
 
                             </ul>
@@ -178,6 +160,33 @@
 
                     </h:form>
 
+                </div>
+                <div id="friendformat" >
+                    <div class="col-sm-3">
+                        <h4>Modify your Comment</h4>
+                    </div>
+
+                </div>
+                <hr/>
+
+                <div >
+                    <h:form class="form-horizontal" role="form"  id="contact_form">
+                        <div class="form-group" >
+                            <h:inputTextarea  a:placeholder="Type your comment" class="form-control glyphicon-resize-vertical"   />
+                        </div>
+                        <div class="row force-to-bottom text-center">
+                            <ul class="list-inline">
+                                <li>
+                                    <h:commandLink type="button"  class="btn btn-default" id="back" value="Cancel" />
+                                </li>
+                                <li>
+                                    <h:commandButton  class="btn btn-success" id="submit"  value='Submit' />
+                                </li>
+
+                            </ul>
+                        </div>
+
+                    </h:form>
 
                 </div>
             </div>
@@ -186,7 +195,6 @@
                 <div class="col-lg-1" id="col3">
                 </div>
             </a>
-
         </div>
         <!--end divide into 3 columns -->
         <!-- begin footer content -->

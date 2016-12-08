@@ -9,6 +9,7 @@ import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import profile.Post;
+import profile.UserPlus;
 
 public class SessionUtils {
 
@@ -60,4 +61,14 @@ public class SessionUtils {
             return null;
         }
     }
+    public static UserPlus getUser(){
+         HttpSession session = getSession();
+        if (session != null) {
+            return (UserPlus) session.getAttribute("currentUser");
+        } else {
+            return null;
+        }
+        
+    }
+   
 }

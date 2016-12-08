@@ -94,14 +94,25 @@
     <div class="col-lg-10" id="col2">
         <div id="friendformat" >
             <div class="col-sm-3">
-                <h4>Friends List:</h4>
+                <h4>Group List:</h4>
             </div>
             <div class="col-sm-9">
                 <h:form class="form-inline pull-right">
                     <div class="form-group">
-                        <label for="friendlist">Name:</label>
-                        <h:inputText class="form-control" id="friendlist" a:placeholder="friend name" value="#{TheUserPlusFriendController.friendInput}"/>
-                        
+                         <div class="form-group">
+                        <label class="col-xs-6 col-sm-4 control-label">Group Name: </label>
+                        <h:inputText  id="nameofGroup"  value="#{theGroup.groupName}" a:placeholder="Enter group name"/>
+                    </div>
+                    <br />
+                     <div class="form-group">
+                        <label class="col-xs-6 col-sm-4 control-label">Group Type: </label>
+                        <h:selectOneMenu value="#{theGroup.set}">
+                            <f:selectItem itemValue="Club" itemLabel="Club" />
+                            <f:selectItem itemValue="Organization" itemLabel="Organization" />
+                            <f:selectItem itemValue="Event" itemLabel="Event" />
+                            <f:selectItem itemValue="News" itemLabel="News" />
+                        </h:selectOneMenu>
+                    </div>
                     </div>
                     <h:commandButton type="submit" class="btn btn-primary" value="Add" action="#{TheUserPlusFriendController.addFriend()}"/>
                 </h:form>
@@ -129,6 +140,45 @@
                     </h:dataTable>
                 
         <hr/>
+         <div class="row row 1" id="row1">
+                <div class="col-xs-6 col-sm-4" >
+                    <h4 >Create a Group Page</h4>
+                </div>
+            </div>
+            <h:form class="form-inline formstyle" role="form" id="group_form">
+                <fieldset>
+                    <div class="form-group">
+                        <label class="col-xs-6 col-sm-4 control-label">Group Name: </label>
+                        <h:inputText  id="nameofGroup"  a:placeholder="Enter group name"/>
+                    </div>
+                    <br />
+                     <div class="form-group">
+                        <label class="col-xs-6 col-sm-4 control-label">Group Type: </label>
+                        <h:inputText  id="nameofGroup"  a:placeholder="Enter group type"/>
+                    </div>
+                    <!-- Success message -->
+
+
+                    <div class="row center-block toppad">
+                        <div class="form-group ">
+                            <label class="col-md-2 col-md-offset-4 control-label"></label>
+                            <div class="col-md-2 col-md-offset-4">
+                                <h:commandButton   class="btn btn-success button" value="Submit" ></h:commandButton>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row center-block toppad">
+                        <div class="form-group ">
+                            <label class="col-md-2 col-md-offset-4 control-label"></label>
+                            <div class="col-md-2 col-md-offset-4">
+                                <a href="">
+                                    <h:commandLink type="button" class="btn btn-danger button" value="Cancel" ></h:commandLink>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+            </h:form>
         <div class="row force-to-bottom text-center">
             <h:form>
                     <ul class="list-inline">

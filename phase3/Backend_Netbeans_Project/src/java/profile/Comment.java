@@ -70,7 +70,7 @@ public class Comment implements Serializable {
     private UserPlus authorName;
     private Integer theAuthorId;
     private String theAuthorName;
-    
+    private String likeView;
 
     public Comment() {
     }
@@ -194,6 +194,20 @@ public class Comment implements Serializable {
      */
     public void setTheAuthorName(String theAuthorName) {
         this.theAuthorName = theAuthorName;
+    }
+
+    /**
+     * @return the likeView
+     */
+    public String getLikeView() {
+        return likeView;
+    }
+
+    /**
+     * @param likeView the likeView to set
+     */
+    public void setLikeView(String likeView) {
+        this.likeView = likeView;
     }
     
 }

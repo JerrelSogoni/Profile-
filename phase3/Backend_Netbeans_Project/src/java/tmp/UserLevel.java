@@ -15,6 +15,9 @@ public class UserLevel implements Serializable{
     public String makeAPost(){
         return "/UserLevel/makeAPost";
     }
+    public String friendsList(){
+        return "/UserLevel/UserFriendsList";
+    }
     public String Post() {
         return "/UserLevel/Post";
     }
@@ -45,7 +48,9 @@ public class UserLevel implements Serializable{
     public String removePost() {
         return "/UserLevel/Post";
     }
-
+    public String messageList(){
+        return "/UserLevel/MessageList";
+    }
     public String removeComment() {
         return null;
     }
