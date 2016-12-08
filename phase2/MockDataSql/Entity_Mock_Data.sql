@@ -118,6 +118,36 @@ INSERT INTO PagePlus (PageId, PostCount) VALUES (32, 0);
 INSERT INTO PagePlus (PageId, PostCount) VALUES (33, 0);
 INSERT INTO PagePlus (PageId, PostCount) VALUES (34, 0);
 INSERT INTO PagePlus (PageId, PostCount) VALUES (35, 0);
+-- Added
+INSERT INTO PagePlus (PageId, PostCount) VALUES (100001, 0);
+INSERT INTO PagePlus (PageId, PostCount) VALUES (100002, 0);
+INSERT INTO PagePlus (PageId, PostCount) VALUES (100003, 0);
+INSERT INTO PagePlus (PageId, PostCount) VALUES (100004, 0);
+INSERT INTO PagePlus (PageId, PostCount) VALUES (100005, 0);
+INSERT INTO PagePlus (PageId, PostCount) VALUES (100006, 0);
+INSERT INTO PagePlus (PageId, PostCount) VALUES (100007, 0);
+INSERT INTO PagePlus (PageId, PostCount) VALUES (100008, 0);
+INSERT INTO PagePlus (PageId, PostCount) VALUES (100009, 0);
+INSERT INTO PagePlus (PageId, PostCount) VALUES (100010, 0);
+INSERT INTO PagePlus (PageId, PostCount) VALUES (100011, 0);
+INSERT INTO PagePlus (PageId, PostCount) VALUES (100012, 0);
+INSERT INTO PagePlus (PageId, PostCount) VALUES (100013, 0);
+INSERT INTO PagePlus (PageId, PostCount) VALUES (100014, 0);
+INSERT INTO PagePlus (PageId, PostCount) VALUES (100015, 0);
+INSERT INTO PagePlus (PageId, PostCount) VALUES (100016, 0);
+INSERT INTO PagePlus (PageId, PostCount) VALUES (100017, 0);
+INSERT INTO PagePlus (PageId, PostCount) VALUES (100018, 0);
+INSERT INTO PagePlus (PageId, PostCount) VALUES (100019, 0);
+INSERT INTO PagePlus (PageId, PostCount) VALUES (100020, 0);
+
+INSERT INTO PagePlus (PageId, PostCount) VALUES (200001, 0);
+INSERT INTO PagePlus (PageId, PostCount) VALUES (200002, 0);
+INSERT INTO PagePlus (PageId, PostCount) VALUES (200003, 0);
+INSERT INTO PagePlus (PageId, PostCount) VALUES (200004, 0);
+INSERT INTO PagePlus (PageId, PostCount) VALUES (200005, 0);
+INSERT INTO PagePlus (PageId, PostCount) VALUES (200006, 0);
+
+
 
 -- Comment
 INSERT INTO Comment VALUES(1, NOW(), '2', 1);
@@ -240,6 +270,27 @@ INSERT INTO PersonalPage (PageId, OwnerId) VALUES (22, 22);
 INSERT INTO PersonalPage (PageId, OwnerId) VALUES (23, 23);
 INSERT INTO PersonalPage (PageId, OwnerId) VALUES (24, 24);
 INSERT INTO PersonalPage (PageId, OwnerId) VALUES (25, 25);
+-- Added
+INSERT INTO PersonalPage (PageId, OwnerId) VALUES (100001, 100001);
+INSERT INTO PersonalPage (PageId, OwnerId) VALUES (100002, 100002);
+INSERT INTO PersonalPage (PageId, OwnerId) VALUES (100003, 100003);
+INSERT INTO PersonalPage (PageId, OwnerId) VALUES (100004, 100004);
+INSERT INTO PersonalPage (PageId, OwnerId) VALUES (100005, 100005);
+INSERT INTO PersonalPage (PageId, OwnerId) VALUES (100006, 100006);
+INSERT INTO PersonalPage (PageId, OwnerId) VALUES (100007, 100007);
+INSERT INTO PersonalPage (PageId, OwnerId) VALUES (100008, 100008);
+INSERT INTO PersonalPage (PageId, OwnerId) VALUES (100009, 100009);
+INSERT INTO PersonalPage (PageId, OwnerId) VALUES (100010, 100010);
+INSERT INTO PersonalPage (PageId, OwnerId) VALUES (100011, 100011);
+INSERT INTO PersonalPage (PageId, OwnerId) VALUES (100012, 100012);
+INSERT INTO PersonalPage (PageId, OwnerId) VALUES (100013, 100013);
+INSERT INTO PersonalPage (PageId, OwnerId) VALUES (100014, 100014);
+INSERT INTO PersonalPage (PageId, OwnerId) VALUES (100015, 100015);
+INSERT INTO PersonalPage (PageId, OwnerId) VALUES (100016, 100016);
+INSERT INTO PersonalPage (PageId, OwnerId) VALUES (100017, 100017);
+INSERT INTO PersonalPage (PageId, OwnerId) VALUES (100018, 100018);
+INSERT INTO PersonalPage (PageId, OwnerId) VALUES (100019, 100019);
+INSERT INTO PersonalPage (PageId, OwnerId) VALUES (100020, 100020);
 
 -- AdData
 INSERT INTO AdData VALUE(1, 153581835, "Cars", "Google", "Google Car", "First flying car", 100, 100);
