@@ -32,10 +32,10 @@ public class CustrepLevel implements Serializable {
 
     private String queryCompany = "";
     private List<UserPlus> mailingList;
-    
+
     private String queryCustomer = "";
     private List<AdData> suggestionList;
-    
+
     private List<GroupPlus> groupList;
 
     public String addAd() {
@@ -51,7 +51,7 @@ public class CustrepLevel implements Serializable {
     }
 
     public String editCustomerInfo() {
-        return null;
+        return "/userPlus/List";
     }
 
     public String listCust() {
@@ -67,7 +67,7 @@ public class CustrepLevel implements Serializable {
     }
 
     public String custHistory() {
-        return null;
+        return "/CustRepLevel/AccountHistory";
     }
 
     public String bestSeller() {
@@ -162,8 +162,9 @@ public class CustrepLevel implements Serializable {
             ps = con.prepareStatement("SELECT * FROM AdData A1 WHERE A1.Type IN ("
                     + " SELECT Type FROM AdData A2, Buy B, Sales S WHERE"
                     + " B.TransId = S.TransId AND S.AdId = A2.AdId AND B.UserId = ?);");
-            if(!queryCustomer.equals(""))
+            if (!queryCustomer.equals("")) {
                 ps.setInt(1, Integer.parseInt(queryCustomer));
+            }
 
             // print out the query statement
             JsfUtil.addErrorMessage(ps.toString());
@@ -182,7 +183,7 @@ public class CustrepLevel implements Serializable {
                 added.setContent(rs.getString("Content"));
                 added.setUnitPrice(rs.getFloat("UnitPrice"));
                 added.setNumOfAvaUnits(rs.getInt("NumOfAvaUnits"));
-                
+
                 suggestionList.add(added);
             }
         } catch (SQLException ex) {
@@ -217,8 +218,9 @@ public class CustrepLevel implements Serializable {
             con = DataConnect.getConnection();
             ps = con.prepareStatement("SELECT G.GroupName FROM GroupPlus G WHERE EXISTS ("
                     + " SELECT * FROM HasAccessToGroup H WHERE H.UserId = ? AND H.GroupID = G.GroupID);");
-            if(!queryCustomer.equals(""))
+            if (!queryCustomer.equals("")) {
                 ps.setInt(1, Integer.parseInt(queryCustomer));
+            }
 
             // print out the query statement
             JsfUtil.addErrorMessage(ps.toString());
@@ -230,7 +232,7 @@ public class CustrepLevel implements Serializable {
                 GroupPlus added = new GroupPlus();
 
                 added.setGroupName(rs.getString("GroupName"));
-                
+
                 groupList.add(added);
             }
         } catch (SQLException ex) {
@@ -252,10 +254,11 @@ public class CustrepLevel implements Serializable {
     public void setGroupList(List<GroupPlus> groupList) {
         this.groupList = groupList;
     }
-    
+
     private List<ItemSuggestion> suggestedItemList;
-    
-    public class ItemSuggestion{
+
+    public class ItemSuggestion {
+
         private String itemName;
         private String itemType;
 
@@ -274,20 +277,21 @@ public class CustrepLevel implements Serializable {
         public void setItemType(String itemType) {
             this.itemType = itemType;
         }
-        
+
     }
 
     public List<ItemSuggestion> getSuggestedItemList() {
         suggestedItemList = new ArrayList<>();
-        
+
         Connection con = null;
         PreparedStatement ps = null;
 
         try {
             con = DataConnect.getConnection();
             ps = con.prepareStatement("SELECT A.ItemName AS ItemName, A.Type AS ItemType FROM AdData A, UserPlus U WHERE U.Userid = ? AND U.preferences LIKE A.type;");
-            if(!queryCustomer.equals(""))
+            if (!queryCustomer.equals("")) {
                 ps.setInt(1, Integer.parseInt(queryCustomer));
+            }
 
             // print out the query statement
             JsfUtil.addErrorMessage(ps.toString());
@@ -300,7 +304,7 @@ public class CustrepLevel implements Serializable {
 
                 added.setItemName(rs.getString("ItemName"));
                 added.setItemType(rs.getString("ItemType"));
-                
+
                 suggestedItemList.add(added);
             }
         } catch (SQLException ex) {
@@ -313,14 +317,14 @@ public class CustrepLevel implements Serializable {
         } finally {
             DataConnect.close(con);
         }
-        
+
         return suggestedItemList;
     }
 
     public void setSuggestedItemList(List<ItemSuggestion> suggestedItemList) {
         this.suggestedItemList = suggestedItemList;
     }
-    
+
     private AdData queryAdId;
     private Employee queryEmpId;
     private int queryNumOfUnits;
@@ -358,9 +362,11 @@ public class CustrepLevel implements Serializable {
     public void setQueryAccountNum(String queryAccountNum) {
         this.queryAccountNum = queryAccountNum;
     }
-    
+
     private List<Transaction> transList;
-    public class Transaction{
+
+    public class Transaction {
+
         private String TransDate, TransTime, ItemName, Type, NumOfUnits, AccountNum, EmpId, UserId;
 
         public String getTransDate() {
@@ -430,7 +436,7 @@ public class CustrepLevel implements Serializable {
 
     public List<Transaction> getTransList() {
         transList = new ArrayList<>();
-        
+
         Connection con = null;
         PreparedStatement ps = null;
 
@@ -455,7 +461,7 @@ public class CustrepLevel implements Serializable {
                 added.setAccountNum(rs.getString("AccountNum"));
                 added.setUserId(rs.getString("UserId"));
                 added.setEmpId(rs.getString("SSN"));
-                
+
                 transList.add(added);
             }
         } catch (SQLException ex) {
@@ -468,47 +474,48 @@ public class CustrepLevel implements Serializable {
         } finally {
             DataConnect.close(con);
         }
-        
+
         return transList;
     }
 
     public void setTransList(List<Transaction> transList) {
         this.transList = transList;
     }
-    
-    public String addTransaction(){
+
+    public String addTransaction() {
         Connection con = null;
         PreparedStatement ps = null;
 
         try {
             con = DataConnect.getConnection();
             ps = con.prepareStatement("INSERT INTO sales(TransDate, TransTime, AdId, NumOfUnits, AccountNum) values (NOW(), NOW(), ?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
-            if(queryAdId != null)
+            if (queryAdId != null) {
                 ps.setInt(1, queryAdId.getAdId());
-            if(queryNumOfUnits != 0)
+            }
+            if (queryNumOfUnits != 0) {
                 ps.setInt(2, queryNumOfUnits);
-            if(queryAccountNum != null)
+            }
+            if (queryAccountNum != null) {
                 ps.setString(3, queryAccountNum);
+            }
 
             // print out the query statement
             JsfUtil.addErrorMessage(ps.toString());
-            
+
             ps.executeUpdate();
-            
+
             ResultSet rs = ps.getGeneratedKeys();
             rs.next();
             int TransId = rs.getInt(1);
-            
+
             ps = con.prepareStatement("INSERT INTO Buy VALUES(?, ?, ?);");
             ps.setInt(1, TransId);
             ps.setString(2, queryEmpId.getSsn());
             ps.setInt(3, Integer.parseInt(queryCustomer));
-            
+
             JsfUtil.addErrorMessage(ps.toString());
-            
+
             ps.executeUpdate();
-            
-            
 
         } catch (SQLException ex) {
 
@@ -519,7 +526,7 @@ public class CustrepLevel implements Serializable {
         } finally {
             DataConnect.close(con);
         }
-        
+
         return "/CustRepLevel/AddTransaction";
     }
 
@@ -530,4 +537,85 @@ public class CustrepLevel implements Serializable {
     public void setQueryUser(UserPlus queryUser) {
         this.queryUser = queryUser;
     }
+
+    private List<Transaction> custAccountHistory;
+
+    public List<Transaction> getCustAccountHistory() {
+        custAccountHistory = new ArrayList<>();
+
+        Connection con = null;
+        PreparedStatement ps = null;
+
+        try {
+            con = DataConnect.getConnection();
+            ps = con.prepareStatement("SELECT \n"
+                    + "    S.TransDate,\n"
+                    + "    S.TransTime,\n"
+                    + "    A.ItemName,\n"
+                    + "    A.Type,\n"
+                    + "    S.numOfUnits,\n"
+                    + "    S.accountNum,\n"
+                    + "    U.UserId,\n"
+                    + "    E.SSN\n"
+                    + "FROM\n"
+                    + "    Buy B,\n"
+                    + "    AdData A,\n"
+                    + "    UserPlus U,\n"
+                    + "    Employee E,\n"
+                    + "    Sales S\n"
+                    + "WHERE\n"
+                    + "    B.EmpId = E.SSN\n"
+                    + "        AND B.TransId = S.TransId\n"
+                    + "        AND S.AdId = A.AdId\n"
+                    + "        AND B.UserId = U.UserId\n"
+                    + "        AND U.UserId = ?\n"
+                    + "        AND S.AccountNum = ?\n"
+                    + "ORDER BY S.TransDate DESC, S.TransTime DESC;");
+
+            if (queryUser != null) {
+                ps.setInt(1, queryUser.getUserId());
+            }
+
+            if (queryAccountNum != null) {
+                ps.setString(2, queryAccountNum);
+            }
+
+            // print out the query statement
+            JsfUtil.addErrorMessage(ps.toString());
+
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                //result found, means valid inputs
+                Transaction added = new Transaction();
+
+                added.setTransDate(rs.getString("TransDate"));
+                added.setTransTime(rs.getString("TransTime"));
+                added.setItemName(rs.getString("ItemName"));
+                added.setType(rs.getString("Type"));
+                added.setNumOfUnits(rs.getString("NumOfUnits"));
+                added.setAccountNum(rs.getString("AccountNum"));
+                added.setUserId(rs.getString("UserId"));
+                added.setEmpId(rs.getString("SSN"));
+
+                custAccountHistory.add(added);
+            }
+
+        } catch (SQLException ex) {
+
+            // print out error message
+            JsfUtil.addErrorMessage("Connection to database failed:" + ex.getMessage());
+            System.out.println("Login error -->" + ex.getMessage());
+
+        } finally {
+            DataConnect.close(con);
+        }
+
+        return custAccountHistory;
+    }
+
+    public void setCustAccountHistory(List<Transaction> custAccountHistory) {
+        this.custAccountHistory = custAccountHistory;
+    }
+
 }
