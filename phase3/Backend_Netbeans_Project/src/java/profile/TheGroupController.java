@@ -6,9 +6,16 @@
 package profile;
 
 import java.io.Serializable;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.model.DataModel;
 import javax.inject.Named;
+import profile.util.DataConnect;
+import profile.util.JsfUtil;
+import profile.util.PostValidator;
+import profile.util.SessionUtils;
 /*
 Jane 
 the purpose of this controller is to load the the groups by the user
@@ -53,5 +60,35 @@ public class TheGroupController implements Serializable {
     public void setItems(DataModel items) {
         this.items = items;
     }
+    public void createGroup(){
+                Connection con = null;
+        PreparedStatement ps = null;
+       
+
+            try {
+                con = DataConnect.getConnection();
+                ps = con.prepareStatement("INSERT INTO FriendsWith(UserId,FriendId) VALUES(? ,? );");
+                // print out the query statement
+                ps.setInt(1, SessionUtils.getUserId());
+      
+                //   JsfUtil.addErrorMessage(ps.toString());
+                ps.execute();
+
+            } catch (SQLException ex) {
+
+                // print out error message
+                JsfUtil.addErrorMessage("Connection to database failed:" + ex.getMessage());
+
+            } finally {
+                DataConnect.close(con);
+  
+            }
+
+        }
+    
+    public void getGroupList(){
+        
+    }
+
     
 }

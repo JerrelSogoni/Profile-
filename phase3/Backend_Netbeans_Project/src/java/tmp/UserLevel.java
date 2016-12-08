@@ -51,6 +51,9 @@ public class UserLevel implements Serializable{
     public String messageList(){
         return "/UserLevel/MessageList";
     }
+    public String groupList(){
+        return "/groupPage/GroupList";
+    }
     public String removeComment() {
         return null;
     }

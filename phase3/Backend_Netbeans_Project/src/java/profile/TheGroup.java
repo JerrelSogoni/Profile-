@@ -23,6 +23,7 @@ public class TheGroup implements Serializable {
     private String GroupName;
     private Integer OwnerId;
     private String Set;
+    private String joinStatus;
 
     /**
      * @return the GroupId
@@ -78,6 +79,20 @@ public class TheGroup implements Serializable {
      */
     public void setSet(String Set) {
         this.Set = Set;
+    }
+
+    /**
+     * @return the joinStatus
+     */
+    public String getJoinStatus() {
+        return joinStatus;
+    }
+
+    /**
+     * @param joinStatus the joinStatus to set
+     */
+    public void setJoinStatus(String joinStatus) {
+        this.joinStatus = joinStatus;
     }
     
 }

@@ -4,10 +4,6 @@ import profile.util.JsfUtil;
 import profile.util.PaginationHelper;
 
 import java.io.Serializable;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ResourceBundle;
 import javax.ejb.EJB;
 import javax.inject.Named;
@@ -19,8 +15,6 @@ import javax.faces.convert.FacesConverter;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
-import profile.util.DataConnect;
-import profile.util.SessionUtils;
 
 @Named("groupPageController")
 @SessionScoped
