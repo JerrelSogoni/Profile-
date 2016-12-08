@@ -74,7 +74,7 @@ public class CustrepLevel implements Serializable {
     }
 
     public String itemSuggestion() {
-        return "CustRepLevel/ItemSuggestion";
+        return "/CustRepLevel/ItemSuggestion";
     }
 
     /**
@@ -251,4 +251,72 @@ public class CustrepLevel implements Serializable {
     public void setGroupList(List<GroupPlus> groupList) {
         this.groupList = groupList;
     }
+    
+    private List<ItemSuggestion> suggestedItemList;
+    
+    public class ItemSuggestion{
+        private String itemName;
+        private String itemType;
+
+        public String getItemName() {
+            return itemName;
+        }
+
+        public void setItemName(String itemName) {
+            this.itemName = itemName;
+        }
+
+        public String getItemType() {
+            return itemType;
+        }
+
+        public void setItemType(String itemType) {
+            this.itemType = itemType;
+        }
+        
+    }
+
+    public List<ItemSuggestion> getSuggestedItemList() {
+        suggestedItemList = new ArrayList<>();
+        
+        Connection con = null;
+        PreparedStatement ps = null;
+
+        try {
+            con = DataConnect.getConnection();
+            ps = con.prepareStatement("SELECT A.ItemName AS ItemName, A.Type AS ItemType FROM AdData A, UserPlus U WHERE U.Userid = ? AND U.preferences LIKE A.type;");
+            if(!queryCustomer.equals(""))
+                ps.setInt(1, Integer.parseInt(queryCustomer));
+
+            // print out the query statement
+            JsfUtil.addErrorMessage(ps.toString());
+
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                //result found, means valid inputs
+                ItemSuggestion added = new ItemSuggestion();
+
+                added.setItemName(rs.getString("ItemName"));
+                added.setItemType(rs.getString("ItemType"));
+                
+                suggestedItemList.add(added);
+            }
+        } catch (SQLException ex) {
+
+            // print out error message
+            JsfUtil.addErrorMessage("Connection to database failed:" + ex.getMessage());
+            System.out.println("Login error -->" + ex.getMessage());
+            return null;
+
+        } finally {
+            DataConnect.close(con);
+        }
+        
+        return suggestedItemList;
+    }
+
+    public void setSuggestedItemList(List<ItemSuggestion> suggestedItemList) {
+        this.suggestedItemList = suggestedItemList;
+    }    
 }
