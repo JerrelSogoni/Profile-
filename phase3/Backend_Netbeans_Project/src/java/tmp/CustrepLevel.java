@@ -71,7 +71,7 @@ public class CustrepLevel implements Serializable {
     }
 
     public String bestSeller() {
-        return null;
+        return "/CustRepLevel/BestSeller";
     }
 
     public String itemSuggestion() {
@@ -618,4 +618,112 @@ public class CustrepLevel implements Serializable {
         this.custAccountHistory = custAccountHistory;
     }
 
+    private List<BestSeller> bestSellerList;
+
+    public class BestSeller {
+
+//        private int AdId, totalCnt;
+        private String AdId, totalCnt;
+        private String ItemName;
+
+//        public int getAdId() {
+//            return AdId;
+//        }
+//
+//        public void setAdId(int AdId) {
+//            this.AdId = AdId;
+//        }
+//
+//        public int getTotalCnt() {
+//            return totalCnt;
+//        }
+//
+//        public void setTotalCnt(int totalCnt) {
+//            this.totalCnt = totalCnt;
+//        }
+//
+//        public String getItemName() {
+//            return ItemName;
+//        }
+//
+//        public void setItemName(String ItemName) {
+//            this.ItemName = ItemName;
+//        }
+
+        public String getAdId() {
+            return AdId;
+        }
+
+        public void setAdId(String AdId) {
+            this.AdId = AdId;
+        }
+
+        public String getTotalCnt() {
+            return totalCnt;
+        }
+
+        public void setTotalCnt(String totalCnt) {
+            this.totalCnt = totalCnt;
+        }
+
+        public String getItemName() {
+            return ItemName;
+        }
+
+        public void setItemName(String ItemName) {
+            this.ItemName = ItemName;
+        }
+    }
+
+    public List<BestSeller> getBestSellerList() {
+        bestSellerList = new ArrayList<>();
+        Connection con = null;
+        PreparedStatement ps = null;
+
+        try {
+            con = DataConnect.getConnection();
+            ps = con.prepareStatement("SELECT \n"
+                    + "    A.AdId, A.ItemName, SUM(S.NumOfUnits) AS totalCnt\n"
+                    + "FROM\n"
+                    + "    AdData A,\n"
+                    + "    Buy B,\n"
+                    + "    Sales S\n"
+                    + "WHERE\n"
+                    + "    A.AdId = S.AdId\n"
+                    + "        AND B.TransId = S.TransId\n"
+                    + "GROUP BY A.AdId , A.ItemName , S.NumOfUnits\n"
+                    + "ORDER BY totalCnt DESC;");
+
+            // print out the query statement
+            JsfUtil.addErrorMessage(ps.toString());
+
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                //result found, means valid inputs
+                BestSeller added = new BestSeller();
+
+                added.setItemName(rs.getString("ItemName"));
+                added.setAdId(rs.getString("AdId"));
+                added.setTotalCnt(rs.getString("totalCnt"));
+
+                bestSellerList.add(added);
+            }
+
+        } catch (SQLException ex) {
+
+            // print out error message
+            JsfUtil.addErrorMessage("Connection to database failed:" + ex.getMessage());
+            System.out.println("Login error -->" + ex.getMessage());
+
+        } finally {
+            DataConnect.close(con);
+        }
+
+        return bestSellerList;
+    }
+
+    public void setBestSellerList(List<BestSeller> bestSeller) {
+        this.bestSellerList = bestSeller;
+    }
 }
