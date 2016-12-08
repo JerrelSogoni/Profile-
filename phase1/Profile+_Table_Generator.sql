@@ -12,6 +12,8 @@ CREATE TABLE UserPlus (
     ZipCode INTEGER,
     Phone CHAR(10),
     Preferences VARCHAR(1000),
+    AccountCreationDate DATETIME,
+    CreditCardNum CHAR(16),
     AccountNum INTEGER,
     PRIMARY KEY (UserId)
 );
