@@ -70,5 +70,14 @@ public class SessionUtils {
         }
         
     }
+    
+    public static Integer getGroupId(){
+        HttpSession session = getSession();
+        if(session != null) {
+            return (Integer) session.getAttribute("group");
+        } else {
+            return null;
+        }
+    }
    
 }

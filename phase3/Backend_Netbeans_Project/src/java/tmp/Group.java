@@ -48,15 +48,15 @@ public class Group implements Serializable {
     }
 
     public String rmFromGroup() {
-        return null;
+        return "/GroupLevel/GroupList";
     }
 
     public String join() {
-        return null;
+        return "/GroupLevel/GroupList";
     }
 
     public String unjoin() {
-        return null;
+        return "/GroupLevel/GroupList";
     }
 
     public String makePostGrp() {
@@ -64,39 +64,39 @@ public class Group implements Serializable {
     }
 
     public String commentPostGrp() {
-        return null;
+        return "/GroupLevel/UserGroupList";
     }
 
     public String removePostGrp() {
-        return null;
+        return "/GroupLevel/UserGroupList";
     }
 
     public String removeCommentGrp() {
-        return null;
+        return "/GroupLevel/UserGroupList";
     }
 
     public String likePostGrp() {
-        return null;
+        return "/GroupLevel/UserGroupList";
     }
 
     public String likeCommentGrp() {
-        return null;
+        return "/GroupLevel/UserGroupList";
     }
 
     public String unlikePostGrp() {
-        return null;
+        return "/GroupLevel/UserGroupList";
     }
 
     public String unlikeCommentGrp() {
-        return null;
+        return "/GroupLevel/UserGroupList";
     }
 
     public String editPostGrp() {
-        return null;
+        return "/GroupLevel/UserGroupList";
     }
 
     public String editCommentGrp() {
-        return null;
+        return "/GroupLevel/UserGroupList";
     }
 
     private UserPlus queryUserPlus;

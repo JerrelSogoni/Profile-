@@ -18,21 +18,17 @@
                     <h:selectOneMenu id="user" value="#{group.queryUserPlus}">
                         <f:selectItems value="#{userPlusController.itemsAvailableSelectOne}"/>
                     </h:selectOneMenu>
-                    <h:outputLabel value="Group" for="group" />
-                    <h:selectOneMenu id="group" value="#{group.queryGroupPlus}">
-                        <f:selectItems value="#{groupPlusController.itemsAvailableSelectOne}"/>
-                    </h:selectOneMenu>
                 </h:panelGrid>
                 <div class="row force-to-bottom text-center">
                     <div class="col-lg-12">
-                        <h:commandLink action="#{group.addToGrpButton()}" class="btn btn-success" id="submit" value="Add" >
+                        <h:commandLink action="#{group.makePostGrp()}" class="btn btn-success" id="submit" value="Add" >
                             <f:param name="target" value="itemname" />
                             <i class="glyphicon glyphicon-send" />
                         </h:commandLink>
-                        <h:commandLink action="#{group.rmFromGrpButton()}" class="btn btn-failure" id="submit2" value="Delete" >
+<!--                        <h:commandLink action="#{group.rmFromGrpButton()}" class="btn btn-failure" id="submit2" value="Delete" >
                             <f:param name="target" value="itemname" />
                             <i class="glyphicon glyphicon-remove" />
-                        </h:commandLink>
+                        </h:commandLink>-->
                     </div>
                 </div>
             </h:form>
