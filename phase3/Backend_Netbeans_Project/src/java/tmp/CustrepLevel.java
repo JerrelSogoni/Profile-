@@ -99,7 +99,7 @@ public class CustrepLevel implements Serializable {
 
         try {
             con = DataConnect.getConnection();
-            ps = con.prepareStatement("SELECT A.Company, U.Email FROM Buy B, Sales S, AdData A, UserPlus U"
+            ps = con.prepareStatement("SELECT DISTINCT A.Company, U.Email FROM Buy B, Sales S, AdData A, UserPlus U"
                     + " WHERE B.TransId = S.TransId AND B.UserId = U.UserId AND A.AdId = S.AdId AND A.Company = ?;");
             ps.setString(1, queryCompany);
 
@@ -113,13 +113,12 @@ public class CustrepLevel implements Serializable {
                 UserPlus added = new UserPlus();
                 added.setEmail(rs.getString("Email"));
                 mailingList.add(added);
-                JsfUtil.addErrorMessage("Added to return list " + rs.getString("Email"));
             }
         } catch (SQLException ex) {
 
             // print out error message
             JsfUtil.addErrorMessage("Connection to database failed:" + ex.getMessage());
-            System.out.println("Login error -->" + ex.getMessage());
+            
             return null;
 
         } finally {
@@ -190,7 +189,7 @@ public class CustrepLevel implements Serializable {
 
             // print out error message
             JsfUtil.addErrorMessage("Connection to database failed:" + ex.getMessage());
-            System.out.println("Login error -->" + ex.getMessage());
+            
             return null;
 
         } finally {
@@ -239,7 +238,7 @@ public class CustrepLevel implements Serializable {
 
             // print out error message
             JsfUtil.addErrorMessage("Connection to database failed:" + ex.getMessage());
-            System.out.println("Login error -->" + ex.getMessage());
+            
             return null;
 
         } finally {
@@ -288,30 +287,44 @@ public class CustrepLevel implements Serializable {
 
         try {
             con = DataConnect.getConnection();
-            ps = con.prepareStatement("SELECT A.ItemName AS ItemName, A.Type AS ItemType FROM AdData A, UserPlus U WHERE U.Userid = ? AND U.preferences LIKE A.type;");
-            if (!queryCustomer.equals("")) {
-                ps.setInt(1, Integer.parseInt(queryCustomer));
+            ps = con.prepareStatement("SELECT U.Preferences FROM UserPlus U WHERE U.UserId = ?;");
+            if (queryUser != null) {
+                ps.setInt(1, queryUser.getUserId());
             }
-
-            // print out the query statement
-            JsfUtil.addErrorMessage(ps.toString());
 
             ResultSet rs = ps.executeQuery();
 
-            while (rs.next()) {
-                //result found, means valid inputs
-                ItemSuggestion added = new ItemSuggestion();
+            rs.next();
+            String preferences = rs.getString("Preferences");
 
-                added.setItemName(rs.getString("ItemName"));
-                added.setItemType(rs.getString("ItemType"));
+            String[] splitted = preferences.split(",");
 
-                suggestedItemList.add(added);
+            for (String s : splitted) {
+                ps = con.prepareStatement("SELECT A.ItemName AS ItemName, A.Type AS ItemType FROM AdData A, UserPlus U WHERE U.Userid = ? AND A.Type LIKE ?;");
+                if (queryUser != null) {
+                    ps.setInt(1, queryUser.getUserId());
+                }
+                ps.setString(2, s);
+
+                JsfUtil.addErrorMessage(ps.toString());
+                rs = ps.executeQuery();                
+
+                while (rs.next()) {
+                    //result found, means valid inputs
+                    ItemSuggestion added = new ItemSuggestion();
+
+                    added.setItemName(rs.getString("ItemName"));
+                    added.setItemType(rs.getString("ItemType"));
+
+                    suggestedItemList.add(added);
+                }
             }
+
         } catch (SQLException ex) {
 
             // print out error message
             JsfUtil.addErrorMessage("Connection to database failed:" + ex.getMessage());
-            System.out.println("Login error -->" + ex.getMessage());
+            
             return null;
 
         } finally {
@@ -468,7 +481,7 @@ public class CustrepLevel implements Serializable {
 
             // print out error message
             JsfUtil.addErrorMessage("Connection to database failed:" + ex.getMessage());
-            System.out.println("Login error -->" + ex.getMessage());
+            
             return null;
 
         } finally {
@@ -511,7 +524,7 @@ public class CustrepLevel implements Serializable {
             ps = con.prepareStatement("INSERT INTO Buy VALUES(?, ?, ?);");
             ps.setInt(1, TransId);
             ps.setString(2, queryEmpId.getSsn());
-            ps.setInt(3, Integer.parseInt(queryCustomer));
+            ps.setInt(3, queryUser.getUserId());
 
             JsfUtil.addErrorMessage(ps.toString());
 
@@ -521,7 +534,7 @@ public class CustrepLevel implements Serializable {
 
             // print out error message
             JsfUtil.addErrorMessage("Connection to database failed:" + ex.getMessage());
-            System.out.println("Login error -->" + ex.getMessage());
+            
 
         } finally {
             DataConnect.close(con);
@@ -605,7 +618,7 @@ public class CustrepLevel implements Serializable {
 
             // print out error message
             JsfUtil.addErrorMessage("Connection to database failed:" + ex.getMessage());
-            System.out.println("Login error -->" + ex.getMessage());
+            
 
         } finally {
             DataConnect.close(con);
@@ -649,7 +662,6 @@ public class CustrepLevel implements Serializable {
 //        public void setItemName(String ItemName) {
 //            this.ItemName = ItemName;
 //        }
-
         public String getAdId() {
             return AdId;
         }
@@ -714,7 +726,7 @@ public class CustrepLevel implements Serializable {
 
             // print out error message
             JsfUtil.addErrorMessage("Connection to database failed:" + ex.getMessage());
-            System.out.println("Login error -->" + ex.getMessage());
+            
 
         } finally {
             DataConnect.close(con);

@@ -235,7 +235,7 @@ public class Register implements Serializable {
 
             // print out error message
             JsfUtil.addErrorMessage("Connection to database failed:" + ex.getMessage());
-            System.out.println("Login error -->" + ex.getMessage());
+            
             return "/userPlus/Register";
         } finally {
             DataConnect.close(con);

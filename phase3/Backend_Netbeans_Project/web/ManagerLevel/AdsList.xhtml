@@ -11,7 +11,7 @@
         </ui:define>
         <ui:define name="content">
             <h3>Advertisement List</h3><p><br/></p>
-            <h:form styleClass="jsfcrud_list_form">
+            <h:form>
                 <h:panelGroup id="messagePanel" layout="block">
                     <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
                 </h:panelGroup>
@@ -69,16 +69,16 @@
                             </f:facet>
                             <h:outputText value="#{item.empId}"/>
                         </h:column>
-<!--                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="&nbsp;"/>
-                            </f:facet>
-                            <h:commandLink action="#{adDataController.prepareView}" value="#{bundle.ListAdDataViewLink}"/>
-                            <h:outputText value=" "/>
-                            <h:commandLink action="#{adDataController.prepareEdit}" value="#{bundle.ListAdDataEditLink}"/>
-                            <h:outputText value=" "/>
-                            <h:commandLink action="#{adDataController.destroy}" value="#{bundle.ListAdDataDestroyLink}"/>
-                        </h:column>-->
+                        <!--                        <h:column>
+                                                    <f:facet name="header">
+                                                        <h:outputText value="&nbsp;"/>
+                                                    </f:facet>
+                                                    <h:commandLink action="#{adDataController.prepareView}" value="#{bundle.ListAdDataViewLink}"/>
+                                                    <h:outputText value=" "/>
+                                                    <h:commandLink action="#{adDataController.prepareEdit}" value="#{bundle.ListAdDataEditLink}"/>
+                                                    <h:outputText value=" "/>
+                                                    <h:commandLink action="#{adDataController.destroy}" value="#{bundle.ListAdDataDestroyLink}"/>
+                                                </h:column>-->
                     </h:dataTable>
                 </h:panelGroup>
                 <br />

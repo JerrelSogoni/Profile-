@@ -17,8 +17,10 @@
             </h:panelGroup>
             <h:form>
                 <h:panelGrid columns="2" class="table table-hover">
-                    <h:outputLabel value="Filter ItemName" for="month"/>
-                    <h:inputText id="month" value="#{custrepLevel.queryCustomer}" title="Query Month" />
+                    <h:outputLabel value="Which user?" for="userId" />
+                    <h:selectOneMenu id="queryUser" value="#{custrepLevel.queryUser}">
+                        <f:selectItems value="#{userPlusController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
                 </h:panelGrid>
                 <div class="row force-to-bottom text-center">
                     <div class="col-lg-12">
