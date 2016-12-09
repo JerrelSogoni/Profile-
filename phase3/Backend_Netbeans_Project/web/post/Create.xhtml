@@ -14,7 +14,7 @@
                 <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
             </h:panelGroup>
             <h:form>
-                <h:panelGrid columns="2">
+                <h:panelGrid class="table table-hover" columns="2">
                     <h:outputLabel value="#{bundle.CreatePostLabel_postId}" for="postId" />
                     <h:inputText id="postId" value="#{postController.selected.postId}" title="#{bundle.CreatePostTitle_postId}" required="true" requiredMessage="#{bundle.CreatePostRequiredMessage_postId}"/>
                     <h:outputLabel value="#{bundle.CreatePostLabel_dateCreated}" for="dateCreated" />

@@ -10,11 +10,12 @@
             <h:outputText value="#{bundle.ViewAdDataTitle}"></h:outputText>
         </ui:define>
         <ui:define name="content">
+            <h3>View Advertisement</h3><p><br/></p>
             <h:panelGroup id="messagePanel" layout="block">
                 <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
             </h:panelGroup>
             <h:form>
-                <h:panelGrid columns="2">
+                <h:panelGrid class="table table-hover" columns="2">
                     <h:outputText value="#{bundle.ViewAdDataLabel_adId}"/>
                     <h:outputText value="#{adDataController.selected.adId}" title="#{bundle.ViewAdDataTitle_adId}"/>
                     <h:outputText value="#{bundle.ViewAdDataLabel_type}"/>

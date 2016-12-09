@@ -27,6 +27,7 @@ public class Register implements Serializable {
     private String phone;
     private String firstname, lastname, email, address, city, state, zip,
             dob, pref, sex;
+    private String password, accountNum;
 
     /**
      * @return the firstname
@@ -190,8 +191,8 @@ public class Register implements Serializable {
             con = DataConnect.getConnection();
             ps = con.prepareStatement("INSERT INTO UserPlus("
                     + "FirstName, LastName, Address, City, State, ZipCode, "
-                    + "Phone, Email) "
-                    + "VALUES(?, ?, ?, ?, ?, ?, ?, ?);", Statement.RETURN_GENERATED_KEYS);
+                    + "Phone, Email, Sex, Password, AccountNum, DOB) "
+                    + "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);", Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, firstname);
             ps.setString(2, lastname);
             ps.setString(3, address);
@@ -200,6 +201,10 @@ public class Register implements Serializable {
             ps.setString(6, zip);
             ps.setString(7, phone);
             ps.setString(8, email);
+            ps.setString(9, sex);
+            ps.setString(10, password);
+            ps.setString(11, accountNum);
+            ps.setString(12, dob);
 
             // print out the query statement
             JsfUtil.addErrorMessage(ps.toString());
@@ -230,12 +235,28 @@ public class Register implements Serializable {
 
             // print out error message
             JsfUtil.addErrorMessage("Connection to database failed:" + ex.getMessage());
-            System.out.println("Login error -->" + ex.getMessage());
+            
             return "/userPlus/Register";
         } finally {
             DataConnect.close(con);
         }
         return "";
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getAccountNum() {
+        return accountNum;
+    }
+
+    public void setAccountNum(String accountNum) {
+        this.accountNum = accountNum;
     }
 
 }

@@ -14,7 +14,7 @@
                 <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
             </h:panelGroup>
             <h:form>
-                <h:panelGrid columns="2">
+                <h:panelGrid class="table table-hover" columns="2">
                     <h:outputLabel value="#{bundle.CreateUserPlusLabel_userId}" for="userId" />
                     <h:inputText id="userId" value="#{userPlusController.selected.userId}" title="#{bundle.CreateUserPlusTitle_userId}" required="true" requiredMessage="#{bundle.CreateUserPlusRequiredMessage_userId}"/>
                     <h:outputLabel value="#{bundle.CreateUserPlusLabel_password}" for="password" />

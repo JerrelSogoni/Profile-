@@ -14,7 +14,7 @@
                 <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
             </h:panelGroup>
             <h:form>
-                <h:panelGrid columns="2">
+                <h:panelGrid class="table table-hover" columns="2">
                     <h:outputText value="#{bundle.ViewEmployeeLabel_ssn}"/>
                     <h:outputText value="#{employeeController.selected.ssn}" title="#{bundle.ViewEmployeeTitle_ssn}"/>
                     <h:outputText value="#{bundle.ViewEmployeeLabel_lastName}"/>

@@ -7,7 +7,7 @@
 
     <ui:composition template="/template.xhtml">
         <ui:define name="title">
-            Manage
+            List Items By Category
         </ui:define>
         <ui:define name="content">
             <div><h4>Welcome! User:#{userPlusController.user}</h4></div>
@@ -17,7 +17,7 @@
             </h:panelGroup>
             <h:form>
                 <h:panelGrid columns="2" class="table table-hover">
-                    <h:outputLabel value="Filter ItemName" for="month"/>
+                    <h:outputLabel value="Company" for="month"/>
                     <h:inputText id="month" value="#{managerLevel.queryCompany}" title="Query Month" />
                 </h:panelGrid>
                 <div class="row force-to-bottom text-center">
