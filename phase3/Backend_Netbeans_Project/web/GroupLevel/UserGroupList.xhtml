@@ -48,12 +48,6 @@
                     <h:outputText value="#{item.groupId}"/>
                 </h:column>
                 <h:column>
-                    <f:facet name="header">
-                        <h:outputText value="Group Name"/>
-                    </f:facet>
-                    <h:outputText value="#{item.groupName}"/>
-                </h:column>
-                <h:column>
                     <h:form>
                         <h:commandLink class="btn btn-default" action="#{group.saveGroupSelection()}" value="#{bundle.ListPostViewLink}">
                             <f:param name="group" value="#{item.groupId}" />
