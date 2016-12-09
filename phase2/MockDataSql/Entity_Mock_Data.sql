@@ -1,29 +1,50 @@
 -- UserPlus
-INSERT INTO UserPlus VALUES(1, 'apples', 'Michael', 'Thorne', '4363 Arrowood Drive', 'Jacksonville', 'FL', 32216, '9044166609', 'MichaelCThorne@gmail.com', 1, NOW(), '5443350608517143', 'applePicking');
-INSERT INTO UserPlus VALUES(2, 'apples', 'Paul', 'Fodor', '2635 Simons Hollow Road', 'New York', 'NY', 10001, '5707512415', 'paulfodor@gmail.com', 2, NOW(), '4958858084473102', 'applePicking');
-INSERT INTO UserPlus VALUES(3, 'apples', 'Michael', 'Kife', '885 Augusta Park', 'Charleston', 'WV', 25301, '9046366609', 'MichaelKife@gmail.com', 3, NOW(), '4370457802840195', 'applePicking');
-INSERT INTO UserPlus VALUES(4, 'apples', 'Bob', 'Marvel', '1 Arrowood Drive', 'Jacksonville', 'FL', 32216, '9044366619', 'bobmarvel@gmail.com', 4, NOW(), '4992869275848026', 'applePicking');
-INSERT INTO UserPlus VALUES(5, 'apples', 'yay', 'grovey', '342 Arrowood Drive', 'Jacksonville', 'FL', 32216, '6044366609', 'yaygrovey@gmail.com', 5, NOW(), '4489636511827803', 'applePicking');
-INSERT INTO UserPlus VALUES(6, 'apples', 'apple', 'seed', '321 Arrowood Drive', 'Jacksonville', 'FL', 32216, '3044366609', 'appleseed@gmail.com', 6, NOW(), '4349162290877844', 'applePicking');
-INSERT INTO UserPlus VALUES(7, 'apples', 'new', 'you', '34 Arrowood Drive', 'Jacksonville', 'FL', 32216, '9244366609', 'newyou@gmail.com', 7, NOW(), '4718671748810093', 'applePicking');
-INSERT INTO UserPlus VALUES(8, 'apples', 'qqqq', 'lol', '399 Arrowood Drive', 'Jacksonville', 'FL', 32216, '5044366609', 'qqqqlol@gmail.com', 8, NOW(), '4064305551916263', 'applePicking');
-INSERT INTO UserPlus VALUES(9, 'apples', 'oop', 'yo', '9 Arrowood Drive', 'Jacksonville', 'FL', 32216, '9084366609', 'oopyo@gmail.com', 9, NOW(), '4556094238457322', 'applePicking');
-INSERT INTO UserPlus VALUES(10, 'apples', 'one', 'two', '100 Arrowood Drive', 'Jacksonville', 'FL', 32216, '9047366609', 'onetwo@gmail.com', 10, NOW(), '4606913205667284', 'applePicking');
-INSERT INTO UserPlus VALUES(11, 'apples', 'suretrip', 'forever', '4363 Arrowood Drive', 'Jacksonville', 'FL', 32216, '9044386609', 'suretripforever@gmail.com', 11, NOW(), '4444224543026845', 'applePicking');
-INSERT INTO UserPlus VALUES(12, 'apples', 'forever', 'young', '10101 Arrowood Drive', 'Jacksonville', 'FL', 32216, '9244366609', 'foreveryoung@gmail.com', 12, NOW(), '4511410796714397', 'applePicking');
-INSERT INTO UserPlus VALUES(13, 'apples', 'life', 'video', '3575 Arrowood Drive', 'Jacksonville', 'FL', 32216, '9044346609', 'lifevideo@gmail.com', 13, NOW(), '4347655744177127', 'applePicking');
-INSERT INTO UserPlus VALUES(14, 'apples', 'hit', 'rewind', '999 Arrowood Drive', 'Jacksonville', 'FL', 32216, '9044365609', 'hitrewind@gmail.com', 14, NOW(), '4925225424543897', 'applePicking');
-INSERT INTO UserPlus VALUES(15, 'apples', 'iwanna', 'forever', '11111 Arrowood Drive', 'Jacksonville', 'FL', 32216, '9044366611', 'iwannaforever@gmail.com', 15, NOW(), '4684613424931728', 'applePicking');
-INSERT INTO UserPlus VALUES(16, 'apples', 'ayyy', 'boy', '777 Arrowood Drive', 'Jacksonville', 'FL', 32216, '9044311609', 'ayyyboy@gmail.com', 16, NOW(), '4467280523131221', 'applePicking');
-INSERT INTO UserPlus VALUES(17, 'apples', 'kitchen', 'stove', '32232 Arrowood Drive', 'Jacksonville', 'FL', 32216, '9114366609', 'kitchenstove@gmail.com', 17, NOW(), '4398508659825438', 'applePicking');
-INSERT INTO UserPlus VALUES(18, 'apples', 'younger', 'year', '8888 Arrowood Drive', 'Jacksonville', 'FL', 32216, '9022366609', 'youngeryear@gmail.com', 18, NOW(), '4256714925322579', 'applePicking');
-INSERT INTO UserPlus VALUES(19, 'apples', 'applesseed', 'seedsofapples', '1471 Arrowood Drive', 'Jacksonville', 'FL', 32216, '9045566609', 'applesseedseedsofapple@gmail.com', 19, NOW(), '4028364081915282', 'applePicking');
-INSERT INTO UserPlus VALUES(20, 'apples', 'Michael', 'Bender', '4363 Bentley Drive', 'Jacksonville', 'FL', 32216, '9044666609', 'MichaelBender@gmail.com', 20, NOW(), '4665229547305113', 'applePicking');
-INSERT INTO UserPlus VALUES(21, 'apples', 'Michael', 'Tashbook', '4363 Book Drive', 'Jacksonville', 'FL', 32216, '9010366609', 'MichaelTashbook@gmail.com', 21, NOW(), '4152320677939159', 'applePicking');
-INSERT INTO UserPlus VALUES(22, 'apples', 'Richard', 'Mckenna', '4363 Boxman Drive', 'Jacksonville', 'FL', 32216, '9049166609', 'RichardMckenna@gmail.com', 22, NOW(), '4741260848579989', 'applePicking');
-INSERT INTO UserPlus VALUES(23, 'apples', 'Leo', 'Backmire', '4363 Compsci Drive', 'Jacksonville', 'FL', 32216, '9082366609', 'LeoBackmire@gmail.com', 23, NOW(), '4258176354221789', 'applePicking');
-INSERT INTO UserPlus VALUES(24, 'apples', 'Moms', 'Spagetti', '4363 loud Drive', 'Jacksonville', 'FL', 32216, '8844366609', 'MomsSpagetti@gmail.com', 24, NOW(), '4295992126620602', 'applePicking');
-INSERT INTO UserPlus VALUES(25, 'apples', 'Opps', 'Gravity', '4363 gravity Drive', 'Jacksonville', 'FL', 32216, '9044106609', 'oppsGravity@gmail.com', 25, NOW(), '4765034221596741', 'applePicking');
+INSERT INTO UserPlus (UserId, Password, FirstName, LastName, Address, City, State, ZipCode, Phone, Email, AccountNum, Preferences) VALUES(1, 'apples', 'Michael', 'Thorne', '4363 Arrowood Drive', 'Jacksonville', 'FL', 32216, '9044166609', 'MichaelCThorne@gmail.com', 1, 'applePicking');
+INSERT INTO UserPlus (UserId, Password, FirstName, LastName, Address, City, State, ZipCode, Phone, Email, AccountNum, Preferences) VALUES(2, 'apples', 'Paul', 'Fodor', '2635 Simons Hollow Road', 'New York', 'NY', 10001, '5707512415', 'paulfodor@gmail.com', 2, 'applePicking');
+INSERT INTO UserPlus (UserId, Password, FirstName, LastName, Address, City, State, ZipCode, Phone, Email, AccountNum, Preferences) VALUES(3, 'apples', 'Michael', 'Kife', '885 Augusta Park', 'Charleston', 'WV', 25301, '9046366609', 'MichaelKife@gmail.com', 3, 'applePicking');
+INSERT INTO UserPlus (UserId, Password, FirstName, LastName, Address, City, State, ZipCode, Phone, Email, AccountNum, Preferences) VALUES(4, 'apples', 'Bob', 'Marvel', '1 Arrowood Drive', 'Jacksonville', 'FL', 32216, '9044366619', 'bobmarvel@gmail.com', 4, 'applePicking');
+INSERT INTO UserPlus (UserId, Password, FirstName, LastName, Address, City, State, ZipCode, Phone, Email, AccountNum, Preferences) VALUES(5, 'apples', 'yay', 'grovey', '342 Arrowood Drive', 'Jacksonville', 'FL', 32216, '6044366609', 'yaygrovey@gmail.com', 5, 'applePicking');
+INSERT INTO UserPlus (UserId, Password, FirstName, LastName, Address, City, State, ZipCode, Phone, Email, AccountNum, Preferences) VALUES(6, 'apples', 'apple', 'seed', '321 Arrowood Drive', 'Jacksonville', 'FL', 32216, '3044366609', 'appleseed@gmail.com', 6, 'applePicking');
+INSERT INTO UserPlus (UserId, Password, FirstName, LastName, Address, City, State, ZipCode, Phone, Email, AccountNum, Preferences) VALUES(7, 'apples', 'new', 'you', '34 Arrowood Drive', 'Jacksonville', 'FL', 32216, '9244366609', 'newyou@gmail.com', 7, 'applePicking');
+INSERT INTO UserPlus (UserId, Password, FirstName, LastName, Address, City, State, ZipCode, Phone, Email, AccountNum, Preferences) VALUES(8, 'apples', 'qqqq', 'lol', '399 Arrowood Drive', 'Jacksonville', 'FL', 32216, '5044366609', 'qqqqlol@gmail.com', 8, 'applePicking');
+INSERT INTO UserPlus (UserId, Password, FirstName, LastName, Address, City, State, ZipCode, Phone, Email, AccountNum, Preferences) VALUES(9, 'apples', 'oop', 'yo', '9 Arrowood Drive', 'Jacksonville', 'FL', 32216, '9084366609', 'oopyo@gmail.com', 9, 'applePicking');
+INSERT INTO UserPlus (UserId, Password, FirstName, LastName, Address, City, State, ZipCode, Phone, Email, AccountNum, Preferences) VALUES(10, 'apples', 'one', 'two', '100 Arrowood Drive', 'Jacksonville', 'FL', 32216, '9047366609', 'onetwo@gmail.com', 10, 'applePicking');
+INSERT INTO UserPlus (UserId, Password, FirstName, LastName, Address, City, State, ZipCode, Phone, Email, AccountNum, Preferences) VALUES(11, 'apples', 'suretrip', 'forever', '4363 Arrowood Drive', 'Jacksonville', 'FL', 32216, '9044386609', 'suretripforever@gmail.com', 11, 'applePicking');
+INSERT INTO UserPlus (UserId, Password, FirstName, LastName, Address, City, State, ZipCode, Phone, Email, AccountNum, Preferences) VALUES(12, 'apples', 'forever', 'young', '10101 Arrowood Drive', 'Jacksonville', 'FL', 32216, '9244366609', 'foreveryoung@gmail.com', 12, 'applePicking');
+INSERT INTO UserPlus (UserId, Password, FirstName, LastName, Address, City, State, ZipCode, Phone, Email, AccountNum, Preferences) VALUES(13, 'apples', 'life', 'video', '3575 Arrowood Drive', 'Jacksonville', 'FL', 32216, '9044346609', 'lifevideo@gmail.com', 13, 'applePicking');
+INSERT INTO UserPlus (UserId, Password, FirstName, LastName, Address, City, State, ZipCode, Phone, Email, AccountNum, Preferences) VALUES(14, 'apples', 'hit', 'rewind', '999 Arrowood Drive', 'Jacksonville', 'FL', 32216, '9044365609', 'hitrewind@gmail.com', 14, 'applePicking');
+INSERT INTO UserPlus (UserId, Password, FirstName, LastName, Address, City, State, ZipCode, Phone, Email, AccountNum, Preferences) VALUES(15, 'apples', 'iwanna', 'forever', '11111 Arrowood Drive', 'Jacksonville', 'FL', 32216, '9044366611', 'iwannaforever@gmail.com', 15, 'applePicking');
+INSERT INTO UserPlus (UserId, Password, FirstName, LastName, Address, City, State, ZipCode, Phone, Email, AccountNum, Preferences) VALUES(16, 'apples', 'ayyy', 'boy', '777 Arrowood Drive', 'Jacksonville', 'FL', 32216, '9044311609', 'ayyyboy@gmail.com', 16, 'applePicking');
+INSERT INTO UserPlus (UserId, Password, FirstName, LastName, Address, City, State, ZipCode, Phone, Email, AccountNum, Preferences) VALUES(17, 'apples', 'kitchen', 'stove', '32232 Arrowood Drive', 'Jacksonville', 'FL', 32216, '9114366609', 'kitchenstove@gmail.com', 17, 'applePicking');
+INSERT INTO UserPlus (UserId, Password, FirstName, LastName, Address, City, State, ZipCode, Phone, Email, AccountNum, Preferences) VALUES(18, 'apples', 'younger', 'year', '8888 Arrowood Drive', 'Jacksonville', 'FL', 32216, '9022366609', 'youngeryear@gmail.com', 18, 'applePicking');
+INSERT INTO UserPlus (UserId, Password, FirstName, LastName, Address, City, State, ZipCode, Phone, Email, AccountNum, Preferences) VALUES(19, 'apples', 'applesseed', 'seedsofapples', '1471 Arrowood Drive', 'Jacksonville', 'FL', 32216, '9045566609', 'applesseedseedsofapple@gmail.com', 19, 'applePicking');
+INSERT INTO UserPlus (UserId, Password, FirstName, LastName, Address, City, State, ZipCode, Phone, Email, AccountNum, Preferences) VALUES(20, 'apples', 'Michael', 'Bender', '4363 Bentley Drive', 'Jacksonville', 'FL', 32216, '9044666609', 'MichaelBender@gmail.com', 20, 'applePicking');
+INSERT INTO UserPlus (UserId, Password, FirstName, LastName, Address, City, State, ZipCode, Phone, Email, AccountNum, Preferences) VALUES(21, 'apples', 'Michael', 'Tashbook', '4363 Book Drive', 'Jacksonville', 'FL', 32216, '9010366609', 'MichaelTashbook@gmail.com', 21, 'applePicking');
+INSERT INTO UserPlus (UserId, Password, FirstName, LastName, Address, City, State, ZipCode, Phone, Email, AccountNum, Preferences) VALUES(22, 'apples', 'Richard', 'Mckenna', '4363 Boxman Drive', 'Jacksonville', 'FL', 32216, '9049166609', 'RichardMckenna@gmail.com', 22, 'applePicking');
+INSERT INTO UserPlus (UserId, Password, FirstName, LastName, Address, City, State, ZipCode, Phone, Email, AccountNum, Preferences) VALUES(23, 'apples', 'Leo', 'Backmire', '4363 Compsci Drive', 'Jacksonville', 'FL', 32216, '9082366609', 'LeoBackmire@gmail.com', 23, 'applePicking');
+INSERT INTO UserPlus (UserId, Password, FirstName, LastName, Address, City, State, ZipCode, Phone, Email, AccountNum, Preferences) VALUES(24, 'apples', 'Moms', 'Spagetti', '4363 loud Drive', 'Jacksonville', 'FL', 32216, '8844366609', 'MomsSpagetti@gmail.com', 24, 'applePicking');
+INSERT INTO UserPlus (UserId, Password, FirstName, LastName, Address, City, State, ZipCode, Phone, Email, AccountNum, Preferences) VALUES(25, 'apples', 'Opps', 'Gravity', '4363 gravity Drive', 'Jacksonville', 'FL', 32216, '9044106609', 'oppsGravity@gmail.com', 25, 'applePicking');
+-- Added
+INSERT INTO UserPlus (UserId, FirstName, LastName, Sex, Email, Password, DOB, Address, City, State, ZipCode, Phone, Preferences, AccountNum) VALUES(100001, 'Michael', 'Collins', 'M', 'Michael.Collins@cse305.stonybrook.edu', 'care2cash', '1997-3-14', 'Somewhere', 'Washington', 'DC', 12345, '228807080', 'Slacklining,Skateboarding,Surfing,Orienteering,Water_sports', 900001);
+INSERT INTO UserPlus (UserId, FirstName, LastName, Sex, Email, Password, DOB, Address, City, State, ZipCode, Phone, Preferences, AccountNum) VALUES(100002, 'Aria', 'Rose', 'F', 'Aria.Rose@cse305.stonybrook.edu', 'dawn4call', '1991-5-11', 'Somewhere', 'New_York', 'NY', 10001, '263303749', 'Topiary,Jogging', 900002);
+INSERT INTO UserPlus (UserId, FirstName, LastName, Sex, Email, Password, DOB, Address, City, State, ZipCode, Phone, Preferences, AccountNum) VALUES(100003, 'Jase', 'Black', 'M', 'Jase.Black@cse305.stonybrook.edu', 'data6bell', '2012-4-26', 'Somewhere', 'Washington', 'DC', 12345, '917443776', 'Rugby,Roller_skating,Life_insurance,Rock_climbing,Scouting', 900003);
+INSERT INTO UserPlus (UserId, FirstName, LastName, Sex, Email, Password, DOB, Address, City, State, ZipCode, Phone, Preferences, AccountNum) VALUES(100004, 'Ellie', 'Franklin', 'F', 'Ellie.Franklin@cse305.stonybrook.edu', 'able1cash', '2009-3-9', 'Somewhere', 'Stony_Brook', 'NY', 11794, '381870672', 'Cars,Skydiving,Bird_watching,Sailing,Shopping,Skimboarding,Kayaking,Camping,Blacksmithing', 900004);
+INSERT INTO UserPlus (UserId, FirstName, LastName, Sex, Email, Password, DOB, Address, City, State, ZipCode, Phone, Preferences, AccountNum) VALUES(100005, 'Mackenzie', 'Wells', 'F', 'Mackenzie.Wells@cse305.stonybrook.edu', 'burn2coat', '2004-9-14', 'Somewhere', 'NewYork', 'NY', 10001, '736594241', 'Hunting,Topiary,Nordic_skating,Foraging,Metal_detecting,Camping,Astronomy', 900005);
+INSERT INTO UserPlus (UserId, FirstName, LastName, Sex, Email, Password, DOB, Address, City, State, ZipCode, Phone, Preferences, AccountNum) VALUES(100006, 'Cameron', 'Armstrong', 'M', 'Cameron.Armstrong@cse305.stonybrook.edu', 'aged6area', '2010-8-14', 'Somewhere', 'NewYork', 'NY', 10001, '182209299', 'Skydiving,Topiary,Scuba_diving,Sailing,Beekeeping,Tai_chi,Brazilian_jiu-jitsu,Astronomy,Jogging', 900006);
+INSERT INTO UserPlus (UserId, FirstName, LastName, Sex, Email, Password, DOB, Address, City, State, ZipCode, Phone, Preferences, AccountNum) VALUES(100007, 'Levi', 'Ross', 'M', 'Levi.Ross@cse305.stonybrook.edu', 'been7beer', '1991-6-7', 'Somewhere', 'StonyBrook', 'NY', 11794, '127536938', 'Urban_exploration,Freestyle_football', 900007);
+INSERT INTO UserPlus (UserId, FirstName, LastName, Sex, Email, Password, DOB, Address, City, State, ZipCode, Phone, Preferences, AccountNum) VALUES(100008, 'Levi', 'West', 'M', 'Levi.West@cse305.stonybrook.edu', 'coal3cell', '2011-2-9', 'Somewhere', 'NewYork', 'NY', 10001, '699136094', 'BASE_jumping,Letterboxing,Roller_skating,Metal_detecting,Swimming,Mountaineering,Sculling_or_Rowing,Basketball,Surfing', 900008);
+INSERT INTO UserPlus (UserId, FirstName, LastName, Sex, Email, Password, DOB, Address, City, State, ZipCode, Phone, Preferences, AccountNum) VALUES(100009, 'Christian', 'Davies', 'M', 'Christian.Davies@cse305.stonybrook.edu', 'bush1bone', '2011-5-10', 'Somewhere', 'StonyBrook', 'NY', 11794, '364390765', 'BASE_jumping,Driving,Mountaineering', 900009);
+INSERT INTO UserPlus (UserId, FirstName, LastName, Sex, Email, Password, DOB, Address, City, State, ZipCode, Phone, Preferences, AccountNum) VALUES(100010, 'Kylie', 'Davies', 'F', 'Kylie.Davies@cse305.stonybrook.edu', 'coat7calm', '1996-11-22', 'Somewhere', 'NewYork', 'NY', 10001, '562348521', 'Toys,Graffiti,Skiing,Road_biking,Kayaking', 900010);
+INSERT INTO UserPlus (UserId, FirstName, LastName, Sex, Email, Password, DOB, Address, City, State, ZipCode, Phone, Preferences, AccountNum) VALUES(100011, 'Tyler', 'Long', 'M', 'Tyler.Long@cse305.stonybrook.edu', 'area3boom', '2007-1-8', 'Somewhere', 'StonyBrook', 'NY', 11794, '306139234', 'Topiary,Basketball', 900011);
+INSERT INTO UserPlus (UserId, FirstName, LastName, Sex, Email, Password, DOB, Address, City, State, ZipCode, Phone, Preferences, AccountNum) VALUES(100012, 'Henry', 'Stewart', 'M', 'Henry.Stewart@cse305.stonybrook.edu', 'boat3also', '2006-2-11', 'Somewhere', 'Washington', 'DC', 12345, '503422119', 'Roller_skating,Netball,Flag_football,Water_sports', 900012);
+INSERT INTO UserPlus (UserId, FirstName, LastName, Sex, Email, Password, DOB, Address, City, State, ZipCode, Phone, Preferences, AccountNum) VALUES(100013, 'Isaiah', 'Bennett', 'M', 'Isaiah.Bennett@cse305.stonybrook.edu', 'book6bank', '1997-12-24', 'Somewhere', 'Washington', 'DC', 12345, '929342276', 'Walking,Baseball,Scuba_diving,Running,Shopping', 900013);
+INSERT INTO UserPlus (UserId, FirstName, LastName, Sex, Email, Password, DOB, Address, City, State, ZipCode, Phone, Preferences, AccountNum) VALUES(100014, 'Arianna', 'Dunn', 'F', 'Arianna.Dunn@cse305.stonybrook.edu', 'chip2calm', '2003-1-27', 'Somewhere', 'NewYork', 'NY', 10001, '311083148', 'Shooting,Ghost_hunting,Horseback_riding,Netball,Astronomy', 900014);
+INSERT INTO UserPlus (UserId, FirstName, LastName, Sex, Email, Password, DOB, Address, City, State, ZipCode, Phone, Preferences, AccountNum) VALUES(100015, 'Victoria', 'Powell', 'F', 'Victoria.Powell@cse305.stonybrook.edu', 'cash7bush', '1997-4-28', 'Somewhere', 'NewYork', 'NY', 10001, '854902993', 'LARPing,Walking,Slacklining,Foraging,Rock_climbing,Taekwondo,Inline_skating', 900015);
+INSERT INTO UserPlus (UserId, FirstName, LastName, Sex, Email, Password, DOB, Address, City, State, ZipCode, Phone, Preferences, AccountNum) VALUES(100016, 'Blakely', 'Alexander', 'F', 'Blakely.Alexander@cse305.stonybrook.edu', 'bear3cope', '2006-1-21', 'Somewhere', 'Washington', 'DC', 12345, '140361398', 'Hooping,Bird_watching,Shooting,Board_sports,Graffiti,Sculling_or_Rowing', 900016);
+INSERT INTO UserPlus (UserId, FirstName, LastName, Sex, Email, Password, DOB, Address, City, State, ZipCode, Phone, Preferences, AccountNum) VALUES(100017, 'Connor', 'Collins', 'M', 'Connor.Collins@cse305.stonybrook.edu', 'ball1days', '2005-6-23', 'Somewhere', 'NewYork', 'NY', 10001, '282433780', 'Rugby,Skiing,Snowboarding,Rock_climbing,Swimming,Skimboarding,Scouting', 900017);
+INSERT INTO UserPlus (UserId, FirstName, LastName, Sex, Email, Password, DOB, Address, City, State, ZipCode, Phone, Preferences, AccountNum) VALUES(100018, 'Jeremiah', 'Miller', 'M', 'Jeremiah.Miller@cse305.stonybrook.edu', 'code3case', '1999-11-29', 'Somewhere', 'NewYork', 'NY', 10001, '533130991', 'Urban_exploration,Roller_skating,Bird_watching,Skiing,Kayaking,Mushroom_hunting/Mycology', 900018);
+INSERT INTO UserPlus (UserId, FirstName, LastName, Sex, Email, Password, DOB, Address, City, State, ZipCode, Phone, Preferences, AccountNum) VALUES(100019, 'Riley', 'Field', 'F', 'Riley.Field@cse305.stonybrook.edu', 'cash7born', '2003-5-2', 'Somewhere', 'NewYork', 'NY', 10001, '477174572', 'Photography,LARPing,Shooting,Archery,Kayaking,Fishing,Astronomy', 900019);
+INSERT INTO UserPlus (UserId, FirstName, LastName, Sex, Email, Password, DOB, Address, City, State, ZipCode, Phone, Preferences, AccountNum) VALUES(100020, 'Lucy', 'Phillips', 'F', 'Lucy.Phillips@cse305.stonybrook.edu', 'away2bath', '1996-7-25', 'Somewhere', 'NewYork', 'NY', 10001, '995652638', 'Parkour,Rock_climbing,Handball,Surfing', 900020);
 
 -- Employee
 INSERT INTO Employee VALUES("439086475", "Vasquez", "Ignatius", "537-6243 At St.", "Stamford", "Connecticut", "15700", "(317) 724-8680", '2017-07-27', 26.36);
@@ -54,11 +75,17 @@ INSERT INTO GroupPlus (GroupId, Owner, GroupName) VALUES (32, 7, 'Event');
 INSERT INTO GroupPlus (GroupId, Owner, GroupName) VALUES (33, 8, 'Event');
 INSERT INTO GroupPlus (GroupId, Owner, GroupName) VALUES (34, 9, 'Event');
 INSERT INTO GroupPlus (GroupId, Owner, GroupName) VALUES (35, 10, 'Event');
+INSERT INTO GroupPlus (GroupId, Owner, GroupName, Type) VALUES (200001, 100001, 'My Friends', 'Friends');
+INSERT INTO GroupPlus (GroupId, Owner, GroupName, Type) VALUES (200002, 100002, 'Best Friends', 'Friends');
+INSERT INTO GroupPlus (GroupId, Owner, GroupName, Type) VALUES (200003, 100003, 'StonyBrookGang', 'Friends');
+INSERT INTO GroupPlus (GroupId, Owner, GroupName, Type) VALUES (200004, 100004, 'CS Folks', 'Friends');
+INSERT INTO GroupPlus (GroupId, Owner, GroupName, Type) VALUES (200005, 100005, 'My Family', 'Friends');
+INSERT INTO GroupPlus (GroupId, Owner, GroupName, Type) VALUES (200006, 100006, 'Microsoft Groupies', 'Friends');
 
 -- PagePlus
-INSERT INTO PagePlus (PageId, PostCount) VALUES (1, 20);
-INSERT INTO PagePlus (PageId, PostCount) VALUES (2, 0);
-INSERT INTO PagePlus (PageId, PostCount) VALUES (3, 0);
+INSERT INTO PagePlus (PageId, PostCount) VALUES (1, 10);
+INSERT INTO PagePlus (PageId, PostCount) VALUES (2, 10);
+INSERT INTO PagePlus (PageId, PostCount) VALUES (3, 5);
 INSERT INTO PagePlus (PageId, PostCount) VALUES (4, 0);
 INSERT INTO PagePlus (PageId, PostCount) VALUES (5, 0);
 INSERT INTO PagePlus (PageId, PostCount) VALUES (6, 0);
@@ -91,6 +118,36 @@ INSERT INTO PagePlus (PageId, PostCount) VALUES (32, 0);
 INSERT INTO PagePlus (PageId, PostCount) VALUES (33, 0);
 INSERT INTO PagePlus (PageId, PostCount) VALUES (34, 0);
 INSERT INTO PagePlus (PageId, PostCount) VALUES (35, 0);
+-- Added
+INSERT INTO PagePlus (PageId, PostCount) VALUES (100001, 0);
+INSERT INTO PagePlus (PageId, PostCount) VALUES (100002, 0);
+INSERT INTO PagePlus (PageId, PostCount) VALUES (100003, 0);
+INSERT INTO PagePlus (PageId, PostCount) VALUES (100004, 0);
+INSERT INTO PagePlus (PageId, PostCount) VALUES (100005, 0);
+INSERT INTO PagePlus (PageId, PostCount) VALUES (100006, 0);
+INSERT INTO PagePlus (PageId, PostCount) VALUES (100007, 0);
+INSERT INTO PagePlus (PageId, PostCount) VALUES (100008, 0);
+INSERT INTO PagePlus (PageId, PostCount) VALUES (100009, 0);
+INSERT INTO PagePlus (PageId, PostCount) VALUES (100010, 0);
+INSERT INTO PagePlus (PageId, PostCount) VALUES (100011, 0);
+INSERT INTO PagePlus (PageId, PostCount) VALUES (100012, 0);
+INSERT INTO PagePlus (PageId, PostCount) VALUES (100013, 0);
+INSERT INTO PagePlus (PageId, PostCount) VALUES (100014, 0);
+INSERT INTO PagePlus (PageId, PostCount) VALUES (100015, 0);
+INSERT INTO PagePlus (PageId, PostCount) VALUES (100016, 0);
+INSERT INTO PagePlus (PageId, PostCount) VALUES (100017, 0);
+INSERT INTO PagePlus (PageId, PostCount) VALUES (100018, 0);
+INSERT INTO PagePlus (PageId, PostCount) VALUES (100019, 0);
+INSERT INTO PagePlus (PageId, PostCount) VALUES (100020, 0);
+
+INSERT INTO PagePlus (PageId, PostCount) VALUES (200001, 0);
+INSERT INTO PagePlus (PageId, PostCount) VALUES (200002, 0);
+INSERT INTO PagePlus (PageId, PostCount) VALUES (200003, 0);
+INSERT INTO PagePlus (PageId, PostCount) VALUES (200004, 0);
+INSERT INTO PagePlus (PageId, PostCount) VALUES (200005, 0);
+INSERT INTO PagePlus (PageId, PostCount) VALUES (200006, 0);
+
+
 
 -- Comment
 INSERT INTO Comment VALUES(1, NOW(), '2', 1);
@@ -179,6 +236,13 @@ INSERT INTO GroupPage VALUES(32, 32);
 INSERT INTO GroupPage VALUES(33, 33);
 INSERT INTO GroupPage VALUES(34, 34);
 INSERT INTO GroupPage VALUES(35, 35);
+-- Added
+INSERT INTO GroupPage VALUES(200001, 200001);
+INSERT INTO GroupPage VALUES(200002, 200002);
+INSERT INTO GroupPage VALUES(200003, 200003);
+INSERT INTO GroupPage VALUES(200004, 200004);
+INSERT INTO GroupPage VALUES(200005, 200005);
+INSERT INTO GroupPage VALUES(200006, 200006);
 
 -- PersonalPage
 INSERT INTO PersonalPage (PageId, OwnerId) VALUES (1, 1);
@@ -206,6 +270,27 @@ INSERT INTO PersonalPage (PageId, OwnerId) VALUES (22, 22);
 INSERT INTO PersonalPage (PageId, OwnerId) VALUES (23, 23);
 INSERT INTO PersonalPage (PageId, OwnerId) VALUES (24, 24);
 INSERT INTO PersonalPage (PageId, OwnerId) VALUES (25, 25);
+-- Added
+INSERT INTO PersonalPage (PageId, OwnerId) VALUES (100001, 100001);
+INSERT INTO PersonalPage (PageId, OwnerId) VALUES (100002, 100002);
+INSERT INTO PersonalPage (PageId, OwnerId) VALUES (100003, 100003);
+INSERT INTO PersonalPage (PageId, OwnerId) VALUES (100004, 100004);
+INSERT INTO PersonalPage (PageId, OwnerId) VALUES (100005, 100005);
+INSERT INTO PersonalPage (PageId, OwnerId) VALUES (100006, 100006);
+INSERT INTO PersonalPage (PageId, OwnerId) VALUES (100007, 100007);
+INSERT INTO PersonalPage (PageId, OwnerId) VALUES (100008, 100008);
+INSERT INTO PersonalPage (PageId, OwnerId) VALUES (100009, 100009);
+INSERT INTO PersonalPage (PageId, OwnerId) VALUES (100010, 100010);
+INSERT INTO PersonalPage (PageId, OwnerId) VALUES (100011, 100011);
+INSERT INTO PersonalPage (PageId, OwnerId) VALUES (100012, 100012);
+INSERT INTO PersonalPage (PageId, OwnerId) VALUES (100013, 100013);
+INSERT INTO PersonalPage (PageId, OwnerId) VALUES (100014, 100014);
+INSERT INTO PersonalPage (PageId, OwnerId) VALUES (100015, 100015);
+INSERT INTO PersonalPage (PageId, OwnerId) VALUES (100016, 100016);
+INSERT INTO PersonalPage (PageId, OwnerId) VALUES (100017, 100017);
+INSERT INTO PersonalPage (PageId, OwnerId) VALUES (100018, 100018);
+INSERT INTO PersonalPage (PageId, OwnerId) VALUES (100019, 100019);
+INSERT INTO PersonalPage (PageId, OwnerId) VALUES (100020, 100020);
 
 -- AdData
 INSERT INTO AdData VALUE(1, 153581835, "Cars", "Google", "Google Car", "First flying car", 100, 100);
@@ -214,10 +299,14 @@ INSERT INTO AdData VALUE(3, 239251935, "Server", "Google", "Google Server", "Fir
 INSERT INTO AdData VALUE(4, 264939771, "Etc", "Oracle", "Oracle AI", "See into the future", 99999999, 1);
 INSERT INTO AdData VALUE(5, 269768789, "Book", "Amazon", "Textbook1", "First flying book", 1000, 20);
 INSERT INTO AdData VALUE(6, 269768789, "Book", "Amazon", "Textbook2", "First diving book", 2000, 10);
-INSERT INTO AdData VALUE(7, 269768789, "TV", "Samsung", "Samsung TV", "First 5D TV", 100, 2);
-INSERT INTO AdData VALUE(8, 273874496, "TV", "LG", "LG Car", "First teleport TV", 200, 999);
-INSERT INTO AdData VALUE(9, 285530393, "Human", "Google", "Jerrel", "Enjoy", 10000, 2);
-INSERT INTO AdData VALUE(10, 285530393, "Human", "Apple", "Jerrel2", "Enjoy2", 100, 100);
+INSERT INTO AdData VALUE(7, 269768789, "Cars", "Samsung", "Samsung TV Car", "First 5D TV Car", 10000, 20);
+INSERT INTO AdData VALUE(8, 273874496, "Cars", "LG", "LG Car", "First teleport Car", 20000, 999);
+INSERT INTO AdData VALUE(9, 264939771, "Shooting", "Oracle", "Laser Beam", "Don't do stupid things with it", 199999999, 1);
+INSERT INTO AdData VALUE(10, 269768789, "Running", "Nike", "Luna Glide 4000", "First flying shoes", 3999, 2);
+INSERT INTO AdData VALUE(11, 269768789, "Running", "Amazon", "Running Shoes", "Make you run",100, 10000);
+INSERT INTO AdData VALUE(12, 269768789, "TV", "Samsung", "Samsung TV", "First 16K TV", 100, 2);
+INSERT INTO AdData VALUE(13, 273874496, "Shooting", "Gun Maker", "AK-47", "Just for hunting", 200, 999);
+INSERT INTO AdData VALUE(14, 273874496, "Sailing", "Sailboat", "Nuclear sailboat", "Maybe it explodes too", 20000, 19999);
 
 -- Sales
 INSERT INTO Sales VALUE(1, '2016-10-01', '11:10:00', 1, 100, 12341234);
@@ -229,4 +318,14 @@ INSERT INTO Sales VALUE(6, '2016-10-03', '11:10:00', 5, 19, 222333333);
 INSERT INTO Sales VALUE(7, '2012-07-03', '11:10:00', 9, 1, 12342222);
 INSERT INTO Sales VALUE(8, '2011-10-23', '11:10:00', 9, 1, 12341111);
 INSERT INTO Sales VALUE(9, '2016-01-13', '11:10:00', 3, 1, 4321222);
-INSERT INTO Sales VALUE(10, '2012-06-03', '11:10:00', 3, 1, 33333333);
+INSERT INTO Sales VALUE(10, '2012-06-03', '11:10:00', 10, 1, 33333333);
+INSERT INTO Sales VALUE(11, '2016-10-01', '12:10:00', 11, 100, 900001);
+INSERT INTO Sales VALUE(12, '2016-10-02', '11:15:00', 12, 10, 900002);
+INSERT INTO Sales VALUE(13, '2016-10-03', '11:17:00', 13, 1, 900002);
+INSERT INTO Sales VALUE(14, '2016-11-03', '10:10:00', 13, 1, 900003);
+INSERT INTO Sales VALUE(15, '2015-09-03', '11:10:00', 14, 1, 900003);
+INSERT INTO Sales VALUE(16, '2016-10-03', '11:32:00', 7, 19, 900004);
+INSERT INTO Sales VALUE(17, '2012-07-03', '10:10:00', 11, 1, 900004);
+INSERT INTO Sales VALUE(18, '2011-10-23', '12:10:00', 12, 1, 900005);
+INSERT INTO Sales VALUE(19, '2016-01-13', '11:11:00', 13, 1, 900001);
+INSERT INTO Sales VALUE(20, '2012-06-03', '11:10:00', 13, 1, 900001);

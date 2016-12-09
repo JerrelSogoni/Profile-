@@ -24,8 +24,7 @@
                     </button>
                     <h:graphicImage alt="Profile Plus" value="/resources/img/ProfilePlusLogo2.0.png" width="61" height="46"></h:graphicImage>                    
                 </div>
-                <div class="collapse navbar-collapse"
-                     id="navHeaderCollapse">
+                <div class="collapse navbar-collapse" id="navHeaderCollapse">
                     <h:form>
                     <ul class="nav navbar-nav navbar-right" id="nav-bar-functions" >
                         <li class="nav-item">
@@ -58,24 +57,13 @@
                                 <li class="divider"></li>
                                 <li>
                                     <h:form>
-                                        <h:commandLink value="Logout" action="#{userController.logout()}"/>
+                                        <li><h:commandLink action="#{userLevel.makeAPost()}">Create a Post</h:commandLink></li>
+                                        <li class="divider"></li>
+                                        <li><a href="#">Create a Group</a></li>
                                     </h:form>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="dropdown">
-                            <a  href="#" data-toggle="dropdown" class="dropdown-toggle">
-                                <h:graphicImage value="/resources/img/showlinesglyph.png"/>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <h:form>
-                                <li><h:commandLink action="#{userLevel.makeAPost()}">Create a Post</h:commandLink></li>
-                                <li class="divider"></li>
-                                <li><a href="#">Create a Group</a></li>
-                                </h:form>
-                            </ul>
-                        </li>
-                    </ul>
+                                </ul>
+                            </li>
+                        </ul>
                     </h:form>
                 </div>
             </div>
@@ -158,14 +146,14 @@
                         <h3>Customer Representative Level Operations </h3>
                         <h:commandLink action="#{custrepLevel.addAd()}">- Create an advertisement</h:commandLink><br/>
                         <h:commandLink action="#{custrepLevel.rmAd()}">- Delete an advertisement</h:commandLink><br/>
-                        <!--<h:commandLink action="#{custrepLevel.addTrans()}">- Record a transaction</h:commandLink><br/>-->
-                        <!--<h:commandLink action="#{custrepLevel.editCustomerInfo()}">- Add, Edit and Delete information for a customer</h:commandLink><br/>-->
+                        <h:commandLink action="#{custrepLevel.addTrans()}">- Record a transaction</h:commandLink><br/>
+                        <h:commandLink action="#{custrepLevel.editCustomerInfo()}">- Add, Edit and Delete information for a customer</h:commandLink><br/>
                         <h:commandLink action="#{custrepLevel.listCust()}">- Produce customer mailing lists</h:commandLink><br/>
                         <h:commandLink action="#{custrepLevel.listCustSug()}">- Produce a list of item suggestions for a given customer (based on that customer's past transactions)</h:commandLink><br/>
                         <h:commandLink action="#{custrepLevel.listCustGrp()}">- Retrieve a customer's current groups</h:commandLink><br/>
-                        <!--<h:commandLink action="#{custrepLevel.custHistory()}">- For each of a customer's accounts, the account history</h:commandLink><br/>-->
-                        <!--<h:commandLink action="#{custrepLevel.bestSeller()}">- Best-Seller list of items</h:commandLink><br/>-->
-                        <!--<h:commandLink action="#{custrepLevel.itemSuggestion()}">- Personalized item suggestion list</h:commandLink><br/>-->
+                         <h:commandLink action="#{custrepLevel.custHistory()}">- For each of a customer's accounts, the account history</h:commandLink><br/>
+                        <h:commandLink action="#{custrepLevel.bestSeller()}">- Best-Seller list of items</h:commandLink><br/>
+                        <h:commandLink action="#{custrepLevel.itemSuggestion()}">- Personalized item suggestion list</h:commandLink><br/>
 
 
                     </h:form>

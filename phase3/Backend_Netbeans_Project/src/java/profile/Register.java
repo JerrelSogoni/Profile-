@@ -8,7 +8,9 @@ package profile;
 import java.io.Serializable;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Named;
 import profile.util.DataConnect;
@@ -20,7 +22,8 @@ import profile.util.JsfUtil;
  */
 @Named("register")
 @ApplicationScoped
-public class Register implements Serializable{
+public class Register implements Serializable {
+
     private String phone;
     private String firstname, lastname, email, address, city, state, zip,
             dob, pref, sex;
@@ -178,8 +181,8 @@ public class Register implements Serializable{
     public void setSex(String sex) {
         this.sex = sex;
     }
-    
-    public String submit(){
+
+    public String submit() {
         Connection con = null;
         PreparedStatement ps = null;
 
@@ -188,7 +191,7 @@ public class Register implements Serializable{
             ps = con.prepareStatement("INSERT INTO UserPlus("
                     + "FirstName, LastName, Address, City, State, ZipCode, "
                     + "Phone, Email) "
-                    + "VALUES(?, ?, ?, ?, ?, ?, ?, ?);");
+                    + "VALUES(?, ?, ?, ?, ?, ?, ?, ?);", Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, firstname);
             ps.setString(2, lastname);
             ps.setString(3, address);
@@ -197,16 +200,34 @@ public class Register implements Serializable{
             ps.setString(6, zip);
             ps.setString(7, phone);
             ps.setString(8, email);
-            
-            
+
             // print out the query statement
             JsfUtil.addErrorMessage(ps.toString());
-
-            int rs = ps.executeUpdate();
-            System.out.println("Updated result:" + rs);
+            ps.executeUpdate();
+            
+            ResultSet rs = ps.getGeneratedKeys();
+            rs.next();
+            int UserId = rs.getInt(1);
+            
+            // Generate Page
+            ps = con.prepareStatement("INSERT INTO PagePlus(PostCount) VALUES(0);", Statement.RETURN_GENERATED_KEYS);
+            
+            JsfUtil.addErrorMessage(ps.toString());
+            ps.executeUpdate();
+            
+            rs = ps.getGeneratedKeys();
+            rs.next();
+            int PageId = rs.getInt(1);
+            
+            ps = con.prepareStatement("INSERT INTO PersonalPage VALUES(?, ?);");
+            ps.setInt(1, PageId);
+            ps.setInt(2, UserId);
+            
+            JsfUtil.addErrorMessage(ps.toString());
+            ps.executeUpdate();            
 
         } catch (SQLException ex) {
-            
+
             // print out error message
             JsfUtil.addErrorMessage("Connection to database failed:" + ex.getMessage());
             System.out.println("Login error -->" + ex.getMessage());
@@ -216,5 +237,5 @@ public class Register implements Serializable{
         }
         return "";
     }
-    
+
 }

@@ -1,18 +1,20 @@
 CREATE TABLE UserPlus (
     UserId INTEGER AUTO_INCREMENT,
-    Password CHAR(20),
     FirstName CHAR(20),
     LastName CHAR(20),
+    Sex CHAR(2),
+    Email CHAR(50),
+    Password CHAR(20),
+    DOB DATE,
     Address CHAR(50),
     City CHAR(60),
     State CHAR(20),
     ZipCode INTEGER,
     Phone CHAR(10),
-    Email CHAR(50),
-    AccountNum INTEGER,
+    Preferences VARCHAR(1000),
     AccountCreationDate DATETIME,
     CreditCardNum CHAR(16),
-    Preferences VARCHAR(50),
+    AccountNum INTEGER,
     PRIMARY KEY (UserId)
 );
 
@@ -52,7 +54,7 @@ CREATE TABLE Message (
 );
 
 CREATE TABLE PagePlus (
-    PageId INTEGER,
+    PageId INTEGER AUTO_INCREMENT,
     PostCount INTEGER,
     PRIMARY KEY (PageId)
 );
@@ -69,7 +71,7 @@ CREATE TABLE GroupPlus (
     GroupId INTEGER AUTO_INCREMENT,
     GroupName VARCHAR(50),
     Owner INTEGER,
-    Type SET('Club', 'Organization', 'Event', 'News'),
+    Type SET('Club', 'Organization', 'Event', 'News', 'Friends'),
     PRIMARY KEY (GroupId),
     FOREIGN KEY (Owner)
         REFERENCES UserPlus (UserId)
@@ -217,7 +219,7 @@ CREATE TABLE Employee (
 );
 
 CREATE TABLE AdData (
-    AdId INTEGER,
+    AdId INTEGER AUTO_INCREMENT,
     EmpId CHAR(11) NOT NULL,
     Type CHAR(20),
     Company CHAR(50),
@@ -232,7 +234,7 @@ CREATE TABLE AdData (
 );
 
 CREATE TABLE Sales (
-    TransId INTEGER,
+    TransId INTEGER AUTO_INCREMENT,
     TransDate DATE,
     TransTime TIME,
     AdId INTEGER,

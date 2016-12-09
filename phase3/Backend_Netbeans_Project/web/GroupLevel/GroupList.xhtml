@@ -1,0 +1,72 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListAdDataTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="content">
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="User" for="user" />
+                    <h:selectOneMenu id="user" value="#{group.queryUserPlus}">
+                        <f:selectItems value="#{userPlusController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+
+                    <h:outputLabel value="Group" for="group" />
+                    <h:selectOneMenu id="group" value="#{group.queryGroupPlus}">
+                        <f:selectItems value="#{groupPlusController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <div class="row force-to-bottom text-center">
+                    <div class="col-lg-12">
+                        <h:commandLink action="#{group.addToGrpButton()}" class="btn btn-success" id="submit" value="Add" >
+                            <f:param name="target" value="itemname" />
+                            <i class="glyphicon glyphicon-send" />
+                        </h:commandLink>
+                        <h:commandLink action="#{group.rmFromGrpButton()}" class="btn btn-failure" id="submit2" value="Delete" >
+                            <f:param name="target" value="itemname" />
+                            <i class="glyphicon glyphicon-remove" />
+                        </h:commandLink>
+                    </div>
+                </div>
+            </h:form>
+            <hr/>
+            <h3>List of groups joined by user</h3>
+            <h:dataTable class="table table-hover" value="#{group.userInGroupList}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Item Id"/>
+                    </f:facet>
+                    <h:outputText value="#{item.userId}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Item Name"/>
+                    </f:facet>
+                    <h:outputText value="#{item.groupId}"/>
+                </h:column>
+            </h:dataTable>
+            <hr/>
+            <h3>List of users by group</h3>
+            <h:dataTable class="table table-hover" value="#{group.groupWithUsersList}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Item Id"/>
+                    </f:facet>
+                    <h:outputText value="#{item.userId}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Item Name"/>
+                    </f:facet>
+                    <h:outputText value="#{item.groupId}"/>
+                </h:column>
+            </h:dataTable>
+        </ui:define>
+    </ui:composition>
+</html>
