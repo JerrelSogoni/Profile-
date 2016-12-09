@@ -547,7 +547,7 @@ public class PostController implements Serializable {
     }
 
     public String modifyPost() {
-        if (current != null) {
+        if (current != null && getSelected().getPostId() != null) {
 
             //Connect to server
             Connection con = null;

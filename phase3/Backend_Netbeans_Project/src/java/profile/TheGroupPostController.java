@@ -41,7 +41,12 @@ public class TheGroupPostController implements Serializable {
      * @return the current
      */
     public TheGroupPost getCurrent() {
-        return current;
+        if(current != null){
+            return current;
+        }
+        TheGroupPost lol = new TheGroupPost();
+        lol.setContent("");
+        return lol;
     }
 
     /**
@@ -261,7 +266,7 @@ public class TheGroupPostController implements Serializable {
 
     }
     public String modifyPost(){
-        if(current != null){
+        if(current != null && !current.getContent().isEmpty()){
 
             
             //Connect to server
