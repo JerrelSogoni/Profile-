@@ -25,7 +25,7 @@ import profile.util.SessionUtils;
  *
  * @author Jerrel
  */
-@Named("TheGroupCommentController")
+@Named("TheGroupPostController")
 @SessionScoped
 public class TheGroupPostController implements Serializable{
     private TheGroupPost current;
