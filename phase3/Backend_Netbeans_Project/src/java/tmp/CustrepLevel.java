@@ -216,7 +216,7 @@ public class CustrepLevel implements Serializable {
         try {
             con = DataConnect.getConnection();
             ps = con.prepareStatement("SELECT G.GroupName FROM GroupPlus G WHERE EXISTS ("
-                    + " SELECT * FROM HasAccessToGroup H WHERE H.UserId = ? AND H.GroupID = G.GroupID);");
+                    + " SELECT * FROM ISIN I WHERE I.UserId = ? AND I.GroupID = G.GroupID);");
             if (!queryCustomer.equals("")) {
                 ps.setInt(1, Integer.parseInt(queryCustomer));
             }

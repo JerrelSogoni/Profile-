@@ -14,8 +14,7 @@
                 <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
             </h:panelGroup>
             <h:form>
-                    <h:outputLabel value="#{bundle.CreateGroupPlusLabel_groupId}" for="groupId" />
-                    <h:inputText id="groupId" value="#{groupPlusController.selected.groupId}" title="#{bundle.CreateGroupPlusTitle_groupId}" required="true" requiredMessage="#{bundle.CreateGroupPlusRequiredMessage_groupId}"/>
+                <h:panelGrid columns="2">
                     <h:outputLabel value="#{bundle.CreateGroupPlusLabel_groupName}" for="groupName" />
                     <h:inputText id="groupName" value="#{groupPlusController.selected.groupName}" title="#{bundle.CreateGroupPlusTitle_groupName}" />
                     <h:outputLabel value="#{bundle.CreateGroupPlusLabel_type}" for="type" />

@@ -12,9 +12,6 @@
         <ui:define name="content">
             <div><h4>Welcome! #{userPlusController.user}</h4></div>
             <div><h3>Customer Mailing List for #{custrepLevel.queryCompany}</h3></div>
-            <h:panelGroup id="messagePanel" layout="block">
-                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
-            </h:panelGroup>
 
             <h:form>
                 <h:panelGrid columns="2" class="table table-hover">
