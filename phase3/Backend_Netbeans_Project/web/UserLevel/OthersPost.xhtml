@@ -1,0 +1,113 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            Posts
+        </ui:define>
+        <ui:define name="content">
+            <div><h3>Welcome! #{userPlusController.user}</h3></div>
+            <div><h4>Viewing #{postController.whosNewsFeed}'s News Feed</h4></div>
+            <h:form class="form-inline pull-right">
+                <div class="form-group">
+                    <label for="friendlist">Email:</label>
+                    <h:inputText class="form-control" id="friendlist" a:placeholder="Friend Email" value="#{postController.whosNewsFeed}"/>
+                </div>
+                <h:commandButton type="submit" class="btn btn-primary" value="View" action="/UserLevel/OthersPost"/>
+            </h:form>
+            <hr />
+            <div>
+                <h:dataTable class="table table-hover" value="#{postController.postsOn}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListPostTitle_content}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.content}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Author"/>
+                        </f:facet>
+                        <h:outputText value="#{item.authorName}"/>
+                    </h:column>
+                    <h:column>
+                        <h:form>
+                            <h:commandLink class="btn btn-default" action="#{postController.prepareEdit}" value="#{bundle.ListPostEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink class="btn btn-default" action="#{postController.destroy}"  value="#{bundle.ListPostDestroyLink}"/>                  
+                            <h:commandLink class="btn btn-default" action="#{postController.goToComment()}"  value="#{bundle.Comment}"/>
+                            <h:commandLink class="btn btn-default" action="#{postController.goLikeorUnlikePost()}"  value="#{item.likeView}"/>
+                        </h:form>
+                    </h:column>
+                </h:dataTable>
+                <br />
+                <div class="row force-to-bottom text-center">
+                    <div class="col-lg-12">
+                        <h:form>
+                            <h:commandLink class="btn btn-default" id="cancelButton" action="#{postController.goBack()}" value="Back"/>
+                        </h:form>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <h4>Make a Post Page</h4>
+                </div>
+                <hr/>
+                <div >
+                    <h:form class="form-horizontal" >
+                        <div class="form-group" >
+                            <h:inputTextarea  a:placeholder="Type your post" class="form-control glyphicon-resize-vertical"  value="#{postController.postContent}" />
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">Post To What User:</label>
+                            <div class="col-md-4 inputGroupContainer">
+                                <div class="input-group">
+                                    <h:inputText  a:placeholder="give email address" class="form-control" value="#{postController.postTo}" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row force-to-bottom text-center">
+                            <ul class="list-inline">
+                                <li>
+                                    <h:commandButton class="btn btn-default" id="back" value="Cancel" action="#{postController.resetInputBoxes()}" />
+                                </li>
+                                <li>
+                                    <h:commandButton class="btn btn-success" id="submit" value='Submit' action="#{postController.createPost()}"  />
+                                </li>
+
+                            </ul>
+                        </div>
+                    </h:form>
+
+                </div>
+                <hr />
+                <div><h4>Modify a Post</h4></div>
+                <div >
+                    <h:form class="form-horizontal" >
+                        <div class="form-group" >
+                            <h:inputTextarea  a:placeholder="Type your post" class="form-control glyphicon-resize-vertical"  value="#{postController.selected.content}" />
+                        </div>
+
+                        <div class="row force-to-bottom text-center">
+                            <ul class="list-inline">
+                                <li>
+                                    <h:commandButton type="button"  class="btn btn-default" id="back" action="#{postController.clearSelectedInput}" value="Cancel"/>
+                                </li>
+                                <li>
+                                    <h:commandButton class="btn btn-success" id="submit" value='Submit' action="#{postController.modifyPost()}"  />
+                                </li>
+
+                            </ul>
+                        </div>
+                    </h:form>
+
+                </div>
+            </div>
+        </ui:define>
+    </ui:composition>
+</html>

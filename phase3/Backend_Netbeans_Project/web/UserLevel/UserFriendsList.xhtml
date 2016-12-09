@@ -18,9 +18,8 @@
                 <div class="col-sm-9">
                     <h:form class="form-inline pull-right">
                         <div class="form-group">
-                            <label for="friendlist">Name:</label>
-                            <h:inputText class="form-control" id="friendlist" a:placeholder="friend name" value="#{TheUserPlusFriendController.friendInput}"/>
-
+                            <label for="friendlist">Email:</label>
+                            <h:inputText class="form-control" id="friendlist" a:placeholder="Friend's Email" value="#{TheUserPlusFriendController.friendInput}"/>
                         </div>
                         <h:commandButton type="submit" class="btn btn-primary" value="Add" action="#{TheUserPlusFriendController.addFriend()}"/>
                     </h:form>

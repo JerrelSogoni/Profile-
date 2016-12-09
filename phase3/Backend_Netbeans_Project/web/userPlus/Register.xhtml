@@ -64,13 +64,12 @@
                     </div>
 
                     <!-- Text input-->
-
                     <div class="form-group">
                         <label class="col-md-4 control-label" >Last Name</label>
                         <div class="col-md-4 inputGroupContainer">
                             <div class="input-group">
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
-                                <input name="last_name" placeholder="Last Name" class="form-control"  type="text" value="#{register.lastname}"/>
+                                <h:inputText a:placeholder="last_name" class="form-control" value="#{register.lastname}"/>
                             </div>
                         </div>
                     </div>
@@ -286,6 +285,5 @@
         <script src='http://cdnjs.cloudflare.com/ajax/libs/bootstrap-validator/0.4.5/js/bootstrapvalidator.min.js'></script>
 
         <h:outputScript library="js" name="bootstrap.min.js" />
-        <h:outputScript library="js" name="register.js" />
     </h:body>
 </html>

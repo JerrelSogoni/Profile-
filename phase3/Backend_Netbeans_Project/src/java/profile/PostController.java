@@ -42,7 +42,6 @@ public class PostController implements Serializable {
     private int selectedItemIndex;
     private String postContent = "";
     private String postTo;
-  
 
     public PostController() {
     }
@@ -117,7 +116,7 @@ public class PostController implements Serializable {
         current = (Post) getItems().getRowData();
         PaginationHelper ph = getPagination();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
-       
+
     }
 
     public String update() {
@@ -137,7 +136,7 @@ public class PostController implements Serializable {
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
 
         return deletePost();
- 
+
     }
 
     public String destroyAndView() {
@@ -155,7 +154,7 @@ public class PostController implements Serializable {
 
     private void performDestroy() {
         try {
-            
+
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
         }
@@ -290,17 +289,98 @@ public class PostController implements Serializable {
     }
 
     public DataModel getItems() {
-         
+
         if (myItems == null) {
             HttpSession session = SessionUtils.getSession();
             Integer id = SessionUtils.getUser().getUserId();
             myItems = new ListDataModel(getPostsBy(id));
             JsfUtil.addErrorMessage("Logged in as " + id);
             return myItems;
-        }
-        else{
+        } else {
             return myItems;
         }
+    }
+
+    private DataModel postsOn;
+    private String whosNewsFeed;
+
+    public String getWhosNewsFeed() {
+        return whosNewsFeed;
+    }
+
+    public void setWhosNewsFeed(String whosNewsFeed) {
+        this.whosNewsFeed = whosNewsFeed;
+    }
+
+    public void setPostsOn(DataModel postsOn) {
+        this.postsOn = postsOn;
+    }
+
+    public DataModel getPostsOn() {
+        ArrayList<Post> toRet = new ArrayList<>();
+        Connection con = null;
+        PreparedStatement ps = null;
+        PreparedStatement ps2 = null;
+        PreparedStatement ps3 = null;
+
+        try {
+            con = DataConnect.getConnection();
+            ps = con.prepareStatement("select * from post P, PostedTo T where P.PostId = T.PostId and T.PageId = (Select PageId From PersonalPage where OwnerId = (SELECT UserId from UserPlus where email= ?));");
+            ps.setString(1, whosNewsFeed);
+
+            JsfUtil.addErrorMessage(ps.toString());
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                //result found, means valid inputs
+                Post added = new Post();
+                added.setContent(rs.getString("Content"));
+                added.setPostId(rs.getInt("postId"));
+                added.setTheauthorId(rs.getInt("AuthorId"));
+                added.setDateCreated(rs.getDate("DateCreated"));
+
+                ps2 = con.prepareStatement("SELECT \n"
+                        + "    *\n"
+                        + "FROM\n"
+                        + "    UserPlus;\n");
+                ps3 = con.prepareStatement("SELECT \n"
+                        + "    *\n"
+                        + "FROM\n"
+                        + "    LikesPost WHERE PostId = ? AND UserId = ?;");
+                ps3.setInt(1, rs.getInt("postId"));
+                ps3.setInt(2, SessionUtils.getUser().getUserId());
+
+                //   JsfUtil.addErrorMessage(ps2.toString());
+                ResultSet rs2 = ps2.executeQuery();
+                ResultSet rs3 = ps3.executeQuery();
+
+                while (rs2.next()) {
+                    if (rs.getString("AuthorId").equals(rs2.getString("UserId"))) {
+                        added.setAuthorName(rs2.getString("firstName") + " " + rs2.getString("lastName"));
+                        added.setAuthorEmail(rs2.getString("email"));
+                        break;
+                    }
+                    //  JsfUtil.addErrorMessage(ps2.toString());
+                }
+                if (rs3.next()) {
+                    added.setLikeView("You Have Liked Post");
+                } else {
+                    added.setLikeView("Like");
+                }
+                toRet.add(added);
+            }
+        } catch (SQLException ex) {
+
+            // print out error message
+            JsfUtil.addErrorMessage("Connection to database failed:" + ex.getMessage());
+
+            return null;
+
+        } finally {
+            DataConnect.close(con);
+        }
+        postsOn = new ListDataModel(toRet);
+        return postsOn;
     }
 
     public List<Post> getPostsBy(int user) {
@@ -330,7 +410,6 @@ public class PostController implements Serializable {
                 added.setTheauthorId(rs.getInt("AuthorId"));
                 added.setDateCreated(rs.getDate("DateCreated"));
 
-
                 ps2 = con.prepareStatement("SELECT \n"
                         + "    *\n"
                         + "FROM\n"
@@ -341,7 +420,6 @@ public class PostController implements Serializable {
                         + "    LikesPost WHERE PostId = ? AND UserId = ?;");
                 ps3.setInt(1, rs.getInt("postId"));
                 ps3.setInt(2, SessionUtils.getUser().getUserId());
-                
 
                 // print out the query statement
                 //   JsfUtil.addErrorMessage(ps2.toString());
@@ -356,22 +434,20 @@ public class PostController implements Serializable {
                     }
                     //  JsfUtil.addErrorMessage(ps2.toString());
                 }
-                if(rs3.next()){
+                if (rs3.next()) {
                     added.setLikeView("You Have Liked Post");
-                }
-                else{
+                } else {
                     added.setLikeView("Like");
                 }
                 toRet.add(added);
- 
-               
+
                 // JsfUtil.addErrorMessage("Added to return list " + rs.getString("Content") + "authorName: " + added.getAuthorName());
             }
         } catch (SQLException ex) {
 
             // print out error message
             JsfUtil.addErrorMessage("Connection to database failed:" + ex.getMessage());
-           
+
             return null;
 
         } finally {
@@ -383,19 +459,19 @@ public class PostController implements Serializable {
     public String createPost() {
         boolean valid = PostValidator.validate(postTo);
         if (valid && !postContent.isEmpty()) {
-            
+
             createPostToServer(postTo, postContent);
             JsfUtil.addSuccessMessage("Post successful to email: " + postTo);
             updateList();
             return "/UserLevel/Post";
         } else {
-             postTo = "";
-             JsfUtil.addErrorMessage("Invalid Email Address OR No input");
+            postTo = "";
+            JsfUtil.addErrorMessage("Invalid Email Address OR No input");
             return "/UserLevel/Post";
-            
+
         }
     }
-    
+
     public void createPostToServer(String email, String content) {
         //Connect to server
         Connection con = null;
@@ -447,7 +523,6 @@ public class PostController implements Serializable {
             ps2.setInt(2, owner);
 
             ps2.executeUpdate();
-   
 
             ps3.close();
             ps2.close();
@@ -470,15 +545,14 @@ public class PostController implements Serializable {
         postTo = "";
 
     }
-    public String modifyPost(){
-        if(current != null){
 
-            
+    public String modifyPost() {
+        if (current != null) {
+
             //Connect to server
             Connection con = null;
             // modify post
             PreparedStatement ps = null;
-
 
             try {
                 con = DataConnect.getConnection();
@@ -501,79 +575,80 @@ public class PostController implements Serializable {
 
             } finally {
                 DataConnect.close(con);
-       
+
             }
-            
-            
+
         }
         updateList();
         return "/UserLevel/Post";
-        
+
     }
-    public String deletePost(){
-           Connection con = null;
-            // modify post
-            PreparedStatement ps = null;
 
+    public String deletePost() {
+        Connection con = null;
+        // modify post
+        PreparedStatement ps = null;
 
-            try {
-                con = DataConnect.getConnection();
-                // give proper variables and propert format
-                ps = con.prepareStatement("DELETE FROM Post WHERE PostId = ?");
-                ps.setInt(1, getSelected().getPostId());
-                ps.execute();
-                // print out the query statement
-                JsfUtil.addErrorMessage(ps.toString());
-                // Execute the Insert Query
+        try {
+            con = DataConnect.getConnection();
+            // give proper variables and propert format
+            ps = con.prepareStatement("DELETE FROM Post WHERE PostId = ?");
+            ps.setInt(1, getSelected().getPostId());
+            ps.execute();
+            // print out the query statement
+            JsfUtil.addErrorMessage(ps.toString());
+            // Execute the Insert Query
 
-                ps.close();
+            ps.close();
 
-            } catch (SQLException ex) {
+        } catch (SQLException ex) {
 
-                // print out error message
-                JsfUtil.addErrorMessage("Error occured while deleting" + ex.getMessage());
+            // print out error message
+            JsfUtil.addErrorMessage("Error occured while deleting" + ex.getMessage());
 
-            } finally {
-                DataConnect.close(con);
-           
-            }
-            
+        } finally {
+            DataConnect.close(con);
+
+        }
+
         updateList();
         return "/UserLevel/Post";
-        
-        }
-    public void updateList(){
+
+    }
+
+    public void updateList() {
         myItems = null;
         setMyItems(getItems());
         current = null;
-        
-        
+
     }
-    public String goToComment(){
-   
+
+    public String goToComment() {
+
         current = (Post) getItems().getRowData();
         HttpSession session = SessionUtils.getSession();
         session.setAttribute("post", current);
-     
+
         return "/comment/CommentListPostViewer";
     }
-    public void clearSelectedInput(){
-        if(current != null){
+
+    public void clearSelectedInput() {
+        if (current != null) {
             postContent = "";
         }
     }
-    public void goLikeorUnlikePost(){
+
+    public void goLikeorUnlikePost() {
         current = (Post) getItems().getRowData();
         PaginationHelper ph = getPagination();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
-        if(current != null){
-           //Connect to server
+        if (current != null) {
+            //Connect to server
             Connection con = null;
             // modify post
             PreparedStatement ps = null;
             PreparedStatement ps2 = null;
             PreparedStatement ps3 = null;
-     
 
             try {
                 con = DataConnect.getConnection();
@@ -582,9 +657,9 @@ public class PostController implements Serializable {
                 ps = con.prepareStatement("SELECT * FROM LikesPost WHERE PostId = ? AND UserId = ?");
                 ps.setInt(1, getSelected().getPostId());
                 ps.setInt(2, SessionUtils.getUser().getUserId());
-                
+
                 ResultSet set = ps.executeQuery();
-                if(!set.next()){
+                if (!set.next()) {
                     //if passed then User did not like this post
                     //ACTION: like
                     ps2 = con.prepareStatement("INSERT INTO LikesPost(PostId,UserId) VALUES(?,?)");
@@ -592,23 +667,21 @@ public class PostController implements Serializable {
                     ps2.setInt(2, SessionUtils.getUser().getUserId());
                     //User will like the Post
                     JsfUtil.addErrorMessage("You Have Liked Post");
-                // Execute the Insert Query
+                    // Execute the Insert Query
                     ps2.execute();
                     //change to Liked
                     current.setLikeView("You Have Liked Post");
                     ps2.close();
+                } else {
+                    ps3 = con.prepareStatement("DELETE FROM LikesPost WHERE PostId = ? AND UserId = ?");
+                    ps3.setInt(1, getSelected().getPostId());
+                    ps3.setInt(2, SessionUtils.getUser().getUserId());
+                    JsfUtil.addErrorMessage("You unliked the Post");
+                    ps3.execute();
+                    // change status
+                    current.setLikeView("Like");
+                    ps3.close();
                 }
-                else{
-                   ps3 = con.prepareStatement("DELETE FROM LikesPost WHERE PostId = ? AND UserId = ?");
-                   ps3.setInt(1, getSelected().getPostId());
-                   ps3.setInt(2, SessionUtils.getUser().getUserId());
-                   JsfUtil.addErrorMessage("You unliked the Post");
-                   ps3.execute();
-                   // change status
-                   current.setLikeView("Like");
-                   ps3.close();
-                }
-
 
                 ps.close();
 
@@ -620,18 +693,18 @@ public class PostController implements Serializable {
             } finally {
                 DataConnect.close(con);
                 updateList();
-       
+
             }
         }
-        
+
     }
-    public String goBack(){
+
+    public String goBack() {
         items = null;
         current = null;
         postContent = "";
         return "/personalPage/MainPage";
-        
+
     }
-        
 
 }

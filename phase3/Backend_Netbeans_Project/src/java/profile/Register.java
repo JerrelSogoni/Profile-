@@ -191,8 +191,8 @@ public class Register implements Serializable {
             con = DataConnect.getConnection();
             ps = con.prepareStatement("INSERT INTO UserPlus("
                     + "FirstName, LastName, Address, City, State, ZipCode, "
-                    + "Phone, Email, Sex, Password, AccountNum, DOB) "
-                    + "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);", Statement.RETURN_GENERATED_KEYS);
+                    + "Phone, Email, Sex, Password, AccountNum, DOB, Preferences) "
+                    + "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);", Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, firstname);
             ps.setString(2, lastname);
             ps.setString(3, address);
@@ -205,6 +205,7 @@ public class Register implements Serializable {
             ps.setString(10, password);
             ps.setString(11, accountNum);
             ps.setString(12, dob);
+            ps.setString(13, pref);
 
             // print out the query statement
             JsfUtil.addErrorMessage(ps.toString());
