@@ -106,10 +106,7 @@
                         </h:column>
                         <h:column>
                             <h:form>
-                                <h:commandLink class="btn btn-default" action="#{TheGroupPostController.items}" value="#{bundle.ListPostViewLink}"/>
-                                <h:outputText value=" "/>
                                 <h:commandLink class="btn btn-default" action="#{TheGroupPostController.prepareEdit}" value="#{bundle.ListPostEditLink}"/>
-                                <h:outputText value=" "/>
                                 <h:commandLink class="btn btn-default" action="#{TheGroupPostController.preparedDelete}"  value="#{bundle.ListPostDestroyLink}"/>                  
                                 <h:commandLink class="btn btn-default" action="#{TheGroupPostController.goToComment()}"  value="#{bundle.Comment}"/>
                                 <h:commandLink class="btn btn-default" action="#{TheGroupPostController.goLikeorUnlikePost()}"  value="#{item.likeView}"/>

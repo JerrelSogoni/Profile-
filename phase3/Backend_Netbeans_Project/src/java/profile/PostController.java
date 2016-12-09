@@ -293,9 +293,9 @@ public class PostController implements Serializable {
          
         if (myItems == null) {
             HttpSession session = SessionUtils.getSession();
-            String username = String.valueOf(session.getAttribute("userid"));
-            myItems = new ListDataModel(getPostsBy(username));
-            JsfUtil.addErrorMessage("Logged in as " + username);
+            Integer id = SessionUtils.getUser().getUserId();
+            myItems = new ListDataModel(getPostsBy(id));
+            JsfUtil.addErrorMessage("Logged in as " + id);
             return myItems;
         }
         else{
@@ -303,7 +303,7 @@ public class PostController implements Serializable {
         }
     }
 
-    public List<Post> getPostsBy(String user) {
+    public List<Post> getPostsBy(int user) {
         ArrayList<Post> toRet = new ArrayList<>();
         Connection con = null;
         PreparedStatement ps = null;
@@ -335,7 +335,7 @@ public class PostController implements Serializable {
                     + "                            UserId = ?))) ;");
 
             // print out the query statement
-            ps.setString(1, user);
+            ps.setInt(1, user);
             //   JsfUtil.addErrorMessage(ps.toString());
             ResultSet rs = ps.executeQuery();
 
@@ -357,7 +357,7 @@ public class PostController implements Serializable {
                         + "FROM\n"
                         + "    LikesPost WHERE PostId = ? AND UserId = ?;");
                 ps3.setInt(1, rs.getInt("postId"));
-                ps3.setInt(2, SessionUtils.getUserId());
+                ps3.setInt(2, SessionUtils.getUser().getUserId());
                 
 
                 // print out the query statement
@@ -431,7 +431,7 @@ public class PostController implements Serializable {
             ps.setTimestamp(2, java.sql.Timestamp.from(java.time.Instant.now()));
             ps.setString(3, content);
             ps.setInt(4, 0);
-            ps.setInt(5, SessionUtils.getUserId());
+            ps.setInt(5, SessionUtils.getUser().getUserId());
 
             // print out the query statement
             JsfUtil.addErrorMessage(ps.toString());
@@ -598,7 +598,7 @@ public class PostController implements Serializable {
                 // check if user liked this specific post
                 ps = con.prepareStatement("SELECT * FROM LikesPost WHERE PostId = ? AND UserId = ?");
                 ps.setInt(1, getSelected().getPostId());
-                ps.setInt(2, SessionUtils.getUserId());
+                ps.setInt(2, SessionUtils.getUser().getUserId());
                 
                 ResultSet set = ps.executeQuery();
                 if(!set.next()){
@@ -606,7 +606,7 @@ public class PostController implements Serializable {
                     //ACTION: like
                     ps2 = con.prepareStatement("INSERT INTO LikesPost(PostId,UserId) VALUES(?,?)");
                     ps2.setInt(1, getSelected().getPostId());
-                    ps2.setInt(2, SessionUtils.getUserId());
+                    ps2.setInt(2, SessionUtils.getUser().getUserId());
                     //User will like the Post
                     JsfUtil.addErrorMessage("You Have Liked Post");
                 // Execute the Insert Query
@@ -618,7 +618,7 @@ public class PostController implements Serializable {
                 else{
                    ps3 = con.prepareStatement("DELETE FROM LikesPost WHERE PostId = ? AND UserId = ?");
                    ps3.setInt(1, getSelected().getPostId());
-                   ps3.setInt(2, SessionUtils.getUserId());
+                   ps3.setInt(2, SessionUtils.getUser().getUserId());
                    JsfUtil.addErrorMessage("You unliked the Post");
                    ps3.execute();
                    // change status

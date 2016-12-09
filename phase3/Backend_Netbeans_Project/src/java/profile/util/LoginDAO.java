@@ -28,7 +28,7 @@ public class LoginDAO {
                 session.setAttribute("userId", rs.getInt("userId"));
                 session.setAttribute("email", rs.getString("email"));
 
-                
+                userPlus.setUserId(rs.getInt("userId"));
                 userPlus.setAccountCreationDate(rs.getDate("AccountCreationDate"));
                 userPlus.setPassword(rs.getString("Password"));
                 userPlus.setFirstName(rs.getString("FirstName"));
@@ -37,7 +37,7 @@ public class LoginDAO {
                 userPlus.setCity(rs.getString("City"));
                 userPlus.setZipCode(rs.getInt("ZipCode"));
                 userPlus.setPhone(rs.getString("Phone"));
-                userPlus.setEmail(rs.getString("Email"));
+                userPlus.setEmail(rs.getString("email"));
                 userPlus.setAccountNum(rs.getInt("AccountNum"));
                 userPlus.setCreditCardNum(rs.getString("CreditCardNum"));
                 userPlus.setPreferences(rs.getString("Preferences"));
