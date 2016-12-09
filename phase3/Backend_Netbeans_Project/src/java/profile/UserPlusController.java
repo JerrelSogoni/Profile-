@@ -32,6 +32,7 @@ public class UserPlusController implements Serializable {
     private PaginationHelper pagination;
     private int selectedItemIndex;
 
+    private String email;
     private String pwd;
     private String user;
 
@@ -256,14 +257,15 @@ public class UserPlusController implements Serializable {
 
     //validate login
     public String login() {
-        boolean valid = LoginDAO.validate(user, pwd);
+        boolean valid = LoginDAO.validate(email, pwd);
         if (valid) {
             HttpSession session = SessionUtils.getSession();
+            user = ((Integer) session.getAttribute("userId")) + "";
             session.setAttribute("username", user);
-            JsfUtil.addSuccessMessage("User login successful: " + user);
+            JsfUtil.addSuccessMessage("User login successful: " + email);
             return "/personalPage/MainPage";
         } else {
-            JsfUtil.addErrorMessage("Incorrect Username and Passowrd: " + user + ", " + pwd);
+            JsfUtil.addErrorMessage("Incorrect Username and Passowrd: " + email + ", " + pwd);
             return "/signInNOut/login";
         }
     }
@@ -273,5 +275,13 @@ public class UserPlusController implements Serializable {
         HttpSession session = SessionUtils.getSession();
         session.invalidate();
         return "/signInNOut/login";
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }

@@ -240,7 +240,7 @@ public class Register implements Serializable {
         } finally {
             DataConnect.close(con);
         }
-        return "";
+        return "/signInNOut/login";
     }
 
     public String getPassword() {

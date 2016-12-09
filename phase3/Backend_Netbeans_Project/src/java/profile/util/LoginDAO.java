@@ -12,7 +12,7 @@ public class LoginDAO {
 
         try {
             con = DataConnect.getConnection();
-            ps = con.prepareStatement("Select * from UserPlus where UserId = ? and Password = ?");
+            ps = con.prepareStatement("Select * from UserPlus where Email = ? and Password = ?");
             ps.setInt(1, Integer.parseInt(user));
             ps.setString(2, password);
             
