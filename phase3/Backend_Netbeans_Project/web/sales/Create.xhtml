@@ -14,7 +14,7 @@
                 <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
             </h:panelGroup>
             <h:form>
-                <h:panelGrid columns="2">
+                <h:panelGrid class="table table-hover" columns="2">
                     <h:outputLabel value="#{bundle.CreateSalesLabel_transId}" for="transId" />
                     <h:inputText id="transId" value="#{salesController.selected.transId}" title="#{bundle.CreateSalesTitle_transId}" required="true" requiredMessage="#{bundle.CreateSalesRequiredMessage_transId}"/>
                     <h:outputLabel value="#{bundle.CreateSalesLabel_transDate}" for="transDate" />

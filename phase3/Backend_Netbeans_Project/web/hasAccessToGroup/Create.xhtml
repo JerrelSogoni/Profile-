@@ -14,7 +14,7 @@
                 <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
             </h:panelGroup>
             <h:form>
-                <h:panelGrid columns="2">
+                <h:panelGrid class="table table-hover" columns="2">
                     <h:outputLabel value="#{bundle.CreateHasAccessToGroupLabel_userPlus}" for="userPlus" />
                     <h:selectOneMenu id="userPlus" value="#{hasAccessToGroupController.selected.userPlus}" title="#{bundle.CreateHasAccessToGroupTitle_userPlus}" required="true" requiredMessage="#{bundle.CreateHasAccessToGroupRequiredMessage_userPlus}">
                         <f:selectItems value="#{userPlusController.itemsAvailableSelectOne}"/>

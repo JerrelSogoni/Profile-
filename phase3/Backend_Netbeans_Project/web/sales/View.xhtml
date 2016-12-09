@@ -14,7 +14,7 @@
                 <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
             </h:panelGroup>
             <h:form>
-                <h:panelGrid columns="2">
+                <h:panelGrid class="table table-hover" columns="2">
                     <h:outputText value="#{bundle.ViewSalesLabel_transId}"/>
                     <h:outputText value="#{salesController.selected.transId}" title="#{bundle.ViewSalesTitle_transId}"/>
                     <h:outputText value="#{bundle.ViewSalesLabel_transDate}"/>
