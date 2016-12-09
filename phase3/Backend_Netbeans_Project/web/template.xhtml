@@ -38,7 +38,9 @@
                         <span class ="icon-bar"></span>
                         <span class ="icon-bar"></span>
                     </button>
-                    <h:graphicImage alt="Profile Plus" value="/resources/img/ProfilePlusLogo2.0.png" width="61" height="46"></h:graphicImage>                    
+                    <h:commandLink value="/personalPage/MainPage">
+                        <h:graphicImage alt="Profile Plus" value="/resources/img/ProfilePlusLogo2.0.png" width="61" height="46"></h:graphicImage>                    
+                    </h:commandLink>
                 </div>
                 <div class="collapse navbar-collapse" id="navHeaderCollapse">
                     <h:form>
@@ -86,19 +88,19 @@
             </div>
         </nav>
         <div class="container containerCase">
-<!--            <div class="col-lg-1" id="col1">
-                <ui:insert name="left">Left Section</ui:insert>
-            </div>-->
+            <!--            <div class="col-lg-1" id="col1">
+                            <ui:insert name="left">Left Section</ui:insert>
+                        </div>-->
             <div class="col-lg-12" id="col2">
                 <ui:insert name="content">Main Content</ui:insert>
             </div>
-<!--            <div class="col-lg-1" id="col3">
-                <ui:insert name="right">Right Section</ui:insert>
-            </div>-->
+            <!--            <div class="col-lg-1" id="col3">
+                            <ui:insert name="right">Right Section</ui:insert>
+                        </div>-->
         </div>
-<!--        <nav class="navbar navbar-fixed-bottom footer">
-
-        </nav>-->
+        <!--        <nav class="navbar navbar-fixed-bottom footer">
+        
+                </nav>-->
     </h:body>
 
 </html>
