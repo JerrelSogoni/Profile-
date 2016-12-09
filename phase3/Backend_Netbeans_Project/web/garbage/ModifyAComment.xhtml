@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateCommentTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="content">
+<!--begin divide into 3 columns -->
+
+<div class="container containerCase">
+
+    <!-- advertisement left-->
+    <a href="#">
+    <div class="col-lg-1" id="col1">
+  
+    </div>
+     </a>
+    <!-- news feed -->
+    <div class="col-lg-10" id="col2">
+        <div id="friendformat" >
+                <h3>Modify A Comment</h3>
+        </div>
+        <hr/>
+        <div >
+            <h:form class="form-horizontal" role="form"  id="contact_form">
+                <div class="form-group" >
+                    <h:inputTextarea  a:placeholder="Type your post" class="form-control glyphicon-resize-vertical"  id="commentcontent" />
+                </div>
+                <div class="row force-to-bottom text-center">
+                    <ul class="list-inline">
+                        <li>
+                            <h:link type="button"  class="btn btn-default" id="back" >Cancel</h:link>
+                        </li>
+                        <li>
+                            <h:commandButton type="submit"  class="btn btn-success" id="submit" value='Submit' />
+                        </li>
+
+                    </ul>
+                </div>
+
+            </h:form>
+
+        </div>
+
+    </div>
+    <!-- advertisment right -->
+    <a>
+    <div class="col-lg-1" id="col3">
+    
+    </div>
+    </a>
+</div>
+        </ui:define>
+    </ui:composition>
+
+</html>

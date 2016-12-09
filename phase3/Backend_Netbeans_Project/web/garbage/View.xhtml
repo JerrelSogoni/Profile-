@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewCommentTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="content">
+            <h3>View Comment</h3><p><br/></p>
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid class="table table-hover" columns="2">
+                    <h:outputText value="#{bundle.ViewCommentLabel_commentId}"/>
+                    <h:outputText value="#{commentController.selected.commentId}" title="#{bundle.ViewCommentTitle_commentId}"/>
+                    <h:outputText value="#{bundle.ViewCommentLabel_dateCreated}"/>
+                    <h:outputText value="#{commentController.selected.dateCreated}" title="#{bundle.ViewCommentTitle_dateCreated}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewCommentLabel_content}"/>
+                    <h:outputText value="#{commentController.selected.content}" title="#{bundle.ViewCommentTitle_content}"/>
+                    <h:outputText value="#{bundle.ViewCommentLabel_authorId}"/>
+                    <h:outputText value="#{commentController.selected.authorId}" title="#{bundle.ViewCommentTitle_authorId}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{commentController.destroyAndView}" value="#{bundle.ViewCommentDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewCommentEditLink}"/>
+                <br />
+                <h:commandLink action="#{commentController.prepareCreate}" value="#{bundle.ViewCommentCreateLink}" />
+                <br />
+                <h:commandLink action="#{commentController.prepareList}" value="#{bundle.ViewCommentShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewCommentIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

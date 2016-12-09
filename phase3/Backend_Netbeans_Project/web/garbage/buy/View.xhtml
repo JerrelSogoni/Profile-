@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewBuyTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="content">
+            <h3>View Transaction</h3><p><br/></p>
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid class="table table-hover" columns="2">
+                    <h:outputText value="#{bundle.ViewBuyLabel_sales}"/>
+                    <h:outputText value="#{buyController.selected.sales}" title="#{bundle.ViewBuyTitle_sales}"/>
+                    <h:outputText value="#{bundle.ViewBuyLabel_employee}"/>
+                    <h:outputText value="#{buyController.selected.employee}" title="#{bundle.ViewBuyTitle_employee}"/>
+                    <h:outputText value="#{bundle.ViewBuyLabel_userPlus}"/>
+                    <h:outputText value="#{buyController.selected.userPlus}" title="#{bundle.ViewBuyTitle_userPlus}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{buyController.destroyAndView}" value="#{bundle.ViewBuyDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewBuyEditLink}"/>
+                <br />
+                <h:commandLink action="#{buyController.prepareCreate}" value="#{bundle.ViewBuyCreateLink}" />
+                <br />
+                <h:commandLink action="#{buyController.prepareList}" value="#{bundle.ViewBuyShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewBuyIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,81 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            Posts
+        </ui:define>
+        <ui:define name="content">
+<!--begin divide into 3 columns -->
+
+<div class="container containerCase">
+
+    <!-- advertisement left-->
+    <a  href="#">
+    <div class="col-lg-1" id="col1">
+       
+    </div>
+    </a>   
+ 
+    <!-- news feed -->
+    <div class="col-lg-10" id="col2">
+        <div id="friendformat" >
+            <div class="col-sm-3">
+                <h3>View Comments</h3>
+            </div>
+        </div>
+        <hr/>
+            <h:dataTable class="table table-hover" value="#{CommentController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Select"/>
+                            </f:facet>
+                            <h:outputText value="#{item.content}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Profile"/>
+                            </f:facet>
+                            <h:outputText value="#{item.friendProfile}"/>
+                        </h:column>
+                 <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Content"/>
+                            </f:facet>
+                            <h:outputText value="#{item.friendProfile}"/>
+                        </h:column>
+                    </h:dataTable>
+        <hr/>
+        <!-- bottom on news -->
+        <div class="row force-to-bottom text-center">
+              <ul class="list-inline">
+                <li>
+                    <h:link type="button" class="btn btn-default" id="back" >Back</h:link>
+                </li>
+                <li>
+                    <h:link type="button"  class="btn btn-success" id="likeComment" >Like Comment</h:link>
+                </li>
+                <li>
+                    <h:link type="button" class="btn btn-default" id="addComment" >Add Comment</h:link>
+                </li>
+                <li>
+                    <h:link type="button" class="btn btn-danger" id="removeComment" >Remove Comment</h:link>
+                </li>
+            </ul>
+        </div>
+        </div>
+    <!-- advertisment right -->
+    <a  href="#">
+    <div class="col-lg-1" id="col3">
+    </div>
+    </a>
+</div>
+<!--end divide into 3 columns -->
+</ui:define>
+    </ui:composition>
+</html>

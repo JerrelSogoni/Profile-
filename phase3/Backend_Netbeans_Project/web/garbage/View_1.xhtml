@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewGroupPageTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="content">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid class="table table-hover" columns="2">
+                    <h:outputText value="#{bundle.ViewGroupPageLabel_pageId}"/>
+                    <h:outputText value="#{groupPageController.selected.pageId}" title="#{bundle.ViewGroupPageTitle_pageId}"/>
+                    <h:outputText value="#{bundle.ViewGroupPageLabel_groupId}"/>
+                    <h:outputText value="#{groupPageController.selected.groupId}" title="#{bundle.ViewGroupPageTitle_groupId}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{groupPageController.destroyAndView}" value="#{bundle.ViewGroupPageDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewGroupPageEditLink}"/>
+                <br />
+                <h:commandLink action="#{groupPageController.prepareCreate}" value="#{bundle.ViewGroupPageCreateLink}" />
+                <br />
+                <h:commandLink action="#{groupPageController.prepareList}" value="#{bundle.ViewGroupPageShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewGroupPageIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
