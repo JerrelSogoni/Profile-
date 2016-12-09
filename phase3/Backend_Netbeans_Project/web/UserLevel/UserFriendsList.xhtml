@@ -11,60 +11,50 @@
             Friends List
         </ui:define>
         <ui:define name="content">
-
-            <div class="container containerCase">
-
-                <!-- news feed -->
-                <div class="col-lg-10" id="col2">
-                    <div id="friendformat" >
-                        <div class="col-sm-3">
-                            <h4>Friends List:</h4>
-                        </div>
-                        <div class="col-sm-9">
-                            <h:form class="form-inline pull-right">
-                                <div class="form-group">
-                                    <label for="friendlist">Name:</label>
-                                    <h:inputText class="form-control" id="friendlist" a:placeholder="friend name" value="#{TheUserPlusFriendController.friendInput}"/>
-
-                                </div>
-                                <h:commandButton type="submit" class="btn btn-primary" value="Add" action="#{TheUserPlusFriendController.addFriend()}"/>
-                            </h:form>
-                        </div>
-                    </div>
-                    <hr/>
-                    <h:dataTable class="table table-hover" value="#{TheUserPlusFriendController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="Profile"/>
-                            </f:facet>
-                            <h:outputText value="#{item.friendName}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="Email"/>
-                            </f:facet>
-                            <h:outputText value="#{item.friendEmail}"/>
-                        </h:column>
-                        <h:column>
-                            <h:form>
-                                <h:commandLink class="btn btn-default" action="#{TheUserPlusFriendController.removeFriend()}" value="Remove"/>  
-                            </h:form>
-                        </h:column>
-                    </h:dataTable>   
-                    <hr/>
-                    <div class="row force-to-bottom text-center">
-                        <h:form>
-                            <ul class="list-inline">
-                                <li>
-
-                                    <h:commandButton  class="btn btn-default" id="back" value="Back" action="#{TheUserPlusFriendController.back()}" />
-                                </li>
-
-                            </ul>
-                        </h:form>
-
-                    </div>
+            <div id="friendformat" >
+                <div class="col-sm-3">
+                    <h4>Friends List:</h4>
                 </div>
+                <div class="col-sm-9">
+                    <h:form class="form-inline pull-right">
+                        <div class="form-group">
+                            <label for="friendlist">Name:</label>
+                            <h:inputText class="form-control" id="friendlist" a:placeholder="friend name" value="#{TheUserPlusFriendController.friendInput}"/>
+
+                        </div>
+                        <h:commandButton type="submit" class="btn btn-primary" value="Add" action="#{TheUserPlusFriendController.addFriend()}"/>
+                    </h:form>
+                </div>
+            </div>
+            <hr/>
+            <h:dataTable class="table table-hover" value="#{TheUserPlusFriendController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Profile"/>
+                    </f:facet>
+                    <h:outputText value="#{item.friendName}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Email"/>
+                    </f:facet>
+                    <h:outputText value="#{item.friendEmail}"/>
+                </h:column>
+                <h:column>
+                    <h:form>
+                        <h:commandLink class="btn btn-default" action="#{TheUserPlusFriendController.removeFriend()}" value="Remove"/>  
+                    </h:form>
+                </h:column>
+            </h:dataTable>   
+            <hr/>
+            <div class="row force-to-bottom text-center">
+                <h:form>
+                    <ul class="list-inline">
+                        <li>
+                            <h:commandButton  class="btn btn-default" id="back" value="Back" action="#{TheUserPlusFriendController.back()}" />
+                        </li>
+                    </ul>
+                </h:form>
             </div>
         </ui:define>
     </ui:composition>

@@ -38,11 +38,14 @@
                         <span class ="icon-bar"></span>
                         <span class ="icon-bar"></span>
                     </button>
-                    <h:commandLink value="/personalPage/MainPage">
-                        <h:graphicImage alt="Profile Plus" value="/resources/img/ProfilePlusLogo2.0.png" width="61" height="46"></h:graphicImage>                    
-                    </h:commandLink>
+                    <h:form>
+                        <h:commandLink action="/personalPage/MainPage">
+                            <h:graphicImage alt="Profile Plus" value="/resources/img/ProfilePlusLogo2.0.png" width="61" height="46"></h:graphicImage>                    
+                        </h:commandLink>
+                    </h:form>
                 </div>
-                <div class="collapse navbar-collapse" id="navHeaderCollapse">
+                <div class="collapse navbar-collapse"
+                     id="navHeaderCollapse">
                     <h:form>
                         <ul class="nav navbar-nav navbar-right" id="nav-bar-functions" >
                             <li class="nav-item">
@@ -51,7 +54,6 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-
                                 <h:commandLink class="nav-link" action="#{userLevel.friendsList()}">
                                     <h:graphicImage class="nav-link" value="/resources/img/friendslistglyph.png"/>
                                 </h:commandLink>
@@ -62,7 +64,7 @@
                                 </h:commandLink>
                             </li>
                             <li class="nav-item">
-                                <h:commandLink class="nav-link" action="#{userLevel.groupList()}">
+                                <h:commandLink class="nav-link" action="#{group.makePostGrp()}">
                                     <h:graphicImage class="nav-link" value="/resources/img/grouppageglyp.png"/>
                                 </h:commandLink>
                             </li>
@@ -71,14 +73,8 @@
                                     <h:graphicImage value="/resources/img/cogwheelglyph.png"/>
                                 </a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="#">Modify User Settings</a></li>
-                                    <li class="divider"></li>
                                     <li>
-                                        <h:form>
-                                            <li><h:commandLink action="#{userLevel.makeAPost()}">Create a Post</h:commandLink></li>
-                                            <li class="divider"></li>
-                                            <li><a href="#">Create a Group</a></li>
-                                        </h:form>
+                                        <h:commandLink value="Logout" action="#{userPlusController.logout()}"/>
                                     </li>
                                 </ul>
                             </li>
