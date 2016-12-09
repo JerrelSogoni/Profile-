@@ -420,7 +420,7 @@ public class TheGroupPostController implements Serializable {
         current = null;
         postContent = "";
        
-        return "/groupPage/GroupList";
+        return "/GroupLevel/UserGroupList";
         
       }
         

@@ -13,7 +13,7 @@ public class UserLevel implements Serializable{
         return "/personalPage/MainPage";
     }
     public String makeAPost(){
-        return "/UserLevel/makeAPost";
+        return "/UserLevel/Post";
     }
     public String friendsList(){
         return "/UserLevel/UserFriendsList";
@@ -22,19 +22,19 @@ public class UserLevel implements Serializable{
         return "/UserLevel/Post";
     }
     public String Comment(){
-         return "/comment/CommentListPostViewer";
+         return "/UserLevel/Post";
     }
 
     public String SendMessage() {
-        return "/UserLevel/SendMessage";
+        return "/UserLevel/MessageList";
     }
 
     public String ReceiveMessage() {
-        return "/UserLevel/ReceiveMessage";
+        return "/UserLevel/MessageList";
     }
 
     public String DeleteMessage() {
-        return "/UserLevel/DeleteMessage";
+        return "/UserLevel/MessageList";
     }
 
     public String makePost() {
@@ -42,7 +42,7 @@ public class UserLevel implements Serializable{
     }
 
     public String commentPost() {
-        return null;
+        return "/UserLevel/Post";
     }
 
     public String removePost() {
@@ -52,34 +52,34 @@ public class UserLevel implements Serializable{
         return "/UserLevel/MessageList";
     }
     public String groupList(){
-        return "/groupPage/GroupList";
+        return "/GroupLevel/GroupList";
     }
     public String removeComment() {
-        return null;
+        return "/UserLevel/Post";
     }
 
     public String likePost() {
-        return null;
+        return "/UserLevel/Post";
     }
 
     public String likeComment() {
-        return null;
+        return "/UserLevel/Post";
     }
 
     public String unlikePost() {
-        return null;
+        return "/UserLevel/Post";
     }
 
     public String unlikeComment() {
-        return null;
+        return "/UserLevel/Post";
     }
 
     public String editPost() {
-        return null;
+        return "/UserLevel/Post";
     }
 
     public String editComment() {
-        return null;
+        return "/UserLevel/Post";
     }
 
     /**
