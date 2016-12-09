@@ -14,7 +14,7 @@
                 <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
             </h:panelGroup>
             <h:form>
-                <h:panelGrid columns="2">
+                <h:panelGrid class="table table-hover" columns="2">
                     <h:outputText value="#{bundle.ViewPagePlusLabel_pageId}"/>
                     <h:outputText value="#{pagePlusController.selected.pageId}" title="#{bundle.ViewPagePlusTitle_pageId}"/>
                     <h:outputText value="#{bundle.ViewPagePlusLabel_postCount}"/>

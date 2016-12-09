@@ -14,7 +14,7 @@
                 <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
             </h:panelGroup>
             <h:form>
-                <h:panelGrid columns="2">
+                <h:panelGrid class="table table-hover" columns="2">
                     <h:outputText value="#{bundle.ViewPostLabel_postId}"/>
                     <h:outputText value="#{postController.selected.postId}" title="#{bundle.ViewPostTitle_postId}"/>
                     <h:outputText value="#{bundle.ViewPostLabel_dateCreated}"/>

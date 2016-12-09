@@ -10,6 +10,7 @@
             <h:outputText value="#{bundle.ListBuyTitle}"></h:outputText>
         </ui:define>
         <ui:define name="content">
+            <h3>List Transactions</h3><p><br/></p>
             <h:form styleClass="jsfcrud_list_form">
                 <h:panelGroup id="messagePanel" layout="block">
                     <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
@@ -19,7 +20,7 @@
                     <h:outputText value="#{buyController.pagination.pageFirstItem + 1}..#{buyController.pagination.pageLastItem + 1}/#{buyController.pagination.itemsCount}"/>&nbsp;
                     <h:commandLink action="#{buyController.previous}" value="#{bundle.Previous} #{buyController.pagination.pageSize}" rendered="#{buyController.pagination.hasPreviousPage}"/>&nbsp;
                     <h:commandLink action="#{buyController.next}" value="#{bundle.Next} #{buyController.pagination.pageSize}" rendered="#{buyController.pagination.hasNextPage}"/>&nbsp;
-                    <h:dataTable value="#{buyController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                    <h:dataTable class="table table-hover" value="#{buyController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
                         <h:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListBuyTitle_sales}"/>

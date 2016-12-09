@@ -14,7 +14,7 @@
                 <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
             </h:panelGroup>
             <h:form>
-                <h:panelGrid columns="2">
+                <h:panelGrid class="table table-hover" columns="2">
                     <h:outputLabel value="#{bundle.CreateMessageLabel_messageId}" for="messageId" />
                     <h:inputText id="messageId" value="#{messageController.selected.messageId}" title="#{bundle.CreateMessageTitle_messageId}" required="true" requiredMessage="#{bundle.CreateMessageRequiredMessage_messageId}"/>
                     <h:outputLabel value="#{bundle.CreateMessageLabel_dateSent}" for="dateSent" />

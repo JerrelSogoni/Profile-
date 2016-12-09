@@ -10,11 +10,12 @@
             <h:outputText value="#{bundle.EditCommentTitle}"></h:outputText>
         </ui:define>
         <ui:define name="content">
+            <h3>Edit Comment</h3><p><br/></p>
             <h:panelGroup id="messagePanel" layout="block">
                 <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
             </h:panelGroup>
             <h:form>
-                <h:panelGrid columns="2">
+                <h:panelGrid class="table table-hover" columns="2">
                     <h:outputLabel value="#{bundle.EditCommentLabel_commentId}" for="commentId" />
                     <h:inputText id="commentId" value="#{commentController.selected.commentId}" title="#{bundle.EditCommentTitle_commentId}" required="true" requiredMessage="#{bundle.EditCommentRequiredMessage_commentId}"/>
                     <h:outputLabel value="#{bundle.EditCommentLabel_dateCreated}" for="dateCreated" />
