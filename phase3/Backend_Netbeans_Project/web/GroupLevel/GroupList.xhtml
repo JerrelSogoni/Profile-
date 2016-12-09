@@ -12,8 +12,8 @@
         <ui:define name="content">
             <h3>Groups List</h3>
             <p><br/></p>
-            <h:form>
-                <h:panelGrid columns="2">
+            <h:form >
+                <h:panelGrid class="table table-hover" columns="2">
                     <h:outputLabel value="User" for="user" />
                     <h:selectOneMenu id="user" value="#{group.queryUserPlus}">
                         <f:selectItems value="#{userPlusController.itemsAvailableSelectOne}"/>
@@ -42,13 +42,13 @@
             <h:dataTable class="table table-hover" value="#{group.userInGroupList}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
                 <h:column>
                     <f:facet name="header">
-                        <h:outputText value="Item Id"/>
+                        <h:outputText value="User ID"/>
                     </f:facet>
                     <h:outputText value="#{item.userId}"/>
                 </h:column>
                 <h:column>
                     <f:facet name="header">
-                        <h:outputText value="Item Name"/>
+                        <h:outputText value="Group ID"/>
                     </f:facet>
                     <h:outputText value="#{item.groupId}"/>
                 </h:column>
@@ -58,13 +58,13 @@
             <h:dataTable class="table table-hover" value="#{group.groupWithUsersList}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
                 <h:column>
                     <f:facet name="header">
-                        <h:outputText value="Item Id"/>
+                        <h:outputText value="User ID"/>
                     </f:facet>
                     <h:outputText value="#{item.userId}"/>
                 </h:column>
                 <h:column>
                     <f:facet name="header">
-                        <h:outputText value="Item Name"/>
+                        <h:outputText value="Group ID"/>
                     </f:facet>
                     <h:outputText value="#{item.groupId}"/>
                 </h:column>

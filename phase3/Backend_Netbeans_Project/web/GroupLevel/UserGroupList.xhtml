@@ -13,7 +13,7 @@
             <h3>Groups User Has Joined</h3>
             <p><br/></p>
             <h:form>
-                <h:panelGrid columns="2">
+                <h:panelGrid class="table table-hover" columns="2">
                     <h:outputLabel value="User" for="user" />
                     <h:selectOneMenu id="user" value="#{group.queryUserPlus}">
                         <f:selectItems value="#{userPlusController.itemsAvailableSelectOne}"/>

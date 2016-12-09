@@ -11,75 +11,11 @@
             <h:outputText value="Create Message"></h:outputText>
         </ui:define>
         <ui:define name="content">
-        <!-- Begin Nav Bar for Header -->
-        <nav class="navbar navbar-default navbar-fixed-top my-nav ">
-            <div class="container">
-                <div class="navbar-brand">
-                    <button class="navbar-toggle" data-toggle="collapse" data-target="#navHeaderCollapse">
-                        <span class ="icon-bar"></span>
-                        <span class ="icon-bar"></span>
-                        <span class ="icon-bar"></span>
-                    </button>
-                    <h:graphicImage alt="Profile Plus" value="/resources/img/ProfilePlusLogo2.0.png" width="61" height="46"></h:graphicImage>                    
-                </div>
-                <div class="collapse navbar-collapse"
-                     id="navHeaderCollapse">
-                    <ul class="nav navbar-nav navbar-right" id="nav-bar-functions" >
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                <h:graphicImage class="nav-link" value="/resources/img/littleprofPic.png"/>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                <h:graphicImage class="nav-link" value="/resources/img/friendslistglyph.png"/>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                <h:graphicImage class="nav-link" value="/resources/img/messagesglyph.png"/>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                <h:graphicImage class="nav-link" value="/resources/img/grouppageglyp.png"/>
-                            </a>
-                        </li>
-                        <li class="dropdown">
-                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                                <h:graphicImage value="/resources/img/cogwheelglyph.png"/>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">Modify User Settings</a></li>
-                                <li class="divider"></li>
-                                <li>
-                                    <h:form>
-                                        <h:commandLink value="Logout" action="#{userPlusController.logout()}"/>
-                                    </h:form>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="dropdown">
-                            <a  href="#" data-toggle="dropdown" class="dropdown-toggle">
-                                <h:graphicImage value="/resources/img/showlinesglyph.png"/>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">Create a Page</a></li>
-                                <li class="divider"></li>
-                                <li><a href="#">Create a Group</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-        <!-- End Nav Bar Header-->
+        
         <!-- Begin save init settings content-->
         <div class="container containerCase textstyle">
             <div class="row row 1" id="row1">
-                <div class="col-xs-6 col-sm-4" >
                     <h4 >Create a Group Page</h4>
-                </div>
             </div>
             <h:form class="form-inline formstyle" role="form" id="group_form">
                 <fieldset>

@@ -10,11 +10,12 @@
             <h:outputText value="#{bundle.EditGroupPageTitle}"></h:outputText>
         </ui:define>
         <ui:define name="content">
+            <h4>Edit Group Page</h4><p><br/></p>
             <h:panelGroup id="messagePanel" layout="block">
                 <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
             </h:panelGroup>
             <h:form>
-                <h:panelGrid columns="2">
+                <h:panelGrid class="table table-hover" columns="2">
                     <h:outputLabel value="#{bundle.EditGroupPageLabel_pageId}" for="pageId" />
                     <h:inputText id="pageId" value="#{groupPageController.selected.pageId}" title="#{bundle.EditGroupPageTitle_pageId}" required="true" requiredMessage="#{bundle.EditGroupPageRequiredMessage_pageId}"/>
                     <h:outputLabel value="#{bundle.EditGroupPageLabel_groupId}" for="groupId" />

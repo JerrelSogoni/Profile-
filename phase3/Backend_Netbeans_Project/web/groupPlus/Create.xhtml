@@ -10,16 +10,17 @@
             <h:outputText value="#{bundle.CreateGroupPlusTitle}"></h:outputText>
         </ui:define>
         <ui:define name="content">
+            <h3>Create Group</h3>
             <h:panelGroup id="messagePanel" layout="block">
                 <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
             </h:panelGroup>
             <h:form>
-                <h:panelGrid columns="2">
-                    <h:outputLabel value="#{bundle.CreateGroupPlusLabel_groupName}" for="groupName" />
+                <h:panelGrid class="table table-hover" columns="2">
+                    <h:outputLabel value="Group Name:" for="groupName" />
                     <h:inputText id="groupName" value="#{groupPlusController.selected.groupName}" title="#{bundle.CreateGroupPlusTitle_groupName}" />
-                    <h:outputLabel value="#{bundle.CreateGroupPlusLabel_type}" for="type" />
+                    <h:outputLabel value="Type:" for="type" />
                     <h:inputText id="type" value="#{groupPlusController.selected.type}" title="#{bundle.CreateGroupPlusTitle_type}" />
-                    <h:outputLabel value="#{bundle.CreateGroupPlusLabel_owner}" for="owner" />
+                    <h:outputLabel value="Owner:" for="owner" />
                     <h:selectOneMenu id="owner" value="#{groupPlusController.selected.owner}" title="#{bundle.CreateGroupPlusTitle_owner}" >
                         <f:selectItems value="#{userPlusController.itemsAvailableSelectOne}"/>
                     </h:selectOneMenu>
