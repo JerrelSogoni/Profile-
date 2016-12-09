@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package profile;
+package backup;
 
+import profile.*;
 import java.io.Serializable;
 import java.util.Date;
 import javax.enterprise.context.SessionScoped;
@@ -14,13 +15,13 @@ import javax.inject.Named;
  *
  * @author Jerrel
  */
-@Named("TheGroupComment")
+@Named("TheGpdsijfsdpifjroupComment")
 @SessionScoped
 public class TheGroupPostComments implements Serializable {
 
     private Integer commentId;
     private Date dateCreated;
-    private String content ;
+    private String content;
     private UserPlus authorId;
     private UserPlus authorName;
     private Integer theAuthorId;

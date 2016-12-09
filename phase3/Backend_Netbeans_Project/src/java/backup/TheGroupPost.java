@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package profile;
+package backup;
 
+import profile.*;
 import java.io.Serializable;
 import java.util.Date;
 import javax.enterprise.context.SessionScoped;
@@ -14,34 +15,34 @@ import javax.inject.Named;
  *
  * @author Jerrel
  */
-@Named("TheGroupComment")
+@Named("TspdijfdspfjheGroupPost")
 @SessionScoped
-public class TheGroupPostComments implements Serializable {
+public class TheGroupPost implements Serializable {
 
-    private Integer commentId;
+    private Integer postId;
     private Date dateCreated;
-    private String content ;
+
+    private String content;
+    private Integer commentCount;
     private UserPlus authorId;
-    private UserPlus authorName;
-    private Integer theAuthorId;
-    private String theAuthorName;
+    private String authorName;
+    private String authorEmail;
+    private Integer theauthorId;
+    // default value, Like = neutral , Liked == Liked, Unliked = Like
     private String likeView;
 
     /**
-     * @return the commentId
+     * @return the postId
      */
-    public TheGroupPostComments(){
-        
-    }
-    public Integer getCommentId() {
-        return commentId;
+    public Integer getPostId() {
+        return postId;
     }
 
     /**
-     * @param commentId the commentId to set
+     * @param postId the postId to set
      */
-    public void setCommentId(Integer commentId) {
-        this.commentId = commentId;
+    public void setPostId(Integer postId) {
+        this.postId = postId;
     }
 
     /**
@@ -73,6 +74,20 @@ public class TheGroupPostComments implements Serializable {
     }
 
     /**
+     * @return the commentCount
+     */
+    public Integer getCommentCount() {
+        return commentCount;
+    }
+
+    /**
+     * @param commentCount the commentCount to set
+     */
+    public void setCommentCount(Integer commentCount) {
+        this.commentCount = commentCount;
+    }
+
+    /**
      * @return the authorId
      */
     public UserPlus getAuthorId() {
@@ -89,43 +104,43 @@ public class TheGroupPostComments implements Serializable {
     /**
      * @return the authorName
      */
-    public UserPlus getAuthorName() {
+    public String getAuthorName() {
         return authorName;
     }
 
     /**
      * @param authorName the authorName to set
      */
-    public void setAuthorName(UserPlus authorName) {
+    public void setAuthorName(String authorName) {
         this.authorName = authorName;
     }
 
     /**
-     * @return the theAuthorId
+     * @return the authorEmail
      */
-    public Integer getTheAuthorId() {
-        return theAuthorId;
+    public String getAuthorEmail() {
+        return authorEmail;
     }
 
     /**
-     * @param theAuthorId the theAuthorId to set
+     * @param authorEmail the authorEmail to set
      */
-    public void setTheAuthorId(Integer theAuthorId) {
-        this.theAuthorId = theAuthorId;
+    public void setAuthorEmail(String authorEmail) {
+        this.authorEmail = authorEmail;
     }
 
     /**
-     * @return the theAuthorName
+     * @return the theauthorId
      */
-    public String getTheAuthorName() {
-        return theAuthorName;
+    public Integer getTheauthorId() {
+        return theauthorId;
     }
 
     /**
-     * @param theAuthorName the theAuthorName to set
+     * @param theauthorId the theauthorId to set
      */
-    public void setTheAuthorName(String theAuthorName) {
-        this.theAuthorName = theAuthorName;
+    public void setTheauthorId(Integer theauthorId) {
+        this.theauthorId = theauthorId;
     }
 
     /**
@@ -141,5 +156,5 @@ public class TheGroupPostComments implements Serializable {
     public void setLikeView(String likeView) {
         this.likeView = likeView;
     }
-
+    
 }
