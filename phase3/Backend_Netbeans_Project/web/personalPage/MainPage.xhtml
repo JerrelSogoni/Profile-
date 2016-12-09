@@ -26,41 +26,42 @@
                 </div>
                 <div class="collapse navbar-collapse" id="navHeaderCollapse">
                     <h:form>
-                    <ul class="nav navbar-nav navbar-right" id="nav-bar-functions" >
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                <h:graphicImage class="nav-link" value="/resources/img/littleprofPic.png"/>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                           
-                           <h:commandLink class="nav-link" action="#{userLevel.friendsList()}">
-                                <h:graphicImage class="nav-link" value="/resources/img/friendslistglyph.png"/>
-                            </h:commandLink>
-                        </li>
-                        <li class="nav-item">
-                            <h:commandLink class="nav-link" action="#{userLevel.messageList()}">
-                                <h:graphicImage class="nav-link" value="/resources/img/messagesglyph.png"/>
-                            </h:commandLink>
-                        </li>
-                        <li class="nav-item">
-                            <h:commandLink class="nav-link" action="#{userLevel.groupList()}">
-                                <h:graphicImage class="nav-link" value="/resources/img/grouppageglyp.png"/>
-                            </h:commandLink>
-                        </li>
-                        <li class="dropdown">
-                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                                <h:graphicImage value="/resources/img/cogwheelglyph.png"/>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">Modify User Settings</a></li>
-                                <li class="divider"></li>
-                                <li>
-                                    <h:form>
-                                        <li><h:commandLink action="#{userLevel.makeAPost()}">Create a Post</h:commandLink></li>
-                                        <li class="divider"></li>
-                                        <li><a href="#">Create a Group</a></li>
-                                    </h:form>
+                        <ul class="nav navbar-nav navbar-right" id="nav-bar-functions" >
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">
+                                    <h:graphicImage class="nav-link" value="/resources/img/littleprofPic.png"/>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+
+                                <h:commandLink class="nav-link" action="#{userLevel.friendsList()}">
+                                    <h:graphicImage class="nav-link" value="/resources/img/friendslistglyph.png"/>
+                                </h:commandLink>
+                            </li>
+                            <li class="nav-item">
+                                <h:commandLink class="nav-link" action="#{userLevel.messageList()}">
+                                    <h:graphicImage class="nav-link" value="/resources/img/messagesglyph.png"/>
+                                </h:commandLink>
+                            </li>
+                            <li class="nav-item">
+                                <h:commandLink class="nav-link" action="#{userLevel.groupList()}">
+                                    <h:graphicImage class="nav-link" value="/resources/img/grouppageglyp.png"/>
+                                </h:commandLink>
+                            </li>
+                            <li class="dropdown">
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                    <h:graphicImage value="/resources/img/cogwheelglyph.png"/>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#">Modify User Settings</a></li>
+                                    <li class="divider"></li>
+                                    <li>
+                                        <h:form>
+                                            <li><h:commandLink action="#{userLevel.makeAPost()}">Create a Post</h:commandLink></li>
+                                            <li class="divider"></li>
+                                            <li><a href="#">Create a Group</a></li>
+                                        </h:form>
+                                    </li>
                                 </ul>
                             </li>
                         </ul>
@@ -151,7 +152,7 @@
                         <h:commandLink action="#{custrepLevel.listCust()}">- Produce customer mailing lists</h:commandLink><br/>
                         <h:commandLink action="#{custrepLevel.listCustSug()}">- Produce a list of item suggestions for a given customer (based on that customer's past transactions)</h:commandLink><br/>
                         <h:commandLink action="#{custrepLevel.listCustGrp()}">- Retrieve a customer's current groups</h:commandLink><br/>
-                         <h:commandLink action="#{custrepLevel.custHistory()}">- For each of a customer's accounts, the account history</h:commandLink><br/>
+                        <h:commandLink action="#{custrepLevel.custHistory()}">- For each of a customer's accounts, the account history</h:commandLink><br/>
                         <h:commandLink action="#{custrepLevel.bestSeller()}">- Best-Seller list of items</h:commandLink><br/>
                         <h:commandLink action="#{custrepLevel.itemSuggestion()}">- Personalized item suggestion list</h:commandLink><br/>
 
