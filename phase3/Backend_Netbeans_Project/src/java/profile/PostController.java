@@ -113,11 +113,11 @@ public class PostController implements Serializable {
         }
     }
 
-    public String prepareEdit() {
+    public void prepareEdit() {
         current = (Post) getItems().getRowData();
         PaginationHelper ph = getPagination();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
-        return "Edit";
+       
     }
 
     public String update() {
@@ -312,27 +312,10 @@ public class PostController implements Serializable {
 
         try {
             con = DataConnect.getConnection();
-            ps = con.prepareStatement("SELECT \n"
-                    + "    *\n"
-                    + "FROM\n"
-                    + "    Post\n"
-                    + "WHERE\n"
-                    + "    Post.PostId IN (SELECT \n"
-                    + "            PostId\n"
-                    + "        FROM\n"
-                    + "            PostedTo\n"
-                    + "        WHERE\n"
-                    + "            PostedTo.PageId = (SELECT \n"
-                    + "                    PersonalPage.PageId\n"
-                    + "                FROM\n"
-                    + "                    PersonalPage\n"
-                    + "                WHERE\n"
-                    + "                    PersonalPage.ownerid = (SELECT \n"
-                    + "                            UserId\n"
-                    + "                        FROM\n"
-                    + "                            UserPlus\n"
-                    + "                        WHERE\n"
-                    + "                            UserId = ?))) ;");
+            ps = con.prepareStatement("SELECT *  FROM PostedTo T, "
+                    + "Post P WHERE T.PostId = P.PostId AND"
+                    + "  T.PageId = (SELECT PP.PageId"
+                    + " FROM PersonalPage PP WHERE PP.OwnerId = ?);");
 
             // print out the query statement
             ps.setInt(1, user);
@@ -640,6 +623,13 @@ public class PostController implements Serializable {
        
             }
         }
+        
+    }
+    public String goBack(){
+        items = null;
+        current = null;
+        postContent = "";
+        return "/personalPage/MainPage";
         
     }
         

@@ -191,7 +191,6 @@ public class Group implements Serializable {
 
             // print out error message
             JsfUtil.addErrorMessage("Connection to database failed:" + ex.getMessage());
-            
 
         } finally {
             DataConnect.close(con);
@@ -237,7 +236,6 @@ public class Group implements Serializable {
 
             // print out error message
             JsfUtil.addErrorMessage("Connection to database failed:" + ex.getMessage());
-            
 
         } finally {
             DataConnect.close(con);
@@ -251,31 +249,32 @@ public class Group implements Serializable {
     }
 
     public String addToGrpButton() {
-        if (queryUserPlus != null && queryGroupPlus != null) {
-            Connection con = null;
-            PreparedStatement ps = null;
+        Connection con = null;
+        PreparedStatement ps = null;
 
-            try {
-                con = DataConnect.getConnection();
-                ps = con.prepareStatement("INSERT INTO IsIn VALUES(?, ?);");
+        try {
+            con = DataConnect.getConnection();
+            ps = con.prepareStatement("INSERT INTO IsIn VALUES(?, ?);");
 
+            if (queryUserPlus != null) {
                 ps.setInt(1, queryUserPlus.getUserId());
-                ps.setInt(2, queryGroupPlus.getGroupId());
-
-                // print out the query statement
-                JsfUtil.addErrorMessage(ps.toString());
-
-                ps.execute();
-
-            } catch (SQLException ex) {
-
-                // print out error message
-                JsfUtil.addErrorMessage("Connection to database failed:" + ex.getMessage());
-                
-
-            } finally {
-                DataConnect.close(con);
             }
+            if (queryGroupPlus != null) {
+                ps.setInt(2, queryGroupPlus.getGroupId());
+            }
+
+            // print out the query statement
+            JsfUtil.addErrorMessage(ps.toString());
+
+            ps.execute();
+
+        } catch (SQLException ex) {
+
+            // print out error message
+            JsfUtil.addErrorMessage("Connection to database failed:" + ex.getMessage());
+
+        } finally {
+            DataConnect.close(con);
         }
 
         return "/GroupLevel/GroupList";
@@ -302,7 +301,6 @@ public class Group implements Serializable {
 
                 // print out error message
                 JsfUtil.addErrorMessage("Connection to database failed:" + ex.getMessage());
-                
 
             } finally {
                 DataConnect.close(con);
@@ -320,9 +318,9 @@ public class Group implements Serializable {
         String groupId = params.get("group");
         HttpSession session = SessionUtils.getSession();
         session.setAttribute("group", Integer.parseInt(groupId));
-        
+
         System.out.println(groupId);
-        
+
         return "/groupPage/GroupPost";
     }
 }
