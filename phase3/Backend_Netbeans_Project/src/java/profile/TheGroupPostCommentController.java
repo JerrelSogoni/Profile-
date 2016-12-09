@@ -108,7 +108,7 @@ public class TheGroupPostCommentController implements Serializable{
                         + "FROM\n"
                         + "    LikesComment WHERE CommentId = ? AND UserId = ?;");
                 ps3.setInt(1, result.getInt("CommentId"));
-                ps3.setInt(2, SessionUtils.getUserId());
+                ps3.setInt(2, SessionUtils.getUser().getUserId());
                 ResultSet rs2 = ps2.executeQuery();
                 ResultSet rs3 = ps3.executeQuery();
 
@@ -199,7 +199,7 @@ public class TheGroupPostCommentController implements Serializable{
                 ps.setNull(1, java.sql.Types.INTEGER);
                 ps.setTimestamp(2, java.sql.Timestamp.from(java.time.Instant.now()));
                 ps.setString(3, getInputContent());
-                ps.setInt(4, SessionUtils.getUserId());
+                ps.setInt(4, SessionUtils.getUser().getUserId());
 
                 // print out the query statement
                 JsfUtil.addErrorMessage(ps.toString());
@@ -306,7 +306,7 @@ public class TheGroupPostCommentController implements Serializable{
                 // check if user liked this specific post
                 ps = con.prepareStatement("SELECT * FROM LikesComment WHERE CommentId = ? AND UserId = ?");
                 ps.setInt(1, current.getCommentId());
-                ps.setInt(2, SessionUtils.getUserId());
+                ps.setInt(2, SessionUtils.getUser().getUserId());
                 
                 ResultSet set = ps.executeQuery();
                 if(!set.next()){
@@ -314,7 +314,7 @@ public class TheGroupPostCommentController implements Serializable{
                     //ACTION: like
                     ps2 = con.prepareStatement("INSERT INTO LikesComment(CommentId,UserId) VALUES(?,?)");
                     ps2.setInt(1, current.getCommentId());
-                    ps2.setInt(2, SessionUtils.getUserId());
+                    ps2.setInt(2, SessionUtils.getUser().getUserId());
                     //User will like the Post
                     JsfUtil.addErrorMessage("You have liked the Comment");
                 // Execute the Insert Query
@@ -326,7 +326,7 @@ public class TheGroupPostCommentController implements Serializable{
                 else{
                    ps3 = con.prepareStatement("DELETE FROM LikesComment WHERE CommentId = ? AND UserId = ?");
                    ps3.setInt(1, current.getCommentId());
-                   ps3.setInt(2, SessionUtils.getUserId());
+                   ps3.setInt(2, SessionUtils.getUser().getUserId());
                    JsfUtil.addErrorMessage("You unliked the Comment");
                    current.setLikeView("Like");
                    ps3.execute(); 
