@@ -12,13 +12,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.model.DataModel;
+import javax.faces.model.ListDataModel;
 import javax.inject.Named;
+import javax.servlet.http.HttpSession;
 import profile.util.DataConnect;
 import profile.util.JsfUtil;
-import profile.util.PaginationHelper;
 import profile.util.SessionUtils;
 
 /**
@@ -27,14 +27,14 @@ import profile.util.SessionUtils;
  */
 @Named("TheGroupPostController")
 @SessionScoped
-public class TheGroupPostController implements Serializable{
+public class TheGroupPostController implements Serializable {
+
     private TheGroupPost current;
     private DataModel items = null;
     private String postContent = "";
-    private String postTo;
-    
-    public TheGroupPostController(){
-        
+
+    public TheGroupPostController() {
+
     }
 
     /**
@@ -55,6 +55,11 @@ public class TheGroupPostController implements Serializable{
      * @return the items
      */
     public DataModel getItems() {
+        if(items == null){
+             items = new ListDataModel(getPostsBy());
+            return items;
+        }
+
         return items;
     }
 
@@ -79,21 +84,9 @@ public class TheGroupPostController implements Serializable{
         this.postContent = postContent;
     }
 
-    /**
-     * @return the postTo
-     */
-    public String getPostTo() {
-        return postTo;
-    }
 
-    /**
-     * @param postTo the postTo to set
-     */
-    public void setPostTo(String postTo) {
-        this.postTo = postTo;
-    }
-     public List<Post> getPostsBy() {
-        ArrayList<Post> toRet = new ArrayList<>();
+    public List<TheGroupPost> getPostsBy() {
+        ArrayList<TheGroupPost> toRet = new ArrayList<>();
         Connection con = null;
         PreparedStatement ps = null;
         PreparedStatement ps2 = null;
@@ -107,21 +100,19 @@ public class TheGroupPostController implements Serializable{
                     + "I.UserId = ? AND G.GroupId = ?));");
 
             // print out the query statement
-            
             ps.setInt(1, SessionUtils.getUserId());
             ps.setInt(2, SessionUtils.getGroupId());
-            
+
             //   JsfUtil.addErrorMessage(ps.toString());
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
                 //result found, means valid inputs
-                Post added = new Post();
+                TheGroupPost added = new TheGroupPost();
                 added.setContent(rs.getString("Content"));
                 added.setPostId(rs.getInt("postId"));
                 added.setTheauthorId(rs.getInt("AuthorId"));
                 added.setDateCreated(rs.getDate("DateCreated"));
-
 
                 ps2 = con.prepareStatement("SELECT \n"
                         + "    *\n"
@@ -133,7 +124,6 @@ public class TheGroupPostController implements Serializable{
                         + "    LikesPost WHERE PostId = ? AND UserId = ?;");
                 ps3.setInt(1, rs.getInt("postId"));
                 ps3.setInt(2, SessionUtils.getUserId());
-                
 
                 // print out the query statement
                 //   JsfUtil.addErrorMessage(ps2.toString());
@@ -148,22 +138,20 @@ public class TheGroupPostController implements Serializable{
                     }
                     //  JsfUtil.addErrorMessage(ps2.toString());
                 }
-                if(rs3.next()){
+                if (rs3.next()) {
                     added.setLikeView("You Have Liked Post");
-                }
-                else{
+                } else {
                     added.setLikeView("Like");
                 }
                 toRet.add(added);
- 
-               
+
                 // JsfUtil.addErrorMessage("Added to return list " + rs.getString("Content") + "authorName: " + added.getAuthorName());
             }
         } catch (SQLException ex) {
 
             // print out error message
             JsfUtil.addErrorMessage("Connection to database failed:" + ex.getMessage());
-           
+
             return null;
 
         } finally {
@@ -171,5 +159,271 @@ public class TheGroupPostController implements Serializable{
         }
         return toRet;
     }
+
+    public String createPost() {
+
+        if (!postContent.isEmpty()) {
+
+            if (createPostToServer(getPostContent())) {
+     
+                updateList();
+            }
+            return "/groupPage/GroupPost";
+        } else {
+            JsfUtil.addErrorMessage("Invalid Email Address OR No input");
+            return "/groupPage/GroupPost";
+
+        }
+    }
+
+    public boolean createPostToServer(String content) {
+        //Connect to server
+        Connection con = null;
+        // insert post
+        PreparedStatement ps = null;
+        //find page id where it is posted
+        PreparedStatement ps2 = null;
+        // insert to posted To
+        PreparedStatement ps3 = null;
+
+        try {
+            con = DataConnect.getConnection();
+            // give proper variables and propert format
+            ps = con.prepareStatement("INSERT INTO POST(PostID, DateCreated, Content, CommentCount, AuthorID) values (?, ?, ?, ?, ?);", PreparedStatement.RETURN_GENERATED_KEYS);
+            ps.setNull(1, java.sql.Types.INTEGER);
+            ps.setTimestamp(2, java.sql.Timestamp.from(java.time.Instant.now()));
+            ps.setString(3, content);
+            ps.setInt(4, 0);
+            ps.setInt(5, SessionUtils.getUserId());
+
+            // print out the query statement
+            JsfUtil.addErrorMessage(ps.toString());
+            // Execute the Insert Query
+            ps.executeUpdate();
+            // Find the most recent postID due to autoincrement
+            ResultSet keyResultSet = ps.getGeneratedKeys();
+            // initalized newestpost 
+            int newestpostID = -1;
+            while (keyResultSet.next()) {
+                // get newest post
+                newestpostID = keyResultSet.getInt(1);
+            }
+            //close connection to save on resources
+            ps.close();
+            // prepare for getting page id 
+            ps3 = con.prepareStatement("SELECT * FROM GroupPage WHERE GroupId = ?");
+            ps3.setInt(1, SessionUtils.getGroupId());
+            // invoke method to find postID
+            ResultSet ownerID = ps3.executeQuery();
+            int owner = -1;
+            while (ownerID.next()) {
+                owner = ownerID.getInt("PageId");
+            }
+            ps2 = con.prepareStatement("INSERT INTO PostedTo(PostID, PageID) values (?, ?);");
+            ps2.setInt(1, newestpostID);
+            ps2.setInt(2, owner);
+
+            ps2.executeUpdate();
+
+            ps3.close();
+            ps2.close();
+            resetInputBoxes();
+            JsfUtil.addSuccessMessage("Post successful  ");
+            return true;
+
+        } catch (SQLException ex) {
+
+            // print out error message
+            JsfUtil.addErrorMessage("Error occured while posting" + ex.getMessage());
+
+        } finally {
+            DataConnect.close(con);
+        }
+        return false;
+
+    }
+
+    public void clearSelectedInput() {
+        if (current != null) {
+            setPostContent("");
+        }
+    }
+
+    public void updateList() {
+        items = null;
+        setItems(getItems());
+        current = null;
+
+    }
+
+    public void resetInputBoxes() {
+        setPostContent("");
+
+    }
+    public String modifyPost(){
+        if(current != null){
+
+            
+            //Connect to server
+            Connection con = null;
+            // modify post
+            PreparedStatement ps = null;
+
+
+            try {
+                con = DataConnect.getConnection();
+                // give proper variables and propert format
+                ps = con.prepareStatement("UPDATE Post SET DateCreated = ?, Content = ? WHERE PostId = ?;");
+                ps.setTimestamp(1, java.sql.Timestamp.from(java.time.Instant.now()));
+                ps.setString(2, current.getContent());
+                ps.setInt(3, current.getPostId());
+
+                // print out the query statement
+                JsfUtil.addErrorMessage(ps.toString());
+                // Execute the Insert Query
+                ps.executeUpdate();
+                ps.close();
+
+            } catch (SQLException ex) {
+
+                // print out error message
+                JsfUtil.addErrorMessage("Error occured while posting" + ex.getMessage());
+
+            } finally {
+                DataConnect.close(con);
+                
+       
+            }
+            
+            
+        }
+        updateList();
+        return  "/groupPage/GroupPost";
+        
+    }
+      public String deletePost(){
+           Connection con = null;
+            // modify post
+            PreparedStatement ps = null;
+
+
+            try {
+                con = DataConnect.getConnection();
+                // give proper variables and propert format
+                ps = con.prepareStatement("DELETE FROM Post WHERE PostId = ?");
+                ps.setInt(1, current.getPostId());
+                ps.execute();
+                // print out the query statement
+                JsfUtil.addErrorMessage(ps.toString());
+                // Execute the Insert Query
+
+                ps.close();
+
+            } catch (SQLException ex) {
+
+                // print out error message
+                JsfUtil.addErrorMessage("Error occured while deleting" + ex.getMessage());
+
+            } finally {
+                DataConnect.close(con);
+           
+            }
+            
+        updateList();
+        return "/groupPage/GroupPost";
+        
+        }
+      
+        public String goToComment(){
+   
+        current = (TheGroupPost) getItems().getRowData();
+        HttpSession session = SessionUtils.getSession();
+        session.setAttribute("groupPost", current);
+     
+        return "/groupPage/GroupCommentListPostViewer";
+    }
+        
+      public void goLikeorUnlikePost(){
+        current = (TheGroupPost) getItems().getRowData();
+        if(current != null){
+           //Connect to server
+            Connection con = null;
+            // modify post
+            PreparedStatement ps = null;
+            PreparedStatement ps2 = null;
+            PreparedStatement ps3 = null;
+     
+
+            try {
+                con = DataConnect.getConnection();
+                // give proper variables and propert format
+                // check if user liked this specific post
+                ps = con.prepareStatement("SELECT * FROM LikesPost WHERE PostId = ? AND UserId = ?");
+                ps.setInt(1, current.getPostId());
+                ps.setInt(2, SessionUtils.getUserId());
+                
+                ResultSet set = ps.executeQuery();
+                if(!set.next()){
+                    //if passed then User did not like this post
+                    //ACTION: like
+                    ps2 = con.prepareStatement("INSERT INTO LikesPost(PostId,UserId) VALUES(?,?)");
+                    ps2.setInt(1, current.getPostId());
+                    ps2.setInt(2, SessionUtils.getUserId());
+                    //User will like the Post
+                    JsfUtil.addErrorMessage("You Have Liked Post");
+                // Execute the Insert Query
+                    ps2.execute();
+                    //change to Liked
+                    current.setLikeView("You Have Liked Post");
+                    ps2.close();
+                }
+                else{
+                   ps3 = con.prepareStatement("DELETE FROM LikesPost WHERE PostId = ? AND UserId = ?");
+                   ps3.setInt(1, current.getPostId());
+                   ps3.setInt(2, SessionUtils.getUserId());
+                   JsfUtil.addErrorMessage("You unliked the Post");
+                   ps3.execute();
+                   // change status
+                   current.setLikeView("Like");
+                   ps3.close();
+                }
+
+
+                ps.close();
+
+            } catch (SQLException ex) {
+
+                // print out error message
+                JsfUtil.addErrorMessage("Error occured while liking posting" + ex.getMessage());
+
+            } finally {
+                DataConnect.close(con);
+                updateList();
+       
+            }
+        }
+        
+    }
+    
+      public String prepareEdit(){
+          current = (TheGroupPost) items.getRowData();
+          return "/groupPage/GroupPost";
+      }
+      public String preparedDelete(){
+            current = (TheGroupPost) items.getRowData();
+            deletePost();
+            return "/groupPage/GroupPost";
+          
+      }
+      public String goBack(){
+        items = null;
+        current = null;
+        postContent = "";
+       
+        return "/groupPage/GroupList";
+        
+      }
+        
+
 
 }

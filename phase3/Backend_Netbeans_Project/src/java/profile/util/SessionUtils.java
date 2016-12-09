@@ -9,6 +9,7 @@ import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import profile.Post;
+import profile.TheGroupPost;
 import profile.UserPlus;
 
 public class SessionUtils {
@@ -32,7 +33,7 @@ public class SessionUtils {
     public static int getUserId() {
         HttpSession session = getSession();
         if (session != null) {
-            return (int) session.getAttribute("userid");
+            return (int) session.getAttribute("userId");
         } else {
             return -1;
         }
@@ -78,6 +79,15 @@ public class SessionUtils {
         } else {
             return null;
         }
+    }
+    public static TheGroupPost getGroupPost(){
+        HttpSession session = getSession();
+        if(session != null) {
+            return (TheGroupPost) session.getAttribute("groupPost");
+        } else {
+            return null;
+        }
+        
     }
    
 }

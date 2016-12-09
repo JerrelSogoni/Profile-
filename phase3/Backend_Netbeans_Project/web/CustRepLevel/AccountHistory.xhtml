@@ -7,12 +7,12 @@
 
     <ui:composition template="/template.xhtml">
         <ui:define name="title">
-            Manage
+            Account History
         </ui:define>
         <ui:define name="content">
             <!-- Begin Nav Bar for Header -->
             <div><h4>Welcome! #{userPlusController.user}</h4></div>
-            <div><h3>Add transaction</h3></div>
+            <div><h3>Account History for #{custrepLevel.queryUser.firstName} #{custrepLevel.queryUser.lastName}</h3></div>
             <h:form>
                 <h:panelGrid columns="2" class="table table-hover">
                     <h:outputLabel value="Which user?" for="userId" />

@@ -11,52 +11,52 @@
             Posts
         </ui:define>
         <ui:define name="content">
-<!--begin divide into 3 columns -->
+            <!--begin divide into 3 columns -->
 
-<div class="container containerCase">
+            <div class="container containerCase">
 
-    <!-- advertisement left-->
-    <a href="#">
-    <div class="col-lg-1" id="col1">
-  
-    </div>
-     </a>
-    <!-- news feed -->
-    <div class="col-lg-10" id="col2">
-        <div id="friendformat" >
-                <h3>Make a Post on #{User.firstname} #{User.lastname}'s Page</h3>
-        </div>
-        <hr/>
-        <div >
-            <h:form class="form-horizontal" role="form"  id="contact_form">
-                <div class="form-group" >
-                    <h:inputTextarea  a:placeholder="Type your post" class="form-control glyphicon-resize-vertical"  id="postcontent" value="#{postController.postContent}"/>
+                <!-- advertisement left-->
+                <a href="#">
+                    <div class="col-lg-1" id="col1">
+
+                    </div>
+                </a>
+                <!-- news feed -->
+                <div class="col-lg-10" id="col2">
+                    <div id="friendformat" >
+                        <h3>Make a Post on #{User.firstname} #{User.lastname}'s Page</h3>
+                    </div>
+                    <hr/>
+                    <div >
+                        <h:form class="form-horizontal" role="form"  id="contact_form">
+                            <div class="form-group" >
+                                <h:inputTextarea  a:placeholder="Type your post" class="form-control glyphicon-resize-vertical"  id="postcontent" value="#{postController.postContent}"/>
+                            </div>
+                            <div class="row force-to-bottom text-center">
+                                <ul class="list-inline">
+                                    <li>   
+                                        <h:commandLink type="button"  class="btn btn-default" id="back" action="#{userLevel.mainPage()}" >Cancel</h:commandLink>
+                                    </li>
+                                    <li>
+                                        <h:commandButton type="submit"  class="btn btn-success" id="submit" value="Submit" action="#{postController.modifyPost()}"/>
+                                    </li>
+
+                                </ul>
+                            </div>
+
+                        </h:form>
+
+                    </div>
+
                 </div>
-                <div class="row force-to-bottom text-center">
-                    <ul class="list-inline">
-                        <li>   
-                            <h:commandLink type="button"  class="btn btn-default" id="back" action="#{userLevel.mainPage()}" >Cancel</h:commandLink>
-                        </li>
-                        <li>
-                            <h:commandButton type="submit"  class="btn btn-success" id="submit" value="Submit" action="#{postController.modifyPost()}"/>
-                        </li>
+                <!-- advertisment right -->
+                <a>
+                    <div class="col-lg-1" id="col3">
 
-                    </ul>
-                </div>
-
-            </h:form>
-
-        </div>
-
-    </div>
-    <!-- advertisment right -->
-    <a>
-    <div class="col-lg-1" id="col3">
-    
-    </div>
-    </a>
-</div>
-<!--end divide into 3 columns -->
-</ui:define>
+                    </div>
+                </a>
+            </div>
+            <!--end divide into 3 columns -->
+        </ui:define>
     </ui:composition>
 </html>

@@ -12,8 +12,9 @@ public class LoginDAO {
 
         try {
             con = DataConnect.getConnection();
-            ps = con.prepareStatement("Select * from UserPlus where UserId = ? and Password = ?");
-            ps.setInt(1, Integer.parseInt(user));
+            ps = con.prepareStatement("Select * from UserPlus where Email = ? and Password = ?");
+//            ps.setInt(1, Integer.parseInt(user));
+            ps.setString(1, user);
             ps.setString(2, password);
             
             // print out the query statement
@@ -24,7 +25,7 @@ public class LoginDAO {
             if (rs.next()) {
                 UserPlus userPlus = new UserPlus();
                 HttpSession session = SessionUtils.getSession();
-                session.setAttribute("userid", rs.getInt("userId"));
+                session.setAttribute("userId", rs.getInt("userId"));
                 session.setAttribute("email", rs.getString("email"));
 
                 
@@ -49,7 +50,7 @@ public class LoginDAO {
             
             // print out error message
             JsfUtil.addErrorMessage("Connection to database failed:" + ex.getMessage());
-            System.out.println("Login error -->" + ex.getMessage());
+            
             return false;
         } finally {
             DataConnect.close(con);

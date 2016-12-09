@@ -20,7 +20,7 @@ public class TheGroupPostComments implements Serializable {
 
     private Integer commentId;
     private Date dateCreated;
-    private String content;
+    private String content ;
     private UserPlus authorId;
     private UserPlus authorName;
     private Integer theAuthorId;

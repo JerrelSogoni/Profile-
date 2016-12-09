@@ -191,7 +191,7 @@ public class Group implements Serializable {
 
             // print out error message
             JsfUtil.addErrorMessage("Connection to database failed:" + ex.getMessage());
-            System.out.println("Login error -->" + ex.getMessage());
+            
 
         } finally {
             DataConnect.close(con);
@@ -237,7 +237,7 @@ public class Group implements Serializable {
 
             // print out error message
             JsfUtil.addErrorMessage("Connection to database failed:" + ex.getMessage());
-            System.out.println("Login error -->" + ex.getMessage());
+            
 
         } finally {
             DataConnect.close(con);
@@ -271,7 +271,7 @@ public class Group implements Serializable {
 
                 // print out error message
                 JsfUtil.addErrorMessage("Connection to database failed:" + ex.getMessage());
-                System.out.println("Login error -->" + ex.getMessage());
+                
 
             } finally {
                 DataConnect.close(con);
@@ -302,7 +302,7 @@ public class Group implements Serializable {
 
                 // print out error message
                 JsfUtil.addErrorMessage("Connection to database failed:" + ex.getMessage());
-                System.out.println("Login error -->" + ex.getMessage());
+                
 
             } finally {
                 DataConnect.close(con);

@@ -10,7 +10,7 @@
             <h:outputText value="#{bundle.ListEmployeeTitle}"></h:outputText>
         </ui:define>
         <ui:define name="content">
-            <h:form styleClass="jsfcrud_list_form">
+            <h:form>
                 <h:panelGroup id="messagePanel" layout="block">
                     <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
                 </h:panelGroup>
@@ -19,7 +19,7 @@
                     <h:outputText value="#{employeeController.pagination.pageFirstItem + 1}..#{employeeController.pagination.pageLastItem + 1}/#{employeeController.pagination.itemsCount}"/>&nbsp;
                     <h:commandLink action="#{employeeController.previous}" value="#{bundle.Previous} #{employeeController.pagination.pageSize}" rendered="#{employeeController.pagination.hasPreviousPage}"/>&nbsp;
                     <h:commandLink action="#{employeeController.next}" value="#{bundle.Next} #{employeeController.pagination.pageSize}" rendered="#{employeeController.pagination.hasNextPage}"/>&nbsp;
-                    <h:dataTable class="table table-hover" value="#{employeeController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px" class="table table-hover">
+                    <h:dataTable class="table table-hover" value="#{employeeController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
                         <h:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListEmployeeTitle_ssn}"/>

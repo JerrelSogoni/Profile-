@@ -38,73 +38,65 @@
                         <span class ="icon-bar"></span>
                         <span class ="icon-bar"></span>
                     </button>
-                    <h:graphicImage alt="Profile Plus" value="/resources/img/ProfilePlusLogo2.0.png" width="61" height="46"></h:graphicImage>                    
+                    <h:form>
+                        <h:commandLink action="/personalPage/MainPage">
+                            <h:graphicImage alt="Profile Plus" value="/resources/img/ProfilePlusLogo2.0.png" width="61" height="46"></h:graphicImage>                    
+                        </h:commandLink>
+                    </h:form>
                 </div>
                 <div class="collapse navbar-collapse"
                      id="navHeaderCollapse">
-                    <ul class="nav navbar-nav navbar-right" id="nav-bar-functions" >
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                <h:graphicImage class="nav-link" value="/resources/img/littleprofPic.png"/>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                <h:graphicImage class="nav-link" value="/resources/img/friendslistglyph.png"/>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                <h:graphicImage class="nav-link" value="/resources/img/messagesglyph.png"/>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                <h:graphicImage class="nav-link" value="/resources/img/grouppageglyp.png"/>
-                            </a>
-                        </li>
-                        <li class="dropdown">
-                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                                <h:graphicImage value="/resources/img/cogwheelglyph.png"/>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">Modify User Settings</a></li>
-                                <li class="divider"></li>
-                                <li>
-                                    <h:form>
+                    <h:form>
+                        <ul class="nav navbar-nav navbar-right" id="nav-bar-functions" >
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">
+                                    <h:graphicImage class="nav-link" value="/resources/img/littleprofPic.png"/>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <h:commandLink class="nav-link" action="#{userLevel.friendsList()}">
+                                    <h:graphicImage class="nav-link" value="/resources/img/friendslistglyph.png"/>
+                                </h:commandLink>
+                            </li>
+                            <li class="nav-item">
+                                <h:commandLink class="nav-link" action="#{userLevel.messageList()}">
+                                    <h:graphicImage class="nav-link" value="/resources/img/messagesglyph.png"/>
+                                </h:commandLink>
+                            </li>
+                            <li class="nav-item">
+                                <h:commandLink class="nav-link" action="#{group.makePostGrp()}">
+                                    <h:graphicImage class="nav-link" value="/resources/img/grouppageglyp.png"/>
+                                </h:commandLink>
+                            </li>
+                            <li class="dropdown">
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                    <h:graphicImage value="/resources/img/cogwheelglyph.png"/>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li>
                                         <h:commandLink value="Logout" action="#{userPlusController.logout()}"/>
-                                    </h:form>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="dropdown">
-                            <a  href="#" data-toggle="dropdown" class="dropdown-toggle">
-                                <h:graphicImage value="/resources/img/showlinesglyph.png"/>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">Create a Page</a></li>
-                                <li class="divider"></li>
-                                <li><a href="#">Create a Group</a></li>
-                            </ul>
-                        </li>
-                    </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </h:form>
                 </div>
             </div>
         </nav>
         <div class="container containerCase">
-<!--            <div class="col-lg-1" id="col1">
-                <ui:insert name="left">Left Section</ui:insert>
-            </div>-->
+            <!--            <div class="col-lg-1" id="col1">
+                            <ui:insert name="left">Left Section</ui:insert>
+                        </div>-->
             <div class="col-lg-12" id="col2">
                 <ui:insert name="content">Main Content</ui:insert>
             </div>
-<!--            <div class="col-lg-1" id="col3">
-                <ui:insert name="right">Right Section</ui:insert>
-            </div>-->
+            <!--            <div class="col-lg-1" id="col3">
+                            <ui:insert name="right">Right Section</ui:insert>
+                        </div>-->
         </div>
-<!--        <nav class="navbar navbar-fixed-bottom footer">
-
-        </nav>-->
+        <!--        <nav class="navbar navbar-fixed-bottom footer">
+        
+                </nav>-->
     </h:body>
 
 </html>

@@ -4,6 +4,11 @@ import profile.util.JsfUtil;
 import profile.util.PaginationHelper;
 
 import java.io.Serializable;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ResourceBundle;
 import javax.ejb.EJB;
 import javax.inject.Named;
@@ -15,6 +20,7 @@ import javax.faces.convert.FacesConverter;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
+import profile.util.DataConnect;
 
 @Named("groupPlusController")
 @SessionScoped
@@ -80,6 +86,43 @@ public class GroupPlusController implements Serializable {
     public String create() {
         try {
             getFacade().create(current);
+            Connection con = null;
+            PreparedStatement ps = null;
+
+            try {
+                con = DataConnect.getConnection();
+                ps = con.prepareStatement("INSERT INTO PagePlus(PostCount) VALUES(0);", Statement.RETURN_GENERATED_KEYS);
+
+                JsfUtil.addErrorMessage(ps.toString());
+                ps.executeUpdate();
+
+                ResultSet rs = ps.getGeneratedKeys();
+                rs.next();
+                int PageId = rs.getInt(1);
+
+                ps = con.prepareStatement("INSERT INTO GroupPage VALUES(?, ?);");
+                ps.setInt(1, PageId);
+                ps.setInt(2, current.getGroupId());
+
+                JsfUtil.addErrorMessage(ps.toString());
+                ps.executeUpdate();
+                
+                ps = con.prepareStatement("INSERT INTO ISIN VALUES(?, ?)");
+                ps.setInt(1, current.getOwner().getUserId());
+                ps.setInt(2, current.getGroupId());
+                
+                JsfUtil.addErrorMessage(ps.toString());
+                ps.executeUpdate();
+
+            } catch (SQLException ex) {
+
+                // print out error message
+                JsfUtil.addErrorMessage("Connection to database failed:" + ex.getMessage());
+                
+
+            } finally {
+                DataConnect.close(con);
+            }
             JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("GroupPlusCreated"));
             return prepareCreate();
         } catch (Exception e) {
