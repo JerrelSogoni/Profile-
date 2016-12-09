@@ -6,80 +6,11 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
 
-    <h:head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <title><ui:insert name="title">Default Title</ui:insert></title>
-        <h:outputStylesheet library="css" name="jsfcrud.css"/>
-        <h:outputStylesheet library="css" name="bootstrap.css"/>
-        <h:outputStylesheet library="css" name="usermainpage.css"/>
-    </h:head>
-<h:body>
-<!-- Begin Nav Bar for Header -->
-<nav class="navbar navbar-default navbar-fixed-top my-nav ">
-            <div class="container">
-                <div class="navbar-brand">
-                    <button class="navbar-toggle" data-toggle="collapse" data-target="#navHeaderCollapse">
-                        <span class ="icon-bar"></span>
-                        <span class ="icon-bar"></span>
-                        <span class ="icon-bar"></span>
-                    </button>
-                    <h:graphicImage alt="Profile Plus" value="/resources/img/ProfilePlusLogo2.0.png" width="61" height="46"></h:graphicImage>                    
-                </div>
-                <div class="collapse navbar-collapse"
-                     id="navHeaderCollapse">
-                    <h:form>
-                    <ul class="nav navbar-nav navbar-right" id="nav-bar-functions" >
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                <h:graphicImage class="nav-link" value="/resources/img/littleprofPic.png"/>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <h:commandLink class="nav-link" action="userLevel.friendsList()">
-                                <h:graphicImage class="nav-link" value="/resources/img/friendslistglyph.png"/>
-                            </h:commandLink>
-                        </li>
-                        <li class="nav-item">
-                            <a>
-                                <h:graphicImage class="nav-link" value="/resources/img/messagesglyph.png"/>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a>
-                                <h:graphicImage class="nav-link" value="/resources/img/grouppageglyp.png"/>
-                            </a>
-                        </li>
-                        <li class="dropdown">
-                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                                <h:graphicImage value="/resources/img/cogwheelglyph.png"/>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">Modify User Settings</a></li>
-                                <li class="divider"></li>
-                                <li>
-                             
-                                        <h:commandLink value="Logout" action="#{userPlusController.logout()}"/>
-                               
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="dropdown">
-                            <a  href="#" data-toggle="dropdown" class="dropdown-toggle">
-                                <h:graphicImage value="/resources/img/showlinesglyph.png"/>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">Create a Page</a></li>
-                                <li class="divider"></li>
-                                <li><a href="#">Create a Group</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                    </h:form>
-                </div>
-            </div>
-        </nav>
-<!-- End Nav Bar Header-->
-<!--begin divide into 3 columns -->
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            Friends List
+        </ui:define>
+        <ui:define name="content">
 
 <div class="container containerCase">
 
@@ -148,17 +79,6 @@
     </div>
     </a>
 </div>
-<!--end divide into 3 columns -->
-<!-- begin footer content -->
-<nav class="navbar navbar-fixed-bottom footer">
-
-</nav>
-<!-- end footer content -->
-
-<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<!-- Include all compiled plugins (below), or include individual files as needed -->
-<script src='http://cdnjs.cloudflare.com/ajax/libs/bootstrap-validator/0.4.5/js/bootstrapvalidator.min.js'></script>
-<h:outputScript library="js" name="bootstrap.min.js"/>
-</h:body>
+        </ui:define>
+    </ui:composition>
 </html>

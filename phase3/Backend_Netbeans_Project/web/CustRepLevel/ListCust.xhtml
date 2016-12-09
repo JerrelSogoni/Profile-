@@ -12,10 +12,6 @@
         <ui:define name="content">
             <div><h4>Welcome! #{userPlusController.user}</h4></div>
             <div><h3>Customer Mailing List for #{custrepLevel.queryCompany}</h3></div>
-            <h:form>
-                <h:inputText value="#{custrepLevel.queryCompany}" />
-                <h:commandLink value="Filter" action="#{custrepLevel.listCust()}"/>
-            </h:form>
             <hr />
             <div>
                 <h:dataTable class="table table-hover" value="#{custrepLevel.mailingList}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">

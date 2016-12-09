@@ -10,13 +10,14 @@
             <h:outputText value="#{bundle.ListAdDataTitle}"></h:outputText>
         </ui:define>
         <ui:define name="content">
+            <h3>Groups User Has Joined</h3>
+            <p><br/></p>
             <h:form>
                 <h:panelGrid columns="2">
                     <h:outputLabel value="User" for="user" />
                     <h:selectOneMenu id="user" value="#{group.queryUserPlus}">
                         <f:selectItems value="#{userPlusController.itemsAvailableSelectOne}"/>
                     </h:selectOneMenu>
-
                     <h:outputLabel value="Group" for="group" />
                     <h:selectOneMenu id="group" value="#{group.queryGroupPlus}">
                         <f:selectItems value="#{groupPlusController.itemsAvailableSelectOne}"/>
