@@ -39,11 +39,11 @@ public class TheUserPlusFriendController implements Serializable {
             ps = con.prepareStatement("SELECT \n"
                     + "    *\n"
                     + "FROM\n"
-                    + "UserPlus U WHERE U.UserId IN (SELECT * FROM FriendsWith F WHERE F.FriendId = ? AND F.UserId = ?;");
+                    + "UserPlus U WHERE U.UserId IN (SELECT * FROM FriendsWith F WHERE F.FriendId = ?;");
 
             // print out the query statement
-            ps.setInt(1, PostValidator.getSearchID(user));
-            ps.setInt(2, SessionUtils.getUserId());
+
+            ps.setInt(1, SessionUtils.getUser().getUserId());
             //   JsfUtil.addErrorMessage(ps.toString());
             ResultSet rs = ps.executeQuery();
 
@@ -132,7 +132,7 @@ public class TheUserPlusFriendController implements Serializable {
                     + "    UserPlus WHERE UserId in(Select FriendId FROM FriendsWith WHERE UserId = ?);");
 
             // print out the query statement
-            ps.setInt(1, SessionUtils.getUserId());
+            ps.setInt(1, SessionUtils.getUser().getUserId());
             //   JsfUtil.addErrorMessage(ps.toString());
             ResultSet rs = ps.executeQuery();
 
@@ -169,16 +169,22 @@ public class TheUserPlusFriendController implements Serializable {
     public void addFriend() {
         Connection con = null;
         PreparedStatement ps = null;
-        if ((!friendInput.isEmpty() && !friendInput.equals(SessionUtils.getUserEmail())) && PostValidator.validate(friendInput)) {
+        PreparedStatement ps2 = null;
+        if ((!friendInput.isEmpty() && !friendInput.equals(SessionUtils.getUser().getEmail())) && PostValidator.validate(friendInput)) {
 
             try {
                 con = DataConnect.getConnection();
                 ps = con.prepareStatement("INSERT INTO FriendsWith(UserId,FriendId) VALUES(? ,? );");
                 // print out the query statement
-                ps.setInt(1, SessionUtils.getUserId());
+                ps.setInt(1, SessionUtils.getUser().getUserId());
                 ps.setInt(2, PostValidator.getSearchID(friendInput));
+                ps2 = con.prepareStatement("INSERT INTO FriendsWith(UserId,FriendId) VALUES(? ,? );");
+                ps2.setInt(2, SessionUtils.getUser().getUserId());
+                ps2.setInt(1, PostValidator.getSearchID(friendInput));
                 //   JsfUtil.addErrorMessage(ps.toString());
                 ps.execute();
+                ps2.execute();
+               
 
             } catch (SQLException ex) {
 
@@ -201,15 +207,21 @@ public class TheUserPlusFriendController implements Serializable {
         if (current != null) {
             Connection con = null;
             PreparedStatement ps = null;
+            PreparedStatement ps2 = null;
 
             try {
                 con = DataConnect.getConnection();
                 ps = con.prepareStatement("DELETE FROM FriendsWith WHERE UserId = ? AND FriendId = ?");
+                ps2 = con.prepareStatement("DELETE FROM FriendsWith WHERE UserId = ? AND FriendId = ?");
                 // print out the query statement
-                ps.setInt(1, SessionUtils.getUserId());
+                ps.setInt(1, SessionUtils.getUser().getUserId());
                 ps.setInt(2, current.getFriendId());
+                ps2.setInt(2, SessionUtils.getUser().getUserId());
+                ps2.setInt(1, current.getFriendId());
+               
                 //   JsfUtil.addErrorMessage(ps.toString());
                 ps.execute();
+                ps2.execute();
 
             } catch (SQLException ex) {
 
